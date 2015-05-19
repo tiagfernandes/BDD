@@ -20,8 +20,7 @@
         { ?>
 
         <p>Nom : <?php>print($row[]);?></p>
-        ?>
-
+        }
         </div>
     </body>
 </html>
