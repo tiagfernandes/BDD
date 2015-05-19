@@ -9,6 +9,8 @@
     </head>
 
     <body>
-
+        <div id="contenu">
+            Bonjour
+        </div>
     </body>
 </html>
