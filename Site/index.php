@@ -16,14 +16,16 @@
         <?php
 
             $req1 = 'SELECT * FROM utilisateur';
-            $result = $pdo->query(req1);
-        while ($row = $result->fetch())
-        { ?>
+            $reponse = $pdo->query(req1);
+        while ($donnees = $reponse->fetch()){
+        ?>
 
-        <p>Nom : <?php>print($row[]);?></p>
+        <p>Nom : <?php>print($donnees);?></p>
 
+        <?php
         }
-
+        $result->closeCursor(); // Termine le traitement de la requête
+        ?>
         </div>
     </body>
 </html>
