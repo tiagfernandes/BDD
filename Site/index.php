@@ -14,11 +14,12 @@
 
         <div class="">
         <?php
-             $req1 = "SELECT * FROM utilisateur;";
-             $result = mysql_query($req1) or die (mysql_error());
-             $ligne=mysql_fetch_array($result1);
-             echo "<p>Nom utilisateur : ".$ligne[0]."</p>";
-        ?><p>Bonjour</p>
+            $req1 = 'SELECT * FROM utilisateur';
+            $result = $pdo->query(req1);
+            $row = $result->fetch()
+            print ($row[0]);
+        ?>
+
         </div>
     </body>
 </html>
