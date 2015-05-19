@@ -16,8 +16,10 @@
         <?php
             $req1 = 'SELECT * FROM utilisateur';
             $result = $pdo->query(req1);
-            $row = $result->fetch()
-            print ($row[0]);
+        while ($row = $result->fetch())
+        { ?>
+
+        <p>Nom : <?php>print($row[]);?></p>
         ?>
 
         </div>
