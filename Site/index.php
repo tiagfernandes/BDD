@@ -11,6 +11,8 @@
 <?php include_once('connexion.php'); ?>
 
    <body>
+    <div id="entete">
 
+    </div>
    </body>
 </html>
