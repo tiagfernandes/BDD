@@ -14,3 +14,24 @@ html {
     margin-top: -10px;
     background-color: #E1DCDC;
 }
+
+.connexion{
+    background-color: antiquewhite;
+    width: 350px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    border-radius: 10px;
+}
+
+label{
+    display: block;
+    width: 150px;
+    float: left;
+}
+
+.bouton{
+    margin: auto;
+
+}

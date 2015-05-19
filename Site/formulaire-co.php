@@ -1,20 +1,19 @@
 <!doctype html>
 <html lang="fr">
 
-   <head>
+    <head>
     <title>Connexion</title>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
-    <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="style.css">
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
-        <form action="identification.php" method="post">
-        Votre login : <input type="text" name="login">
-        <br />
-        Votre mot de passe : <input type="password" name="pwd"><br />
-        <input type="submit" value="Connexion">
+        <form action="identification.php" method="post" class="connexion">
+            <label>Votre login : </label><input type="text" name="login"></p>
+            <label>Votre mot de passe : </label><input type="password" name="pwd"></p>
+            <input class="bouton" type="submit" value="Connexion">
         </form>
     </body>
 </html>
