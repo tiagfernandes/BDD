@@ -9,23 +9,6 @@
     </head>
     
 <?php include_once('connexion.php'); ?>
-      
-    <body>
 
-        <div class="">
-        <?php
-
-            $req1 = 'SELECT * FROM utilisateur';
-            $reponse = $pdo->query(req1);
-        while ($donnees = $reponse->fetch()){
-        ?>
-
-        <p>Nom : <?php>print($donnees);?></p>
-
-        <?php
-        }
-        $result->closeCursor(); // Termine le traitement de la requête
-        ?>
-        </div>
     </body>
 </html>
