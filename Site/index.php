@@ -13,28 +13,7 @@
     <body>
         <div id="contenu">
            
-            <?php 
-                
-            ?>
-            
-            
-            <!--<form action="form.php" method="post">
-            <div>
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" />
-            </div>
-            <div>
-                <label for="courriel">Courriel :</label>
-                <input type="email" id="courriel" />
-            </div>
-            <div>
-                <label for="message">Message :</label>
-                <textarea id="message"></textarea>
-            </div>
-            <div class="button">
-                <button type="submit">Envoyer votre message</button>
-            </div>
-            </form>-->
+
         </div>
     </body>
 </html>
