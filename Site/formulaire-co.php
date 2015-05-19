@@ -10,10 +10,10 @@
     </head>
 
     <body>
-        <form action="identification.php" method="post" class="connexion">
-            <label>Votre login : </label><input type="text" name="login"></p>
+        <font face="Helvetica"><form action="identification.php" method="post" class="connexion">
+            <label>Votre login : </label><input type="text" name="login" placeholder="Ex: Dupont"></p>
             <label>Votre mot de passe : </label><input type="password" name="pwd"></p>
             <input type="submit" value="Connexion">
-        </form>
+        </form></font>
     </body>
 </html>
