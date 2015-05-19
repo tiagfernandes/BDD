@@ -6,9 +6,9 @@ html {
 }
 
 #contenu {
-	width:600px;
-	height:50px;
-	background-color:#4A4646;
-    text-align: center;
-    border-width:20px;
+    border-radius: 25px;
+    border: 2px solid #8AC007;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
 	}
