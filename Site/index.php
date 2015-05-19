@@ -10,5 +10,7 @@
     
 <?php include_once('connexion.php'); ?>
 
-    </body>
+   <body>
+
+   </body>
 </html>
