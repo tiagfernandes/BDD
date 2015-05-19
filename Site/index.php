@@ -12,7 +12,7 @@
       
     <body>
 
-        <div>
+        <div class="">
         <?php
              $req1 = "SELECT * FROM utilisateur;";
              $result = mysql_query($req1) or die (mysql_error());
