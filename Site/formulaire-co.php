@@ -13,7 +13,7 @@
         <form action="identification.php" method="post" class="connexion">
             <label>Votre login : </label><input type="text" name="login"></p>
             <label>Votre mot de passe : </label><input type="password" name="pwd"></p>
-            <input class="bouton" type="submit" value="Connexion">
+            <input type="submit" value="Connexion">
         </form>
     </body>
 </html>
