@@ -12,7 +12,6 @@
 
    <body>
     <div id="entete">
-
     </div>
    </body>
 </html>
