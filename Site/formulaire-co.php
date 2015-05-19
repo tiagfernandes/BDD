@@ -13,7 +13,7 @@
         <font face="Helvetica"><form action="identification.php" method="post" class="connexion">
             <label>Votre login : </label><input type="text" name="login" placeholder="Ex: Dupont"></p>
             <label>Votre mot de passe : </label><input type="password" name="pwd"></p>
-            <input id="bouton" type="submit" value="Connexion">
+            <input class="bouton" type="submit" value="Connexion">
         </form></font>
     </body>
 </html>

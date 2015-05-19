@@ -35,8 +35,7 @@ label{
     float: left;
 }
 
-#bouton{
+.bouton{
     position: relative;
     left: 35%;
 }
-
