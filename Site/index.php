@@ -7,10 +7,18 @@
     <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-
+    
+<?php include_once('connexion.php'); ?>
+      
     <body>
         <div id="contenu">
-            <form action="form.php" method="post">
+           
+            <?php 
+                
+            ?>
+            
+            
+            <!--<form action="form.php" method="post">
             <div>
                 <label for="nom">Nom :</label>
                 <input type="text" id="nom" />
@@ -26,7 +34,7 @@
             <div class="button">
                 <button type="submit">Envoyer votre message</button>
             </div>
-            </form>
+            </form>-->
         </div>
     </body>
 </html>
