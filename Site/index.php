@@ -11,23 +11,7 @@
 
     <body>
         <div id="contenu">
-            <form action="form.php" method="GET">
-            <div>
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" />
-            </div>
-            <div>
-                <label for="courriel">Courriel :</label>
-                <input type="email" id="mail" />
-            </div>
-            <div>
-                <label for="message">Message :</label>
-                <textarea id="message"></textarea>
-            </div>
-            <div class="button">
-                <button type="submit">Envoyer</button>
-            </div>
-            </form>
+
         </div>
     </body>
 </html>
