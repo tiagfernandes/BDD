@@ -10,10 +10,11 @@
     </head>
 
     <body>
-        <font face="Helvetica"><form action="identification.php" method="post" class="connexion">
+        <font><form action="identification.php" method="post" class="connexion">
             <img src="image/logo_ecotron.png" class="logo_ecotron">
             <img src="image/logo_cnrs.png" class="logo_cnrs">
             <img src="image/logo_ens.jpg" class="logo_ens">
+                <hr width=335 align=left>
             <label>Votre login : </label><input type="text" name="login" placeholder="Ex: Dupont"></p>
             <label>Votre mot de passe : </label><input type="password" name="pwd"></p>
             <input class="bouton" type="submit" value="Connexion">
