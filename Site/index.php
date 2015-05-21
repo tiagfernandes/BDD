@@ -20,19 +20,13 @@
     <div id="entete">
        <?php
              if (isset($_SESSION['nom']) && isset($_SESSION['role'])) {
-<<<<<<< HEAD
+
                 echo "<p style=text-align:right;>Bienvenue : ".$_SESSION['nom']." ".$_SESSION['prenom']."(".$_SESSION['role'].")";
             }
             else
                 header ('location: authentification.php');
         ?>
-=======
-         echo "<p style=text-align:right;>Bienvenue : ".$_SESSION['nom']." ".$_SESSION['prenom']."(".$_SESSION['role'].")";
-     }
-     else
-        header ('location: authentification.php');
-?>
->>>>>>> origin/master
+
         <div class="bouton">
             <a href="logout.php">Déconnexion</a>
         </div>
