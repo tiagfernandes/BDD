@@ -44,8 +44,8 @@
           <th>Planning d'occupation</th>
           <th>Panne</th>
           <th>Catégorie</th>
-          <th>delete</th>
-          <th>update</th>
+          <th>Supprimer</th>
+          <th>Modifier</th>
 
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?>
