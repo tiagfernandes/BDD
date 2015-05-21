@@ -22,7 +22,6 @@
         }
 
         else
-            header ('location: formulaire-co.php');
             echo '<body onLoad="alert(\'Identifiant ou mots de passe incorrect.\')">';
 
         }
