@@ -6,9 +6,8 @@
 
     if (empty($_POST['login']) && empty($_POST['pwd'])) {
 
-        echo '<body onLoad="alert(\'Entrez un champs.\')">';
         echo '<meta http-equiv="refresh" content="0;URL=formulaire-co.php">';
-
+        echo '<body onLoad="alert(\'Entrez un champs.\')">';
     }
 
     else {
