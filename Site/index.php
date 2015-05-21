@@ -2,6 +2,8 @@
      require_once('fonctions.php');
 
      session_start ();
+
+    $listeEquipement = getAllEquipement($pdo);
 ?>
 
 <!doctype html>
@@ -31,6 +33,34 @@
             <a href="logout.php">Déconnexion</a>
         </div>
     </div>
+
+        <table border=2>
+          <th>id</th>
+          <th>Etiquette</th>
+          <th>Nom équipement</th>
+          <th>Type</th>
+          <th>Lieux d'archive</th>
+          <th>Fournisseur</th>
+          <th>Planning d'occupation</th>
+          <th>Panne</th>
+          <th>Catégorie</th>
+          <th>delete</th>
+          <th>update</th>
+
+
+        <?php foreach ($listeEquipement as $cle=>$valeur): ?>
+            <tr>
+            <?php foreach ($valeur as $val): ?>
+                <td><?= htmlentities($val) ?></td>
+            <?php endforeach; ?>
+
+            <td><a href=listeSalariesPdo.php?delete=<?= htmlentities($valeur['idsalaries']) ?>
+               onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['nom'] ?> ?'));">delete</a></td>
+            <td><a href=formPDO.php?id=<?= $valeur['idsalaries'] ?> >update</a></td>
+
+            </tr>
+         <?php endforeach; ?>
+        </table>
 
    </body>
 </html>

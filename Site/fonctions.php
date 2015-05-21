@@ -17,4 +17,18 @@ function getAuthentification($login, $pass){
             return false;
         }
 }
+
+function getAllEquipement(){
+    global $pdo;
+    $query = 'SELECT * FROM equipement ';
+
+    try {
+      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch ( Exception $e ) {
+      die ("erreur dans la requete ".$e->getMessage());
+    }
+
+}
 ?>
