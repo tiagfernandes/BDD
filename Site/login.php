@@ -12,6 +12,7 @@
             session_start ();
             // on enregistre les paramètres de notre visiteur comme variables de session
             $_SESSION['nom'] = $result['nomUtilisateur'];
+            $_SESSION['prenom'] = $result['prenomUtilisateur'];
             $_SESSION['identifiant'] = $result['idUtilisateur'];
             $_SESSION['role'] = $result['role'];
             // on redirige notre visiteur vers une page de notre section membre
