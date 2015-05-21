@@ -54,11 +54,6 @@
                 <td><?= htmlentities($val) ?></td>
             <?php endforeach; ?>
 
-            <td><a href=listeSalariesPdo.php?delete=<?= htmlentities($valeur['idsalaries']) ?>
-               onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['nom'] ?> ?'));">delete</a></td>
-            <td><a href=formPDO.php?id=<?= $valeur['idsalaries'] ?> >update</a></td>
-
-            </tr>
          <?php endforeach; ?>
         </table>
 
