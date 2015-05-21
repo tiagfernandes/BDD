@@ -25,7 +25,13 @@
     $login_valide = "root";
     $pwd_valide = "sio";
 
-    if (isset($_POST['login']) && isset($_POST['pwd'])) {
+    if (empty($_POST['login']) && empty($_POST['pwd'])) {
+
+        echo '<body onLoad="alert(\'Entrez un champs.\')">';
+
+        echo '<meta http-equiv="refresh" content="0;URL=formulaire-co.php">';
+
+    else {
 
         if ($login_valide == $_POST['login'] && $pwd_valide == $_POST['pwd']) {
             session_start ();
@@ -34,15 +40,14 @@
             header ('location: page_membre.php');
         }
 
-        else {
+        else{
+
             echo '<body onLoad="alert(\'Identifiant ou mots de passe incorrect.\')">';
 
             //echo '<meta http-equiv="refresh" content="0;URL=formulaire-co.php">';
         }
     }
-    else {
-        echo '<body onLoad="alert(\'Entrez un champs.\')">';
-    }
+
     ?>
 
 
