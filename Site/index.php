@@ -2,13 +2,6 @@
      require_once('fonctions.php');
 
      session_start ();
-     // On teste pour voir si nos variables de session ont bien été enregistrées
-     if (isset($_SESSION['nom']) && isset($_SESSION['role'])) {
-         echo "<p style=text-align:right;>Bienvenue : ".$_SESSION['nom']."(".$_SESSION['role'].")";
-         echo '<br><a href="./logout.php">Deconnexion</a></p>';
-     }
-     else
-        header ('location: authentification.php');
 ?>
 
 <!doctype html>
@@ -24,10 +17,14 @@
 
 
    <body>
-
-    <h1>Bienvenue</h1>
-
     <div id="entete">
+       <?php
+             if (isset($_SESSION['nom']) && isset($_SESSION['role'])) {
+         echo "<p style=text-align:right;>Bienvenue : ".$_SESSION['nom']."(".$_SESSION['role'].")";
+     }
+     else
+        header ('location: authentification.php');
+?>
         <div class="bouton">
             <a href="logout.php">Déconnexion</a>
         </div>
