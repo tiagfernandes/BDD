@@ -56,7 +56,7 @@ input {
 }
 
 .bouton a {
-position: relative;
+position: absolute;
 left:540px;
 top:10px;
 display:block;
