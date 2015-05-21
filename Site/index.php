@@ -30,7 +30,7 @@
         ?>
 
         <div class="bouton">
-            <a href="logout.php">Déconnexion</a>
+            <a href="logout.php" onclick="return(confirm('Etes-vous sûr de vouloir vous déconnectez ? '));">Déconnexion</a>
         </div>
     </div>
 
