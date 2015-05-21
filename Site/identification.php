@@ -1,6 +1,4 @@
 <?php
-    header('Content-Type: text/html; charset=utf-8');
-
     $login_valide = "root";
     $pwd_valide = "sio";
 

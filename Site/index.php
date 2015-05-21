@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="fr">
+<meta charset="UTF-8">
 
    <head>
     <title>Index</title>
@@ -12,6 +13,9 @@
 
    <body>
     <div id="entete">
+        <div class="bouton">
+            <a href="logout.php">Déconnexion</a>
+        </div>
     </div>
    </body>
 </html>
