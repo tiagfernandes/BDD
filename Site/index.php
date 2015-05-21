@@ -13,6 +13,7 @@
 
 <!doctype html>
 <html lang="fr">
+<meta charset="UTF-8">
 
    <head>
     <title>Index</title>
@@ -23,6 +24,14 @@
 
 
    <body>
+
     <h1>Bienvenue</h1>
+
+    <div id="entete">
+        <div class="bouton">
+            <a href="logout.php">Déconnexion</a>
+        </div>
+    </div>
+
    </body>
 </html>
