@@ -16,7 +16,7 @@
             session_start ();
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['pwd'] = $_POST['pwd'];
-            header ('location: page_membre.php');
+            header ('location: index.php');
         }
 
         else
