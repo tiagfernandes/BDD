@@ -8,7 +8,6 @@
 
         echo '<body onLoad="alert(\'Entrez un champs.\')">';
         echo '<meta http-equiv="refresh" content="0;URL=formulaire-co.php">';
-        header ('location: formulaire-co.php');
 
     }
 
