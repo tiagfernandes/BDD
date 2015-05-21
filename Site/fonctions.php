@@ -27,8 +27,73 @@ function getAllEquipement(){
       return $result;
     }
     catch ( Exception $e ) {
-      die ("erreur dans la requete ".$e->getMessage());
+      die ("Erreur dans la requete ".$e->getMessage());
     }
 
+}
+
+function getAllFournisseur(){
+    global $pdo;
+    $query = 'SELECT * FROM fournisseur ';
+
+    try {
+      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch ( Exception $e ) {
+      die ("Erreur dans la requete ".$e->getMessage());
+    }
+}
+
+function getAllUtilisateur(){
+    global $pdo;
+    $query = 'SELECT * FROM utilisateur';
+
+    try {
+      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch ( Exception $e ) {
+      die ("Erreur dans la requete ".$e->getMessage());
+    }
+}
+
+function getAllEntretient(){
+    global $pdo;
+    $query = 'SELECT * FROM entretient';
+
+    try {
+      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch ( Exception $e ) {
+      die ("Erreur dans la requete ".$e->getMessage());
+    }
+}
+
+function getAllArchive(){
+    global $pdo;
+    $query = 'SELECT * FROM lieux_archive';
+
+    try {
+      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch ( Exception $e ) {
+      die ("Erreur dans la requete ".$e->getMessage());
+    }
+}
+
+function getAllPanne(){
+    global $pdo;
+    $query = 'SELECT * FROM Panne';
+
+    try {
+      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch ( Exception $e ) {
+      die ("Erreur dans la requete ".$e->getMessage());
+    }
 }
 ?>
