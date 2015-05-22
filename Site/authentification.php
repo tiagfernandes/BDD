@@ -14,12 +14,10 @@
             <img src="image/logo_ecotron.png" class="logo_ecotron">
             <img src="image/logo_cnrs.png" class="logo_cnrs">
             <img src="image/logo_ens.jpg" class="logo_ens">
-                <hr width=335 align=left>
+            <hr width=335 align=left>
             <label>Votre login : </label><input type="text" name="login" placeholder="Identifiant"></p>
             <label>Votre mot de passe : </label><input type="password" name="pwd" placeholder="Mot de Passe"></p>
             <input class="bouton" type="submit" value="Se connecter">
         </form></font>
-
-
     </body>
 </html>
