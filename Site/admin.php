@@ -38,6 +38,11 @@
                 <td><?= htmlentities($val) ?></td>
             <?php endforeach; ?>
 
+                <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
+                       onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['nomUtilisateur'] ?> ?'));">delete</a></td>
+                <td><a href=formPDO.php?id=<?= $valeur['idUtilisateur'] ?> >update</a></td>
+
+                </tr>
          <?php endforeach; ?>
         </table>
     </body>
