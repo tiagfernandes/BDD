@@ -1,6 +1,5 @@
 <?php
     require_once('fonctions.php');
-
     session_start ();
 ?>
 
@@ -16,8 +15,23 @@
     </head>
 
 
-   <body>
-
+    <body>
     <?php require_once('entete.php'); ?>
+        <div id="contenu">
+            <img src="image/boba.jpg" alt="Avatar" id="avatar">
+            <div id ="infos">
+               <div id ="donnees">
+                <?php  echo "Nom : ".$_SESSION['nom'].""; ?>
+                <p>
+                <?php  echo "Prénom : ".$_SESSION['prenom'].""; ?>
+                <p>
+                <?php  echo "Mail : ".$_SESSION['email'].""; ?>
+                <p>
+                <?php  echo "Identifiant : ".$_SESSION['login'].""; ?>
+                <p>
+                <?php  echo "Mot de passe : ".$_SESSION['password'].""; ?>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
