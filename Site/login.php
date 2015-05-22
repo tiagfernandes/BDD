@@ -1,7 +1,7 @@
 <?php
     require_once('fonctions.php');
     // on teste si nos variables sont définies et remplies
-    if (isset($_POST['login']) && isset($_POST['pwd']) && !empty($_POST['login'])&& !empty($_POST['login'])) {
+    if (isset($_POST['login']) && isset($_POST['pwd']) && !empty($_POST['login'])&& !empty($_POST['pwd'])) {
     // on appele la fonction getAuthentification en lui passant en paramètre le login et password
     $result = getAuthentification($_POST['login'],$_POST['pwd']);
 

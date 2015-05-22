@@ -29,7 +29,7 @@
     <div id="entete">
 
        <?php
-             if (isset($_SESSION['nom']) && isset($_SESSION['role'])) {
+            if (isset($_SESSION['nom']) && isset($_SESSION['role'])) {
                 echo "<p style=text-align:right;>Bienvenue : ".$_SESSION['nom']." ".$_SESSION['prenom']."(".$_SESSION['role'].")";
             }
 
@@ -40,11 +40,11 @@
         <div class="bouton">
             <a href="logout.php" onclick="return(confirm('Etes-vous sûr de vouloir vous déconnectez ? '));">Déconnexion</a>
         </div>
-        <a href="index.php">Accueil</a> |
-        <a href="">Ajout équipement</a> |
-        <a href="">Profil</a> |
-        <a href="">Admin</a>
-    </div>
+            <a href="index.php">Accueil</a> |
+            <a href="">Ajout équipement</a> |
+            <a href="">Profil</a> |
+            <a href="">Admin</a>
+        </div>
 
 
         <h4>Equipement</h4>
