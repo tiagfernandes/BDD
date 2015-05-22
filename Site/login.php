@@ -13,7 +13,10 @@
             $_SESSION['nom'] = $result['nomUtilisateur'];
             $_SESSION['prenom'] = $result['prenomUtilisateur'];
             $_SESSION['identifiant'] = $result['idUtilisateur'];
+            $_SESSION['email']=$result['email'];
             $_SESSION['role'] = $result['role'];
+            $_SESSION['login'] = $result['login'];
+            $_SESSION['password'] = $result['password'];
             // on redirige notre visiteur vers une page de notre section membre
             header ('location: index.php');
 
