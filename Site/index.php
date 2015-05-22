@@ -26,26 +26,8 @@
 
 
    <body>
-    <div id="entete">
 
-       <?php
-            if (isset($_SESSION['nom']) && isset($_SESSION['role'])) {
-                echo "<p style=text-align:right;>Bienvenue : ".$_SESSION['nom']." ".$_SESSION['prenom']."(".$_SESSION['role'].")";
-            }
-
-            else
-                header ('location: authentification.php');
-        ?>
-
-        <div class="bouton">
-            <a href="logout.php" onclick="return(confirm('Etes-vous sûr de vouloir vous déconnectez ? '));">Déconnexion</a>
-        </div>
-            <a href="index.php">Accueil</a> |
-            <a href="">Ajout équipement</a> |
-            <a href="">Profil</a> |
-            <a href="">Admin</a>
-        </div>
-
+    <?php require_once('entete.php'); ?>
 
         <h4>Equipement</h4>
         <table border=2>
