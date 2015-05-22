@@ -8,5 +8,5 @@
             <a href="index.php">Accueil</a> |
             <a href="ajout-element.php">Ajout équipement</a> |
             <a href="">Profil</a> |
-            <a href="">Admin</a>
+            <a href="admin.php">Admin</a>
 </div>

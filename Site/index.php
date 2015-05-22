@@ -18,7 +18,7 @@
 <meta charset="UTF-8">
 
    <head>
-    <title>Index</title>
+    <title>Base de donnée ECOTRON</title>
     <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
     <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -39,6 +39,7 @@
           <th>Fournisseur</th>
           <th>Planning d'occupation</th>
           <th>Catégorie</th>
+          <th>Date d'ajout</th>
           <th>Supprimer</th>
           <th>Modifier</th>
 
