@@ -86,7 +86,33 @@ function getAllArchive(){
 
 function getAllPanne(){
     global $pdo;
-    $query = 'SELECT * FROM Panne';
+    $query = 'SELECT * FROM panne';
+
+    try {
+      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch ( Exception $e ) {
+      die ("Erreur dans la requete ".$e->getMessage());
+    }
+}
+
+function getAllOccupation(){
+    global $pdo;
+    $query = 'SELECT * FROM planning_occupation';
+
+    try {
+      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+    }
+    catch ( Exception $e ) {
+      die ("Erreur dans la requete ".$e->getMessage());
+    }
+}
+
+function getAllLiaison(){
+    global $pdo;
+    $query = 'SELECT * FROM liaison';
 
     try {
       $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
