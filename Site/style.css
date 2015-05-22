@@ -32,6 +32,7 @@ html {
     -webkit-box-shadow: 0px 0px 10px 5px rgba(164, 162, 162, 0.75);
 }
 #avatar{
+    border-radius: 10px;
     width: :250px;
     height: 250px;
     margin-left:75px;
@@ -49,8 +50,9 @@ html {
 }
 #donnees{
     margin-left: 10px;
-    font-family:cursive;
     padding-top: 30px;
+    font-family:cursive;
+    font-size:24px;
 }
 
 .connexion{
