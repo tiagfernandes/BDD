@@ -29,8 +29,8 @@
           <th>Identifiant</th>
           <th>Mot de passe</th>
           <th>Rôle</th>
-          <th>Modifier</th>
           <th>Supprimer</th>
+          <th>Modifier</th>
 
         <?php foreach ($listeUtilisateur as $cle=>$valeur): ?>
             <tr>
@@ -39,11 +39,17 @@
             <?php endforeach; ?>
 
                 <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
-                       onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['nomUtilisateur'] ?> ?'));">delete</a></td>
-                <td><a href=formPDO.php?id=<?= $valeur['idUtilisateur'] ?> >update</a></td>
-
+                       onClick="return(confirm('Supprimer <?= $valeur['nomUtilisateur']  ?> ?'));">Supprimer</a></td>
+                <?php
+                    if (!isset($_GET['idUtilisateur'])){
+                        $delete = $pdo->prepare('DELETE FROM utilisateur WHERE idUtilisateur="'.$valeur['idUtilisateur'].'"');
+                        $delete->execute();
+                        print_r($delete);
+                    }
+                ?>
                 </tr>
          <?php endforeach; ?>
+
         </table>
     </body>
 </html>
