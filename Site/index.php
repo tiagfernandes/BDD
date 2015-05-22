@@ -1,7 +1,7 @@
 <?php
-     require_once('fonctions.php');
+    require_once('fonctions.php');
 
-     session_start ();
+    session_start ();
 
     $listeEquipement = getAllEquipement($pdo);
     $listeFournisseur = getAllFournisseur($pdo);
@@ -9,6 +9,8 @@
     $listeEntretient = getAllEntretient($pdo);
     $listeArchive = getAllArchive($pdo);
     $listePanne = getAllPanne($pdo);
+    $listeOccupation = getAllOccupation($pdo);
+    $listeLiaison = getAllLiaison($pdo);
 ?>
 
 <!doctype html>
@@ -25,6 +27,7 @@
 
    <body>
     <div id="entete">
+
        <?php
              if (isset($_SESSION['nom']) && isset($_SESSION['role'])) {
 
@@ -39,6 +42,8 @@
         </div>
     </div>
 
+
+        <h4>Equipement</h4>
         <table border=2>
           <th>id</th>
           <th>Etiquette</th>
@@ -61,8 +66,9 @@
         </table>
 
 
+        <h4>Utilisateur</h4>
         <table border=2>
-          <th>idUtilisateur</th>
+          <th>id</th>
           <th>Nom</th>
           <th>Prénom</th>
           <th>Email</th>
@@ -80,6 +86,7 @@
         </table>
 
 
+        <h4>Fournisseur</h4>
         <table border=2>
           <th>id</th>
           <th>Fournisseur</th>
@@ -98,6 +105,7 @@
         </table>
 
 
+        <h4>Entretient</h4>
         <table border=2>
           <th>id</th>
           <th>Date entretient</th>
@@ -113,6 +121,7 @@
         </table>
 
 
+        <h4>Lieu d'archives</h4>
         <table border=2>
           <th>id</th>
           <th>Plateforme</th>
@@ -131,6 +140,7 @@
         </table>
 
 
+       <h4>Panne</h4>
         <table border=2>
           <th>id</th>
           <th>Nom panne</th>
@@ -140,6 +150,40 @@
           <th>Utilisateur</th>
 
         <?php foreach ($listePanne as $cle=>$valeur): ?>
+            <tr>
+            <?php foreach ($valeur as $val): ?>
+                <td><?= htmlentities($val) ?></td>
+            <?php endforeach; ?>
+
+         <?php endforeach; ?>
+        </table>
+
+
+        <h4>Occupation</h4>
+        <table border=2>
+          <th>id</th>
+          <th>Date de début d'occupation</th>
+          <th>Date de fin d'occupation</th>
+          <th>Utilisateur</th>
+          <th>Lieu d'occupation</th>
+
+        <?php foreach ($listeOccupation as $cle=>$valeur): ?>
+            <tr>
+            <?php foreach ($valeur as $val): ?>
+                <td><?= htmlentities($val) ?></td>
+            <?php endforeach; ?>
+
+         <?php endforeach; ?>
+        </table>
+
+
+        <h4>Liaison des équipements</h4>
+        <table border=2>
+          <th>id</th>
+          <th>Equipement 1</th>
+          <th>Equipement 2</th>
+
+        <?php foreach ($listeLiaison as $cle=>$valeur): ?>
             <tr>
             <?php foreach ($valeur as $val): ?>
                 <td><?= htmlentities($val) ?></td>
