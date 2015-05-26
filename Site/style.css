@@ -19,6 +19,10 @@ html {
     -webkit-box-shadow: 0px 0px 10px 5px rgba(164, 162, 162, 0.75);
 }
 
+#time{
+    margin-left: 770px;
+}
+
 #contenu{
     border-radius:15px;
     width: 1000px;
@@ -94,6 +98,7 @@ html {
     height: 50px;
     background-color: #DBD7D7;
     font-size: 30px;
+    text-shadow:1px 1px 2px gray;
     text-align: center;
     padding-top: 10px;
 }
@@ -111,6 +116,11 @@ html {
     padding-bottom: 1%;
 }
 
+#msg{
+    font-style: italic;
+    color: red;
+    text-align: center;
+}
 label{
     display: block;
     width: 160px;

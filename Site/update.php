@@ -27,7 +27,7 @@
             <label>Mail : </label><input type="text" name="nmail" value="<?php  echo "".$_SESSION['email']."";?>"></p>
             <label>Identifiant : </label><input type="text" name="nidentifiant" value="<?php  echo "".$_SESSION['login']."";?>"></p>
             <label>Mot de passe : </label><input type="text" name="nmdp" value="<?php  echo "".$_SESSION['password']."";?>"></p>
-            <input class="bouton" type="submit" value="Modifier">
+            <input class="bouton" onclick="return(confirm('Etes-vous sur de vouloir modifier votre profil ? '));" type="submit" value="Modifier">
         </form></font>
     </body>
 </html>
