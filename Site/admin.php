@@ -32,7 +32,7 @@
           <th>Supprimer</th>
           <th>Modifier</th>
 
-        <?php foreach ($listeUtilisateur as $cle=>$valeur): ?>
+        <?/*php foreach ($listeUtilisateur as $cle=>$valeur): ?>
             <tr>
             <?php foreach ($valeur as $val): ?>
                 <td><?= htmlentities($val) ?></td>
@@ -48,7 +48,7 @@
                     }
                 ?>
                 </tr>
-         <?php endforeach; ?>
+         <?php endforeach; */?>
 
         </table>
     </body>

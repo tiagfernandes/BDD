@@ -36,7 +36,7 @@ html {
     width: :250px;
     height: 250px;
     margin-left:75px;
-    margin-top: 150px;
+    margin-top: 75px;
 }
 
 #infos{
@@ -45,7 +45,7 @@ html {
     margin-right: 10px;
     float: right;
     width: 575px;
-    height: 580px;
+    height: 350px;
     background-color: #DBD7D7;
 }
 #donnees{
@@ -55,6 +55,48 @@ html {
     font-size:24px;
 }
 
+#bmodif{
+    margin-top: 400px;
+    margin-left: 300px;
+    position: absolute;
+}
+
+.btn {
+  background: #000000;
+  background-image: -webkit-linear-gradient(top, #000000, #808080);
+  background-image: -moz-linear-gradient(top, #000000, #808080);
+  background-image: -ms-linear-gradient(top, #000000, #808080);
+  background-image: -o-linear-gradient(top, #000000, #808080);
+  background-image: linear-gradient(to bottom, #000000, #808080);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 19px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #6b6b6b;
+  background-image: -webkit-linear-gradient(top, #6b6b6b, #6b6b6b);
+  background-image: -moz-linear-gradient(top, #6b6b6b, #6b6b6b);
+  background-image: -ms-linear-gradient(top, #6b6b6b, #6b6b6b);
+  background-image: -o-linear-gradient(top, #6b6b6b, #6b6b6b);
+  background-image: linear-gradient(to bottom, #6b6b6b, #6b6b6b);
+  text-decoration: none;
+}
+
+#banniere{
+    border-radius:10px;
+    width: 1000px;
+    height: 50px;
+    background-color: #DBD7D7;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 10px;
+}
 .connexion{
     background-color: antiquewhite;
     width: 350px;

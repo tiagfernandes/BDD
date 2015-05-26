@@ -18,6 +18,9 @@
     <body>
     <?php require_once('entete.php'); ?>
         <div id="contenu">
+            <div id="banniere">
+                <em>Votre profil </em>
+            </div>
             <img src="image/boba.jpg" alt="Avatar" id="avatar">
             <div id ="infos">
                <div id ="donnees">
@@ -32,6 +35,7 @@
                 <?php  echo "Mot de passe : ".$_SESSION['password'].""; ?>
                 </div>
             </div>
+            <a href="update.php" class="btn" id="bmodif">Modifier profil</a>
         </div>
     </body>
 </html>
