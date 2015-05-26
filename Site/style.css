@@ -1,6 +1,4 @@
 html {
-    margin:0;
-    padding:0;
     background: url(image/bg.jpg) no-repeat center fixed;
     background-size: cover;
     font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
@@ -159,8 +157,4 @@ text-decoration:none;
 }
 .bouton a:hover {
 background:url(image/bouton-noir-2.png) no-repeat;
-}
-
-body{
-
 }

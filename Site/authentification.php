@@ -22,7 +22,7 @@
             <div id ="msg">
                <?php
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-                if ($monUrl == "http://localhost/BDD/Site/authentification.php?reco=1"){
+                if ($monUrl == "http://localhost/BDD/Site/authentification.php?reco"){
                     echo ("Veuillez vous reconnectez ");
                 }
                 else if ($monUrl =="http://localhost/BDD/Site/authentification.php?erreur"){

@@ -25,5 +25,5 @@
 
     $stmt->execute();
 
-    header ('location: authentification.php?reco=1');
+    header ('location: authentification.php?reco');
 ?>
