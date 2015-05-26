@@ -19,7 +19,7 @@
     <?php require_once('entete.php'); ?>
         <div id="contenu">
             <div id="banniere">
-                <em>Votre profil </em>
+                Votre profil :
             </div>
             <img src="image/boba.jpg" alt="Avatar" id="avatar">
             <div id ="infos">
