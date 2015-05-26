@@ -40,16 +40,14 @@
 
                 <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
                        onClick="return(confirm('Supprimer <?= $valeur['nomUtilisateur']  ?> ?'));">Supprimer</a></td>
-                <?php
-                    if (!isset($_GET['idUtilisateur'])){
-                        $delete = $pdo->prepare('DELETE FROM utilisateur WHERE idUtilisateur="'.$valeur['idUtilisateur'].'"');
-                        $delete->execute();
-                        print_r($delete);
-                    }
-                ?>
                 </tr>
          <?php endforeach; ?>
+                <?php
 
+                       // $delete = $pdo->prepare('DELETE FROM utilisateur WHERE idUtilisateur="'.$valeur['idUtilisateur'].'"');
+                      //  $delete->execute();
+                        //print_r($delete);
+                ?>
         </table>
     </body>
 </html>

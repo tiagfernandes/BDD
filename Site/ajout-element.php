@@ -19,5 +19,10 @@
    <body>
 
     <?php require_once('entete.php'); ?>
+
+        <div><h2>Ajout d'un équipement</h2>
+
+
+        </div>
     </body>
 </html>
