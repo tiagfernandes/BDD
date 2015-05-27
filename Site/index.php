@@ -23,11 +23,11 @@
 
     <?php require_once('entete.php'); ?>
         <div id ="contenu">
-            <div id="banniere">
-                  Equipement
-            </div>
+            <div id="banniere">Equipement</div>
 
-        <table border=2>
+        </form>
+
+        </p><table border=2>
           <th>id</th>
           <th>Etiquette</th>
           <th>Nom équipement</th>
