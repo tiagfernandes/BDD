@@ -1,4 +1,4 @@
-<div id="entete">
+<nav id="entete">
         <script type="text/javascript" src="date_heure.js"></script>
        <?php require_once('information-utilisateur.php') ?>
         <div id="onglet">
@@ -16,4 +16,4 @@
         <div class="deco">
             <a href="logout.php" onclick="return(confirm('Etes-vous sûr de vouloir vous déconnectez ? '));">Déconnexion</a>
         </div>
-</div>
+</nav>
