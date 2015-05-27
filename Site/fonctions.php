@@ -32,19 +32,6 @@ function getAllEquipement(){
 
 }
 
-function getAllFournisseur(){
-    global $pdo;
-    $query = 'SELECT * FROM fournisseur ';
-
-    try {
-      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
-      return $result;
-    }
-    catch ( Exception $e ) {
-      die ("Erreur dans la requete ".$e->getMessage());
-    }
-}
-
 function getAllUtilisateur(){
     global $pdo;
     $query = 'SELECT * FROM utilisateur';
@@ -70,56 +57,3 @@ function getAllEntretient(){
       die ("Erreur dans la requete ".$e->getMessage());
     }
 }
-
-function getAllArchive(){
-    global $pdo;
-    $query = 'SELECT * FROM lieux_archive';
-
-    try {
-      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
-      return $result;
-    }
-    catch ( Exception $e ) {
-      die ("Erreur dans la requete ".$e->getMessage());
-    }
-}
-
-function getAllPanne(){
-    global $pdo;
-    $query = 'SELECT * FROM panne';
-
-    try {
-      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
-      return $result;
-    }
-    catch ( Exception $e ) {
-      die ("Erreur dans la requete ".$e->getMessage());
-    }
-}
-
-function getAllOccupation(){
-    global $pdo;
-    $query = 'SELECT * FROM planning_occupation';
-
-    try {
-      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
-      return $result;
-    }
-    catch ( Exception $e ) {
-      die ("Erreur dans la requete ".$e->getMessage());
-    }
-}
-
-function getAllLiaison(){
-    global $pdo;
-    $query = 'SELECT * FROM liaison';
-
-    try {
-      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
-      return $result;
-    }
-    catch ( Exception $e ) {
-      die ("Erreur dans la requete ".$e->getMessage());
-    }
-}
-?>
