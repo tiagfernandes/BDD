@@ -60,8 +60,9 @@ html {
 #form-ajout{
     border-radius:10px;
     margin-top: 30px;
-    margin-left: 225px;
-    width: 575px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
     height: auto;
 }
 
@@ -158,19 +159,24 @@ input {
 }
 
 .deco a {
-position: absolute;
-left:540px;
-top: -10px;
-display:block;
-width:100px;
-font-size: 10px;
-line-height:25px;
-text-align:center;
-vertical-align:middle;
-background:url(image/bouton-noir.png) no-repeat;
-color:white;
-text-decoration:none;
+    position: absolute;
+    left:540px;
+    top: -10px;
+    display:block;
+    width:100px;
+    font-size: 10px;
+    line-height:25px;
+    text-align:center;
+    vertical-align:middle;
+    background:url(image/bouton-noir.png) no-repeat;
+    color:white;
+    text-decoration:none;
 }
+
 .bouton a:hover {
-background:url(image/bouton-noir-2.png) no-repeat;
+    background:url(image/bouton-noir-2.png) no-repeat;
+}
+
+#ajout_element {
+    width: 300px;
 }
