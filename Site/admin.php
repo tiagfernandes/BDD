@@ -32,7 +32,7 @@
           <th>Supprimer</th>
           <th>Modifier</th>
 
-        <?/*php foreach ($listeUtilisateur as $cle=>$valeur): ?>
+        <?php foreach ($listeUtilisateur as $cle=>$valeur): ?>
             <tr>
             <?php foreach ($valeur as $val): ?>
                 <td><?= htmlentities($val) ?></td>
@@ -41,17 +41,9 @@
                 <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
                        onClick="return(confirm('Supprimer <?= $valeur['nomUtilisateur']  ?> ?'));">Supprimer</a></td>
                 </tr>
-<<<<<<< HEAD
-         <?php endforeach; */?>
-=======
-         <?php endforeach; ?>
-                <?php
->>>>>>> origin/master
 
-                       // $delete = $pdo->prepare('DELETE FROM utilisateur WHERE idUtilisateur="'.$valeur['idUtilisateur'].'"');
-                      //  $delete->execute();
-                        //print_r($delete);
-                ?>
+         <?php endforeach; ?>
+
         </table>
     </body>
 </html>
