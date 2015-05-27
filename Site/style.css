@@ -18,7 +18,7 @@ html {
 }
 
 #time{
-    margin-left: 770px;
+    margin-left: 760px;
 }
 
 #contenu{
@@ -55,6 +55,14 @@ html {
     padding-top: 30px;
     font-family:cursive;
     font-size:24px;
+}
+
+#form-ajout{
+    border-radius:10px;
+    margin-top: 30px;
+    margin-left: 225px;
+    width: 575px;
+    height: 350px;
 }
 
 #bmodif{
@@ -131,6 +139,14 @@ label{
     left: 35%;
 }
 
+.button{
+    margin-left: 43%;
+}
+.deco{
+    position: relative;
+    left: 35%;
+}
+
 .logo_cnrs, .logo_ens, .logo_ecotron{
     height: 100px;
     width: 100px;
@@ -141,7 +157,7 @@ input {
     margin-top: 2px;
 }
 
-.bouton a {
+.deco a {
 position: absolute;
 left:540px;
 top: -10px;
