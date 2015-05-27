@@ -69,14 +69,10 @@
             <label id="ajout_element">Date mise en service : </label><input type="text" name="datemes" placeholder="Date Mise en service"></p>
             <label id="ajout_element">Durée garantie : </label><input type="text" name="garantie" placeholder="Durée garantie"></p>
             <label id="ajout_element">Type : </label><input type="text" name="type" placeholder="Type">
-<<<<<<< HEAD
             </p><div id ="msg">
-             <?php
-=======
 
             <div id ="msg">
                 </p><?php
->>>>>>> origin/master
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                 if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?erreur"){
                     echo ("Veuilliez saisir tous les champs ");
