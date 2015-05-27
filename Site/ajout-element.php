@@ -25,38 +25,46 @@
           </div>
           <div id="form-ajout"><fieldset>
                <legend>Fiche équipement</legend>
-          <form method="post" action="">
+          <form method="post" action="ajout.php">
 
             <label>Nom équipement : </label><input type="text" name="nom_equipement" placeholder="Nom"></p>
             <label>Etiquette : </label></p>
-            <select name="palteforme">
-                <option value=0>-- Plateforme --</option>
-                <option value="">Serre</option>
-                <option value="">Eco</option>
-                <option value="">Plan</option>
-                <option value="">ML</option>
-                <option value="">Vol</option>
+            <select name="plateforme">
+                <option value=NULL>-- Plateforme --</option>
+                <option value="Serre">Serre</option>
+                <option value="Eco">Eco</option>
+                <option value="Plan">Plan</option>
+                <option value="ML">ML</option>
+                <option value="Vol">Vol</option>
              </select>
              <select name="piece">
-                <option value=0>-- Pièce --</option>
-                <option value="">BC</option>
-                <option value="">BE</option>
-                <option value="">BS</option>
-                <option value="">LC</option>
-                <option value="">LCh</option>
-                <option value="">LH</option>
-                <option value="">LM</option>
-                <option value="">Lav</option>
-                <option value="">LL</option>
-                <option value="">LP</option>
+                <option value=NULL>-- Pièce --</option>
+                <option value="BC">BC</option>
+                <option value="BE">BE</option>
+                <option value="BS">BS</option>
+                <option value="LC">LC</option>
+                <option value="LCh">LCh</option>
+                <option value="LH">LH</option>
+                <option value="LM">LM</option>
+                <option value="Lav">Lav</option>
+                <option value="LL">LL</option>
+                <option value="LP">LP</option>
              </select>
             <input type="text" name="emplacement" placeholder="Emplacement">
-            </p><label>Prix : </label><input type="text" name="price" placeholder="Prix">
+            </p><label>Prix : </label><input type="text" name="prix" placeholder="Prix">
             </p><label>Marque : </label><input type="text" name="marque" placeholder="Marque">
             </p><label>Année de fabrication : </label><input type="text" name="anneefb" placeholder="Année Fabrication">
             </p><label>Date mise en service : </label><input type="text" name="datemes" placeholder="Date Mise en service">
             </p><label>Durée garantie : </label><input type="text" name="garantie" placeholder="Durée garantie">
             </p><label>Type : </label><input type="text" name="type" placeholder="Type">
+            </p><div id ="msg">
+             <?php
+                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?erreur"){
+                    echo ("Veuilliez saisir tous les champs ");
+                }
+            ?>
+            </div>
             </p><input class="button" type="submit" value="Ajouter">
           </form>
           </div>
