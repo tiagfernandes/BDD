@@ -210,7 +210,10 @@ input {
 }
 
 #ajout_element {
-    width: 300px;
+    width: 280px;
+    margin-left: 50px;
+
+
 }
 
 #onglet {
