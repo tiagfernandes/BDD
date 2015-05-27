@@ -19,8 +19,10 @@
 
     <body>
         <?php require_once('entete.php'); ?>
-
-        <h4>Utilisateur</h4>
+        <div id="contenu">
+        <div id="banniere">
+              Utilisateur
+        </div>
         <table border=2>
           <th>id</th>
           <th>Nom</th>
@@ -43,7 +45,7 @@
                 </tr>
 
          <?php endforeach; ?>
-
+        </div>
         </table>
     </body>
 </html>

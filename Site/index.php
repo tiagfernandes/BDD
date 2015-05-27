@@ -22,8 +22,10 @@
    <body>
 
     <?php require_once('entete.php'); ?>
-
-        <h4>Equipement</h4>
+        <div id ="contenu">
+        <div id="banniere">
+              Equipement
+        </div>
         <table border=2>
           <th>id</th>
           <th>Etiquette</th>
@@ -34,8 +36,6 @@
           <th>Planning d'occupation</th>
           <th>Catégorie</th>
           <th>Date d'ajout</th>
-          <th>Supprimer</th>
-          <th>Modifier</th>
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?>
             <tr>
@@ -45,6 +45,6 @@
 
          <?php endforeach; ?>
         </table>
-
+    </div>
    </body>
 </html>
