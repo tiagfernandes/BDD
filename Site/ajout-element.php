@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 
    <head>
-    <title>Index</title>
+    <title>Ajout équipement</title>
     <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
     <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -59,7 +59,7 @@
                     }
                     ?>
                  </select> -
-                <input type="text" name="nEquipement" placeholder="Numéro équiepement"></p>
+                <input type="text" name="nEquipement" placeholder="Numéro équipement"></p>
 
 
 
