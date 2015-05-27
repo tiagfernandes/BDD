@@ -15,6 +15,10 @@
 
     if ($plateforme !="NULL" && $piece !="NULL"){
         echo( "Etiquette : <b>".$plateforme."-".$piece."</b><br>\n" ) ;
+
+        $query = "INSERT INTO equipement ('nomEquipement') VALUES ".$nom_equi."";
+        $prep = $pdo->prepare($query);
+        $prep->execute();
     }
 
     else
