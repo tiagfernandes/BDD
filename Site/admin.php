@@ -21,7 +21,7 @@
         <?php require_once('entete.php'); ?>
         <div id="contenu">
         <div id="banniere">
-              Utilisateur
+              Utilisateurs
         </div>
         <table border=2>
           <th>id</th>
@@ -41,7 +41,7 @@
             <?php endforeach; ?>
 
                 <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
-                       onClick="return(confirm('Supprimer <?= $valeur['nomUtilisateur']  ?> ?'));">Supprimer</a></td>
+                       onClick="return(confirm('Supprimer <?= $valeur['prenomUtilisateur']  ?> ?'));">Supprimer</a></td>
                 </tr>
 
          <?php endforeach; ?>
