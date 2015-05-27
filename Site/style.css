@@ -7,7 +7,7 @@ html {
 #entete {
     border-radius: 0px 0px 15px 15px;
     width: 1000px;
-    height: 80px;
+    height: 80px;;
     margin-left: auto;
     margin-right: auto;
     margin-top: -16px;
@@ -18,8 +18,8 @@ html {
 }
 
 #time{
-    position: relative;
-    margin-left: 760px;
+    position: relative: ;
+    margin-left: 750px;
     margin-top: -13px;
 }
 
@@ -30,7 +30,7 @@ html {
     background-color: #E1DCDC;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 25px;
+    margin-top: 60px;
     box-shadow: 0px 0px 10px 5px rgba(164, 162, 162, 0.75);
     -moz-box-shadow: 0px 0px 10px 5px rgba(164, 162, 162, 0.75);
     -webkit-box-shadow: 0px 0px 10px 5px rgba(164, 162, 162, 0.75);
@@ -135,6 +135,7 @@ html {
     background-color: #DBD7D7;
     font-size: 30px;
     text-shadow:1px 1px 2px gray;
+    text-align: center;
     padding-top: 10px;
 }
 .connexion{
@@ -172,8 +173,8 @@ label{
     margin-left: 43%;
 }
 .deco{
-    position: absolute;
-    margin-left: 350px;
+    position: relative;
+    margin-left: 300px;
     margin-top: 15px;
 }
 
