@@ -37,6 +37,7 @@
                 <select name="plateforme">
                     <option value=NULL>-- Catégorie --</option>
                     <?php
+
                     $reponse = $pdo->query('SELECT * FROM categorie_etiquette');
                     while ($donnees = $reponse->fetch()){
                     ?>
@@ -69,7 +70,7 @@
             <label id="ajout_element">Date mise en service : </label><input type="text" name="datemes" placeholder="Date Mise en service"></p>
             <label id="ajout_element">Durée garantie : </label><input type="text" name="garantie" placeholder="Durée garantie"></p>
             <label id="ajout_element">Type : </label><input type="text" name="type" placeholder="Type">
-            </p><div id ="msg">
+            </p>
 
             <div id ="msg">
                 </p><?php
