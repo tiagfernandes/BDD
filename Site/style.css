@@ -205,7 +205,7 @@ input {
     text-decoration:none;
 }
 
-.bouton a:hover {
+.deco a:hover {
     background:url(image/bouton-noir-2.png) no-repeat;
 }
 
