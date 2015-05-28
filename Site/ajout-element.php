@@ -80,7 +80,7 @@
 
             ?>
             </div>
-            <input class="NewUser" type="submit" value="Ajouter">
+            <input class="bouton" type="submit" value="Ajouter">
           </form>
           </div>
         </fieldset>

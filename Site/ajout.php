@@ -3,9 +3,6 @@
     session_start ();
 
     $nom_equi= $_POST['nom_equipement'];
-    $emplacement = $_POST['emplacement'];*/
-    $nom_equi= $_POST['nom_equipement'];
-    $emplacement = $_POST['emplacement'];
     $prix = $_POST['prix'];
     $marque = $_POST['marque'];
     $anneefb = $_POST['anneefb'];
@@ -25,5 +22,5 @@
     }
 
     else
-        header('Location: ajout-element.php?erreur');*/
+        header('Location: ajout-element.php?erreur');
 ?>
