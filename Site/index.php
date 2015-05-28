@@ -45,19 +45,25 @@
         <?php foreach ($listeEquipement as $cle=>$valeur): ?>
             <tr>
             <?php foreach ($valeur as $val): ?>
-
-               <?php foreach($listeCategorieEquipement as $cle=>$valeur): ?>
-                   <tr>
-                       <?php foreach ($valeur as $val): ?>
-                           <td><?= htmlentities($val) ?></td>
-                        <?php endforeach; ?>
-                <?php endforeach; ?>
-
                 <td><?= htmlentities($val) ?></td>
             <?php endforeach; ?>
+            </tr>
 
          <?php endforeach; ?>
 
+
+        </table>
+        <table border=15>
+           <th>valeur_categorie</th>
+           <th>valeur_acronime</th>
+            <?php foreach ($listeCategorieEquipement as $cles=>$valeurs): ?>
+              <tr>
+                <?php foreach($valeurs as $vala): ?>
+                    <td><?= htmlentities($vala) ?></td>
+                <?php endforeach; ?>
+
+            <?php endforeach; ?>
+              </tr>
         </table>
     </div>
    </body>
