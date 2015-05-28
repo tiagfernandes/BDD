@@ -1,5 +1,6 @@
 <?php
 require_once('connexion.php');
+header('Content-Type: text/html; charset=UTF-8');
 
 function getAuthentification($login, $pass){
     global $pdo;
@@ -56,4 +57,17 @@ function getAllEntretient(){
     catch ( Exception $e ) {
       die ("Erreur dans la requete ".$e->getMessage());
     }
+}
+
+function deleteUtilisateur($id){
+      global $pdo;
+      $query = "delete from utilisateur where idUtilisateur = :idUtilisateur ;";
+      try {
+	$prep = $pdo->prepare($query);
+	$prep->bindValue(':idUtilisateur', $id);
+	$prep->execute();
+      }
+      catch ( Exception $e ) {
+	die ("erreur dans la requete ".$e->getMessage());
+      }
 }

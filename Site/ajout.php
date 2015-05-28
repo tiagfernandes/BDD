@@ -3,7 +3,7 @@
     session_start ();
 
     $nom_equi= $_POST['nom_equipement'];
-    $emplacement = $_POST['emplacement'];
+    /*$emplacement = $_POST['emplacement'];*/
     $prix = $_POST['prix'];
     $marque = $_POST['marque'];
     $anneefb = $_POST['anneefb'];
@@ -13,12 +13,13 @@
     $plateforme = $_POST['plateforme'];
     $piece = $_POST['piece'];
 
-    if ($plateforme !="NULL" && $piece !="NULL"){
-        echo( "Etiquette : <b>".$plateforme."-".$piece."</b><br>\n" ) ;
+    if ($plateforme !="NULL" && $piece !="NULL" && $nom_equi !=NULL){
 
-        $query = "INSERT INTO equipement ('nomEquipement') VALUES ".$nom_equi."";
-        $prep = $pdo->prepare($query);
+        $sql = "INSERT INTO `equipement` (nomEquipement,prix,marque,garantie,dateFabrication,dateMiseService) VALUES ('$nom_equi','$prix','$marque','$garantie','$anneefb','$datemes')";
+        $prep = $pdo->prepare($sql);
         $prep->execute();
+
+        header('Location: ajout-element.php?succes');
     }
 
     else

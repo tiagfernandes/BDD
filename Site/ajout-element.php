@@ -64,8 +64,8 @@
 
             <label id="ajout_element">Prix : </label><input type="text" name="prix" placeholder="Prix"></p>
             <label id="ajout_element">Marque : </label><input type="text" name="marque" placeholder="Marque"></p>
-            <label id="ajout_element">Année de fabrication : </label><input type="text" name="anneefb" placeholder="Année Fabrication"></p>
-            <label id="ajout_element">Date mise en service : </label><input type="text" name="datemes" placeholder="Date Mise en service"></p>
+            <label id="ajout_element">Année de fabrication : </label><input type="text" name="anneefb" placeholder="YYYY/MM/DD"></p>
+            <label id="ajout_element">Date mise en service : </label><input type="text" name="datemes" placeholder="YYYY/MM/DD"></p>
             <label id="ajout_element">Durée garantie : </label><input type="text" name="garantie" placeholder="Durée garantie"></p>
             <label id="ajout_element">Type : </label><input type="text" name="type" placeholder="Type">
             </p>
@@ -76,6 +76,10 @@
                 if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?erreur"){
                     echo ("Veuilliez saisir tous les champs ");
                 }
+                else if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?succes"){
+                       echo ("Equipement ajouté avec succès ");
+                }
+
             ?>
             </div>
             </p><input class="button" type="submit" value="Ajouter">
