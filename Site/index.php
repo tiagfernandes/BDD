@@ -5,6 +5,7 @@
 
     $listeEquipement = getAllEquipement($pdo);
     $listeUtilisateur = getAllUtilisateur($pdo);
+    $listeCategorieEquipement = getCategorieEquipement($pdo);
 ?>
 
 <!doctype html>
@@ -44,10 +45,31 @@
         <?php foreach ($listeEquipement as $cle=>$valeur): ?>
             <tr>
             <?php foreach ($valeur as $val): ?>
+
+               <?php foreach($listeCategorieEquipement as $cle=>$valeur): ?>
+                   <tr>
+                       <?php foreach ($valeur as $val): ?>
+                           <td><?= htmlentities($val) ?></td>
+                        <?php endforeach; ?>
+                <?php endforeach; ?>
+
                 <td><?= htmlentities($val) ?></td>
             <?php endforeach; ?>
 
          <?php endforeach; ?>
+
+
+
+            <?php
+              $query = "SELECT valeur_acronime FROM acronime_etiquette,  etiquette_equipement WHERE etiquette_equipement.idAcronimeEtiquette = acronime_etiquette.idAcronimeEtiquette AND idEtiquetteEquipement=1 ;";
+              try {
+                $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+                print_r($result);
+                  }
+                  catch ( Exception $e ) {
+                die ("erreur dans la requete ".$e->getMessage());
+                  }
+            ?>
         </table>
     </div>
    </body>
