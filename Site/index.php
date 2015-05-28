@@ -29,14 +29,17 @@
 
         </p><table border=2>
           <th>id</th>
-          <th>Etiquette</th>
           <th>Nom équipement</th>
+          <th>Etiquette</th>
           <th>Type</th>
-          <th>Lieux d'archive</th>
+          <th>Marque</th>
           <th>Fournisseur</th>
-          <th>Planning d'occupation</th>
-          <th>Catégorie</th>
           <th>Date d'ajout</th>
+          <th>Date de fabriquation</th>
+          <th>Date de réception</th>
+          <th>Date de mise en service</th>
+          <th>Prix (€)</th>
+          <th>Garantie (mois)</th>
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?>
             <tr>
