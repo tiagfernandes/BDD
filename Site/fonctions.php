@@ -71,3 +71,18 @@ function deleteUtilisateur($id){
 	die ("erreur dans la requete ".$e->getMessage());
       }
 }
+
+function getCategorieEquipement(){
+    global $pdo;
+        $query = "  SELECT valeur_categorie
+                    FROM categorie_etiquette,  etiquette_equipement
+                    WHERE etiquette_equipement.idCategorieEtiquette = categorie_etiquette.idCategorieEtiquette
+                    AND idEtiquetteEquipement = '1';";
+        try {
+            $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
+        catch ( Exception $e ) {
+            die ("erreur dans la requete ".$e->getMessage());
+        }
+}
