@@ -62,8 +62,6 @@
                  </select> -
                 <input type="text" name="nEquipement" placeholder="Numéro équipement"></p>
 
-
-
             <label id="ajout_element">Prix : </label><input type="text" name="prix" placeholder="Prix"></p>
             <label id="ajout_element">Marque : </label><input type="text" name="marque" placeholder="Marque"></p>
             <label id="ajout_element">Année de fabrication : </label><input type="text" name="anneefb" placeholder="Année Fabrication"></p>
