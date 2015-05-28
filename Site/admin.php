@@ -45,6 +45,8 @@
 
                 <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
                     onClick="return(confirm('Supprimer <?= $valeur['prenomUtilisateur']  ?> ?'));">Supprimer</a></td>
+
+                <td><a href="" >Modifier</a></td>
                 </tr>
 
          <?php endforeach; ?>
