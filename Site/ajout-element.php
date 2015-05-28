@@ -59,13 +59,11 @@
                     <?php
                     }
                     ?>
-                 </select> -
-                <input type="text" name="nEquipement" placeholder="Numéro équipement"></p>
-
+              </select></br/>Le numéro d'étiquette sera générer automatiquement.</p>
             <label id="ajout_element">Prix : </label><input type="text" name="prix" placeholder="Prix"></p>
             <label id="ajout_element">Marque : </label><input type="text" name="marque" placeholder="Marque"></p>
-            <label id="ajout_element">Année de fabrication : </label><input type="text" name="anneefb" placeholder="YYYY/MM/DD"></p>
-            <label id="ajout_element">Date mise en service : </label><input type="text" name="datemes" placeholder="YYYY/MM/DD"></p>
+            <label id="ajout_element">Année de fabrication : </label><input type="date" name="anneefb" placeholder="YYYY/MM/DD"></p>
+            <label id="ajout_element">Date mise en service : </label><input type="date" name="datemes" placeholder="YYYY/MM/DD"></p>
             <label id="ajout_element">Durée garantie : </label><input type="text" name="garantie" placeholder="Durée garantie"></p>
             <label id="ajout_element">Type : </label><input type="text" name="type" placeholder="Type">
             </p>
@@ -82,7 +80,7 @@
 
             ?>
             </div>
-            </p><input class="button" type="submit" value="Ajouter">
+            <input class="NewUser" type="submit" value="Ajouter">
           </form>
           </div>
         </fieldset>

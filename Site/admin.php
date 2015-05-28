@@ -23,34 +23,36 @@
     <body>
         <?php require_once('entete.php'); ?>
         <div id="contenu">
-        <div id="banniere">
-              Utilisateurs
+            <div id="banniere">
+                  Utilisateurs
+            </div>
+
+                <table border=2>
+                  <th>id</th>
+                  <th>Nom</th>
+                  <th>Prénom</th>
+                  <th>Email</th>
+                  <th>Identifiant</th>
+                  <th>Mot de passe</th>
+                  <th>Rôle</th>
+                  <th>Supprimer</th>
+                  <th>Modifier</th>
+
+                <?php foreach ($listeUtilisateur as $cle=>$valeur): ?>
+                    <tr>
+                    <?php foreach ($valeur as $val): ?>
+                        <td><?= htmlentities($val) ?></td>
+                    <?php endforeach; ?>
+
+                        <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
+                            onClick="return(confirm('Supprimer <?= $valeur['prenomUtilisateur']  ?> ?'));">Supprimer</a></td>
+
+                        <td><a href="" >Modifier</a></td>
+                        </tr>
+
+                 <?php endforeach; ?>
         </div>
-        <table border=2>
-          <th>id</th>
-          <th>Nom</th>
-          <th>Prénom</th>
-          <th>Email</th>
-          <th>Identifiant</th>
-          <th>Mot de passe</th>
-          <th>Rôle</th>
-          <th>Supprimer</th>
-          <th>Modifier</th>
-
-        <?php foreach ($listeUtilisateur as $cle=>$valeur): ?>
-            <tr>
-            <?php foreach ($valeur as $val): ?>
-                <td><?= htmlentities($val) ?></td>
-            <?php endforeach; ?>
-
-                <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
-                    onClick="return(confirm('Supprimer <?= $valeur['prenomUtilisateur']  ?> ?'));">Supprimer</a></td>
-
-                <td><a href="" >Modifier</a></td>
-                </tr>
-
-         <?php endforeach; ?>
-        </div>
+        <input class="button" type="submit" value="New utilisateur">
         </table>
     </body>
 </html>
