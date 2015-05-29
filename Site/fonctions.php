@@ -72,7 +72,7 @@ function deleteUtilisateur($id){
       }
 }
 
-function getCategorieEquipement(){
+/*function getCategorieEquipement(){
     global $pdo;
         $query = "  SELECT valeur_categorie, valeur_acronime
                     FROM categorie_etiquette,  etiquette_equipement, acronime_etiquette
@@ -85,4 +85,4 @@ function getCategorieEquipement(){
         catch ( Exception $e ) {
             die ("erreur dans la requete ".$e->getMessage());
         }
-}
+}*/
