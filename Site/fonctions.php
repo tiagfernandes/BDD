@@ -75,10 +75,12 @@ function deleteUtilisateur($id){
 function getCategorieEquipement(){
     global $pdo;
 
-        $query = "  SELECT CONCAT(`valeurCategorie`,'-',`equipement`.`idEquipement`)
-                    FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`
+        $query = "  SELECT CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`)
+                    FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_has_categorie`, `acronime_etiquette`
                     WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
                     AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+                    AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+                    AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
                     ;";
 
         try {
