@@ -24,7 +24,7 @@
               Ajout d'un utilisateur
           </div>
           <div id="form-ajout"><fieldset>
-               <legend>Ajout</legend>
+               <legend>Ajout utilisateur</legend>
 
         <form method="post" action="add.php">
 
