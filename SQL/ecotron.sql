@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 29 Mai 2015 à 14:34
+-- Généré le :  Ven 29 Mai 2015 à 15:39
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -31,7 +31,16 @@ CREATE TABLE IF NOT EXISTS `acronime_etiquette` (
   `valeurAcronime` varchar(45) DEFAULT NULL,
   `acronimeEtiquette` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idAcronimeEtiquette`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `acronime_etiquette`
+--
+
+INSERT INTO `acronime_etiquette` (`idAcronimeEtiquette`, `valeurAcronime`, `acronimeEtiquette`) VALUES
+(1, 'DO2', 'Mesure de l O2 dissous'),
+(2, 'REF', 'Réfrigérateur'),
+(3, 'FRE', 'Congélateur');
 
 -- --------------------------------------------------------
 
@@ -40,12 +49,21 @@ CREATE TABLE IF NOT EXISTS `acronime_etiquette` (
 --
 
 CREATE TABLE IF NOT EXISTS `acronime_has_categorie` (
-  `idAcronimeEtiquette` int(11) NOT NULL,
   `idCategorieEtiquette` int(11) NOT NULL,
+  `idAcronimeEtiquette` int(11) NOT NULL,
   PRIMARY KEY (`idAcronimeEtiquette`,`idCategorieEtiquette`),
   KEY `fk_Acronime_Etiquette_has_Categorie_Etiquette_Categorie_Eti_idx` (`idCategorieEtiquette`),
   KEY `fk_Acronime_Etiquette_has_Categorie_Etiquette_Acronime_Etiq_idx` (`idAcronimeEtiquette`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `acronime_has_categorie`
+--
+
+INSERT INTO `acronime_has_categorie` (`idCategorieEtiquette`, `idAcronimeEtiquette`) VALUES
+(5, 1),
+(5, 2),
+(5, 3);
 
 -- --------------------------------------------------------
 
