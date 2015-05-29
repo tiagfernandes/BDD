@@ -55,7 +55,7 @@
                     $reponse = $pdo->query('SELECT * FROM acronime_etiquette');
                     while ($donnees = $reponse->fetch()){
                     ?>
-                        <option value="<?php echo $donnees['valeur_acronime']; ?>"><?php echo $donnees['valeur_acronime']; ?> - <?php echo $donnees['acronimeEtiquette']; ?></option>
+                        <option value="<?php echo $donnees['valeurAcronime']; ?>"><?php echo $donnees['valeurAcronime']; ?> - <?php echo $donnees['acronimeEtiquette']; ?></option>
                     <?php
                     }
                     ?>
