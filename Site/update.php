@@ -24,7 +24,7 @@
             <!--Mise a jour !-->
             <label>Nom : </label><input type="text" name="nnom" value="<?php  echo "".$_SESSION['nom']."";?>"></p>
             <label>Prénom : </label><input type="text" name="nprenom" value="<?php  echo "".$_SESSION['prenom']."";?>"></p>
-            <label>Mail : </label><input type="text" name="nmail" value="<?php  echo "".$_SESSION['email']."";?>"></p>
+            <label>E-mail : </label><input type="text" name="nmail" value="<?php  echo "".$_SESSION['email']."";?>"></p>
             <label>Identifiant : </label><input type="text" name="nidentifiant" value="<?php  echo "".$_SESSION['login']."";?>"></p>
             <label>Mot de passe : </label><input type="text" name="nmdp" value="<?php  echo "".$_SESSION['password']."";?>"></p>
             <input class="bouton" onclick="return(confirm('Etes-vous sur de vouloir modifier votre profil ? '));" type="submit" value="Modifier">
