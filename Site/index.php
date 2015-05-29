@@ -53,7 +53,7 @@
 
 
         </table>
-        <table border=15>
+        <table border=6>
            <th>valeur_categorie</th>
            <th>valeur_acronime</th>
             <?php foreach ($listeCategorieEquipement as $cles=>$valeurs): ?>
