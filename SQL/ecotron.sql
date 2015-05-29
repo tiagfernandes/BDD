@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 29 Mai 2015 à 15:39
+-- Généré le :  Ven 29 Mai 2015 à 16:02
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -278,7 +278,8 @@ CREATE TABLE IF NOT EXISTS `etiquette_equipement` (
   `idEtiquette_Equipement` int(11) NOT NULL AUTO_INCREMENT,
   `idEquipement` int(11) NOT NULL,
   `idCategorieEtiquette` int(11) NOT NULL,
-  PRIMARY KEY (`idEtiquette_Equipement`,`idEquipement`,`idCategorieEtiquette`),
+  `idAcronimeEtiquette` int(11) NOT NULL,
+  PRIMARY KEY (`idEtiquette_Equipement`,`idEquipement`,`idCategorieEtiquette`,`idAcronimeEtiquette`),
   KEY `fk_Etiquette_Equipement_Categorie_Etiquette1_idx` (`idCategorieEtiquette`),
   KEY `fk_Etiquette_Equipement_Equipement1_idx` (`idEquipement`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -287,8 +288,8 @@ CREATE TABLE IF NOT EXISTS `etiquette_equipement` (
 -- Contenu de la table `etiquette_equipement`
 --
 
-INSERT INTO `etiquette_equipement` (`idEtiquette_Equipement`, `idEquipement`, `idCategorieEtiquette`) VALUES
-(1, 2, 5);
+INSERT INTO `etiquette_equipement` (`idEtiquette_Equipement`, `idEquipement`, `idCategorieEtiquette`, `idAcronimeEtiquette`) VALUES
+(1, 2, 5, 2);
 
 -- --------------------------------------------------------
 
