@@ -81,6 +81,7 @@ function getCategorieEquipement(){
                     AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
                     AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
                     AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+                    AND `equipement`.`idEtiquette`=2
                     ;";
 
         try {
