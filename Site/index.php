@@ -28,7 +28,7 @@
 
         </form>
 
-        </p><table border=2>
+        </p><table border=1>
           <th>id</th>
           <th>Nom équipement</th>
           <th>Type</th>
@@ -42,7 +42,14 @@
           <th>Garantie (mois)</th>
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?>
-            <tr>
+           <?php foreach ($listeCategorieEquipement as $cles=>$valeurs): ?>
+              <tr>
+                <?php foreach($valeurs as $vals): ?>
+                    <td><?= htmlentities($vals) ?></td>
+                <?php endforeach; ?>
+
+            <?php endforeach; ?>
+
             <?php foreach ($valeur as $val): ?>
                 <td><?= htmlentities($val) ?></td>
             <?php endforeach; ?>
@@ -52,7 +59,7 @@
 
 
         </table>
-        <table border=6>
+        </p><table border=2>
            <th>Catégorie</th>
            <th>id</th>
             <?php foreach ($listeCategorieEquipement as $cle=>$valeur): ?>

@@ -75,7 +75,7 @@ function deleteUtilisateur($id){
 function getCategorieEquipement(){
     global $pdo;
 
-        $query = "  SELECT `valeurCategorie`,`equipement`.`idEquipement`
+        $query = "  SELECT CONCAT(`valeurCategorie`,'-',`equipement`.`idEquipement`)
                     FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`
                     WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
                     AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
