@@ -19,7 +19,8 @@ html {
 
 #time{
     position: relative: ;
-    margin-left: 750px;
+    float:right;
+    margin-right: 15px;
     margin-top: -13px;
 }
 
@@ -175,9 +176,9 @@ label{
     margin-left: 50%;
 }
 .deco{
-    position: relative;
+    position: absolute;
     margin-left: 300px;
-    margin-top: 15px;
+    margin-top: 30px;
 }
 
 .logo_cnrs, .logo_ens, .logo_ecotron{
