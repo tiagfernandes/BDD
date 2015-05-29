@@ -72,9 +72,9 @@ function deleteUtilisateur($id){
       }
 }
 
-/*function getCategorieEquipement(){
+function getCategorieEquipement(){
     global $pdo;
-        $query = "  SELECT valeur_categorie, valeur_acronime
+        $query = "  SELECT valeurCategorie, valeurAcronime
                     FROM categorie_etiquette,  etiquette_equipement, acronime_etiquette";
         try {
             $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -83,4 +83,4 @@ function deleteUtilisateur($id){
         catch ( Exception $e ) {
             die ("erreur dans la requete ".$e->getMessage());
         }
-}*/
+}
