@@ -41,7 +41,7 @@
                     $reponse = $pdo->query('SELECT * FROM categorie_etiquette');
                     while ($donnees = $reponse->fetch()){
                     ?>
-                        <option value="<?php echo $donnees['valeur_categorie']; ?>"><?php echo $donnees['valeur_categorie']; ?> - <?php echo $donnees['categorieEtiquette']; ?></option>
+                        <option value="<?php echo $donnees['valeurCategorie']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['categorieEtiquette']; ?></option>
                     <?php
                     }
                     ?>
@@ -55,7 +55,7 @@
                     $reponse = $pdo->query('SELECT * FROM acronime_etiquette');
                     while ($donnees = $reponse->fetch()){
                     ?>
-                        <option value="<?php echo $donnees['valeur_acronime']; ?>"><?php echo $donnees['valeur_acronime']; ?> - <?php echo $donnees['acronimeEtiquette']; ?></option>
+                        <option value="<?php echo $donnees['valeurAcronime']; ?>"><?php echo $donnees['valeurAcronime']; ?> - <?php echo $donnees['acronimeEtiquette']; ?></option>
                     <?php
                     }
                     ?>
