@@ -33,6 +33,8 @@
                 <?php  echo "Identifiant : ".$_SESSION['login'].""; ?>
                 <p>
                 <?php  echo "Mot de passe : ".$_SESSION['password'].""; ?>
+                <p>
+                <?php  echo "Rôle : ".$_SESSION['role'].""; ?>
                 </div>
             </div>
             <a href="update.php" class="btn" id="bmodif">Modifier profil</a>

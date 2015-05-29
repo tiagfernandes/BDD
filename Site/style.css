@@ -49,7 +49,7 @@ html {
     margin-right: 10px;
     float: right;
     width: 575px;
-    height: 350px;
+    height: auto;
     background-color: #DBD7D7;
 }
 #donnees{
@@ -223,3 +223,7 @@ body {
 }
 
 
+
+.button1 {
+    margin-left: 45%;
+}

@@ -51,8 +51,8 @@
                         </tr>
 
                  <?php endforeach; ?>
-        </div>
-        <input class="button" type="submit" value="New utilisateur">
         </table>
+            <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter">
+        </div>
     </body>
 </html>
