@@ -5,7 +5,7 @@
 
     $listeEquipement = getAllEquipement($pdo);
     $listeUtilisateur = getAllUtilisateur($pdo);
-    $listeCategorieEquipement = getCategorieEquipement($pdo);
+                $listeCategorieEquipement = getCategorieEquipement($pdo);
 ?>
 
 <!doctype html>
@@ -28,7 +28,7 @@
 
         </form>
 
-        </p><table border=1>
+        </p><table border=2>
           <th>id</th>
           <th>Nom équipement</th>
           <th>Type</th>
@@ -42,14 +42,7 @@
           <th>Garantie (mois)</th>
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?>
-           <?php foreach ($listeCategorieEquipement as $cles=>$valeurs): ?>
-              <tr>
-                <?php foreach($valeurs as $vals): ?>
-                    <td><?= htmlentities($vals) ?></td>
-                <?php endforeach; ?>
-
-            <?php endforeach; ?>
-
+            <tr>
             <?php foreach ($valeur as $val): ?>
                 <td><?= htmlentities($val) ?></td>
             <?php endforeach; ?>
@@ -59,7 +52,7 @@
 
 
         </table>
-        </p><table border=2>
+        <table border=2>
            <th>Catégorie</th>
            <th>id</th>
             <?php foreach ($listeCategorieEquipement as $cle=>$valeur): ?>
