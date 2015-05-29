@@ -31,15 +31,14 @@
         </p><table border=2>
           <th>id</th>
           <th>Nom équipement</th>
-          <th>Etiquette</th>
           <th>Type</th>
-          <th>Marque</th>
           <th>Fournisseur</th>
+          <th>Prix (€)</th>
+          <th>Marque</th>
           <th>Date d'ajout</th>
           <th>Date de fabriquation</th>
           <th>Date de réception</th>
           <th>Date de mise en service</th>
-          <th>Prix (€)</th>
           <th>Garantie (mois)</th>
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?>
@@ -54,12 +53,12 @@
 
         </table>
         <table border=6>
-           <th>valeur_categorie</th>
-           <th>valeur_acronime</th>
-            <?php foreach ($listeCategorieEquipement as $cles=>$valeurs): ?>
+           <th>Catégorie</th>
+           <th>id</th>
+            <?php foreach ($listeCategorieEquipement as $cle=>$valeur): ?>
               <tr>
-                <?php foreach($valeurs as $vala): ?>
-                    <td><?= htmlentities($vala) ?></td>
+                <?php foreach($valeur as $val): ?>
+                    <td><?= htmlentities($val) ?></td>
                 <?php endforeach; ?>
 
             <?php endforeach; ?>
