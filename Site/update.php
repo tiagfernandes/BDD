@@ -32,7 +32,7 @@
             <label id="ajout_element">Nom : </label><input type="text" name="nnom" value="<?php  echo "".$_SESSION['nom']."";?>"></p>
 
             <label id="ajout_element">Prénom : </label><input type="tex" name="nprenom" value="<?php  echo "".$_SESSION['prenom']."";?>"></p>
-            <label id="ajout_element">Mail : </label><input type="email" name="nmail" value="<?php  echo "".$_SESSION['email']."";?>" ></p>
+            <label id="ajout_element">E-mail : </label><input type="email" name="nmail" value="<?php  echo "".$_SESSION['email']."";?>" ></p>
             <label id="ajout_element">Login : </label><input type="text" name="nidentifiant" value="<?php  echo "".$_SESSION['login']."";?>"></p>
             <label id="ajout_element">Mot de passe : </label><input type="text" name="nmdp" value="<?php  echo "".$_SESSION['password']."";?>"></p>
             </p>
