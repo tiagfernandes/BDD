@@ -42,7 +42,15 @@
           <th>Garantie (mois)</th>
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?>
-            <tr>
+
+           <?php foreach ($listeCategorieEquipement as $cles=>$valeurs): ?>
+              <tr>
+                <?php foreach($valeurs as $vals): ?>
+                    <td><?= htmlentities($vals) ?></td>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+
+
             <?php foreach ($valeur as $val): ?>
                 <td><?= htmlentities($val) ?></td>
             <?php endforeach; ?>
