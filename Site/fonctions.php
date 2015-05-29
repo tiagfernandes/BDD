@@ -75,9 +75,7 @@ function deleteUtilisateur($id){
 function getCategorieEquipement(){
     global $pdo;
         $query = "  SELECT valeur_categorie, valeur_acronime
-                    FROM categorie_etiquette,  etiquette_equipement, acronime_etiquette
-                    WHERE etiquette_equipement.idCategorieEtiquette = categorie_etiquette.idCategorieEtiquette
-                    AND idEtiquetteEquipement = '1';";
+                    FROM categorie_etiquette,  etiquette_equipement, acronime_etiquette";
         try {
             $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
             return $result;
