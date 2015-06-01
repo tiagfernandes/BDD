@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 01 Juin 2015 à 15:29
+-- Généré le :  Lun 01 Juin 2015 à 16:15
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `equipement` (
 --
 
 INSERT INTO `equipement` (`idEquipement`, `nomEquipement`, `idType`, `idFournisseur`, `prix`, `marque`, `dateAjout`, `dateFabrication`, `dateReception`, `dateMiseService`, `garantie`) VALUES
-(2, 'Capteur', 2, 2, 100, 'dell', '2015-05-08', '2015-05-11', '2015-05-06', '2015-05-06', 2),
+(2, 'Capteur', 1, 2, 100, 'dell', '2015-05-08', '2015-05-11', '2015-05-06', '2015-05-06', 2),
 (3, 'Moteur', 2, 3, 100, 'rien', '2015-05-05', '2015-05-15', '2015-05-14', '2015-05-21', 36);
 
 -- --------------------------------------------------------
@@ -333,7 +333,15 @@ CREATE TABLE IF NOT EXISTS `fournisseur` (
   `telephone` tinytext,
   `email` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idFournisseur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `fournisseur`
+--
+
+INSERT INTO `fournisseur` (`idFournisseur`, `nomFournisseur`, `pays`, `cp`, `ville`, `adresse`, `telephone`, `email`) VALUES
+(2, 'Dell', 'Etats-Unis', 77777, 'San Fransisco', 'rue du chateau', '0164362526', 'dell@live.fr'),
+(3, 'Ecotron', 'France', 77120, 'Nemours', 'rue du chateu', '01656966598', 'eco@tron');
 
 -- --------------------------------------------------------
 
@@ -528,7 +536,15 @@ CREATE TABLE IF NOT EXISTS `type` (
   `idType` int(11) NOT NULL AUTO_INCREMENT,
   `nomType` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idType`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `type`
+--
+
+INSERT INTO `type` (`idType`, `nomType`) VALUES
+(1, 'Capteur'),
+(2, 'Moteur');
 
 -- --------------------------------------------------------
 
