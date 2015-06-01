@@ -70,16 +70,16 @@
             <div id ="succes">
                <?php
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-                if ($monUrl == "http://localhost/BDD/Site/authentification.php?reco"){
-                    echo ("Changement effectué avec succès , veuillez vous reconnectez ");
+                if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?succes"){
+                    echo ("Elément ajouté avec succès");
                 }
                 ?>
             </div>
             <div id ="erreur">
                <?php
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-                if ($monUrl == "http://localhost/BDD/Site/authentification.php?erreur"){
-                    echo ("Identifiant ou mot de passe incorrect ");
+                if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?erreur"){
+                    echo ("Veuilliez saisir tous les champs ");
                 }
                 ?>
             </div>
