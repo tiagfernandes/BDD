@@ -5,7 +5,7 @@
 
     $listeEquipement = getAllEquipement($pdo);
     $listeUtilisateur = getAllUtilisateur($pdo);
-                $listeCategorieEquipement = getCategorieEquipement($pdo);
+    $listeCategorieEquipement = getEtiquetteEquipement($pdo);
 ?>
 
 <!doctype html>

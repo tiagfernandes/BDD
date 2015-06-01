@@ -72,7 +72,7 @@ function deleteUtilisateur($id){
       }
 }
 
-function getCategorieEquipement(){
+function getEtiquetteEquipement(){
     global $pdo;
 
         $query = "  SELECT CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`)
