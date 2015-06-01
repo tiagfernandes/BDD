@@ -16,7 +16,7 @@
 
 
     <body>
-    <?php require_once('entete.php'); ?>
+    <?php require_once('entete.php'); ?>    <!--Affichage des données utilisateur-->
         <div id="contenu">
             <div id="banniere">
                 Votre profil :

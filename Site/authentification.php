@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 
-    <head>
+    <head> <!--Page d'autentification-->
     <title>Connexion</title>
         <meta charset="UTF-8">
         <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />

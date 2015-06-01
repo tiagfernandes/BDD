@@ -5,7 +5,7 @@
 
     $listeEquipement = getAllEquipement($pdo);
     $listeUtilisateur = getAllUtilisateur($pdo);
-    $listeCategorieEquipement = getEtiquetteEquipement($pdo);
+    $listeEtiquetteEquipement = getEtiquetteEquipement($pdo);
 ?>
 
 <!doctype html>
@@ -42,9 +42,9 @@
           <th>Date de mise en service</th>
           <th>Garantie (mois)</th>
 
-        <?php foreach ($listeEquipement as $cle=>$valeur): ?>
+        <?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
 
-           <?php foreach ($listeCategorieEquipement as $cles=>$valeurs): ?>
+           <?php foreach ($listeEtiquetteEquipement as $cles=>$valeurs): ?> <!--Affichage Etiquette-->
               <tr>
                 <?php foreach($valeurs as $vals): ?>
                     <td><?= htmlentities($vals) ?></td>
@@ -64,7 +64,7 @@
         <table border=2>
            <th>Catégorie</th>
            <th>id</th>
-            <?php foreach ($listeCategorieEquipement as $cle=>$valeur): ?>
+            <?php foreach ($listeEtiquetteEquipement as $cle=>$valeur): ?> <!--Affichage Etiquette-->
               <tr>
                 <?php foreach($valeur as $val): ?>
                     <td><?= htmlentities($val) ?></td>

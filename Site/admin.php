@@ -2,7 +2,7 @@
     require_once('fonctions.php');
     session_start ();
 
-    if(isset($_GET['delete'])){
+    if(isset($_GET['delete'])){ //Supprime utilisateur
         $id = $_GET['delete'];
         deleteUtilisateur($id);
     }
@@ -38,7 +38,7 @@
                   <th>Supprimer</th>
                   <th>Modifier</th>
 
-                <?php foreach ($listeUtilisateur as $cle=>$valeur): ?>
+                <?php foreach ($listeUtilisateur as $cle=>$valeur): ?> <!--Affichage des utilisateur-->
                     <tr>
                     <?php foreach ($valeur as $val): ?>
                         <td><?= htmlentities($val) ?></td>
