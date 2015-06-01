@@ -29,6 +29,7 @@
         </form>
 
         </p><table border=2>
+          <th>Etiquette</th>
           <th>id</th>
           <th>Nom équipement</th>
           <th>Type</th>
