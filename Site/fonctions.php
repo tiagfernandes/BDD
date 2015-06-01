@@ -53,18 +53,6 @@ function getAllUtilisateur(){
     }
 }
 
-function getAllEntretient(){
-    global $pdo;
-    $query = 'SELECT * FROM entretient';
-
-    try {
-      $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
-      return $result;
-    }
-    catch ( Exception $e ) {
-      die ("Erreur dans la requete ".$e->getMessage());
-    }
-}
 
 function deleteUtilisateur($id){
       global $pdo;
