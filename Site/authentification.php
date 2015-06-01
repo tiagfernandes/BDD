@@ -19,16 +19,21 @@
             <!--Connexion-->
             <label>Votre login : </label><input type="text" name="login" placeholder="Identifiant"></p>
             <label>Votre mot de passe : </label><input type="password" name="pwd" placeholder="Mot de Passe"></p>
-            <div id ="msg">
+            <div id ="succes">
                <?php
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                 if ($monUrl == "http://localhost/BDD/Site/authentification.php?reco"){
                     echo ("Changement effectué avec succès , veuillez vous reconnectez ");
                 }
-                else if ($monUrl =="http://localhost/BDD/Site/authentification.php?erreur"){
+                ?>
+            </div>
+            <div id ="erreur">
+               <?php
+                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                if ($monUrl == "http://localhost/BDD/Site/authentification.php?erreur"){
                     echo ("Identifiant ou mot de passe incorrect ");
                 }
-            ?>
+                ?>
             </div>
             <input class="bouton" type="submit" value="Se connecter">
         </form></font>
