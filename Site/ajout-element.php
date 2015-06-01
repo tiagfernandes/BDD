@@ -34,14 +34,14 @@
 
 
                 <!-- 1ere listview -->
-                <select name="plateforme">
+                <select name="categorie">
                     <option value=NULL>-- Catégorie --</option>
                     <?php
 
                     $reponse = $pdo->query('SELECT * FROM categorie_etiquette');
                     while ($donnees = $reponse->fetch()){
                     ?>
-                        <option value="<?php echo $donnees['valeurCategorie']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['categorieEtiquette']; ?></option>
+                        <option value="<?php echo $donnees['idCategorieEtiquette']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['categorieEtiquette']; ?></option>
                     <?php
                     }
                     ?>
@@ -49,13 +49,13 @@
 
 
                 <!-- 2eme listview -->
-                <select name="piece">
+                <select name="acronime">
                    <option value=NULL>-- Acronime --</option>
                     <?php
                     $reponse = $pdo->query('SELECT * FROM acronime_etiquette');
                     while ($donnees = $reponse->fetch()){
                     ?>
-                        <option value="<?php echo $donnees['valeurAcronime']; ?>"><?php echo $donnees['valeurAcronime']; ?> - <?php echo $donnees['acronimeEtiquette']; ?></option>
+                        <option value="<?php echo $donnees['idAcronimeEtiquette']; ?>"><?php echo $donnees['valeurAcronime']; ?> - <?php echo $donnees['acronimeEtiquette']; ?></option>
                     <?php
                     }
                     ?>
@@ -67,18 +67,21 @@
             <label id="ajout_element">Durée garantie (mois) : </label><input type="text" name="garantie" placeholder="Durée garantie"></p>
             <label id="ajout_element">Type : </label><input type="text" name="type" placeholder="Type">
             </p>
-
-            <div id ="msg">
-                </p><?php
+            <div id ="succes">
+               <?php
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-                if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?erreur"){
-                    echo ("Veuilliez saisir tous les champs ");
+                if ($monUrl == "http://localhost/BDD/Site/authentification.php?reco"){
+                    echo ("Changement effectué avec succès , veuillez vous reconnectez ");
                 }
-                else if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?succes"){
-                       echo ("Equipement ajouté avec succès ");
+                ?>
+            </div>
+            <div id ="erreur">
+               <?php
+                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                if ($monUrl == "http://localhost/BDD/Site/authentification.php?erreur"){
+                    echo ("Identifiant ou mot de passe incorrect ");
                 }
-
-            ?>
+                ?>
             </div>
             <input class="bouton" type="submit" value="Ajouter">
           </form>

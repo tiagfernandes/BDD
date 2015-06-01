@@ -155,9 +155,9 @@ html {
     padding-bottom: 1%;
 }
 
-#msg{
+#succes{
     font-style: italic;
-    color: red;
+    color: green;
     text-align: center;
 }
 label{
@@ -227,4 +227,10 @@ body {
 
 .button1 {
     margin-left: 45%;
+}
+
+#erreur {
+    font-style: italic;
+    color: red;
+    text-align: center;
 }
