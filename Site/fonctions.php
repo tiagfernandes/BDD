@@ -21,12 +21,14 @@ function getAuthentification($login, $pass){
 
 function getAllEquipement(){
     global $pdo;
-    $query = "SELECT CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`idType`,`idFournisseur`,`prix`,`marque`,`dateAjout`,`dateFabrication`,`dateReception`,`dateMiseService`,`garantie`
-              FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`
+    $query = "SELECT CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`nomType`,`nomFournisseur`,`prix`,`marque`,`dateAjout`,`dateFabrication`,`dateReception`,`dateMiseService`,`garantie`
+              FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`, `type`, `fournisseur`
               WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
               AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
               AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-              AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette` ";
+              AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+              AND `equipement`.`idType` = `type`.`idType`
+              AND `equipement`.`idFournisseur` = `fournisseur`.`idFournisseur`";
 
     try {
       $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
