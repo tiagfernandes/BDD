@@ -6,6 +6,7 @@
     $listeEquipement = getAllEquipement($pdo);
     $listeUtilisateur = getAllUtilisateur($pdo);
     $listeEtiquetteEquipement = getEtiquetteEquipement($pdo);
+
 ?>
 
 <!doctype html>
@@ -30,7 +31,6 @@
 
         </p><table border=2>
           <th>Etiquette</th>
-          <th>id</th>
           <th>Nom équipement</th>
           <th>Type</th>
           <th>Fournisseur</th>
@@ -43,36 +43,16 @@
           <th>Garantie (mois)</th>
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
-
-           <?php foreach ($listeEtiquetteEquipement as $cles=>$valeurs): ?> <!--Affichage Etiquette-->
-              <tr>
-                <?php foreach($valeurs as $vals): ?>
-                    <td><?= htmlentities($vals) ?></td>
+            <tr>
+                <?php foreach ($valeur as $val): ?>
+                    <td><?= htmlentities($val) ?></td>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-
-
-            <?php foreach ($valeur as $val): ?>
-                <td><?= htmlentities($val) ?></td>
-            <?php endforeach; ?>
             </tr>
 
          <?php endforeach; ?>
 
-
         </table>
-        <table border=2>
-           <th>Catégorie</th>
-           <th>id</th>
-            <?php foreach ($listeEtiquetteEquipement as $cle=>$valeur): ?> <!--Affichage Etiquette-->
-              <tr>
-                <?php foreach($valeur as $val): ?>
-                    <td><?= htmlentities($val) ?></td>
-                <?php endforeach; ?>
 
-            <?php endforeach; ?>
-              </tr>
-        </table>
     </div>
    </body>
 </html>
