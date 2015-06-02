@@ -14,7 +14,7 @@
     $acronime = $_POST['acronime'];
     $fournisseur = $_POST['fournisseur'];
 
-    if ($categorie !="NULL" && $acronime !="NULL" && $nom_equi !=NULL){
+    if ($categorie !="NULL" && $acronime !="NULL" && $nom_equi !=NULL ){
 
         $sql = "INSERT INTO `equipement` (nomEquipement,idFournisseur,prix,marque,dateAjout,garantie,dateFabrication,dateReception,dateMiseService) VALUES ('$nom_equi','$fournisseur','$prix','$marque',NOW(),'$garantie','$anneefb','$dater','$datemes')";
         $prep = $pdo->prepare($sql);

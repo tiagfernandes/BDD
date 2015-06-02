@@ -54,7 +54,7 @@
         </div>
         <?php }
             else{
-                $message="Vous n'etes pas Administrateur pour acceder à cette page !";
+                $message="Vous devez être Administrateur pour acceder à cette page !";
                 echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
                 header('refresh:0.01;url=index.php');
             }
