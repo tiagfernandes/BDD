@@ -36,7 +36,6 @@
                   <th>Mot de passe</th>
                   <th>Rôle</th>
                   <th>Supprimer</th>
-                  <th>Modifier</th>
 
                 <?php foreach ($listeUtilisateur as $cle=>$valeur): ?> <!--Affichage des utilisateur-->
                     <tr>
@@ -47,7 +46,6 @@
                         <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
                             onClick="return(confirm('Supprimer <?= $valeur['prenomUtilisateur']  ?> ?'));">Supprimer</a></td>
 
-                        <td><a href="" >Modifier</a></td>
                         </tr>
 
                  <?php endforeach; ?>

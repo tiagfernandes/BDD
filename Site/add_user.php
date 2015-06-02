@@ -33,7 +33,7 @@
             <label id="ajout_element">Prénom : </label><input type="tex" name="prenom_user" placeholder="Prénom"></p>
             <label id="ajout_element">E-mail : </label><input type="email" name="mail_user" placeholder="Email"></p>
             <label id="ajout_element">Login : </label><input type="text" name="login_user" placeholder="Login"></p>
-            <label id="ajout_element">Mot de passe : </label><input type="text" name="mdp_user" placeholder="Mot de passe"></p>
+            <label id="ajout_element">Mot de passe : </label><input type="password" name="mdp_user" placeholder="Mot de passe"></p>
             <label id="ajout_element">Rôle : </label>
             <select name="role_user" >
                 <option value=NULL>-- Rôle --</option>
