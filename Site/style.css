@@ -238,3 +238,7 @@ body {
 table tbody tr:nth-child(odd) {
     background-color: floralwhite;
 }
+
+#ajout_admin {
+    width: 200px;
+}
