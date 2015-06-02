@@ -7,6 +7,7 @@
     $marque = $_POST['marque'];
     $anneefb = $_POST['anneefb'];
     $datemes = $_POST['datemes'];
+    $dater = $_POST['dater'];
     $garantie = $_POST['garantie'];
     $type = $_POST['type'];
     $categorie = $_POST['categorie'];
@@ -16,13 +17,13 @@
 
     if ($categorie !="NULL" && $acronime !="NULL" && $nom_equi !=NULL){
 
-        $sql = "INSERT INTO `equipement` (nomEquipement,idType,idFournisseur,prix,marque,garantie,dateFabrication,dateMiseService) VALUES ('$nom_equi','$type','$fournisseur','$prix','$marque','$garantie','$anneefb','$datemes')";
+        $sql = "INSERT INTO `equipement` (nomEquipement,idType,idFournisseur,prix,marque,dateAjout,garantie,dateFabrication,dateReception,dateMiseService) VALUES ('$nom_equi','$type','$fournisseur','$prix','$marque',NOW(),'$garantie','$anneefb','$dater','$datemes')";
         $prep = $pdo->prepare($sql);
         $prep->execute();
 
-         $recupid =$pdo->lastInsertId();
+        $idequipement =$pdo->lastInsertId();
 
-        $sql2 = "INSERT INTO `etiquette_equipement` (idCategorieEtiquette,idEquipement,idAcronimeEtiquette) VALUES ('$categorie','$recupid','$acronime')";
+        $sql2 = "INSERT INTO `etiquette_equipement` (idCategorieEtiquette,idEquipement,idAcronimeEtiquette) VALUES ('$categorie','$idequipement','$acronime')";
         $prep2 = $pdo->prepare($sql2);
         $prep2->execute();
 
