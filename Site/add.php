@@ -23,8 +23,9 @@
             header('Location: admin.php');
 
         }
+
         else{
-            header('Location : add_user.php?login');
+            header('Location: add_user.php?login ');
         }
     }
 
