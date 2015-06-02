@@ -32,7 +32,6 @@
         </p><table border=2>
           <th>Etiquette</th>
           <th>Nom équipement</th>
-          <th>Type</th>
           <th>Fournisseur</th>
           <th>Prix (€)</th>
           <th>Marque</th>

@@ -64,7 +64,7 @@
             <label id="ajout_element">Marque : </label><input type="text" name="marque" placeholder="Marque"></p>
             <label id="ajout_element">Date de fabrication : </label><input type="date" name="anneefb" placeholder="YYYY/MM/DD"></p>
             <label id="ajout_element">Date mise en service : </label><input type="date" name="datemes" placeholder="YYYY/MM/DD"></p>
-            <label id="ajout_element">Date de réception : </label><input type="date" name="dater" placeholder="YYYY/MM/DD"></p>
+            <label id="ajout_element">Date de réception prévue : </label><input type="date" name="dater" placeholder="YYYY/MM/DD"></p>
             <label id="ajout_element">Durée garantie (mois) : </label><input type="text" name="garantie" placeholder="Durée garantie"></p>
             <label id="ajout_element">Fournisseur : </label></p>
             <select name="fournisseur">
@@ -79,18 +79,6 @@
                     ?>
             </select>
             </p>
-            <label id="ajout_element">Type : </label>
-            <select name="type">
-                   <option value=NULL>-- Type --</option>
-                    <?php
-                    $reponse = $pdo->query('SELECT * FROM type');
-                    while ($donnees = $reponse->fetch()){
-                    ?>
-                        <option value="<?php echo $donnees['idType']; ?>"><?php echo $donnees['nomType']; ?></option>
-                    <?php
-                    }
-                    ?>
-            </select>
             </p>
             <div id ="succes">
                <?php
