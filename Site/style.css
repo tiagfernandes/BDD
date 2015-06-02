@@ -242,3 +242,8 @@ table tbody tr:nth-child(odd) {
 #ajout_admin {
     width: 200px;
 }
+
+#user {
+    margin-left: 13%;
+    margin-top: 10px;
+}
