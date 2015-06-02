@@ -11,11 +11,21 @@
 
     if ($nom_user !=NULL && $prenom_user !=NULL && $mail_user !=NULL && $login_user !=NULL && $mdp_user !=NULL && $role_user !=NULL){
 
-        $sql = "INSERT INTO `utilisateur` (nomUtilisateur,prenomUtilisateur,email,login,password,role) VALUES ('$nom_user','$prenom_user','$mail_user','$login_user','$mdp_user','$role_user')";
-        $prep = $pdo->prepare($sql);
-        $prep->execute();
+        $req = $pdo->prepare('SELECT * FROM utilisateur WHERE login = :login');
+        $req->execute(array('login'=> $login_user));
+        $resultat=$req->fetch();
 
-        header('Location: admin.php');
+        if(!$resultat){
+
+            $sql = "INSERT INTO `utilisateur` (nomUtilisateur,prenomUtilisateur,email,login,password,role) VALUES ('$nom_user','$prenom_user','$mail_user','$login_user','$mdp_user','$role_user')";
+            $prep = $pdo->prepare($sql);
+            $prep->execute();
+            header('Location: admin.php');
+
+        }
+        else{
+            header('Location : add_user.php?login');
+        }
     }
 
     else

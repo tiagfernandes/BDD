@@ -43,13 +43,16 @@
             </select>
             </p>
 
-            <div id ="msg">
+            <div id ="erreur">
                 </p><?php
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                 if ($monUrl == "http://localhost/BDD/Site/add_user.php?erreur"){
                     echo ("Veuilliez saisir tous les champs ");
                 }
 
+                else if ($monUrl == "http://localhost/BDD/Site/add_user.php?login"){
+                    echo ("Login déjà utilisé ");
+                }
             ?>
             </div>
             <input class="bouton" type="submit" value="Ajouter">
