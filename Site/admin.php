@@ -38,20 +38,21 @@
                     <th>Supprimer</th>
 
                     <?php foreach ($listeUtilisateur as $cle=>$valeur): ?> <!--Affichage des utilisateur-->
-                    <tr>
-                        <?php foreach ($valeur as $val): ?>
-                            <td><?= htmlentities($val) ?></td>
-                        <?php endforeach; ?>
+                        <tr>
+                            <?php foreach ($valeur as $val): ?>
+                                <td><?= htmlentities($val) ?></td>
+                            <?php endforeach; ?>
 
-                        <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
-                            onClick="return(confirm('Supprimer <?= $valeur['prenomUtilisateur']  ?> ?'));">Supprimer</a></td>
-
-                    </tr>
-
-                     <?php endforeach; ?>
+                            <td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
+                                onClick="return(confirm('Supprimer <?= $valeur['prenomUtilisateur']  ?> ?'));">Supprimer</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </table>
-            <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur">
+            <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur"></p>
+
+
         </div>
+
         <?php }
             else{
                 $message="Vous devez être Administrateur pour acceder à cette page !";

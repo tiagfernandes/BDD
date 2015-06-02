@@ -59,7 +59,7 @@
                     <?php
                     }
                     ?>
-              </select></br/>Le numéro d'étiquette sera générer automatiquement.</p>
+              </select><br/>Le numéro d'étiquette sera générer automatiquement.</p>
             <label id="ajout_element">Prix (€) : </label><input type="text" name="prix" placeholder="Prix"></p>
             <label id="ajout_element">Marque : </label><input type="text" name="marque" placeholder="Marque"></p>
             <label id="ajout_element">Date de fabrication : </label><input type="date" name="anneefb" placeholder="YYYY/MM/DD"></p>
