@@ -234,3 +234,7 @@ body {
     color: red;
     text-align: center;
 }
+
+table tbody tr:nth-child(odd) {
+    background-color: floralwhite;
+}
