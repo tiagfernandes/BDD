@@ -24,9 +24,8 @@
         <?php require_once('entete.php'); ?>
         <?php if ($_SESSION['role']== "Administrateur") {?>
             <div id="contenu">
-                <div id="banniere">
-                      Utilisateurs
-                </div>
+                <div id="banniere">Administration</div>
+
 
                 <table border=2>
                     <th>id</th>
@@ -51,11 +50,11 @@
 
                      <?php endforeach; ?>
                 </table>
-            <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter">
+            <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur">
         </div>
         <?php }
             else{
-                $message='Accès interdit aux utilisateurs';
+                $message="Vous n'etes pas Administrateur pour acceder à cette page !";
                 echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
                 header('refresh:0.01;url=index.php');
             }
