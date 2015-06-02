@@ -65,7 +65,31 @@
             <label id="ajout_element">Date de fabrication : </label><input type="date" name="anneefb" placeholder="YYYY/MM/DD"></p>
             <label id="ajout_element">Date mise en service : </label><input type="date" name="datemes" placeholder="YYYY/MM/DD"></p>
             <label id="ajout_element">Durée garantie (mois) : </label><input type="text" name="garantie" placeholder="Durée garantie"></p>
-            <label id="ajout_element">Type : </label><input type="text" name="type" placeholder="Type">
+            <label id="ajout_element">Fournisseur : </label></p>
+            <select name="fournisseur">
+                   <option value=NULL>-- Fournisseur --</option>
+                    <?php
+                    $reponse = $pdo->query('SELECT * FROM fournisseur');
+                    while ($donnees = $reponse->fetch()){
+                    ?>
+                        <option value="<?php echo $donnees['idFournisseur']; ?>"><?php echo $donnees['nomFournisseur']; ?></option>
+                    <?php
+                    }
+                    ?>
+            </select>
+            </p>
+            <label id="ajout_element">Type : </label>
+            <select name="type">
+                   <option value=NULL>-- Type --</option>
+                    <?php
+                    $reponse = $pdo->query('SELECT * FROM type');
+                    while ($donnees = $reponse->fetch()){
+                    ?>
+                        <option value="<?php echo $donnees['idType']; ?>"><?php echo $donnees['nomType']; ?></option>
+                    <?php
+                    }
+                    ?>
+            </select>
             </p>
             <div id ="succes">
                <?php
