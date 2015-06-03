@@ -10,8 +10,7 @@ if(isset($_FILES['avatar']))
      }
      else
      {
-          echo 'Echec de l\'upload !';
-          header('refresh:1;url=profil.php');
+          header('Location: profil.php?erreur');
      }
 }
 ?>
