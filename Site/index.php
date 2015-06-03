@@ -30,6 +30,7 @@
         </form>
 
         </p><table border=2>
+          <th>Id</th>
           <th>Etiquette</th>
           <th>Nom équipement</th>
           <th>Fournisseur</th>
@@ -43,9 +44,12 @@
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
             <tr>
-                <?php foreach ($valeur as $val): ?>
-                    <td><?= htmlentities($val) ?></td>
-                <?php endforeach; ?>
+                <form method="get" action="equipement.php?idEquipement">
+                    <?php foreach ($valeur as $val): ?>
+                        <?php $idEquipement=$valeur['idEquipement']; ?>
+                        <td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
+                    <?php endforeach; ?>
+                </form>
             </tr>
 
          <?php endforeach; ?>
