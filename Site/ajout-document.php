@@ -39,7 +39,7 @@
                                     <?php
                                     }
                                     ?>
-                                </select> -
+                                </select>
                                 <select name="">
                                     <option value=NULL>-- Processus --</option>
                                         <?php
@@ -52,9 +52,9 @@
                                         }
                                         ?>
                                     </option>
-                                </select> -
+                                </select>
                                 <select name="">
-                                    <option value=NULL>-- Processus --</option>
+                                    <option value=NULL>-- Sous-Processus --</option>
                                         <?php
 
                                         $reponse = $pdo->query('SELECT * FROM processus');
@@ -65,6 +65,8 @@
                                         }
                                         ?>
                                     </option>
+                               </select><br/>
+                               <label id="">Equipement lier :</label>
                         </form>
 
                     </fieldset>
