@@ -66,7 +66,7 @@
                                         ?>
                                     </option>
                                </select><br/>
-                               <label id="">Equipement lier :</label>
+
                         </form>
 
                     </fieldset>
