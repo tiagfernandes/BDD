@@ -43,9 +43,11 @@
 
         <?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
             <tr>
-                <?php foreach ($valeur as $val): ?>
-                    <td><?= htmlentities($val) ?></td>
-                <?php endforeach; ?>
+                <form method="get" action="equipement.php?idEquipement">
+                    <?php foreach ($valeur as $val): ?>
+                        <td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=1')"><?= htmlentities($val) ?></td>
+                    <?php endforeach; ?>
+                </form>
             </tr>
 
          <?php endforeach; ?>
