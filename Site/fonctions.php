@@ -28,7 +28,7 @@ function getAllEquipement(){
               AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
               AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
               AND `equipement`.`idFournisseur` = `fournisseur`.`idFournisseur`
-              GROUP BY `dateAjout` DESC";
+              GROUP BY `idEquipement` DESC";
 
     try {
       $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
