@@ -318,3 +318,13 @@ table tbody tr:nth-child(odd) {
     position: absolute;
     margin-left: 75px;
 }
+
+#tableau {
+    text-align: center;
+}
+
+
+
+#ajout-img {
+    margin-left: 75px;
+}

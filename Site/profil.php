@@ -24,7 +24,7 @@
             <img src="image/dbz.jpg" alt="Avatar" id="avatar">
             <div id ="parcourir"><form method="POST" action="upload.php" enctype="multipart/form-data">
                  Fichier : <input type="file" name="avatar"></p>
-                 <input type="submit" name="envoyer" value="Actualiser">
+                 <input id="ajout-img" type="submit" name="envoyer" value="Actualiser">
             </form></div>
             <div id ="infos">
                <div id ="donnees">
