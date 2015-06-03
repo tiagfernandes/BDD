@@ -30,6 +30,7 @@
         </form>
 
         </p><table border=2>
+          <th>Id</th>
           <th>Etiquette</th>
           <th>Nom équipement</th>
           <th>Fournisseur</th>
@@ -45,7 +46,8 @@
             <tr>
                 <form method="get" action="equipement.php?idEquipement">
                     <?php foreach ($valeur as $val): ?>
-                        <td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=1')"><?= htmlentities($val) ?></td>
+                        <?php $idEquipement=$valeur['idEquipement']; ?>
+                        <td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
                     <?php endforeach; ?>
                 </form>
             </tr>
