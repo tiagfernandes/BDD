@@ -27,7 +27,7 @@
                 <div id="banniere">Administration</div>
 
 
-                <table border=2>
+                <div id ="user"><table border=2>
                     <th>id</th>
                     <th>Nom</th>
                     <th>Prénom</th>
@@ -48,6 +48,7 @@
                         </tr>
                     <?php endforeach; ?>
                 </table>
+                </div>
             <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur"></p>
 
 
