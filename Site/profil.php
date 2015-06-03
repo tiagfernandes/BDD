@@ -16,7 +16,17 @@
 
 
     <body>
-    <?php require_once('entete.php'); ?>    <!--Affichage des données utilisateur-->
+    <?php require_once('entete.php'); ?>
+        <div>
+               <?php
+                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                if ($monUrl == "http://localhost/BDD/Site/profil.php?erreur"){
+                    $message="Echec lors de la modification !";
+                    echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+                }
+            ?>
+        </div>
+        <!--Affichage des données utilisateur-->
         <div id="contenu">
             <div id="banniere">
                 Votre profil :
