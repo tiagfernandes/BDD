@@ -3,12 +3,8 @@
 
     session_start ();
 
-    $listeEquipement = getAllEquipement($pdo);
-    $listeUtilisateur = getAllUtilisateur($pdo);
-    $listeEtiquetteEquipement = getEtiquetteEquipement($pdo);
 
 ?>
-
 <!doctype html>
 <html lang="fr">
 <meta charset="UTF-8">
@@ -24,7 +20,10 @@
     <body>
         <?php require_once('entete.php'); ?>
             <div id ="contenu">
-                <p>Bonjour <?php echo $_GET['idEquipement']?> !</p>
+                <div id="banniere">Votre profil</div>
+
+                    <p><?php $idEquipement=$_GET['idEquipement']?></p>
+                    <?php  print_r($idEquipement);  ?>
             </div>
     </body>
 </html>
