@@ -100,3 +100,20 @@ function getEquipement($idEquipement){
           die ("Erreur dans la requete ".$e->getMessage());
         }
 }
+
+function getNomEquipement($idEquipement){
+    global $pdo;
+        $query = "SELECT nomEquipement FROM equipement WHERE idEquipement=$idEquipement";
+
+        try {
+          $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+          return($result);
+        }
+        catch ( Exception $e ) {
+          die ("Erreur dans la requete ".$e->getMessage());
+        }
+}
+
+function getMarqueEquipement($idEquipement){
+
+}
