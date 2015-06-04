@@ -1,12 +1,12 @@
 <?php
 if(isset($_FILES['avatar']))
 {
-     $dossier = 'image/';
+     $dossier = 'image/avatar/';
      $fichier = basename($_FILES['avatar']['name']);
-     $image = 'image/'.$fichier.'';
+     $image = 'image/avatar/'.$fichier.'';
      if(move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $fichier))
      {
-          header ('location: profil.php');
+          header('Location: profil.php');
      }
      else
      {

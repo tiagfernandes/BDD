@@ -15,6 +15,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
     <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css">
+
+       <script language="Javascript">
+        function imprimer(){window.print();}
+       </script>
     </head>
 
 
@@ -106,7 +110,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                <img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
+                <img onclick="imprimer()" src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
             </div>
     </body>
 </html>

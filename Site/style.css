@@ -326,3 +326,8 @@ table tbody tr:nth-child(odd) {
 #ajout-img {
     margin-left: 75px;
 }
+
+.log {
+    position: relative;
+    left: 33%;
+}

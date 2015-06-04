@@ -35,7 +35,7 @@
                 }
                 ?>
             </div>
-            <input class="bouton" type="submit" value="Se connecter">
+            <input class="log" type="submit" value="Se connecter">
         </form></font>
     </body>
 </html>
