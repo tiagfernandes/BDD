@@ -6,7 +6,7 @@ html {
 
 #entete {
     border-radius: 0px 0px 10px 10px;
-    width: 1200px;
+    width: 1100px;
     height: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -26,7 +26,7 @@ html {
 
 #contenu{
     border-radius: 20px;
-    width: 1200px;
+    width: 1100px;
     height: 600px;
     background-color: #E1DCDC;
     margin-left: auto;
@@ -134,7 +134,7 @@ html {
 
 #banniere{
     border-radius:20px 20px 0px 0px;
-    width: 1200px;
+    width: 1100px;
     height: 50px;
     background-color: #DBD7D7;
     font-size: 30px;
@@ -328,14 +328,10 @@ table tbody tr:nth-child(odd) {
     margin-left: 75px;
 }
 
-<<<<<<< HEAD
 .log {
     position: relative;
     left: 33%;
-=======
-
-
-
+}
 
 select {
 	width: 125px;
@@ -348,12 +344,16 @@ table {
 }
 
 .footer {
-	position: static;
-	margin-left: 125px;
-	margin-right: auto;
-	margin-bottom: 0px;
-	width: 1000px;
+    border-radius: 10px 10px 0px 0px;
+    position:absolute;
+    bottom:0px;
+    margin-left: 6.5%;
+	margin-bottom: auto;
+	width: 1100px;
 	height: 150px;
-	background: white;
->>>>>>> origin/master
+	background-color: #E1DCDC;
+    box-shadow: 0px 0px 10px 5px rgba(164, 162, 162, 0.75);
+    -box-shadow: 0px 0px 10px 5px rgba(164, 162, 162, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 5px rgba(164, 162, 162, 0.75);
 }
+
