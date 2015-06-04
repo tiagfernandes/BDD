@@ -39,7 +39,7 @@
                                     <?php
                                     }
                                     ?>
-                                </select>
+                                </select> -
                                 <select name="">
                                     <option value=NULL>-- Processus --</option>
                                         <?php
@@ -52,7 +52,7 @@
                                         }
                                         ?>
                                     </option>
-                                </select>
+                                </select> -
                                 <select name="">
                                     <option value=NULL>-- Sous-Processus --</option>
                                         <?php

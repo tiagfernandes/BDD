@@ -326,3 +326,11 @@ table tbody tr:nth-child(odd) {
 #ajout-img {
     margin-left: 75px;
 }
+
+
+
+
+
+select {
+	width: 125px;
+}
