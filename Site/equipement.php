@@ -4,7 +4,6 @@
     session_start ();
 
     $idEquipement=$_GET['idEquipement']
-
 ?>
 <!doctype html>
 <html lang="fr">
@@ -110,7 +109,23 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                <img onclick="imprimer()" src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
+                    <?php
+                        $resultats=$pdo->query("SELECT `valeurCategorie`,`valeurAcronime`,`equipement`.`idEquipement` FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+                    WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+                    AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+                    AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+                    AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette` AND `equipement`.`idEquipement`='$idEquipement'");
+                        $resultats->setFetchMode(PDO::FETCH_OBJ);
+                        while( $resultat = $resultats->fetch() )
+                        {
+                            echo 'Etiquette : '.$resultat->valeurCategorie.'-';
+							echo ''.$resultat->valeurAcronime.'-';
+							echo ''.$resultat->idEquipement.'<br/>';
+                        }
+                        $resultats->closeCursor();
+                    ?>
+
+				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=200x200&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
             </div>
     </body>
 </html>
