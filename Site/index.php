@@ -28,7 +28,6 @@
             <div id="banniere">Equipement</div>
 
         </form>
-        <div id="tableau">
         </p><table border=2>
           <th>Id</th>
           <th>Etiquette</th>
@@ -56,6 +55,5 @@
 
         </table>
         </div>
-    </div>
    </body>
 </html>

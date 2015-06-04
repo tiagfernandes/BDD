@@ -2,6 +2,8 @@
     require_once('fonctions.php');
 
     session_start ();
+
+	$Equipement = getEquipementDoc($pdo);
 ?>
 
 <!doctype html>
@@ -40,6 +42,7 @@
                                     }
                                     ?>
                                 </select> -
+
                                 <select name="">
                                     <option value=NULL>-- Processus --</option>
                                         <?php
@@ -53,6 +56,7 @@
                                         ?>
                                     </option>
                                 </select> -
+
                                 <select name="">
                                     <option value=NULL>-- Sous-Processus --</option>
                                         <?php
@@ -67,9 +71,22 @@
                                     </option>
                                </select><br/>
 
-                        </form>
+	   						</p><table border=1>
+								<th>Etiquette</th>
+								<th>Equipement</th>
 
+								<?php foreach ($Equipement as $cle=>$valeur): ?>
+									<tr>
+										<?php foreach ($valeur as $val): ?>
+										<td><?= htmlentities($val) ?></td>
+										<?php endforeach; ?>
+											</td>
+									</tr>
+
+								 <?php endforeach; ?>
+								</table>
+                        </form>
                     </fieldset>
-                </div>
+               </div>
     </body>
 </html>

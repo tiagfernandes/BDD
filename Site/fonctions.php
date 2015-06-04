@@ -1,5 +1,6 @@
 <?php
 require_once('connexion.php');
+
 header('Content-Type: text/html; charset=UTF-8');
 
 function getAuthentification($login, $pass){
@@ -114,6 +115,20 @@ function getNomEquipement($idEquipement){
         }
 }
 
-function getMarqueEquipement($idEquipement){
+function getEquipementDoc(){
+	global $pdo;
+        $query = "SELECT CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), nomEquipement
+				  FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+                  WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+                  AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+                  AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+                  AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`";
 
+        try {
+          $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+          return($result);
+        }
+        catch ( Exception $e ) {
+          die ("Erreur dans la requete ".$e->getMessage());
+        }
 }
