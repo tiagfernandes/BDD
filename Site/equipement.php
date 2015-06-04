@@ -4,7 +4,6 @@
     session_start ();
 
     $idEquipement=$_GET['idEquipement']
-
 ?>
 <!doctype html>
 <html lang="fr">
@@ -106,6 +105,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
+
                 <img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
             </div>
     </body>
