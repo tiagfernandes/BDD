@@ -61,7 +61,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                <img src="http://chart.apis.google.com/chart?cht=qr&chs=50x50&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
+                <img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
             </div>
     </body>
 </html>
