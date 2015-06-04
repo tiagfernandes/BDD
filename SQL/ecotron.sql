@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 01 Juin 2015 à 16:15
+-- Généré le :  Jeu 04 Juin 2015 à 09:47
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -163,7 +163,6 @@ CREATE TABLE IF NOT EXISTS `entretient` (
 CREATE TABLE IF NOT EXISTS `equipement` (
   `idEquipement` int(11) NOT NULL AUTO_INCREMENT,
   `nomEquipement` varchar(45) DEFAULT NULL,
-  `idType` int(11) NOT NULL,
   `idFournisseur` int(11) NOT NULL,
   `prix` double DEFAULT NULL,
   `marque` varchar(45) DEFAULT NULL,
@@ -172,18 +171,19 @@ CREATE TABLE IF NOT EXISTS `equipement` (
   `dateReception` date DEFAULT NULL,
   `dateMiseService` date DEFAULT NULL,
   `garantie` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idEquipement`,`idType`,`idFournisseur`),
-  KEY `fk_Equipement_Type_idx` (`idType`),
+  PRIMARY KEY (`idEquipement`,`idFournisseur`),
   KEY `fk_Equipement_Fournisseur1_idx` (`idFournisseur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `equipement`
 --
 
-INSERT INTO `equipement` (`idEquipement`, `nomEquipement`, `idType`, `idFournisseur`, `prix`, `marque`, `dateAjout`, `dateFabrication`, `dateReception`, `dateMiseService`, `garantie`) VALUES
-(2, 'Capteur', 1, 2, 100, 'dell', '2015-05-08', '2015-05-11', '2015-05-06', '2015-05-06', 2),
-(3, 'Moteur', 2, 3, 100, 'rien', '2015-05-05', '2015-05-15', '2015-05-14', '2015-05-21', 36);
+INSERT INTO `equipement` (`idEquipement`, `nomEquipement`, `idFournisseur`, `prix`, `marque`, `dateAjout`, `dateFabrication`, `dateReception`, `dateMiseService`, `garantie`) VALUES
+(2, 'Capteur', 2, 100, 'Dell', '2015-05-08', '2015-05-11', '2015-05-06', '2015-05-06', 2),
+(4, 'test', 3, 3200, 'HP', '2015-06-03', '2015-06-02', '2015-06-11', '2015-06-02', 3),
+(7, 'fdgfdg', 0, 0, '', '2015-06-02', '0000-00-00', '0000-00-00', '0000-00-00', 0),
+(8, 'Retest', 3, 100, 'Bonjour', '2015-06-03', '2015-06-03', '2015-06-03', '2015-06-03', 22);
 
 -- --------------------------------------------------------
 
@@ -281,14 +281,18 @@ CREATE TABLE IF NOT EXISTS `etiquette_equipement` (
   PRIMARY KEY (`idEtiquette_Equipement`,`idEquipement`,`idCategorieEtiquette`,`idAcronimeEtiquette`),
   KEY `fk_Etiquette_Equipement_Categorie_Etiquette1_idx` (`idCategorieEtiquette`),
   KEY `fk_Etiquette_Equipement_Equipement1_idx` (`idEquipement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Contenu de la table `etiquette_equipement`
 --
 
 INSERT INTO `etiquette_equipement` (`idEtiquette_Equipement`, `idEquipement`, `idCategorieEtiquette`, `idAcronimeEtiquette`) VALUES
-(3, 3, 4, 1),
+(4, 4, 1, 1),
+(5, 5, 1, 2),
+(6, 6, 1, 1),
+(8, 8, 1, 1),
+(7, 7, 2, 1),
 (1, 2, 5, 2);
 
 -- --------------------------------------------------------
@@ -494,11 +498,29 @@ CREATE TABLE IF NOT EXISTS `plateforme_archive` (
 
 CREATE TABLE IF NOT EXISTS `processus` (
   `idProcessus` int(11) NOT NULL AUTO_INCREMENT,
+  `valeurProcessus` varchar(11) NOT NULL,
   `Processus` varchar(45) DEFAULT NULL,
   `idSous_Processus` int(11) NOT NULL,
   PRIMARY KEY (`idProcessus`,`idSous_Processus`),
   KEY `fk_Processus_Sous_Processus1_idx` (`idSous_Processus`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- Contenu de la table `processus`
+--
+
+INSERT INTO `processus` (`idProcessus`, `valeurProcessus`, `Processus`, `idSous_Processus`) VALUES
+(1, 'CI', 'Communication Interne', 0),
+(2, 'M', 'Management', 0),
+(3, 'Q', 'Qualité', 0),
+(4, 'A', 'Achats', 0),
+(5, 'Mat', 'Matériels', 0),
+(6, 'I', 'Infrastructure', 0),
+(7, 'Inf', 'Informatique', 0),
+(8, 'Presta', 'Prestation de service plateformes de recherch', 0),
+(9, 'AR', 'Activités de Recherche', 0),
+(10, 'F', 'Formation', 0),
+(11, 'H', 'Hébergement', 0);
 
 -- --------------------------------------------------------
 
@@ -520,31 +542,21 @@ CREATE TABLE IF NOT EXISTS `sous_emplacement` (
 
 CREATE TABLE IF NOT EXISTS `sous_processus` (
   `idSous_Processus` int(11) NOT NULL AUTO_INCREMENT,
+  `valeurSousProcessus` varchar(45) NOT NULL,
   `sousProcessus` varchar(45) DEFAULT NULL,
   `idNumero_Document` int(11) NOT NULL,
   PRIMARY KEY (`idSous_Processus`,`idNumero_Document`),
   KEY `fk_Sous_Processus_Numero_Document1_idx` (`idNumero_Document`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Structure de la table `type`
+-- Contenu de la table `sous_processus`
 --
 
-CREATE TABLE IF NOT EXISTS `type` (
-  `idType` int(11) NOT NULL AUTO_INCREMENT,
-  `nomType` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idType`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Contenu de la table `type`
---
-
-INSERT INTO `type` (`idType`, `nomType`) VALUES
-(1, 'Capteur'),
-(2, 'Moteur');
+INSERT INTO `sous_processus` (`idSous_Processus`, `valeurSousProcessus`, `sousProcessus`, `idNumero_Document`) VALUES
+(1, 'SD', 'Système Documentaire', 0),
+(2, 'Serre', 'Serre de recherche', 0),
+(3, 'Ecotron', 'Plateforme Ecotron', 0);
 
 -- --------------------------------------------------------
 
@@ -554,11 +566,31 @@ INSERT INTO `type` (`idType`, `nomType`) VALUES
 
 CREATE TABLE IF NOT EXISTS `type_document` (
   `idType_Document` int(11) NOT NULL AUTO_INCREMENT,
+  `valeurTypeDoc` varchar(45) NOT NULL,
   `typeDocument` varchar(45) DEFAULT NULL,
-  `idProcessus` int(11) NOT NULL,
+  `idProcessus` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idType_Document`,`idProcessus`),
   KEY `fk_Type_Document_Processus1_idx` (`idProcessus`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+--
+-- Contenu de la table `type_document`
+--
+
+INSERT INTO `type_document` (`idType_Document`, `valeurTypeDoc`, `typeDocument`, `idProcessus`) VALUES
+(1, 'PO', 'PrOcessus', 0),
+(2, 'PR', 'Procédure', 0),
+(3, 'MO', 'Mode Opératoire', 0),
+(4, 'FO', 'FOrmulaire', 0),
+(5, 'EN', 'ENregistrements', 0),
+(6, 'FE', 'FicheEquipement', 0),
+(7, 'FV', 'Fiche de Vie', 0),
+(8, 'FA', 'Fiche Anomalie', 0),
+(9, 'G', 'Guide d''utilisation', 0),
+(10, 'CatF', 'Catalogue Fournisseur', 0),
+(11, 'Biblio', 'Bibliographie', 0),
+(12, 'NT', 'Notice Technique', 0),
+(13, 'V', 'Veille technologique ou règlementaire', 0);
 
 -- --------------------------------------------------------
 
@@ -575,14 +607,14 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `password` varchar(45) DEFAULT NULL,
   `role` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `nomUtilisateur`, `prenomUtilisateur`, `email`, `login`, `password`, `role`) VALUES
-(2, 'Fernandes', 'Tiago', 'tiago_fernandes@live.fr', 'test', 'test', 'Admin');
+(4, 'Fernandes', 'Tiago', 'tiago_fernandes@live.fr', 'test', 'test', 'Administrateur');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -61,6 +61,51 @@
                         }
                         $resultats->closeCursor();
                     ?>
+                    <?php
+                        $resultats=$pdo->query("SELECT dateFabrication FROM equipement WHERE idEquipement='$idEquipement'");
+                        $resultats->setFetchMode(PDO::FETCH_OBJ);
+                        while( $resultat = $resultats->fetch() )
+                        {
+                            echo 'Date de fabrication : '.$resultat->dateFabrication.'<br>';
+                        }
+                        $resultats->closeCursor();
+                    ?>
+                    <?php
+                        $resultats=$pdo->query("SELECT dateReception FROM equipement WHERE idEquipement='$idEquipement'");
+                        $resultats->setFetchMode(PDO::FETCH_OBJ);
+                        while( $resultat = $resultats->fetch() )
+                        {
+                            echo 'Date de réception : '.$resultat->dateReception.'<br>';
+                        }
+                        $resultats->closeCursor();
+                    ?>
+                    <?php
+                        $resultats=$pdo->query("SELECT dateMiseService FROM equipement WHERE idEquipement='$idEquipement'");
+                        $resultats->setFetchMode(PDO::FETCH_OBJ);
+                        while( $resultat = $resultats->fetch() )
+                        {
+                            echo 'Date de mise en service : '.$resultat->dateMiseService.'<br>';
+                        }
+                        $resultats->closeCursor();
+                    ?>
+                    <?php
+                        $resultats=$pdo->query("SELECT garantie FROM equipement WHERE idEquipement='$idEquipement'");
+                        $resultats->setFetchMode(PDO::FETCH_OBJ);
+                        while( $resultat = $resultats->fetch() )
+                        {
+                            echo 'Garentie (mois) : '.$resultat->garantie.'<br>';
+                        }
+                        $resultats->closeCursor();
+                    ?>
+                    <?php
+                        $resultats=$pdo->query("SELECT `nomFournisseur` FROM `equipement`, `fournisseur` WHERE `equipement`.`idFournisseur`=`fournisseur`.`idFournisseur` AND `idEquipement`='$idEquipement'");
+                        $resultats->setFetchMode(PDO::FETCH_OBJ);
+                        while( $resultat = $resultats->fetch() )
+                        {
+                            echo 'Founisseur : '.$resultat->nomFournisseur.'<br>';
+                        }
+                        $resultats->closeCursor();
+                    ?>
                 <img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
             </div>
     </body>
