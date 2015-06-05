@@ -28,28 +28,38 @@
             <div id="banniere">Equipement</div>
 
 			<form action ="index.php" method="get">
-				<span>Recherche par numéro d'étiquette ou nom :</span>
-				<input type="text" id="search" name="search"/>
+				<span>Recherche équipement avec étiquette :</span>
+				<input type="text" id="search" name="searchCat" placeholder="Catégorie"/>
+				<input type="text" id="search" name="searchAcr" placeholder="Acronime"/>
+				<input type="text" id="search" name="searchId" placeholder="Numéro"/>
 				<input type="submit" value="Envoyer">
 				<input type="reset" value="Annuler">
 			</form>
 			<?php
 
-			if(isset($_GET['search'])) {
+			if((isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId']))) {
 
-			$chainesearch = addslashes($_GET['search']);
+			$chaineSearchCat = addslashes($_GET['searchCat']);
+			$chaineSearchAcr = addslashes($_GET['searchAcr']);
+			$chaineSearchId = addslashes($_GET['searchId']);
 
-			echo 'Vous avez recherché : ' . $chainesearch . '<br />';
+			echo 'Vous avez recherché : '.$chaineSearchCat.', '.$chaineSearchAcr.', '.$chaineSearchId.'<br />';
 
 				$requete = "SELECT *
-				  			FROM `equipement`
-                  			WHERE idEquipement LIKE '". $chainesearch."%'";
+						    FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+							WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+							AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+							AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+							AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+							AND valeurCategorie LIKE '".$chaineSearchCat."%'
+							AND valeurAcronime LIKE '".$chaineSearchAcr."%'
+							AND equipement.idEquipement LIKE '". $chaineSearchId."%' ";
 
 				// Exécution de la requête SQL
 				$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
 				echo 'Les résultats de recherche sont : <br />';
 				while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
-					echo $donnees['nomEquipement'] .'<br />';
+					echo $donnees['nomEquipement'],' ',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'].'<br />';
 				}
 
 			}
