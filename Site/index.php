@@ -27,6 +27,35 @@
         <div id ="contenu">
             <div id="banniere">Equipement</div>
 
+			<form action ="index.php" method="get">
+				<span>Recherche par numéro d'étiquette ou nom :</span>
+				<input type="text" id="search" name="search"/>
+				<input type="submit" value="Envoyer">
+				<input type="reset" value="Annuler">
+			</form>
+			<?php
+
+			if(isset($_GET['search'])) {
+
+			$chainesearch = addslashes($_GET['search']);
+
+			echo 'Vous avez recherché : ' . $chainesearch . '<br />';
+
+				$requete = "SELECT *
+				  			FROM `equipement`
+                  			WHERE idEquipement LIKE '". $chainesearch."%'";
+
+				// Exécution de la requête SQL
+				$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+				echo 'Les résultats de recherche sont : <br />';
+				while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+					echo $donnees['nomEquipement'] .'<br />';
+				}
+
+			}
+
+			?>
+
         </form>
         </p><table border=2>
           <th>Id</th>
