@@ -183,15 +183,10 @@ label{
 }
 .deco{
     position: absolute;
-<<<<<<< HEAD
-    margin-top: 30px;
-	margin-right: auto;
-	margin-left: 400px;
-=======
     margin-top: 2%;
     margin-left: 30%;
     display:inline-block;
->>>>>>> origin/master
+
 }
 
 .logo_cnrs, .logo_ens, .logo_ecotron{
