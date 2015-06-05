@@ -120,8 +120,24 @@
                         }
                         $resultats->closeCursor();
                     ?>
+                    		<form method="get" action="equipement.php">
+								<select name="taille">
+                                    <option value="100">-- Taille QR Code --</option>
+                                    <option value="50">50 x 50 pixel</option>
+                                    <option value="85">85 x 85 pixel</option>
+                                    <option value="100">100 x 100 pixel</option>
+                                    <option value="125">125 x 125 pixel</option>
+                                    <option value="150">150 x 150 pixel</option>
+                                    <option value="175">175 x 175 pixel</option>
+                                    <option value="200">200 x 200 pixel</option>
+                                    <option value="225">225 x 225 pixel</option>
+                                    <option value="250">250 x 250 pixel</option>
+                                    <option value="275">275 x 275 pixel</option>
+									<option value="300">300 x 300 pixel</option>
+								</select>
+							</form>
 
-				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=200x200&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
+				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
             </div>
     </body>
 </html>
