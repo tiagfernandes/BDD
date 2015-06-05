@@ -43,7 +43,7 @@ function getAllEquipement(){
 
 function getAllUtilisateur(){
     global $pdo;
-    $query = 'SELECT * FROM utilisateur';
+    $query = 'SELECT `idUtilisateur`,`nomUtilisateur`,`prenomUtilisateur`,`email`,`login`,`password`,`role` FROM utilisateur';
 
     try {
       $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);

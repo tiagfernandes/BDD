@@ -14,6 +14,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
     <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css">
+
+       <script language="Javascript">
+        function imprimer(){window.print();}
+       </script>
     </head>
 
 

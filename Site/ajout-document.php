@@ -27,7 +27,7 @@
                     <fieldset><legend>Fiche document</legend>
 
                         <form method="post" action="ajout_doc.php">
-                            <label id="ajout_element">Nom document : *</label><input type="text" name="nom_equipement" placeholder="Nom"></p>
+                            <label id="ajout_element">Nom document : *</label><input type="text" name="nom_document" placeholder="Nom"></p>
                             <label id="ajout_element">Etiquette document : *</label></p>
                                 <!-- 1ere listview -->
                                 <select name="">
@@ -61,10 +61,10 @@
                                     <option value=NULL>-- Sous-Processus --</option>
                                         <?php
 
-                                        $reponse = $pdo->query('SELECT * FROM processus');
+                                        $reponse = $pdo->query('SELECT * FROM sous_processus');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
-                                            <option value="<?php echo $donnees['idProcessus']; ?>"><?php echo $donnees['valeurProcessus']; ?> - <?php echo $donnees['Processus']; ?></option>
+                                            <option value="<?php echo $donnees['idSous_Processus']; ?>"><?php echo $donnees['valeurSousProcessus']; ?> - <?php echo $donnees['sousProcessus']; ?></option>
                                         <?php
                                         }
                                         ?>
