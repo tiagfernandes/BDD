@@ -48,7 +48,6 @@
 <nav id="entete">
         <script type="text/javascript" src="date_heure.js"></script>
        <?php require_once('information-utilisateur.php') ?>
-        <div id="onglet">
         <div id="time">
             <span id="date_heure"></span>
             <script type="text/javascript">window.onload = date_heure('date_heure');</script>
