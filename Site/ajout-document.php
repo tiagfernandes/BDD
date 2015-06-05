@@ -30,7 +30,7 @@
                             <label id="ajout_element">Nom document : *</label><input type="text" name="nom_document" placeholder="Nom"></p>
                             <label id="ajout_element">Etiquette document : *</label></p>
                                 <!-- 1ere listview -->
-                                <select name="">
+                                <select name="type">
                                     <option value=NULL>-- Type --</option>
                                     <?php
 
@@ -43,7 +43,7 @@
                                     ?>
                                 </select> -
 
-                                <select name="">
+                                <select name="processus">
                                     <option value=NULL>-- Processus --</option>
                                         <?php
 
@@ -57,7 +57,7 @@
                                     </option>
                                 </select> -
 
-                                <select name="">
+                                <select name="s_processus">
                                     <option value=NULL>-- Sous-Processus --</option>
                                         <?php
 
@@ -70,7 +70,6 @@
                                         ?>
                                     </option>
                                </select><br/>
-
 	   						</p><table border=1>
 								<th>Etiquette</th>
 								<th>Equipement</th>
