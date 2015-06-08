@@ -69,7 +69,9 @@
 
 					// Exécution de la requête SQL
 					$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+
 					echo 'Les résultats de recherche sont : <br />';
+
 					while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 						echo $donnees['nomEquipement'],' ',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'].'<br />';
 					}

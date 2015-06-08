@@ -60,7 +60,7 @@
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
                         {
-                            echo 'Prix : '.$resultat->prix.' €<br>';
+                            echo ("Prix d'achat : '.$resultat->prix.' €<br>");
                         }
                         $resultats->closeCursor();
                     ?>
