@@ -63,20 +63,7 @@
                             <label id="ajout_element">Date mise en service : </label><input type="date" name="datemes" placeholder="YYYY/MM/DD"></p>
                             <label id="ajout_element">Date de réception prévue : </label><input type="date" name="dater" placeholder="YYYY/MM/DD"></p>
                             <label id="ajout_element">Durée garantie (mois) : </label><input type="text" name="garantie" placeholder="Durée garantie"></p>
-                            <label id="ajout_element">Fournisseur : </label></p>
-                            <select name="fournisseur">
-                                   <option value=NULL>-- Fournisseur --</option>
-                                    <?php
-                                    $reponse = $pdo->query('SELECT * FROM fournisseur');
-                                    while ($donnees = $reponse->fetch()){
-                                    ?>
-                                        <option value="<?php echo $donnees['idFournisseur']; ?>"><?php echo $donnees['nomFournisseur']; ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                            </select> - <input type="text" name="nom_fournisseur" placeholder="Nom fournisseur">
-                            </p>
-                            </p>
+
                             <div id ="succes">
                                <?php
                                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -92,7 +79,7 @@
                                     echo ("Veuilliez saisir tous les champs ");
                                 }
                                 ?>
-                            </div>
+                            </div></p>
                             <input class="bouton" type="submit" value="Ajouter">
                           </form>
                     </fieldset>
