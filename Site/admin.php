@@ -51,6 +51,11 @@
                 </div>
             <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur"></p>
 
+		<div>
+			<label id="">Ajouter une catégorie d'équipement : </label><input type="text" name="categorie" placeholder="Catégorie"></p>
+			<label id="">Ajouter un acronime d'équipement : </label><input type="text" name="acronime" placeholder="Acronime"></p>
+
+		</div>
 
         </div>
 
