@@ -35,39 +35,8 @@
 				<input type="submit" value="Envoyer">
 				<input type="reset" value="Annuler">
 			</form>
-			<?php
 
-			if((isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId']))) {
-
-			$chaineSearchCat = addslashes($_GET['searchCat']);
-			$chaineSearchAcr = addslashes($_GET['searchAcr']);
-			$chaineSearchId = addslashes($_GET['searchId']);
-
-			echo 'Vous avez recherché : '.$chaineSearchCat.', '.$chaineSearchAcr.', '.$chaineSearchId.'<br />';
-
-				$requete = "SELECT *
-						    FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
-							WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-							AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-							AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-							AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
-							AND valeurCategorie LIKE '".$chaineSearchCat."%'
-							AND valeurAcronime LIKE '".$chaineSearchAcr."%'
-							AND equipement.idEquipement LIKE '". $chaineSearchId."%' ";
-
-				// Exécution de la requête SQL
-				$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
-				echo 'Les résultats de recherche sont : <br />';
-				while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
-					echo $donnees['nomEquipement'],' ',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'].'<br />';
-				}
-
-			}
-
-			?>
-
-        </form>
-        </p><table border=2>
+			</p><table border=2>
           <th>Id</th>
           <th>Etiquette</th>
           <th>Nom équipement</th>
@@ -80,6 +49,37 @@
           <th>Date de mise en service</th>
           <th>Garantie (mois)</th>
 
+			<?php
+				if((isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId']))) {
+
+				$chaineSearchCat = addslashes($_GET['searchCat']);
+				$chaineSearchAcr = addslashes($_GET['searchAcr']);
+				$chaineSearchId = addslashes($_GET['searchId']);
+
+				echo 'Vous avez recherché : '.$chaineSearchCat.', '.$chaineSearchAcr.', '.$chaineSearchId.'<br />';
+
+					$requete = "SELECT *
+								FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+								WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+								AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+								AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+								AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+								AND valeurCategorie LIKE '".$chaineSearchCat."%'
+								AND valeurAcronime LIKE '".$chaineSearchAcr."%'
+								AND equipement.idEquipement LIKE '". $chaineSearchId."%' ";
+
+					// Exécution de la requête SQL
+					$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+					echo 'Les résultats de recherche sont : <br />';
+					while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+						echo $donnees['nomEquipement'],' ',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'].'<br />';
+					}
+
+				}
+
+
+else{
+?>
         <?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
             <tr>
                 <form method="get" action="equipement.php?idEquipement">
@@ -91,7 +91,8 @@
             </tr>
 
          <?php endforeach; ?>
-
+      <?php  }
+			?>
         </table>
         </div>
    </body>
