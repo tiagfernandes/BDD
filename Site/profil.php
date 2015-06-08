@@ -31,7 +31,7 @@
             <div id="banniere">
                 Votre profil :
             </div>
-            <img src="image/avatar/ban.png" alt="Avatar" id="avatar">
+            <img src="image/avatar/dbz.jpg"s  alt="Avatar" id="avatar">
             <div id ="parcourir"><form method="POST" action="upload.php" enctype="multipart/form-data">
                  Image : <input type="file" name="avatar"></p>
                  <input id="ajout-img" type="submit" name="envoyer" value="Actualiser">

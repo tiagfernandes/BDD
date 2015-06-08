@@ -370,7 +370,7 @@ table {
 .equipement {
     position: relative;
     left:44%;
-    margin-top: 5%;
+    margin-top: 9%;
     display:inline-block;
     font-size: 30px;
 }
@@ -381,7 +381,7 @@ a.equipement:hover { color:firebrick;}
 .document {
     position: relative;
     left:44%;
-    margin-top: 15%;
+    margin-top: 18%;
     display:inline-block;
     font-size: 30px;
 }
