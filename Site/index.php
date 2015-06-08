@@ -29,8 +29,8 @@
 
 			<form action ="index.php" method="get">
 				<span>Recherche équipement avec étiquette :</span>
-				<input type="text" id="search" name="searchCat" placeholder="Catégorie"/>
-				<input type="text" id="search" name="searchAcr" placeholder="Acronime"/>
+				<input type="text" id="search" name="searchCat" placeholder="Catégorie"/> -
+				<input type="text" id="search" name="searchAcr" placeholder="Acronime"/> -
 				<input type="text" id="search" name="searchId" placeholder="Numéro"/>
 				<input type="submit" value="Envoyer">
 				<input type="reset" value="Annuler">
@@ -40,7 +40,6 @@
           <th>Id</th>
           <th>Etiquette</th>
           <th>Nom équipement</th>
-          <th>Fournisseur</th>
           <th>Prix (€)</th>
           <th>Marque</th>
           <th>Date d'ajout</th>

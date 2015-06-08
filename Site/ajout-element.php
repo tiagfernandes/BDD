@@ -74,7 +74,7 @@
                                     <?php
                                     }
                                     ?>
-                            </select> - <input type="text" name="fournisseur" placeholder="Nom fournisseur">
+                            </select> - <input type="text" name="nom_fournisseur" placeholder="Nom fournisseur">
                             </p>
                             </p>
                             <div id ="succes">
