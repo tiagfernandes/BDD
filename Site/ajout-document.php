@@ -71,11 +71,13 @@
                                     </option>
                                </select><br/>
 	   						</p><table border=1>
+	   							<th></th>
 								<th>Etiquette</th>
 								<th>Equipement</th>
 
 								<?php foreach ($Equipement as $cle=>$valeur): ?>
 									<tr>
+										<td><input type="checkbox" name=""></td>
 										<?php foreach ($valeur as $val): ?>
 										<td><?= htmlentities($val) ?></td>
 										<?php endforeach; ?>
