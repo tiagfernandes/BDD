@@ -25,7 +25,6 @@
         <?php require_once('entete.php'); ?>
             <div id ="contenu">
                 <div id="banniere">Fiche équipement</div>
-
                     <?php	//fonction pour afficher le nom de l'équipement
                         $resultats=$pdo->query("SELECT nomEquipement FROM equipement WHERE idEquipement='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
@@ -126,6 +125,7 @@
                     ?>
 				<!-- Générateur de QR code -->
 				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
+            <a class="doc" href="doc-equi.php">Ajout document liés</a>
             </div>
     </body>
 </html>

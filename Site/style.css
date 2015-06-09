@@ -8,6 +8,7 @@ html {
     border-radius: 0px 0px 10px 10px;
     width: 1100px;
     height: 100px;
+    padding-right: 15px;
     margin-left: auto;
     margin-right: auto;
     margin-top: -16px;
@@ -25,7 +26,7 @@ html {
 }
 
 #contenu{
-    border-radius: 20px;
+    border-radius: 10px;
     width: 1100px;
     height: 600px;
     background-color: #E1DCDC;
@@ -388,3 +389,13 @@ a.equipement:hover { color:firebrick;}
 
 a.document { color:black; }
 a.document:hover { color:firebrick;}
+
+.doc {
+    position: absolute;
+    margin-top: -11%;
+    margin-left: 60%;
+    font-size: 20px;
+}
+
+a.doc { color:black; }
+a.doc:hover { color:firebrick;}
