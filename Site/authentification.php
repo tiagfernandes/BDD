@@ -19,7 +19,6 @@
             <!--Connexion-->
             <label>Votre login : </label><input type="text" name="login" placeholder="Identifiant"></p>
             <label>Votre mot de passe : </label><input type="password" name="pwd" placeholder="Mot de Passe"></p>
-            <a href="authentification.php?page=mdpOublie">Mot de passe oublié ?</a>
             <div id ="succes">
                <?php
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
