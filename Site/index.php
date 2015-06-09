@@ -27,7 +27,7 @@
         <div id ="contenu">
             <div id="banniere">Equipement</div>
 
-			<form action ="index.php" method="get">
+			<form action ="index.php" method="get"><!-- Barre de recherche, recherche avec soit l'étiquette, soit la -->
 				<span>Recherche équipement avec étiquette :</span>
 				<input type="text" id="search" name="searchCat" placeholder="Catégorie"/> -
 				<input type="text" id="search" name="searchAcr" placeholder="Acronime"/> -
@@ -36,20 +36,21 @@
 				<input type="reset" value="Annuler">
 			</form>
 
-			</p><table border=2>
-          <th>Id</th>
-          <th>Etiquette</th>
-          <th>Nom équipement</th>
-          <th>Prix (€)</th>
-          <th>Marque</th>
-          <th>Date d'ajout</th>
-          <th>Date de fabriquation</th>
-          <th>Date de réception</th>
-          <th>Date de mise en service</th>
-          <th>Garantie (mois)</th>
+			</p><table border=2> <!-- Création du tableau-->
+			  <th>Id</th>
+			  <th>Etiquette</th>
+			  <th>Nom équipement</th>
+			  <th>Prix (€)</th>
+			  <th>Marque</th>
+			  <th>Date d'ajout</th>
+			  <th>Date de fabriquation</th>
+			  <th>Date de réception</th>
+			  <th>Date de mise en service</th>
+			  <th>Garantie (mois)</th>
 
 			<?php
 				if((isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId']))) {
+					//Si les champs sont remplis, on affiche les équittes correspondantes au champ
 
 				$chaineSearchCat = addslashes($_GET['searchCat']);
 				$chaineSearchAcr = addslashes($_GET['searchAcr']);
@@ -79,21 +80,22 @@
 				}
 
 
-else{
-?>
-        <?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
-            <tr>
-                <form method="get" action="equipement.php?idEquipement">
-                    <?php foreach ($valeur as $val): ?>
-                        <?php $idEquipement=$valeur['idEquipement']; ?>
-                        <td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
-                    <?php endforeach; ?>
-                </form>
-            </tr>
+				else{
+					//Sinon on affiche toute la liste
+				?>
+					<?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
+						<tr>
+							<form method="get" action="equipement.php?idEquipement">
+								<?php foreach ($valeur as $val): ?>
+									<?php $idEquipement=$valeur['idEquipement']; ?>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
+								<?php endforeach; ?>
+							</form>
+						</tr>
 
-         <?php endforeach; ?>
-      <?php  }
-			?>
+					 <?php endforeach; ?>
+				  <?php  }
+				?>
         </table>
         </div>
    </body>

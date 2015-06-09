@@ -26,7 +26,7 @@
             <div id ="contenu">
                 <div id="banniere">Fiche équipement</div>
 
-                    <?php
+                    <?php	//fonction pour afficher le nom de l'équipement
                         $resultats=$pdo->query("SELECT nomEquipement FROM equipement WHERE idEquipement='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -36,7 +36,7 @@
                         $resultats->closeCursor();
                     ?>
 
-                    <?php
+                    <?php	//Fonction pour afficher la marque
                         $resultats=$pdo->query("SELECT marque FROM equipement WHERE idEquipement='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -46,7 +46,7 @@
                         $resultats->closeCursor();
                     ?>
 
-                    <?php
+                    <?php	//Fonciton pour afficher la date d'ajout
                         $resultats=$pdo->query("SELECT dateAjout FROM equipement WHERE idEquipement='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -55,7 +55,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    <?php
+                    <?php	//Fonction pour afficher le prix
                         $resultats=$pdo->query("SELECT prix FROM equipement WHERE idEquipement='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -64,7 +64,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    <?php
+                    <?php	//Fonction pour afficher la date de fabrication
                         $resultats=$pdo->query("SELECT dateFabrication FROM equipement WHERE idEquipement='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -73,7 +73,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    <?php
+                    <?php	//Fonction pour afficher la date de reception
                         $resultats=$pdo->query("SELECT dateReception FROM equipement WHERE idEquipement='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -82,7 +82,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    <?php
+                    <?php	//Fonction pour afficher la date de mise en service
                         $resultats=$pdo->query("SELECT dateMiseService FROM equipement WHERE idEquipement='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -91,7 +91,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    <?php
+                    <?php	//Fonction pour afficher la garantie
                         $resultats=$pdo->query("SELECT garantie FROM equipement WHERE idEquipement='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -100,7 +100,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    <?php
+                    <?php	//Fonction pour afficher le nom du fournisseur
                         $resultats=$pdo->query("SELECT `nomFournisseur` FROM `equipement`, `fournisseur` WHERE `equipement`.`idFournisseur`=`fournisseur`.`idFournisseur` AND `idEquipement`='$idEquipement'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -109,7 +109,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    <?php
+                    <?php	//Fonction pour afficher l'etiquette de l'équipement
                         $resultats=$pdo->query("SELECT `valeurCategorie`,`valeurAcronime`,`equipement`.`idEquipement` FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
                     WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
                     AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
@@ -124,23 +124,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    		<form method="get" action="equipement.php">
-								<select name="taille">
-                                    <option value="100">-- Taille QR Code --</option>
-                                    <option value="50">50 x 50 pixel</option>
-                                    <option value="85">85 x 85 pixel</option>
-                                    <option value="100">100 x 100 pixel</option>
-                                    <option value="125">125 x 125 pixel</option>
-                                    <option value="150">150 x 150 pixel</option>
-                                    <option value="175">175 x 175 pixel</option>
-                                    <option value="200">200 x 200 pixel</option>
-                                    <option value="225">225 x 225 pixel</option>
-                                    <option value="250">250 x 250 pixel</option>
-                                    <option value="275">275 x 275 pixel</option>
-									<option value="300">300 x 300 pixel</option>
-								</select>
-							</form>
-
+				<!-- Générateur de QR code -->
 				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
             </div>
     </body>
