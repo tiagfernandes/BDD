@@ -51,13 +51,37 @@
                 </div>
             <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur"></p>
 
-		<div>
-			<label id="">Ajouter une catégorie d'équipement : </label><input type="text" name="categorie" placeholder="Catégorie"></p>
-			<label id="">Ajouter un acronime d'équipement : </label><input type="text" name="acronime" placeholder="Acronime"></p>
+				<form>
+					<fieldset><legend>Etiquette équipement</legend>
+						<label id="">Ajouter une catégorie d'équipement : </label><input type="text" name="categorie" placeholder="Nom Catégorie">
+						</p>
+						<label id="">Valeur de la catégorie d'équipement : </label><input type="text" name="valCategorie" placeholder="Valeur Catégorie">
+						</p>
 
-		</div>
+						<label id="">Ajouter un acronime d'équipement : </label><input type="text" name="acronime" placeholder="Nom Acronime">
+						</p>
+						<label id="">Valeur de l'acronime d'équipement : </label><input type="text" name="valAcronime" placeholder="Valeur Acronime">
+						</p><br/><hr align = center>
 
-        </div>
+						<label id="">Ajouter un acronime à une catégorie existante : </label>
+							<select name="categorie">
+								<option value=NULL>-- Catégorie --</option>
+								<?php
+
+								$reponse = $pdo->query('SELECT * FROM categorie_etiquette');
+								while ($donnees = $reponse->fetch()){
+								?>
+									<option value="<?php echo $donnees['idCategorieEtiquette']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['categorieEtiquette']; ?></option>
+								<?php
+								}
+								?>
+							</select> -
+							<input type="text" name="acronime_cat" placeholder="Acronime"></p>
+
+					</fieldset>
+				</form>
+
+        	</div>
 
         <?php }
             else{
