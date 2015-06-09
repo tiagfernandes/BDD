@@ -1,7 +1,7 @@
 <?php
 
   $host='localhost';
-  $bd='ecotron';
+  $bd='qualite';
   $login='root';
   $password='';
 
