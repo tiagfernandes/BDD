@@ -13,7 +13,7 @@
 <html lang="fr">
 
     <head>
-    <title>Page Admin</title>
+    <title>Administration</title>
         <meta charset="UTF-8">
         <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
         <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
