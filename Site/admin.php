@@ -51,20 +51,37 @@
                 </div>
             <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur"></p>
 
-				<form>
-					<fieldset><legend>Etiquette équipement</legend>
-						<label id="">Ajouter une catégorie d'équipement : </label><input type="text" name="categorie" placeholder="Nom Catégorie">
-						</p>
-						<label id="">Valeur de la catégorie d'équipement : </label><input type="text" name="valCategorie" placeholder="Valeur Catégorie">
-						</p>
 
-						<label id="">Ajouter un acronime d'équipement : </label><input type="text" name="acronime" placeholder="Nom Acronime">
-						</p>
-						<label id="">Valeur de l'acronime d'équipement : </label><input type="text" name="valAcronime" placeholder="Valeur Acronime">
-						</p><br/><hr align = center>
+			<!-- Ajout de catégorie d'étiquette équipement -->
+				<form method="post" action="ajout_etiquette.php">
+					<fieldset class="Etiquette_Equipement"><legend>Etiquette équipement</legend>
+					  <div id="Cat_Etiquette">
 
-						<label id="">Ajouter un acronime à une catégorie existante : </label>
-							<select name="categorie">
+						<label id="Cat-Etiquette">Ajouter une catégorie d'équipement : </label><input class="Cat-Eti" type="text" name="categorie" placeholder="Ex : Sensor"></p>
+
+						<label id="Cat-Etiquette">Valeur de la catégorie d'équipement : </label><input class="Cat-Eti2" type="text" name="valCategorie" placeholder="Ex : SE"></p>
+
+						<input class="submitA" type="submit" value="Envoyer"><br/></p>
+					  </div>
+					  <div class="text">
+						  <?php
+								$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+								if ($monUrl == "http://localhost/BDD/Site/admin.php?succes"){
+									echo ("Catégorie enregistré !");
+								}
+
+								else if ($monUrl == "http://localhost/BDD/Site/admin.php?erreur"){
+									echo ("Entrez tout les champs !");
+								}
+							?>
+     				  </div>
+				</form>
+
+			  <!-- Ajout d'acronime d'étiquette -->
+				  <form method="post" action="ajout_etiquette.php">
+					  <div id="acro_seul"><hr class="trait"><br/>
+						<label id="acro_seul">Ajouter un acronime à une catégorie existante : </label>
+							<select class="categorie" name="categorie">
 								<option value=NULL>-- Catégorie --</option>
 								<?php
 
@@ -76,11 +93,12 @@
 								}
 								?>
 							</select> -
-							<input type="text" name="acronime_cat" placeholder="Acronime"></p>
-
+							<input type="text" name="acronime_cat" placeholder="Ex : Refrigerateur">
+							<input type="text" name="val_acr_cat" placeholder="Ex : REF"></p>
+							<input class="submit" type="submit" value="Ajouter">
+					  </div>
 					</fieldset>
 				</form>
-
         	</div>
 
         <?php }

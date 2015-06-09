@@ -27,7 +27,7 @@ html {
 #contenu{
     border-radius: 20px;
     width: 1100px;
-    height: 600px;
+    min-height: 600px;
     background-color: #E1DCDC;
     margin-left: auto;
     margin-right: auto;
@@ -298,7 +298,7 @@ body {
 
 
 .button1 {
-    margin-left: 42.5%;
+    margin-left: 84%;
 }
 
 #erreur {
@@ -388,3 +388,86 @@ a.equipement:hover { color:firebrick;}
 
 a.document { color:black; }
 a.document:hover { color:firebrick;}
+
+
+
+
+
+#inputCat {
+	margin-left: 250px;
+}
+
+#Cat-Etiquette {
+	width: auto;
+}
+
+
+
+
+
+#Cat_Etiquette {
+	margin-left: 30%;
+	margin-right: auto;
+}
+
+#trait {
+	margin-left: -47%;
+	width: 900px;
+}
+
+
+
+
+
+#acro_seul {
+	margin-left: 3%;
+	margin-right: auto;
+	width: auto;
+}
+
+.trait {
+	margin-left: -3.2%;
+	margin-right: %;
+	width: auto;
+}
+
+.submit {
+	margin-left: 42.75%;
+}
+
+.submitA {
+	margin-left: 20%;
+}
+
+.Etiquette_Equipement {
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+
+.Cat-Eti {
+	margin-left: 2.3%;
+}
+
+.Cat-Eti2 {
+	margin-left: 1.75%;
+}
+
+.categorie {
+	margin-left: 2%;
+}
+
+.bonjour {
+	margin-left: 12.5%;
+	width: auto;
+}
+
+.text {
+	margin-left: 39%;
+	color: red;
+}
+
+.text2 {
+	margin-left: 39%;
+	color: green;
+}
