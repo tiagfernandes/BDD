@@ -465,8 +465,9 @@ a.document:hover { color:firebrick;}
 }
 
 .text {
-	margin-left: 39%;
-	color: red;
+	font-style: italic;
+	text-align: center;
+	color: green;
 }
 
 .text2 {

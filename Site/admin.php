@@ -64,16 +64,20 @@
 						<input class="submitA" type="submit" value="Envoyer"><br/></p>
 					  </div>
 					  <div class="text">
-						  <?php
-								$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-								if ($monUrl == "http://localhost/BDD/Site/admin.php?succes"){
-									echo ("Catégorie enregistré !");
-								}
-
-								else if ($monUrl == "http://localhost/BDD/Site/admin.php?erreur"){
-									echo ("Entrez tout les champs !");
-								}
-							?>
+					  		<?php
+                                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                                if ($monUrl == "http://localhost/BDD/Site/admin.php?succes"){
+                                    echo ("Elément ajouté avec succès");
+                                }
+                                ?>
+                            </div>
+                            <div id ="erreur">
+                               <?php
+                                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                                if ($monUrl == "http://localhost/BDD/Site/admin.php?erreur"){
+                                    echo ("Veuilliez saisir tous les champs ");
+                                }
+                         	?>
      				  </div>
 				</form>
 
