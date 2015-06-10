@@ -11,9 +11,9 @@
         $prep = $pdo->prepare($sql);
         $prep->execute();
 
-        header('Location: admin.php?succes');
+        header('Location: admin.php?succes_cat');
     }
 
     else
-        header('Location: admin.php?erreur');
+        header('Location: admin.php?erreur_cat');
 ?>

@@ -422,28 +422,29 @@ a.document:hover { color:firebrick;}
 
 
 #acro_seul {
-	margin-left: 3%;
+	margin-left: 16.5%;
 	margin-right: auto;
 	width: auto;
 }
 
 .trait {
-	margin-left: -3.2%;
-	margin-right: %;
+	margin-left: -20%;
+	margin-right: auto;
 	width: auto;
 }
 
 .submit {
-	margin-left: 42.75%;
+	margin-left: 38%;
 }
 
 .submitA {
-	margin-left: 20%;
+	margin-left: 23.75%;
+	margin-right: auto;
 }
 
 .Etiquette_Equipement {
-	margin-left: 2%;
-	margin-right: 2%;
+	margin-left: 7%;
+	margin-right: 7%;
 }
 
 
@@ -485,3 +486,18 @@ a.document:hover { color:firebrick;}
 a.doc { color:black; }
 a.doc:hover { color:firebrick;}
 >>>>>>> origin/master
+
+
+
+
+
+
+
+#Acr-Etiquette {
+
+}
+
+.submitB {
+	margin-left: 36.5%;
+	margin-right: auto;
+}
