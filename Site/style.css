@@ -269,20 +269,20 @@ input {
 
 }
 
-	#sddm div a
-	{	position: relative;
-		display: block;
-		margin: 0;
-		padding: 5px 10px;
-        width: auto;
-        height: 21px;
-		white-space: nowrap;
-		text-align: center;
-		text-decoration: none;
-		background: #EAEBD8;
-		color: black;
-		font: 11px arial;
-    }
+#sddm div a
+{	position: relative;
+	display: block;
+	margin: 0;
+	padding: 5px 10px;
+	width: auto;
+	height: 21px;
+	white-space: nowrap;
+	text-align: center;
+	text-decoration: none;
+	background: #EAEBD8;
+	color: black;
+	font: 11px arial;
+}
 
 #sddm div a:hover
 	{
@@ -363,9 +363,6 @@ table {
     -webkit-box-shadow: 0px 0px 10px 5px rgba(164, 162, 162, 0.75);
 }
 
-
-
-
 .equipement {
     position: relative;
     left:44%;
@@ -388,11 +385,6 @@ a.equipement:hover { color:firebrick;}
 a.document { color:black; }
 a.document:hover { color:firebrick;}
 
-<<<<<<< HEAD
-
-
-
-
 #inputCat {
 	margin-left: 250px;
 }
@@ -400,10 +392,6 @@ a.document:hover { color:firebrick;}
 #Cat-Etiquette {
 	width: auto;
 }
-
-
-
-
 
 #Cat_Etiquette {
 	margin-left: 30%;
@@ -414,10 +402,6 @@ a.document:hover { color:firebrick;}
 	margin-left: -47%;
 	width: 900px;
 }
-
-
-
-
 
 #acro_seul {
 	margin-left: 16.5%;
@@ -483,17 +467,6 @@ a.document:hover { color:firebrick;}
 
 a.doc { color:black; }
 a.doc:hover { color:firebrick;}
->>>>>>> origin/master
-
-
-
-
-
-
-
-#Acr-Etiquette {
-
-}
 
 .submitB {
 	margin-left: 36.5%;
