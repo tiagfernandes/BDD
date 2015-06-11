@@ -1,6 +1,5 @@
 <?php
     require_once('fonctions.php');
-    session_start ();
 
     if(isset($_GET['delete'])){ //Supprime utilisateur
         $id = $_GET['delete'];

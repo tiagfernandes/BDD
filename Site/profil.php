@@ -1,6 +1,18 @@
 <?php
     require_once('fonctions.php');
-    session_start ();
+    function getImage(){
+    global $pdo;
+        $query = "SELECT image FROM utilisateur WHERE nomUtilisateur= '".$_SESSION['nom']."' ";
+          try {
+              $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+              return($result);
+            }
+            catch ( Exception $e ) {
+              die ("Erreur dans la requete ".$e->getMessage());
+            }
+    }
+
+    $avatarp=getImage();
 ?>
 
 <!doctype html>
@@ -31,7 +43,8 @@
             <div id="banniere">
                 Votre profil :
             </div>
-            <img src="image/avatar/dbz.jpg"  alt="Avatar" id="avatar">
+
+            <img src="image/avatar/<?php echo $avatarp ?>.png"alt="Avatar" id="avatar">
             <div id ="parcourir"><form method="POST" action="upload.php" enctype="multipart/form-data">
                  Image : <input type="file" name="avatar"></p>
                  <input id="ajout-img" type="submit" name="envoyer" value="Actualiser">

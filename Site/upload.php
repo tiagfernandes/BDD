@@ -1,5 +1,5 @@
 <?php
-    session_start ();
+require_once('fonctions.php');
 
 if(isset($_FILES['avatar']))
 {
@@ -10,8 +10,16 @@ if(isset($_FILES['avatar']))
 
     if($extension!==FALSE){
 
-        if(move_uploaded_file($_FILES["avatar"]["tmp_name"], $dossier . $_SESSION["nom"] . $extension ))
+        if(move_uploaded_file($_FILES["avatar"]["tmp_name"], $dossier .$_SESSION["nom"]."-".$_SESSION["prenom"] . $extension ))
             {
+                $avatar = $_SESSION["nom"]."-".$_SESSION["prenom"] . $extension;
+                $sql = "UPDATE utilisateur
+                        SET image = :image";
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindValue(":image", $avatar);
+
+                $stmt->execute();
                 header('Location: profil.php');
             }
         else

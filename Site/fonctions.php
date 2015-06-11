@@ -1,6 +1,6 @@
 <?php
 require_once('connexion.php');
-
+session_start ();
 header('Content-Type: text/html; charset=UTF-8');
 
 function getAuthentification($login, $pass){
