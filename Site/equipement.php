@@ -4,7 +4,7 @@
     session_start ();
 
     $idEquipement=$_GET['idEquipement'];
-	$listeDocumentEquipement = getDocumentEquipement();
+	$listeDocumentEquipement = getDocumentEquipement($idEquipement);
 ?>
 <!doctype html>
 <html lang="fr">
@@ -131,7 +131,6 @@
 					<th>Id</th>
 					<th>Nom Document</th>
 					<th>Etiquette document</th>
-					<th>Nom equipement</th>
 
 						<?php foreach ($listeDocumentEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des documents -->
 							<tr>

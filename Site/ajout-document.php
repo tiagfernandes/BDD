@@ -79,10 +79,10 @@
 								<?php foreach ($Equipement as $cle=>$valeur): ?>
 									<tr>
 										<td><input type="checkbox" name=""></td>
-										<?php foreach ($valeur as $val): ?>
-										<td><?= htmlentities($val) ?></td>
-										<?php endforeach; ?>
-											</td>
+											<?php foreach ($valeur as $val): ?>
+												<td><?= htmlentities($val) ?></td>
+											<?php endforeach; ?>
+										</td>
 									</tr>
 
 								 <?php endforeach; ?>
