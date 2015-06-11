@@ -6,12 +6,7 @@
     $idType_Document = $_POST['idType_Document'];
     $idProcessus = $_POST['idProcessus'];
     $idSous_Processus = $_POST['idSous_Processus'];
-    $datemes = $_POST['datemes'];
-    $dater = $_POST['dater'];
-    $garantie = $_POST['garantie'];
-    $type = $_POST['type'];
-    $categorie = $_POST['categorie'];
-    $acronime = $_POST['acronime'];
+
 
     if ($categorie !="NULL" && $acronime !="NULL" && $nom_equi !=NULL ){
 
@@ -21,7 +16,7 @@
 
         $idequipement =$pdo->lastInsertId();
 
-        $sql2 = "INSERT INTO `etiquette_equipement` (idCategorieEtiquette,idEquipement,idAcronimeEtiquette) VALUES ('$categorie','$idequipement','$acronime')";
+        $sql2 = "INSERT INTO `` (idCategorieEtiquette,idEquipement,idAcronimeEtiquette) VALUES ('$categorie','$idequipement','$acronime')";
         $prep2 = $pdo->prepare($sql2);
         $prep2->execute();
 
