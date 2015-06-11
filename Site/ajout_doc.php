@@ -9,15 +9,15 @@
 
     if ($categorie !="NULL" && $acronime !="NULL" && $nom_equi !=NULL ){
 
-        $sql = "INSERT INTO `document` (nomEquipement,prix,marque,dateAjout,garantie,dateFabrication,dateReception,dateMiseService) VALUES ('$nom_equi','$prix','$marque',NOW(),'$garantie','$anneefb','$dater','$datemes')";
+        $sql = "INSERT INTO `document` (nomDocument) VALUES ('$nom_document')";
         $prep = $pdo->prepare($sql);
         $prep->execute();
 
         $idequipement =$pdo->lastInsertId();
 
-        $sql2 = "INSERT INTO `` (idCategorieEtiquette,idEquipement,idAcronimeEtiquette) VALUES ('$categorie','$idequipement','$acronime')";
-        $prep2 = $pdo->prepare($sql2);
-        $prep2->execute();
+        //$sql2 = "INSERT INTO `` () VALUES ('$categorie','$idequipement','$acronime')";
+        //$prep2 = $pdo->prepare($sql2);
+        //$prep2->execute();
 
         header('Location: ajout-document.php?succes');
     }
