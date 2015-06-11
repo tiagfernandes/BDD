@@ -1,6 +1,5 @@
 <?php
     require_once('fonctions.php');
-    session_start ();
 
     $nom_equi= $_POST['nom_equipement'];
     $prix = $_POST['prix'];

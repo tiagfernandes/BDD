@@ -1,6 +1,5 @@
 <?php
     require_once('fonctions.php');
-    session_start ();
 
     $prenom = $_POST['nprenom'];
     $nom = $_POST['nnom'];

@@ -1,6 +1,5 @@
 <?php
     require_once('fonctions.php');
-    session_start ();
 
     $nom_user= $_POST['nom_user'];
     $prenom_user = $_POST['prenom_user'];
