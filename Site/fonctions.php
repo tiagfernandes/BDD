@@ -120,7 +120,6 @@ function getEquipementDoc(){
 				  FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
                   WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
                   AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-                  AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
                   AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`";
 
         try {

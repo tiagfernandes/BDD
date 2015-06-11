@@ -137,7 +137,7 @@
            		<img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
 
             <a class="doc" href="doc-equi.php">Ajout document liés</a>
-			  	<!-- Création du tableau-->
+			  <!-- Création du tableau-->
 				<table border=2>
 					<th>Id</th>
 					<th>Nom Document</th>

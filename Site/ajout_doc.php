@@ -2,22 +2,22 @@
     require_once('fonctions.php');
 
     $nom_document= $_POST['nom_document'];
-    $idType_Document = $_POST['idType_Document'];
-    $idProcessus = $_POST['idProcessus'];
-    $idSous_Processus = $_POST['idSous_Processus'];
+    $idType_Document = $_POST['type'];
+    $idProcessus = $_POST['processus'];
+    $idSous_Processus = $_POST['s_processus'];
 
 
-    if ($categorie !="NULL" && $acronime !="NULL" && $nom_equi !=NULL ){
+    if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL"){
 
-        $sql = "INSERT INTO `document` (nomDocument) VALUES ('$nom_document')";
+        $sql = "INSERT INTO `etiquette_document` (idType_Document, idProcessus, idSous_Processus) VALUES ('$idType_Document', '$idProcessus', '$idSous_Processus')";
         $prep = $pdo->prepare($sql);
         $prep->execute();
 
-        $idequipement =$pdo->lastInsertId();
+        $idEtiquette_Document =$pdo->lastInsertId();
 
-        //$sql2 = "INSERT INTO `` () VALUES ('$categorie','$idequipement','$acronime')";
-        //$prep2 = $pdo->prepare($sql2);
-        //$prep2->execute();
+        $sql2 = "INSERT INTO `document` (idEtiquette_Document, nomDocument) VALUES ('$idEtiquette_Document','$nom_document')";
+        $prep2 = $pdo->prepare($sql2);
+        $prep2->execute();
 
         header('Location: ajout-document.php?succes');
     }

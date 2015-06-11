@@ -53,7 +53,7 @@
             <script type="text/javascript">window.onload = date_heure('date_heure');</script>
         </div>
         <div class="deco">
-            <a href="logout.php" onclick="return(confirm('Etes-vous sûr de vouloir vous déconnectez ? '));">Déconnexion</a>
+            <a href="logout.php" onclick="return(confirm('Etes-vous sûr de vouloir vous déconnecter ? '));">Déconnexion</a>
         </div>
         <div>
 			<ul id="sddm">

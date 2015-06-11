@@ -59,7 +59,7 @@
 										<label id="ajout_element">Date de fabrication : </label><input type="date" name="anneefb" placeholder="YYYY/MM/DD"></p>
 										<label id="ajout_element">Date mise en service : </label><input type="date" name="datemes" placeholder="YYYY/MM/DD"></p>
 										<label id="ajout_element">Date de réception prévue : </label><input type="date" name="dater" placeholder="YYYY/MM/DD"></p>
-										<label id="ajout_element">Durée garantie (mois) : </label><input type="text" name="garantie" placeholder="Durée garantie"></p>
+										<label id="ajout_element">Durée garantie (mois) : </label><input type="date" name="garantie" placeholder="Durée garantie"></p>
 
 										<div id ="succes">
 											<?php

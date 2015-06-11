@@ -85,6 +85,8 @@
 
 								 <?php endforeach; ?>
 								</table>
+
+                       		<input class="bouton" type="submit" value="Ajouter">
                         </form>
                     </fieldset>
                </div>

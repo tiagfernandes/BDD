@@ -1,6 +1,6 @@
 <?php
     require_once('fonctions.php');
-    function getImage(){
+    /*function getImage(){
     global $pdo;
         $query = "SELECT image FROM utilisateur WHERE nomUtilisateur= '".$_SESSION['nom']."' ";
           try {
@@ -12,7 +12,7 @@
             }
     }
 
-    $avatarp=getImage();
+    $avatarp=getImage();*/
 ?>
 
 <!doctype html>
@@ -43,14 +43,14 @@
 			<div id="contenu">
 				<div id="banniere">Votre profil</div>
 
-				<img src="image/avatar/<?php echo $avatarp ?>.png"alt="Avatar" id="avatar">
+			<!--	<img src="image/avatar/<?php //echo $avatarp ?>.png"alt="Avatar" id="avatar">
 
 					<div id ="parcourir">
 						<form method="POST" action="upload.php" enctype="multipart/form-data">
 							 Image : <input type="file" name="avatar"></p>
 							 <input id="ajout-img" type="submit" name="envoyer" value="Actualiser">
 						</form>
-					</div>
+					</div>-->
 
 					<div id ="infos">
 						<div id ="donnees">
