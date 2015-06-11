@@ -25,7 +25,7 @@
             <div id="contenu">
                 <div id="banniere">Administration</div>
 
-
+				<!-- Affichage des utilisateur -->
                 <div id ="user"><table border=2>
                     <th>id</th>
                     <th>Nom</th>
@@ -48,42 +48,72 @@
                     <?php endforeach; ?>
                 </table>
                 </div>
+            <!-- Bouton pour ajouter un utilisateur -->
             <input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur"></p>
 
-				<form>
-					<fieldset><legend>Etiquette équipement</legend>
-						<label id="">Ajouter une catégorie d'équipement : </label><input type="text" name="categorie" placeholder="Nom Catégorie">
-						</p>
-						<label id="">Valeur de la catégorie d'équipement : </label><input type="text" name="valCategorie" placeholder="Valeur Catégorie">
-						</p>
 
-						<label id="">Ajouter un acronime d'équipement : </label><input type="text" name="acronime" placeholder="Nom Acronime">
-						</p>
-						<label id="">Valeur de l'acronime d'équipement : </label><input type="text" name="valAcronime" placeholder="Valeur Acronime">
-						</p><br/><hr align = center>
-
-						<label id="">Ajouter un acronime à une catégorie existante : </label>
-							<select name="categorie">
-								<option value=NULL>-- Catégorie --</option>
-								<?php
-
-								$reponse = $pdo->query('SELECT * FROM categorie_etiquette');
-								while ($donnees = $reponse->fetch()){
-								?>
-									<option value="<?php echo $donnees['idCategorieEtiquette']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['categorieEtiquette']; ?></option>
-								<?php
-								}
-								?>
-							</select> -
-							<input type="text" name="acronime_cat" placeholder="Acronime"></p>
-
-					</fieldset>
+			<!-- Formulaire d'ajout de catégorie d'étiquette équipement -->
+				<fieldset class="Etiquette_Equipement"><legend>Etiquette équipement</legend>
+					<form method="post" action="ajout_categorie.php">
+					  <div id="Cat_Etiquette">
+						<!-- Ajout d'une catégorie -->
+						<label id="Cat-Etiquette">Ajouter une catégorie d'équipement : </label><input class="Cat-Eti" type="text" name="categorie" placeholder="Ex : Sensor"></p>
+						<!-- Ajout de la valeur de la catégorie -->
+						<label id="Cat-Etiquette">Valeur de la catégorie d'équipement : </label><input class="Cat-Eti2" type="text" name="valCategorie" placeholder="Ex : SE"></p>
+						<!-- Bouton envoie catégorie -->
+						<input class="submitA" type="submit" value="Envoyer"><br/></p>
+					  </div>
+					  <div class="text">
+					  		<?php
+                                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                                if ($monUrl == "http://localhost/BDD/Site/admin.php?succes_cat"){
+                                    echo ("Catégorie ajouté avec succès !");
+                                }
+                                ?>
+                            </div>
+                            <div id ="erreur">
+                               <?php
+                                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                                if ($monUrl == "http://localhost/BDD/Site/admin.php?erreur_cat"){
+                                    echo ("Veuilliez saisir tous les champs !");
+                                }
+                         	?>
+     				  </div>
 				</form>
 
+
+			 <!-- Formulaire d'acronime d'étiquette -->
+				  <form method="post" action="ajout_acronime.php">
+					  <div id="acro_seul"><hr class="trait"><br/> <!-- Trait d'élimitant -->
+						<!-- Ajout d'un acronime -->
+						<label id="acro_seul">Ajouter un acronime d'équipement : </label><input class="Cat-Eti" type="text" name="acronime" placeholder="Ex : Refrigerateur"></p>
+						<!-- Ajout de la valeur de l'acronime -->
+						<label id="acro_seul">Valeur de l'acronime d'équipement : </label><input class="Cat-Eti2" type="text" name="valAcronime" placeholder="Ex : REF"></p>
+						<!-- Bouton envoie acronime -->
+						<input class="submitB" type="submit" value="Ajouter"><br/></p>
+					  </div>
+					  <div class="text">
+					  		<?php
+                                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                                if ($monUrl == "http://localhost/BDD/Site/admin.php?succes_acr"){
+                                    echo ("Acronime ajouté avec succès !");
+                                }
+                                ?>
+                            </div>
+                            <div id ="erreur">
+                               <?php
+                                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                                if ($monUrl == "http://localhost/BDD/Site/admin.php?erreur_acr"){
+                                    echo ("Veuilliez saisir tous les champs !");
+                                }
+                         	?>
+     				  </div>
+					</form>
+				</fieldset>
         	</div>
 
         <?php }
-            else{
+            else{	//Condition si l'utilisateur n'est pas Administrateur
                 $message="Vous devez être Administrateur pour acceder à cette page !";
                 echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
                 header('refresh:0.01;url=index.php');

@@ -2,7 +2,8 @@
     require_once('fonctions.php');
 
 
-    $idEquipement=$_GET['idEquipement']
+    $idEquipement=$_GET['idEquipement'];
+	$listeDocumentEquipement = getDocumentEquipement();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -94,7 +95,7 @@
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
                         {
-                            echo 'Garentie (mois) : '.$resultat->garantie.'<br>';
+                            echo 'Fin de garantie : '.$resultat->garantie.'<br>';
                         }
                         $resultats->closeCursor();
                     ?>
@@ -125,6 +126,23 @@
 				<!-- Générateur de QR code -->
 				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
             <a class="doc" href="doc-equi.php">Ajout document liés</a>
+				<table border=2> <!-- Création du tableau-->
+					<th>Id</th>
+					<th>Nom Document</th>
+					<th>Etiquette document</th>
+					<th>Nom equipement</th>
+
+						<?php foreach ($listeDocumentEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des documents -->
+							<tr>
+								<form method="get" action="equipement.php?idEquipement">
+									<?php foreach ($valeur as $val): ?>
+										<?php $idDocument=$valeur['idDocument']; ?>
+										<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $idDocument;?>')"><?= htmlentities($val) ?></td>
+									<?php endforeach; ?>
+								</form>
+							</tr>
+						<?php endforeach; ?>
+				</table>
             </div>
     </body>
 </html>

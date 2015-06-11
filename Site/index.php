@@ -2,6 +2,7 @@
     require_once('fonctions.php');
 
 
+
     $listeEquipement = getAllEquipement($pdo);
     $listeUtilisateur = getAllUtilisateur($pdo);
     $listeEtiquetteEquipement = getEtiquetteEquipement($pdo);
@@ -45,7 +46,7 @@
 			  <th>Date de fabriquation</th>
 			  <th>Date de réception</th>
 			  <th>Date de mise en service</th>
-			  <th>Garantie (mois)</th>
+			  <th>Fin de Garantie</th>
 
 			<?php
 				if((isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId']))) {
@@ -95,7 +96,7 @@
 					 <?php endforeach; ?>
 				  <?php  }
 				?>
-        </table>
+        </table><br/>
         </div>
    </body>
 </html>

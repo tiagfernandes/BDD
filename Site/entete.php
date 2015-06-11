@@ -55,22 +55,24 @@
         <div class="deco">
             <a href="logout.php" onclick="return(confirm('Etes-vous sûr de vouloir vous déconnectez ? '));">Déconnexion</a>
         </div>
-        <ul id="sddm">
-            <li><a href="index.php">Accueil</a>
-            </li>
-            <li><a href="choix.php"
-                onmouseover="mopen('m2')"
-                onmouseout="mclosetime()">Ajout</a>
-                <div id="m2"
-                    onmouseover="mcancelclosetime()"
-                    onmouseout="mclosetime()">
-                <a href="ajout-element.php">Equipement</a>
-                <a href="ajout-document.php">Document</a>
-                </div>
-            </li>
-            <li><a href="profil.php">Profil</a></li>
-            <li><a href="admin.php">Admin</a></li>
-        </ul>
+        <div>
+			<ul id="sddm">
+				<li><a href="index.php">Accueil</a>
+				</li>
+				<li><a href="choix.php"
+					onmouseover="mopen('m2')"
+					onmouseout="mclosetime()">Ajout</a>
+					<div id="m2"
+						onmouseover="mcancelclosetime()"
+						onmouseout="mclosetime()">
+					<a href="ajout-element.php">Equipement</a>
+					<a href="ajout-document.php">Document</a>
+					</div>
+				</li>
+				<li><a href="profil.php">Profil</a></li>
+				<li><a href="admin.php">Admin</a></li>
+			</ul>
+		</div>
         <div style="clear:both"></div>
 </nav>
 </html>
