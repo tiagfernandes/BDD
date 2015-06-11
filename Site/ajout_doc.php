@@ -1,6 +1,5 @@
 <?php
     require_once('fonctions.php');
-    session_start ();
 
     $nom_document= $_POST['nom_document'];
     $idType_Document = $_POST['idType_Document'];

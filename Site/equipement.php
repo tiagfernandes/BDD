@@ -114,6 +114,7 @@
                     AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
                     AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
                     AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette` AND `equipement`.`idEquipement`='$idEquipement'");
+
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
                         {
