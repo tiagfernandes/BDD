@@ -62,12 +62,14 @@
 				<li><a href="choix.php"
 					onmouseover="mopen('m2')"
 					onmouseout="mclosetime()">Ajout</a>
-					<div id="m2"
-						onmouseover="mcancelclosetime()"
-						onmouseout="mclosetime()">
-					<a href="ajout-element.php">Equipement</a>
-					<a href="ajout-document.php">Document</a>
-					</div>
+						<div id="m2"
+							onmouseover="mcancelclosetime()"
+							onmouseout="mclosetime()">
+							<a href="ajout-element.php">Equipement</a>
+							<a href="ajout-document.php">Document</a>
+							<a href="ajout-categorie.php">Catégorie d'étiquette</a>
+							<a href="ajout-acronime.php">Acronime d'équipement</a>
+						</div>
 				</li>
 				<li><a href="profil.php">Profil</a></li>
 				<li><a href="admin.php">Admin</a></li>

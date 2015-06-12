@@ -22,7 +22,8 @@
 
 						<div>
 							<a class="equipement" href="ajout-element.php">Equipement</a></br>
-							<a class="document"href="ajout-document.php">Document</a>
+							<a class="document" href="ajout-document.php">Document</a>
+							<a class="categorie" href="ajout-categorie.php">Catégorie d'étiquette</a>
 						</div>
 				</div>
 
