@@ -22,7 +22,7 @@ function getAuthentification($login, $pass){
 
 function getAllEquipement(){
     global $pdo;
-    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`prix`,`marque`,`dateAjout`,`dateFabrication`,`dateReception`,`dateMiseService`,`garantie`
+    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`marque`
               FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`
               WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
               AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
@@ -42,7 +42,7 @@ function getAllEquipement(){
 
 function getAllUtilisateur(){
     global $pdo;
-    $query = 'SELECT `idUtilisateur`,`nomUtilisateur`,`prenomUtilisateur`,`email`,`login`,`password`,`role` FROM utilisateur';
+    $query = 'SELECT `idUtilisateur`,`nomUtilisateur`,`prenomUtilisateur`,`email`,`login`,`role` FROM utilisateur';
 
     try {
       $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -58,12 +58,12 @@ function deleteUtilisateur($id){
       global $pdo;
       $query = "delete from utilisateur where idUtilisateur = :idUtilisateur ;";
       try {
-	$prep = $pdo->prepare($query);
-	$prep->bindValue(':idUtilisateur', $id);
-	$prep->execute();
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idUtilisateur', $id);
+		$prep->execute();
       }
       catch ( Exception $e ) {
-	die ("erreur dans la requete ".$e->getMessage());
+		die ("erreur dans la requete ".$e->getMessage());
       }
 }
 
@@ -147,10 +147,74 @@ function getDocumentEquipement($idEquipement){
 				AND `equipement`.`idEquipement`=$idEquipement";
 
         try {
-          $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
-          return($result);
+        	$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        	return($result);
         }
         catch ( Exception $e ) {
-          die ("Erreur dans la requete ".$e->getMessage());
+        	die ("Erreur dans la requete ".$e->getMessage());
         }
+}
+
+function getCategorie() {
+	global $pdo;
+		$query = "SELECT * FROM categorie_etiquette ORDER BY categorieEtiquette";
+
+		try{
+			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+			return($result);
+		}
+		catch (Exception $e){
+			die ("SELECT * FROM acronime_etiquette".$e->getMessage());
+		}
+}
+
+function deleteCategorie($id){
+      global $pdo;
+      $query = "delete from categorie_etiquette where idCategorieEtiquette = :idCategorieEtiquette ;";
+      try {
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idCategorieEtiquette', $id);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+
+function updateCategorie($id){
+      global $pdo;
+      $query = "update from categorie_etiquette where idCategorieEtiquette = :idCategorieEtiquette ;";
+      try {
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idCategorieEtiquette', $id);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+
+
+function getEquipementEtiquette($chaineSearchCat, $chaineSearchAcr, $chaineSearchId) {
+	global $pdo;
+	$query = "SELECT *
+				FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+				WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+				AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+				AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+				AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+				AND valeurCategorie LIKE :chaineSearchCat
+				AND valeurAcronime LIKE :chaineSearchAcr
+				AND equipement.idEquipement LIKE :chaineSearchId";
+
+	try{
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':chaineSearchCat', $chaineSearchCat);
+		$prep->bindValue(':chaineSearchAcr', $chaineSearchAcr);
+		$prep->bindValue(':chaineSearchId', $chaineSearchId);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
 }

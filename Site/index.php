@@ -6,6 +6,7 @@
     $listeEquipement = getAllEquipement($pdo);
     $listeUtilisateur = getAllUtilisateur($pdo);
     $listeEtiquetteEquipement = getEtiquetteEquipement($pdo);
+	//$listeEquipementEtiquette = getEquipementEtiquette($pdo);
 
 ?>
 
@@ -40,42 +41,42 @@
 						<th>Id</th>
 						  <th>Etiquette</th>
 						  <th>Nom équipement</th>
-						  <th>Prix (€)</th>
 						  <th>Marque</th>
-						  <th>Date d'ajout</th>
-						  <th>Date de fabriquation</th>
-						  <th>Date de réception</th>
-						  <th>Date de mise en service</th>
-						  <th>Fin de Garantie</th>
+						  <th>Fiche de Vie</th>
+
 
 				<?php
 					if((isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId']))) {
 						//Si les champs sont remplis, on affiche les équittes correspondantes au champ
 
-					$chaineSearchCat = addslashes($_GET['searchCat']);
-					$chaineSearchAcr = addslashes($_GET['searchAcr']);
-					$chaineSearchId = addslashes($_GET['searchId']);
+						$chaineSearchCat = addslashes($_GET['searchCat']);
+						$chaineSearchAcr = addslashes($_GET['searchAcr']);
+						$chaineSearchId = addslashes($_GET['searchId']);
 
-					echo 'Vous avez recherché : '.$chaineSearchCat.', '.$chaineSearchAcr.', '.$chaineSearchId.'<br />';
+							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`
+										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+										AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+										AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+										AND valeurCategorie LIKE '".$chaineSearchCat."%'
+										AND valeurAcronime LIKE '".$chaineSearchAcr."%'
+										AND equipement.idEquipement LIKE '". $chaineSearchId."%'
+										ORDER BY `equipement`.`idEquipement` DESC";
 
-						$requete = "SELECT *
-									FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
-									WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-									AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-									AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-									AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
-									AND valeurCategorie LIKE '".$chaineSearchCat."%'
-									AND valeurAcronime LIKE '".$chaineSearchAcr."%'
-									AND equipement.idEquipement LIKE '". $chaineSearchId."%' ";
+							// Exécution de la requête SQL
+							$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
 
-						// Exécution de la requête SQL
-						$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
-
-						echo 'Les résultats de recherche sont : <br />';
-
-						while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
-							echo $donnees['nomEquipement'],' ',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'].'<br />';
-						}
+							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+								?>
+							<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
+								<td><?php echo $donnees['idEquipement']; ?></td>
+								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+								<td><?php echo $donnees['nomEquipement']; ?></td>
+								<td><?php echo $donnees['marque']; ?></td>
+							</tr>
+							<?php
+							}
 
 					}
 

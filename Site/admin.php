@@ -5,6 +5,7 @@
         $id = $_GET['delete'];
         deleteUtilisateur($id);
     }
+
     $listeUtilisateur = getAllUtilisateur($pdo);
 ?>
 
@@ -33,7 +34,6 @@
 								<th>Prénom</th>
 								<th>Email</th>
 								<th>Identifiant</th>
-								<th>Mot de passe</th>
 								<th>Rôle</th>
 								<th>Supprimer</th>
 
