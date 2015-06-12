@@ -22,7 +22,7 @@ function getAuthentification($login, $pass){
 
 function getAllEquipement(){
     global $pdo;
-    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`prix`,`marque`,`dateAjout`,`dateFabrication`,`dateReception`,`dateMiseService`,`garantie`
+    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`marque`
               FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`
               WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
               AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
@@ -187,6 +187,31 @@ function updateCategorie($id){
       try {
 		$prep = $pdo->prepare($query);
 		$prep->bindValue(':idCategorieEtiquette', $id);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+
+
+function getEquipementEtiquette($chaineSearchCat, $chaineSearchAcr, $chaineSearchId) {
+	global $pdo;
+	$query = "SELECT *
+				FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+				WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+				AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+				AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+				AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+				AND valeurCategorie LIKE :chaineSearchCat
+				AND valeurAcronime LIKE :chaineSearchAcr
+				AND equipement.idEquipement LIKE :chaineSearchId";
+
+	try{
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':chaineSearchCat', $chaineSearchCat);
+		$prep->bindValue(':chaineSearchAcr', $chaineSearchAcr);
+		$prep->bindValue(':chaineSearchId', $chaineSearchId);
 		$prep->execute();
       }
       catch ( Exception $e ) {

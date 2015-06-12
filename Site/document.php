@@ -32,7 +32,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    <?php	//fonction pour afficher le nom de l'équipement
+                    <?php	//fonction pour afficher l'etiquette de l'équipement
                         $resultats=$pdo->query("SELECT `valeurTypeDoc`,`valeurProcessus`,`valeurSousProcessus`,`valeurCategorie`,`valeurAcronime`,`document`.`idDocument`
 								FROM `document`, `etiquette_document`, `type_document`, `processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`
 								WHERE `document`.`idEtiquette_Document` = `etiquette_document`.`idEtiquette_Document`
