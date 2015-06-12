@@ -129,12 +129,6 @@
                         }
                         $resultats->closeCursor();
                     ?>
-<<<<<<< HEAD
-				<!-- Générateur de QR code -->
-				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
-            <a class="doc" href="doc-equi.php?idEquipement=<?= $idEquipement;?>">Ajout document liés</a>
-				<table border=2> <!-- Création du tableau-->
-=======
 
 			<!-- Générateur de QR code -->
 				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
@@ -143,7 +137,7 @@
             <a class="doc" href="doc-equi.php">Ajout document liés</a>
 			  <!-- Création du tableau-->
 				<table border=2>
->>>>>>> origin/master
+
 					<th>Id</th>
 					<th>Nom Document</th>
 					<th>Etiquette document</th>
