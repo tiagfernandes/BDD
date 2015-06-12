@@ -31,7 +31,7 @@
 										<select name="categorie">
 											<option value=NULL>-- Catégorie --</option>
 												<?php
-													$reponse = $pdo->query('SELECT * FROM categorie_etiquette');
+													$reponse = $pdo->query('SELECT * FROM categorie_etiquette ORDER BY categorieEtiquette');
 													while ($donnees = $reponse->fetch()){
 												?>
 														<option value="<?php echo $donnees['idCategorieEtiquette']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['categorieEtiquette']; ?></option>
@@ -45,7 +45,7 @@
 										<select name="acronime">
 											<option value=NULL>-- Acronime --</option>
 												<?php
-													$reponse = $pdo->query('SELECT * FROM acronime_etiquette');
+													$reponse = $pdo->query('SELECT * FROM acronime_etiquette ORDER BY acronimeEtiquette');
 													while ($donnees = $reponse->fetch()){
 												?>
 														<option value="<?php echo $donnees['idAcronimeEtiquette']; ?>"><?php echo $donnees['valeurAcronime']; ?> - <?php echo $donnees['acronimeEtiquette']; ?></option>

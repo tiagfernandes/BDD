@@ -11,9 +11,9 @@
         $prep = $pdo->prepare($sql);
         $prep->execute();
 
-        header('Location: admin.php?succes_acr');
+        header('Location: ajout-acronime.php?succes');
     }
 
     else
-        header('Location: admin.php?erreur_acr');
+        header('Location: ajout-acronime.php?erreur');
 ?>

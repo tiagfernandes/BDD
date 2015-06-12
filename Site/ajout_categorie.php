@@ -11,9 +11,9 @@
         $prep = $pdo->prepare($sql);
         $prep->execute();
 
-        header('Location: admin.php?succes_cat');
+        header('Location: ajout-categorie.php?succes');
     }
 
     else
-        header('Location: admin.php?erreur_cat');
+        header('Location: ajout-categorie.php?erreur');
 ?>

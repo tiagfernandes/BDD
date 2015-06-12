@@ -1,5 +1,12 @@
 <?php
     require_once('fonctions.php');
+
+	if(isset($_GET['delete'])){ //Supprime categorie
+        $id = $_GET['delete'];
+        deleteCategorie($id);
+    }
+
+	$categorie = getCategorie($pdo);
 ?>
 
 <!doctype html>
@@ -37,7 +44,7 @@
 									<div class="text">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-											if ($monUrl == "http://localhost/BDD/Site/admin.php?succes_cat"){
+											if ($monUrl == "http://localhost/BDD/Site/ajout-categorie.php?succes"){
 												echo ("Catégorie ajouté avec succès !");
 											}
 										?>
@@ -45,14 +52,36 @@
 									<div id ="erreur">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-											if ($monUrl == "http://localhost/BDD/Site/admin.php?erreur_cat"){
+											if ($monUrl == "http://localhost/BDD/Site/ajout-categorie.php?erreur"){
 												echo ("Veuilliez saisir tous les champs !");
 											}
 										?>
 									</div>
 								</form>
 						</fieldset>
+							<table border="1">
+								<th>id</th>
+								<th>Categorie</th>
+								<th>Valeur</th>
+								<th>Supprimer</th>
+								<th>Modifer</th>
 
+									<?php foreach ($categorie as $cle=>$valeur): ?>
+										<tr>
+											<?php foreach ($valeur as $val): ?>
+												<td><?= htmlentities($val) ?></td>
+											<?php endforeach; ?>
+
+									<!-- Bouton supprimer catégorie -->
+											<td><a href=ajout-categorie.php?delete=<?= htmlentities($valeur['idCategorieEtiquette']) ?>
+								onClick="return(confirm('Supprimer <?= $valeur['categorieEtiquette']  ?> ?'));">Supprimer</a></td>
+
+									<!-- Bouton modifier catégorie -->
+											<td><a href=ajout-categorie.php?update=<?= htmlentities($valeur['idCategorieEtiquette']) ?>
+								onClick="return(confirm('Modifier <?= $valeur['categorieEtiquette']  ?> ?'));">Modifier</a></td>
+										</tr>
+									<?php endforeach; ?>
+							</table>
 				</div>
 
 			<?php }
