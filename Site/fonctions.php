@@ -120,7 +120,6 @@ function getEquipementDoc(){
 				  FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
                   WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
                   AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-                  AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
                   AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`";
 
         try {
@@ -132,9 +131,9 @@ function getEquipementDoc(){
         }
 }
 
-function getDocumentEquipement(){
+function getDocumentEquipement($idEquipement){
 	global $pdo;
-        $query = "SELECT `document`.`idDocument`,`nomDocument`, CONCAT(`valeurTypeDoc`,'-',`valeurProcessus`,'-',`valeurSousProcessus`,'-',`valeurCategorie`,'-',`valeurAcronime`,'-',`document`.`idDocument`), `nomEquipement`
+        $query = "SELECT `document`.`idDocument`,`nomDocument`, CONCAT(`valeurTypeDoc`,'-',`valeurProcessus`,'-',`valeurSousProcessus`,'-',`valeurCategorie`,'-',`valeurAcronime`,'-',`document`.`idDocument`)
 				FROM `equipement`, `equipement_has_document`, `document`, `etiquette_document`, `type_document`, `processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`
 				WHERE `equipement`.`idEquipement` = `equipement_has_document`.`idEquipement`
 				AND `equipement_has_document`.`idDocument` = `document`.`idDocument`
@@ -144,7 +143,8 @@ function getDocumentEquipement(){
 				AND `etiquette_document`.`idSous_Processus` = `sous_processus`.`idSous_Processus`
 				AND `etiquette_document`.`idEtiquette_Equipement` = `etiquette_equipement`.`idEtiquette_Equipement`
 				AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-				AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`";
+				AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+				AND `equipement`.`idEquipement`=$idEquipement";
 
         try {
           $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);

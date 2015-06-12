@@ -1,8 +1,6 @@
 <?php
     require_once('fonctions.php');
 
-    session_start ();
-
     $idDocument=$_GET['idDocument'];
 ?>
 <!doctype html>
@@ -34,7 +32,31 @@
                         }
                         $resultats->closeCursor();
                     ?>
-
+                    <?php	//fonction pour afficher le nom de l'équipement
+                        $resultats=$pdo->query("SELECT `valeurTypeDoc`,`valeurProcessus`,`valeurSousProcessus`,`valeurCategorie`,`valeurAcronime`,`document`.`idDocument`
+								FROM `document`, `etiquette_document`, `type_document`, `processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`
+								WHERE `document`.`idEtiquette_Document` = `etiquette_document`.`idEtiquette_Document`
+								AND `etiquette_document`.`idType_Document` = `type_document`.`idType_Document`
+								AND `etiquette_document`.`idProcessus` = `processus`.`idProcessus`
+								AND `etiquette_document`.`idSous_Processus` = `sous_processus`.`idSous_Processus`
+								AND `etiquette_document`.`idEtiquette_Equipement` = `etiquette_equipement`.`idEtiquette_Equipement`
+								AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+								AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+								AND `document`.`idDocument`=$idDocument");
+                        $resultats->setFetchMode(PDO::FETCH_OBJ);
+                        while($resultat = $resultats->fetch())
+                        {
+                            echo 'Etiquette : '.$resultat->valeurTypeDoc.'';
+                            echo '-'.$resultat->valeurProcessus.'';
+                            echo '-'.$resultat->valeurSousProcessus.'';
+                            echo '-'.$resultat->valeurCategorie.'';
+                            echo '-'.$resultat->valeurAcronime.'';
+                            echo '-'.$resultat->idDocument.'<br>';
+                        }
+                        $resultats->closeCursor();
+                    ?>
+                    <!-- Générateur de QR code -->
+				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/document.php?idDocument=<?= $idDocument ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/document.php?idDocument=<?= $idDocument ?>" id="QRCode" title="QR Code"></a>
             </div>
     </body>
 </html>

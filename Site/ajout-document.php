@@ -77,18 +77,20 @@
 								<?php foreach ($Equipement as $cle=>$valeur): ?>
 									<tr>
 										<td><input type="checkbox" name=""></td>
-										<?php foreach ($valeur as $val): ?>
-										<td><?= htmlentities($val) ?></td>
-										<?php endforeach; ?>
-											</td>
+											<?php foreach ($valeur as $val): ?>
+												<td><?= htmlentities($val) ?></td>
+											<?php endforeach; ?>
+										</td>
 									</tr>
 
 								 <?php endforeach; ?>
 								</table>
+
+                       		<input class="bouton" type="submit" value="Ajouter">
                         </form>
                     </fieldset>
                </div>
-                    <?php }
+      	<?php }
             else{
                 $message="Vous devez être Administrateur pour acceder à cette page !";
                 echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
