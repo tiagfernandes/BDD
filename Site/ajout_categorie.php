@@ -11,9 +11,17 @@
         $prep = $pdo->prepare($sql);
         $prep->execute();
 
+<<<<<<< HEAD
+        header('Location: ajout-categorie.php?succes_cat');
+    }
+
+    else
+        header('Location: ajout-categorie.php?erreur_cat');
+=======
         header('Location: ajout-categorie.php?succes');
     }
 
     else
         header('Location: ajout-categorie.php?erreur');
+>>>>>>> origin/master
 ?>

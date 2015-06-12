@@ -497,6 +497,31 @@ a.doc:hover { color:firebrick;}
     padding-bottom: 15px;
 }
 
+<<<<<<< HEAD
 #search {
 	width: 100px;
 }
+=======
+.ajout-categorie {
+    position: relative;
+    left:40%;
+    margin-top: 12%;
+    display:inline-block;
+    font-size: 30px;
+}
+
+a.ajout-categorie { color:black; }
+a.ajout-categorie:hover { color:firebrick;}
+
+.ajout-acr {
+    position: relative;
+    left:40%;
+    margin-top: 15%;
+    display:inline-block;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+a.ajout-acr { color:black; }
+a.ajout-acr:hover { color:firebrick;}
+>>>>>>> origin/master

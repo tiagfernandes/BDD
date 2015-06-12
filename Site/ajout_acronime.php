@@ -11,9 +11,17 @@
         $prep = $pdo->prepare($sql);
         $prep->execute();
 
+<<<<<<< HEAD
+        header('Location: ajout-acronime.php?succes_acr');
+    }
+
+    else
+        header('Location: ajout-acronime.php?erreur_acr');
+=======
         header('Location: ajout-acronime.php?succes');
     }
 
     else
         header('Location: ajout-acronime.php?erreur');
+>>>>>>> origin/master
 ?>
