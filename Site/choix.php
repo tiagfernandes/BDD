@@ -22,8 +22,9 @@
 
 						<div>
 							<a class="equipement" href="ajout-element.php">Equipement</a></br>
-							<a class="document" href="ajout-document.php">Document</a>
-							<a class="categorie" href="ajout-categorie.php">Catégorie d'étiquette</a>
+							<a class="document" href="ajout-document.php">Document</a></br>
+							<a class="ajout-categorie" href="ajout-categorie.php">Catégorie étiquette</a></br>
+							<a class="ajout-acr" href="ajout-categorie.php">Acronime equipement</a></br>
 						</div>
 				</div>
 
