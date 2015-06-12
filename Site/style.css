@@ -369,7 +369,7 @@ table {
 .equipement {
     position: relative;
     left:44%;
-    margin-top: 9%;
+    margin-top: 3%;
     display:inline-block;
     font-size: 30px;
 }
@@ -380,7 +380,7 @@ a.equipement:hover { color:firebrick;}
 .document {
     position: relative;
     left:44%;
-    margin-top: 18%;
+    margin-top: 9%;
     display:inline-block;
     font-size: 30px;
 }
@@ -492,10 +492,28 @@ a.doc:hover { color:firebrick;}
 
 
 #Acr-Etiquette {
-
+	margin-left: 30%;
+	margin-right: auto;
 }
 
 .submitB {
 	margin-left: 36.5%;
 	margin-right: auto;
+}
+
+.ajout_categorie {
+    position: relative;
+    left:44%;
+    margin-top: 12%;
+    display:inline-block;
+    font-size: 30px;
+}
+
+.ajout_acronime {
+    position: relative;
+    left:44%;
+    margin-top: 15%;
+    display:inline-block;
+    font-size: 30px;
+    padding-bottom: 15px;
 }
