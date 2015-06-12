@@ -18,6 +18,7 @@
    <body>
 
     <?php require_once('entete.php'); ?>
+<<<<<<< HEAD
        <?php if ($_SESSION['role']== "Administrateur") {?>
         <div id="contenu">
             <div id="banniere">Ajout d'un document lié</div>
@@ -70,10 +71,18 @@
                         </form>
                     </fieldset>
         </div>
+=======
+    	<?php if ($_SESSION['role']== "Administrateur") {?>
+        	<div id="contenu">
+           		<div id="banniere">Ajout d'un document lié</div>
+
+        	</div>
+
+>>>>>>> origin/master
         <?php }
             else{
                 $message="Vous devez être Administrateur pour acceder à cette page !";
-                echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+                	echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
                 header('refresh:0.01;url=index.php');
             }
         ?>

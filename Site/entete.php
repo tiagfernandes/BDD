@@ -53,7 +53,7 @@
             <script type="text/javascript">window.onload = date_heure('date_heure');</script>
         </div>
         <div class="deco">
-            <a href="logout.php" onclick="return(confirm('Etes-vous sûr de vouloir vous déconnectez ? '));">Déconnexion</a>
+            <a href="logout.php" onclick="return(confirm('Etes-vous sûr de vouloir vous déconnecter ? '));">Déconnexion</a>
         </div>
         <div>
 			<ul id="sddm">
@@ -62,12 +62,14 @@
 				<li><a href="choix.php"
 					onmouseover="mopen('m2')"
 					onmouseout="mclosetime()">Ajout</a>
-					<div id="m2"
-						onmouseover="mcancelclosetime()"
-						onmouseout="mclosetime()">
-					<a href="ajout-element.php">Equipement</a>
-					<a href="ajout-document.php">Document</a>
-					</div>
+						<div id="m2"
+							onmouseover="mcancelclosetime()"
+							onmouseout="mclosetime()">
+							<a href="ajout-element.php">Equipement</a>
+							<a href="ajout-document.php">Document</a>
+							<a href="ajout-categorie.php">Catégorie étiquette</a>
+							<a href="ajout-acronime.php">Acronime équipement</a>
+						</div>
 				</li>
 				<li><a href="profil.php">Profil</a></li>
 				<li><a href="admin.php">Admin</a></li>
