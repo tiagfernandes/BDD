@@ -164,7 +164,7 @@ function getCategorie() {
 			return($result);
 		}
 		catch (Exception $e){
-			die ("SELECT * FROM acronime_etiquette".$e->getMessage());
+			die ("Erreur dans la requete ".$e->getMessage());
 		}
 }
 
@@ -212,6 +212,45 @@ function getEquipementEtiquette($chaineSearchCat, $chaineSearchAcr, $chaineSearc
 		$prep->bindValue(':chaineSearchCat', $chaineSearchCat);
 		$prep->bindValue(':chaineSearchAcr', $chaineSearchAcr);
 		$prep->bindValue(':chaineSearchId', $chaineSearchId);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+
+function getAcronime() {
+	global $pdo;
+		$query = "SELECT * FROM acronime_etiquette ORDER BY acronimeEtiquette";
+
+		try{
+			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+			return($result);
+		}
+		catch (Exception $e){
+			die ("Erreur dans la requete ".$e->getMessage());
+		}
+}
+
+function deleteAcronime($id){
+      global $pdo;
+      $query = "delete from acronime_etiquette where idAcronimeEtiquette = :idAcronimeEtiquette ;";
+      try {
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idAcronimeEtiquette', $id);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+
+function updateAcronime($id){
+      global $pdo;
+      $query = "update from acronime_etiquette where idAcronimeEtiquette = :idAcronimeEtiquette ;";
+      try {
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idAcronimeEtiquette', $id);
 		$prep->execute();
       }
       catch ( Exception $e ) {

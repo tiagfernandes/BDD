@@ -27,13 +27,35 @@
 			<div id ="contenu">
 				<div id="banniere">Equipement</div>
 
-					<form action ="index.php" method="get"><!-- Barre de recherche, recherche avec soit l'étiquette, soit la -->
+				  	<!-- Barre de recherche étiquette -->
+					<form action ="index.php" method="get">
 						<span>Recherche équipement avec étiquette :</span>
 							<input type="text" id="search" name="searchCat" placeholder="Catégorie"/> -
 							<input type="text" id="search" name="searchAcr" placeholder="Acronime"/> -
 							<input type="text" id="search" name="searchId" placeholder="Numéro"/>
-							<input type="submit" value="Envoyer">
-							<input type="reset" value="Annuler">
+								<input type="submit" value="Envoyer">
+								<input type="reset" value="Annuler">
+					</form></p>
+
+					<!-- Barre de recherche nom -->
+					<form action ="index.php" method="get">
+						<span>Recherche par nom d'équipement :</span>
+							<input type="text" id="search" name="searchNom" placeholder="Nom"/>
+								<input type="submit" value="Envoyer">
+					</form></p>
+
+					<!-- Barre de recherche marque -->
+					<form action ="index.php" method="get">
+						<span>Recherche par marque d'équipement :</span>
+							<input type="text" id="search" name="searchMarque" placeholder="Marque"/>
+								<input type="submit" value="Envoyer">
+					</form></p>
+
+					<!-- Barre de recherche date d'ajout -->
+					<form action ="index.php" method="get">
+						<span>Recherche par date d'ajout d'équipement :</span>
+							<input type="date" id="search" name="searchDateAjout"/>
+								<input type="submit" value="Envoyer">
 					</form></p>
 
 				<!-- Création du tableau-->
@@ -43,6 +65,8 @@
 						  <th>Nom équipement</th>
 						  <th>Marque</th>
 						  <th>Fiche de Vie</th>
+						  <th>Lieu affectation</th>
+						  <th>Lieu d'utilisation</th>
 
 
 				<?php
@@ -80,6 +104,96 @@
 
 					}
 
+
+					else if (isset($_GET['searchNom'])) {
+						//Si les champs sont remplis, on affiche les équittes correspondantes au champ
+
+						$chaineSearchNom = addslashes($_GET['searchNom']);
+
+							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`
+										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+										AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+										AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+										AND nomEquipement LIKE '".$chaineSearchNom."%'
+										ORDER BY `equipement`.`idEquipement` DESC";
+
+							// Exécution de la requête SQL
+							$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+
+							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+								?>
+							<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
+								<td><?php echo $donnees['idEquipement']; ?></td>
+								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+								<td><?php echo $donnees['nomEquipement']; ?></td>
+								<td><?php echo $donnees['marque']; ?></td>
+							</tr>
+							<?php
+							}
+
+					}
+
+					else if (isset($_GET['searchDateAjout'])) {
+						//Si les champs sont remplis, on affiche les équittes correspondantes au champ
+
+						$chaineSearchDateAjout = addslashes($_GET['searchDateAjout']);
+
+							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`
+										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+										AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+										AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+										AND dateAjout LIKE '".$chaineSearchDateAjout."%'
+										ORDER BY `equipement`.`idEquipement` DESC";
+
+							// Exécution de la requête SQL
+							$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+
+							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+								?>
+							<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
+								<td><?php echo $donnees['idEquipement']; ?></td>
+								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+								<td><?php echo $donnees['nomEquipement']; ?></td>
+								<td><?php echo $donnees['marque']; ?></td>
+							</tr>
+							<?php
+							}
+
+					}
+
+					else if (isset($_GET['searchMarque'])) {
+						//Si les champs sont remplis, on affiche les équittes correspondantes au champ
+
+						$chaineSearchMarque = addslashes($_GET['searchMarque']);
+
+							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`
+										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+										AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+										AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+										AND marque LIKE '".$chaineSearchMarque."%'
+										ORDER BY `equipement`.`idEquipement` DESC";
+
+							// Exécution de la requête SQL
+							$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+
+							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+								?>
+							<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
+								<td><?php echo $donnees['idEquipement']; ?></td>
+								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+								<td><?php echo $donnees['nomEquipement']; ?></td>
+								<td><?php echo $donnees['marque']; ?></td>
+							</tr>
+							<?php
+							}
+
+					}
 
 					else{
 						//Sinon on affiche toute la liste

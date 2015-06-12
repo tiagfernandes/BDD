@@ -496,3 +496,7 @@ a.doc:hover { color:firebrick;}
     font-size: 30px;
     padding-bottom: 15px;
 }
+
+#search {
+	width: 100px;
+}
