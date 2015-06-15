@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 09 Juin 2015 à 09:30
+-- Généré le :  Lun 15 Juin 2015 à 14:13
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `acronime_etiquette` (
   `valeurAcronime` varchar(45) DEFAULT NULL,
   `acronimeEtiquette` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idAcronimeEtiquette`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Contenu de la table `acronime_etiquette`
@@ -39,21 +39,20 @@ CREATE TABLE IF NOT EXISTS `acronime_etiquette` (
 
 INSERT INTO `acronime_etiquette` (`idAcronimeEtiquette`, `valeurAcronime`, `acronimeEtiquette`) VALUES
 (1, 'DO2', 'Mesure de l O2 dissous'),
-(2, 'REF', 'Refrigerateur');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `acronime_has_categorie`
---
-
-CREATE TABLE IF NOT EXISTS `acronime_has_categorie` (
-  `idCategorieEtiquette` int(11) NOT NULL,
-  `idAcronimeEtiquette` int(11) NOT NULL,
-  PRIMARY KEY (`idCategorieEtiquette`,`idAcronimeEtiquette`),
-  KEY `fk_Acronime_Etiquette_has_Categorie_Etiquette_Categorie_Eti_idx` (`idCategorieEtiquette`),
-  KEY `fk_Acronime_Etiquette_has_Categorie_Etiquette_Acronime_Etiq_idx` (`idAcronimeEtiquette`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(3, 'SCA', 'Balance'),
+(4, 'A', 'Actuator'),
+(5, 'STO', 'Etuve'),
+(6, 'REF', 'RÃ©frigÃ©rateur'),
+(7, 'FRE', 'CongÃ©lateur'),
+(8, 'STE', 'GÃ©nÃ©rateur de vapeur'),
+(12, 'PHY', 'Phytotron'),
+(13, 'SEE', 'Table de germination'),
+(14, 'APUM', 'Pompe Ã  air'),
+(15, 'WPUM', 'Pompe Ã  eau'),
+(16, 'CRY', 'Cryothermostat'),
+(17, 'LYO', 'Lyophilisateur'),
+(18, 'OVE', 'Four Ã  moufle'),
+(19, 'TEC', 'Auto analyseur Technicon');
 
 -- --------------------------------------------------------
 
@@ -75,32 +74,47 @@ CREATE TABLE IF NOT EXISTS `anomalie` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `calibration`
+--
+
+CREATE TABLE IF NOT EXISTS `calibration` (
+  `idCalibration` int(11) NOT NULL AUTO_INCREMENT,
+  `descriptionCalibration` varchar(200) DEFAULT NULL,
+  `dateCalibration` date DEFAULT NULL,
+  `idUtilisateur` int(11) NOT NULL,
+  PRIMARY KEY (`idCalibration`,`idUtilisateur`),
+  KEY `fk_calibration_utilisateur1_idx` (`idUtilisateur`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `categorie_etiquette`
 --
 
 CREATE TABLE IF NOT EXISTS `categorie_etiquette` (
   `idCategorieEtiquette` int(11) NOT NULL AUTO_INCREMENT,
-  `categorieEtiquette` varchar(45) DEFAULT NULL,
   `valeurCategorie` varchar(45) DEFAULT NULL,
+  `categorieEtiquette` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idCategorieEtiquette`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Contenu de la table `categorie_etiquette`
 --
 
-INSERT INTO `categorie_etiquette` (`idCategorieEtiquette`, `categorieEtiquette`, `valeurCategorie`) VALUES
-(1, 'Actionneur', 'A'),
-(2, 'Sampler', 'S'),
-(3, 'Sample Analyser', 'SA'),
-(4, 'Sample Conditionner', 'SC'),
-(5, 'SEnsor', 'SE'),
-(6, 'Container', 'C'),
-(7, 'Communication Tools', 'CL'),
-(8, 'Data Logger Module', 'DL'),
-(9, 'Electronics', 'E'),
-(10, 'Services and Infrastructure', 'SI'),
-(11, 'Vehicules', 'V');
+INSERT INTO `categorie_etiquette` (`idCategorieEtiquette`, `valeurCategorie`, `categorieEtiquette`) VALUES
+(1, 'A', 'Actuator'),
+(2, 'S', 'Sampler'),
+(3, 'SA', 'Sample Analyser'),
+(4, 'SC', 'Sample Conditionner'),
+(5, 'SE', 'SEnsor'),
+(6, 'C', 'Container'),
+(7, 'CL', 'Communication Tools'),
+(8, 'DL', 'Data Logger Module'),
+(9, 'E', 'Electronics'),
+(10, 'SI', 'Services and Infrastructure'),
+(14, 'V', 'Vehicles');
 
 -- --------------------------------------------------------
 
@@ -139,6 +153,7 @@ CREATE TABLE IF NOT EXISTS `emplacement_archive` (
 CREATE TABLE IF NOT EXISTS `entretient` (
   `idEntretient` int(11) NOT NULL AUTO_INCREMENT,
   `dateEntretient` datetime DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL,
   PRIMARY KEY (`idEntretient`,`idUtilisateur`),
   KEY `fk_Entretient_Utilisateur1_idx` (`idUtilisateur`)
@@ -154,39 +169,44 @@ CREATE TABLE IF NOT EXISTS `equipement` (
   `idEquipement` int(11) NOT NULL AUTO_INCREMENT,
   `nomEquipement` varchar(45) DEFAULT NULL,
   `idFournisseur` int(11) NOT NULL,
-  `dateAjout` date DEFAULT NULL,
   `prix` double DEFAULT NULL,
   `marque` varchar(45) DEFAULT NULL,
+  `dateAjout` date DEFAULT NULL,
   `dateFabrication` date DEFAULT NULL,
   `dateReception` date DEFAULT NULL,
   `dateMiseService` date DEFAULT NULL,
-  `garantie` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idEquipement`,`idFournisseur`),
-  KEY `fk_Equipement_Fournisseur1_idx` (`idFournisseur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `garantie` date DEFAULT NULL,
+  `responsable` varchar(45) DEFAULT NULL,
+  `idPlateforme` int(11) NOT NULL,
+  PRIMARY KEY (`idEquipement`,`idFournisseur`,`idPlateforme`),
+  KEY `fk_Equipement_Fournisseur1_idx` (`idFournisseur`),
+  KEY `fk_equipement_plateforme1_idx` (`idPlateforme`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Contenu de la table `equipement`
 --
 
-INSERT INTO `equipement` (`idEquipement`, `nomEquipement`, `idFournisseur`, `dateAjout`, `prix`, `marque`, `dateFabrication`, `dateReception`, `dateMiseService`, `garantie`) VALUES
-(2, 'Capteur Test', 1, '2015-06-08', 1, 'Ecotron', '2012-10-29', '2013-10-29', '2014-11-29', 2),
-(4, 'Moteur', 0, '2015-06-08', 0, '', '0000-00-00', '0000-00-00', '0000-00-00', 0),
-(5, 'Test', 0, '2015-06-08', 0, '', '0000-00-00', '0000-00-00', '0000-00-00', 0);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `equipement_has_anomalie`
---
-
-CREATE TABLE IF NOT EXISTS `equipement_has_anomalie` (
-  `idEquipement` int(11) NOT NULL,
-  `idAnomalie` int(11) NOT NULL,
-  PRIMARY KEY (`idEquipement`,`idAnomalie`),
-  KEY `fk_Equipement_has_Panne_Panne1_idx` (`idAnomalie`),
-  KEY `fk_Equipement_has_Panne_Equipement1_idx` (`idEquipement`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `equipement` (`idEquipement`, `nomEquipement`, `idFournisseur`, `prix`, `marque`, `dateAjout`, `dateFabrication`, `dateReception`, `dateMiseService`, `garantie`, `responsable`, `idPlateforme`) VALUES
+(8, 'test', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(9, 'test', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(10, 'Test 2', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(11, 'Etuve', 0, 0, 'PROLABO EB 280', '2015-06-12', '0000-00-00', '1990-01-01', '0000-00-00', '0000-00-00', NULL, 0),
+(12, 'RÃ©frigÃ©rateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(13, 'CongÃ©lateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(14, 'Magicien d Oz', 0, 0, 'WEISHAUPT WL30Z-C Magicien d Oz', '2015-06-12', '0000-00-00', '2010-06-01', '2010-06-01', '0000-00-00', NULL, 0),
+(15, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(16, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(17, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(18, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(19, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(20, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(21, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(22, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(23, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(24, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(25, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
+(26, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -200,20 +220,6 @@ CREATE TABLE IF NOT EXISTS `equipement_has_document` (
   PRIMARY KEY (`idEquipement`,`idDocument`),
   KEY `fk_Equipement_has_Document_Document1_idx` (`idDocument`),
   KEY `fk_Equipement_has_Document_Equipement1_idx` (`idEquipement`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `equipement_has_entretient`
---
-
-CREATE TABLE IF NOT EXISTS `equipement_has_entretient` (
-  `idEquipement` int(11) NOT NULL,
-  `idEntretient` int(11) NOT NULL,
-  PRIMARY KEY (`idEquipement`,`idEntretient`),
-  KEY `fk_Equipement_has_Entretient_Entretient1_idx` (`idEntretient`),
-  KEY `fk_Equipement_has_Entretient_Equipement1_idx` (`idEquipement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -264,18 +270,86 @@ CREATE TABLE IF NOT EXISTS `etiquette_equipement` (
   KEY `fk_Etiquette_Equipement_Categorie_Etiquette1_idx` (`idCategorieEtiquette`),
   KEY `fk_Etiquette_Equipement_Equipement1_idx` (`idEquipement`),
   KEY `fk_Etiquette_Equipement_Acronime_Etiquette1_idx` (`idAcronimeEtiquette`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 
 --
 -- Contenu de la table `etiquette_equipement`
 --
 
 INSERT INTO `etiquette_equipement` (`idEtiquette_Equipement`, `idCategorieEtiquette`, `idAcronimeEtiquette`, `idEquipement`) VALUES
-(3, 3, 2, 3),
-(1, 5, 1, 1),
-(2, 5, 1, 2),
-(4, 7, 2, 4),
-(5, 11, 2, 5);
+(26, 1, 1, 9),
+(32, 1, 15, 15),
+(33, 1, 15, 16),
+(34, 1, 15, 17),
+(35, 1, 15, 18),
+(36, 1, 15, 19),
+(37, 1, 15, 20),
+(38, 1, 15, 21),
+(39, 1, 15, 22),
+(40, 1, 15, 23),
+(41, 1, 15, 24),
+(42, 1, 15, 25),
+(43, 1, 15, 26),
+(27, 2, 3, 10),
+(28, 4, 5, 11),
+(29, 4, 6, 12),
+(30, 4, 7, 13),
+(31, 4, 8, 14);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fiche_de_vie`
+--
+
+CREATE TABLE IF NOT EXISTS `fiche_de_vie` (
+  `idFicheDeVie` int(11) NOT NULL AUTO_INCREMENT,
+  `idEquipement` int(11) NOT NULL,
+  PRIMARY KEY (`idFicheDeVie`,`idEquipement`),
+  KEY `fk_fiche_de_vie_equipement1_idx` (`idEquipement`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fiche_de_vie_has_anomalie`
+--
+
+CREATE TABLE IF NOT EXISTS `fiche_de_vie_has_anomalie` (
+  `idFicheDeVie` int(11) NOT NULL,
+  `idAnomalie` int(11) NOT NULL,
+  PRIMARY KEY (`idFicheDeVie`,`idAnomalie`),
+  KEY `fk_fiche_de_vie_has_anomalie_anomalie1_idx` (`idAnomalie`),
+  KEY `fk_fiche_de_vie_has_anomalie_fiche_de_vie1_idx` (`idFicheDeVie`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fiche_de_vie_has_calibration`
+--
+
+CREATE TABLE IF NOT EXISTS `fiche_de_vie_has_calibration` (
+  `idFicheDeVie` int(11) NOT NULL,
+  `idCalibration` int(11) NOT NULL,
+  PRIMARY KEY (`idFicheDeVie`,`idCalibration`),
+  KEY `fk_fiche_de_vie_has_calibration_calibration1_idx` (`idCalibration`),
+  KEY `fk_fiche_de_vie_has_calibration_fiche_de_vie1_idx` (`idFicheDeVie`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fiche_de_vie_has_entretient`
+--
+
+CREATE TABLE IF NOT EXISTS `fiche_de_vie_has_entretient` (
+  `idFicheDeVie` int(11) NOT NULL,
+  `idEntretient` int(11) NOT NULL,
+  PRIMARY KEY (`idFicheDeVie`,`idEntretient`),
+  KEY `fk_fiche_de_vie_has_entretient_entretient1_idx` (`idEntretient`),
+  KEY `fk_fiche_de_vie_has_entretient_fiche_de_vie1_idx` (`idFicheDeVie`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -286,9 +360,7 @@ INSERT INTO `etiquette_equipement` (`idEtiquette_Equipement`, `idCategorieEtique
 CREATE TABLE IF NOT EXISTS `fonction_principal` (
   `idFonction_Principal` int(11) NOT NULL AUTO_INCREMENT,
   `fonctionPrincipal` varchar(45) DEFAULT NULL,
-  `idFonction_Secondaire` int(11) NOT NULL,
-  PRIMARY KEY (`idFonction_Principal`,`idFonction_Secondaire`),
-  KEY `fk_Fonction_Principal_Fonction_Secondaire1_idx` (`idFonction_Secondaire`)
+  PRIMARY KEY (`idFonction_Principal`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -319,14 +391,7 @@ CREATE TABLE IF NOT EXISTS `fournisseur` (
   `telephone` tinytext,
   `email` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idFournisseur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `fournisseur`
---
-
-INSERT INTO `fournisseur` (`idFournisseur`, `nomFournisseur`, `pays`, `cp`, `ville`, `adresse`, `telephone`, `email`) VALUES
-(1, 'ecotron', 'France', 77, 'Nemours', '78 rue du chateau', '0123456789', 'eco@tron.fr');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -365,29 +430,13 @@ CREATE TABLE IF NOT EXISTS `lieux_document` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `lieu_equipement`
---
-
-CREATE TABLE IF NOT EXISTS `lieu_equipement` (
-  `idLieu_Equipement` int(11) NOT NULL AUTO_INCREMENT,
-  `idEquipement` int(11) NOT NULL,
-  `idPlateforme` int(11) NOT NULL,
-  PRIMARY KEY (`idLieu_Equipement`,`idEquipement`,`idPlateforme`),
-  KEY `fk_Lieu_Equipement_Plateforme1_idx` (`idPlateforme`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `lieu_utilisation`
 --
 
 CREATE TABLE IF NOT EXISTS `lieu_utilisation` (
   `idLieu_Utilisation` int(11) NOT NULL AUTO_INCREMENT,
   `lieuUtilisation` varchar(45) DEFAULT NULL,
-  `idPiece` int(11) NOT NULL,
-  PRIMARY KEY (`idLieu_Utilisation`,`idPiece`),
-  KEY `fk_Lieu_Equipement_Piece_Equipement1_idx` (`idPiece`)
+  PRIMARY KEY (`idLieu_Utilisation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -412,9 +461,7 @@ CREATE TABLE IF NOT EXISTS `piece_equipement` (
   `idPiece` int(11) NOT NULL AUTO_INCREMENT,
   `valeur` varchar(45) DEFAULT NULL,
   `piece` varchar(45) DEFAULT NULL,
-  `idFonction_Principal` int(11) NOT NULL,
-  PRIMARY KEY (`idPiece`,`idFonction_Principal`),
-  KEY `fk_Piece_Equipement_Fonction_Principal1_idx` (`idFonction_Principal`)
+  PRIMARY KEY (`idPiece`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -428,10 +475,18 @@ CREATE TABLE IF NOT EXISTS `planning_occupation` (
   `dateDebut` datetime DEFAULT NULL,
   `dateFin` datetime DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL,
-  `idLieu_Equipement` int(11) NOT NULL,
-  PRIMARY KEY (`idPlanning_Occupation`,`idUtilisateur`,`idLieu_Equipement`),
+  `idPlateforme` int(11) NOT NULL,
+  `idLieu_Utilisation` int(11) NOT NULL,
+  `idPiece` int(11) NOT NULL,
+  `idFonction_Principal` int(11) NOT NULL,
+  `idFonction_Secondaire` int(11) NOT NULL,
+  PRIMARY KEY (`idPlanning_Occupation`,`idUtilisateur`,`idPlateforme`,`idLieu_Utilisation`,`idPiece`,`idFonction_Principal`,`idFonction_Secondaire`),
   KEY `fk_Planning_Occupation_Utilisateur1_idx` (`idUtilisateur`),
-  KEY `fk_Planning_Occupation_Lieu_Equipement1_idx` (`idLieu_Equipement`)
+  KEY `fk_planning_occupation_plateforme1_idx` (`idPlateforme`),
+  KEY `fk_planning_occupation_lieu_utilisation1_idx` (`idLieu_Utilisation`),
+  KEY `fk_planning_occupation_piece_equipement1_idx` (`idPiece`),
+  KEY `fk_planning_occupation_fonction_principal1_idx` (`idFonction_Principal`),
+  KEY `fk_planning_occupation_fonction_secondaire1_idx` (`idFonction_Secondaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -443,9 +498,7 @@ CREATE TABLE IF NOT EXISTS `planning_occupation` (
 CREATE TABLE IF NOT EXISTS `plateforme` (
   `idPlateforme` int(11) NOT NULL AUTO_INCREMENT,
   `plateforme` varchar(45) DEFAULT NULL,
-  `idLieu_Utilisation` int(11) NOT NULL,
-  PRIMARY KEY (`idPlateforme`,`idLieu_Utilisation`),
-  KEY `fk_Plateforme_Lieu_Equipement1_idx` (`idLieu_Utilisation`)
+  PRIMARY KEY (`idPlateforme`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -471,7 +524,24 @@ CREATE TABLE IF NOT EXISTS `processus` (
   `valeurProcessus` varchar(45) DEFAULT NULL,
   `Processus` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idProcessus`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- Contenu de la table `processus`
+--
+
+INSERT INTO `processus` (`idProcessus`, `valeurProcessus`, `Processus`) VALUES
+(1, 'CI', 'Communication interne'),
+(2, 'M', 'Management'),
+(3, 'Q', 'Qualite'),
+(4, 'A', 'Achats'),
+(5, 'Mat', 'Materiels'),
+(6, 'I', 'Infrastructure'),
+(7, 'Inf', 'Informatique'),
+(8, 'Presta', 'Prestation de service plateformes de recherch'),
+(9, 'AR', 'Activite de recherche'),
+(10, 'F', 'Formation'),
+(11, 'H', 'Hebergement');
 
 -- --------------------------------------------------------
 
@@ -496,7 +566,16 @@ CREATE TABLE IF NOT EXISTS `sous_processus` (
   `valeurSousProcessus` varchar(45) DEFAULT NULL,
   `sousProcessus` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idSous_Processus`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `sous_processus`
+--
+
+INSERT INTO `sous_processus` (`idSous_Processus`, `valeurSousProcessus`, `sousProcessus`) VALUES
+(1, 'SD', 'Systeme Documentaire'),
+(3, 'Serre', 'Serre de recherche'),
+(4, 'Ecotron', 'Plateforme Ecotron');
 
 -- --------------------------------------------------------
 
@@ -509,7 +588,22 @@ CREATE TABLE IF NOT EXISTS `type_document` (
   `valeurTypeDoc` varchar(45) DEFAULT NULL,
   `typeDocument` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idType_Document`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Contenu de la table `type_document`
+--
+
+INSERT INTO `type_document` (`idType_Document`, `valeurTypeDoc`, `typeDocument`) VALUES
+(1, 'PO', 'PrOcessus'),
+(2, 'PR', 'PRocedure'),
+(3, 'MO', 'Mode Operatoire'),
+(4, 'FO', 'FOrmulaire'),
+(5, 'EN', 'ENregistrements'),
+(6, 'FE', 'Fiche Equipement'),
+(7, 'FV', 'Fiche de Vie'),
+(8, 'FA', 'Fiche Anomalie'),
+(9, 'G', 'Guide d utilisation');
 
 -- --------------------------------------------------------
 
@@ -526,14 +620,15 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `password` varchar(45) DEFAULT NULL,
   `role` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `nomUtilisateur`, `prenomUtilisateur`, `email`, `login`, `password`, `role`) VALUES
-(1, 'Fernandes', 'Tiago', 'tiago_fernandes@live.fr', 'test', 'test', 'Administrateur');
+(1, 'Fernandes', 'Tiago', 'tiago_fernandes@live.fr', 'test', 'test', 'Administrateur'),
+(4, 'Massol', 'Florent', 'florent.massol@ens.fr', 'Florent', 'flo', 'Administrateur');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

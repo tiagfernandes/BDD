@@ -27,9 +27,9 @@
 
                         <form method="post" action="ajout_doc.php">
                             <label id="ajout_element">Nom document : *</label><input type="text" name="nom_document" placeholder="Nom"></p>
-                            <label id="ajout_element">Etiquette document : *</label></p>
+                        	<label id="ajout_element">Etiquette document : *</label></p>
                                 <!-- 1ere listview -->
-                                <select name="type">
+                            	<select name="type">
                                     <option value=NULL>-- Type --</option>
                                     <?php
 
@@ -68,21 +68,25 @@
                                         }
                                         ?>
                                     </option>
-                               </select><br/>
+                               	</select><br/>
 
-                               <select name="categorie">
-                                    <option value=NULL>-- Catégorie étiquette --</option>
+                               	<select name="categorie">
+                                    <option value=NULL>-- Catégorie étiquette équipement--</option>
                                         <?php
 
-                                        $reponse = $pdo->query('SELECT * FROM sous_processus');
+                                        $reponse = $pdo->query('SELECT *
+																FROM `categorie_etiquette`, `acronime_etiquette`, `etiquette_equipement`
+																WHERE `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+																AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
-                                            <option value="<?php echo $donnees['idSous_Processus']; ?>"><?php echo $donnees['valeurSousProcessus']; ?> - <?php echo $donnees['sousProcessus']; ?></option>
+                                            <option value="<?php echo $donnees['idCategorieEtiquette']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['valeurAcronime']; ?></option>
                                         <?php
                                         }
                                         ?>
                                     </option>
-                               </select><br/>
+                               	</select>
+                           	<br/>
 
 
                        		<input class="bouton" type="submit" value="Ajouter">
