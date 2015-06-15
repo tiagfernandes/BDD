@@ -6,16 +6,15 @@
     $idProcessus = $_POST['processus'];
     $idSous_Processus = $_POST['s_processus'];
     $idEtiquette_Equipement = $_POST['idEtiquetteEquipement'];
-try{
-	$requette = $pdo->query("SELECT `idEquipement` FROM `etiquette_equipement` WHERE `idEtiquette_Equipement`='$idEtiquette_Equipement'");
-	print $requette;
-}
-catch(Exception $e){
-	die ("Erreur dans la requete ".$e->getMessage());
-}
+
+	$resultats = $pdo->query("SELECT `idEquipement` FROM `etiquette_equipement` WHERE `idEtiquette_Equipement`='$idEtiquette_Equipement'");
+	$resultat = $resultats->fetch(PDO::FETCH_NUM);
+	$idEquipement = $resultat[0];
+	print($idEquipement);
+
 print("$nom_document, $idType_Document, $idProcessus, $idSous_Processus, $idEtiquette_Equipement");
 
-   /*	if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL" && $idEtiquette_Equipement!="NULL"){
+   	if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL" && $idEtiquette_Equipement!="NULL"){
 
         $sql = "INSERT INTO `etiquette_document` (idType_Document, idProcessus, idSous_Processus, idEtiquette_Equipement) VALUES ('$idType_Document', '$idProcessus', '$idSous_Processus', '$idEtiquette_Equipement')";
         $prep = $pdo->prepare($sql);
@@ -29,11 +28,13 @@ print("$nom_document, $idType_Document, $idProcessus, $idSous_Processus, $idEtiq
 
 		$idDoc = $pdo->lastInsertId();
 
-		$sql3 = "INSERT INTO `equipement_has_document` (idEquipement, iddocument) VALUES ('', '')";
+		$sql3 = "INSERT INTO `equipement_has_document` (idEquipement, idDocument) VALUES ('$idEquipement', '$idDoc')";
+		$prep3 = $pdo->prepare($sql3);
+        $prep3->execute();
 
         header('Location: ajout-document.php?succes');
    	}
 
    	else
-        header('Location: ajout-document.php?erreur');*/
+        header('Location: ajout-document.php?erreur');
 ?>

@@ -257,3 +257,17 @@ function updateAcronime($id){
 		die ("Erreur dans la requete ".$e->getMessage());
       }
 }
+
+function getAllDocument(){
+	global $pdo;
+		$query = "SELECT *
+				  FROM `document`";
+
+		try {
+		  $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+		  return $result;
+		}
+		catch ( Exception $e ) {
+		  die ("Erreur dans la requete ".$e->getMessage());
+		}
+}

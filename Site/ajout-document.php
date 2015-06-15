@@ -93,8 +93,27 @@
 
                        		<input class="bouton" type="submit" value="Ajouter">
                         </form>
-                    </fieldset>
-               </div>
+
+							<div class="text">
+								<?php
+									$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+									if ($monUrl == "http://localhost/BDD/Site/ajout-document.php?succes"){
+										echo ("Document ajouté avec succès !");
+									}
+								?>
+							</div>
+
+							<div id ="erreur">
+								<?php
+									$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+									if ($monUrl == "http://localhost/BDD/Site/ajout-document.php?erreur"){
+										echo ("Veuilliez saisir tous les champs !");
+									}
+								?>
+							</div>
+					</fieldset>
+				</div>
+
       	<?php }
             else{
                 $message="Vous devez être Administrateur pour acceder à cette page !";
