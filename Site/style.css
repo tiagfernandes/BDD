@@ -455,7 +455,7 @@ a.document:hover { color:firebrick;}
 	margin-left: 39%;
 	color: green;
 }
-=======
+
 .doc {
     position: absolute;
     margin-top: -11%;
@@ -495,11 +495,10 @@ a.doc:hover { color:firebrick;}
     padding-bottom: 15px;
 }
 
-<<<<<<< HEAD
 #search {
 	width: 100px;
 }
-=======
+
 .ajout-categorie {
     position: relative;
     margin-top: 12%;
@@ -520,11 +519,8 @@ a.ajout-categorie:hover { color:firebrick;}
 
 a.ajout-acr { color:black; }
 a.ajout-acr:hover { color:firebrick;}
-<<<<<<< HEAD
 
 #choix_ajout {
     text-align: center;
 }
-=======
->>>>>>> origin/master
->>>>>>> origin/master
+
