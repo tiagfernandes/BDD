@@ -44,11 +44,8 @@
 									<div class="text">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-<<<<<<< HEAD
-											if ($monUrl == "http://localhost/BDD/Site/ajout-categorie.php?succes_cat"){
-=======
 											if ($monUrl == "http://localhost/BDD/Site/ajout-categorie.php?succes"){
->>>>>>> origin/master
+
 												echo ("Catégorie ajouté avec succès !");
 											}
 										?>
@@ -56,11 +53,7 @@
 									<div id ="erreur">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-<<<<<<< HEAD
-											if ($monUrl == "http://localhost/BDD/Site/ajout-categorie.php?erreur_cat"){
-=======
 											if ($monUrl == "http://localhost/BDD/Site/ajout-categorie.php?erreur"){
->>>>>>> origin/master
 												echo ("Veuilliez saisir tous les champs !");
 											}
 										?>

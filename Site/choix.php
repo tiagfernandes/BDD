@@ -20,7 +20,7 @@
 				<div id="contenu">
 					<div id="banniere">Ajout</div>
 
-						<div>
+						<div id="choix_ajout">
 							<a class="equipement" href="ajout-element.php">Equipement</a></br>
 							<a class="document" href="ajout-document.php">Document</a></br>
 							<a class="ajout-categorie" href="ajout-categorie.php">Catégorie étiquette</a></br>
