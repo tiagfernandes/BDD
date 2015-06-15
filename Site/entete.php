@@ -64,7 +64,7 @@
 							onmouseover="mcancelclosetime()"
 							onmouseout="mclosetime()">
 							<a href="index.php">Equipement</a>
-							<a href="ajout-document.php">Document</a>
+							<a href="doc.php">Document</a>
 						</div>
 				</li>
 				<li><a href="choix.php"
