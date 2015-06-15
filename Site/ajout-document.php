@@ -27,9 +27,9 @@
 
                         <form method="post" action="ajout_doc.php">
                             <label id="ajout_element">Nom document : *</label><input type="text" name="nom_document" placeholder="Nom"></p>
-                            <label id="ajout_element">Etiquette document : *</label></p>
+                        	<label id="ajout_element">Etiquette document : *</label></p>
                                 <!-- 1ere listview -->
-                                <select name="type">
+                            	<select name="type">
                                     <option value=NULL>-- Type --</option>
                                     <?php
 
@@ -68,23 +68,26 @@
                                         }
                                         ?>
                                     </option>
-                               </select><br/>
-	   						</p><table border=1>
-	   							<th></th>
-								<th>Etiquette</th>
-								<th>Equipement</th>
+                               	</select><br/>
 
-								<?php foreach ($Equipement as $cle=>$valeur): ?>
-									<tr>
-										<td><input type="checkbox" name=""></td>
-											<?php foreach ($valeur as $val): ?>
-												<td><?= htmlentities($val) ?></td>
-											<?php endforeach; ?>
-										</td>
-									</tr>
+                               	<select name="categorie">
+                                    <option value=NULL>-- Catégorie étiquette équipement--</option>
+                                        <?php
 
-								 <?php endforeach; ?>
-								</table>
+                                        $reponse = $pdo->query('SELECT *
+																FROM `categorie_etiquette`, `acronime_etiquette`, `etiquette_equipement`
+																WHERE `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+																AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`');
+                                        while ($donnees = $reponse->fetch()){
+                                        ?>
+                                            <option value="<?php echo $donnees['idCategorieEtiquette']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['valeurAcronime']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </option>
+                               	</select>
+                           	<br/>
+
 
                        		<input class="bouton" type="submit" value="Ajouter">
                         </form>

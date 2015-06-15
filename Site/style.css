@@ -526,12 +526,7 @@ a.ajout-acr:hover { color:firebrick;}
 }
 
 table {
-	position: relative;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 20px;
-	margin-top: 20px;
+
 }
 
 hr {
@@ -544,3 +539,16 @@ hr {
 #choix_ajout {
     text-align: center;
 }
+<<<<<<< HEAD
+=======
+
+
+.tableau {
+	position: relative;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+>>>>>>> origin/master

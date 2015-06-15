@@ -54,18 +54,18 @@
 					<!-- Barre de recherche date d'ajout -->
 					<form action ="index.php" method="get">
 						<span>Recherche par date d'ajout d'équipement :</span>
-							<input type="date" id="search" name="searchDateAjout"/>
+							<input type="date" id="search" name="searchDateAjout" placeholder="AAAA/MM/JJ"/>
 								<input type="submit" value="Envoyer">
 					</form></p>
 
 				<hr><!-- Trait de séparation -->
 
 				<!-- Création du tableau-->
-					<table border=2>
+					<table class="tableau" border=2>
 						<th>Id</th>
 						  <th>Etiquette</th>
 						  <th>Nom équipement</th>
-						  <th>Marque</th>
+						  <th width=200px>Marque</th>
 						  <th>Fiche de Vie</th>
 						  <th>Lieu affectation</th>
 						  <th>Lieu d'utilisation</th>
@@ -80,7 +80,7 @@
 						$chaineSearchAcr = addslashes($_GET['searchAcr']);
 						$chaineSearchId = addslashes($_GET['searchId']);
 
-							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`
+							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`
 										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
 										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
 										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
@@ -101,6 +101,10 @@
 								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 								<td><?php echo $donnees['nomEquipement']; ?></td>
 								<td><?php echo $donnees['marque']; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo $donnees['responsable']; ?></td>
 							</tr>
 							<?php
 							}
@@ -113,7 +117,7 @@
 
 						$chaineSearchNom = addslashes($_GET['searchNom']);
 
-							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`
+							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`
 										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
 										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
 										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
@@ -132,6 +136,10 @@
 								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 								<td><?php echo $donnees['nomEquipement']; ?></td>
 								<td><?php echo $donnees['marque']; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo $donnees['responsable']; ?></td>
 							</tr>
 							<?php
 							}
@@ -143,7 +151,7 @@
 
 						$chaineSearchDateAjout = addslashes($_GET['searchDateAjout']);
 
-							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`
+							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`
 										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
 										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
 										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
@@ -162,6 +170,10 @@
 								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 								<td><?php echo $donnees['nomEquipement']; ?></td>
 								<td><?php echo $donnees['marque']; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo $donnees['responsable']; ?></td>
 							</tr>
 							<?php
 							}
@@ -173,7 +185,7 @@
 
 						$chaineSearchMarque = addslashes($_GET['searchMarque']);
 
-							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`
+							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`
 										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
 										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
 										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
@@ -192,6 +204,10 @@
 								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 								<td><?php echo $donnees['nomEquipement']; ?></td>
 								<td><?php echo $donnees['marque']; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo ""; ?></td>
+								<td><?php echo $donnees['responsable']; ?></td>
 							</tr>
 							<?php
 							}
