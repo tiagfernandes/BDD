@@ -15,6 +15,7 @@
 
 
     <body>
+
 		<?php require_once('entete.php'); ?>
 			<!--Affichage des données utilisateur-->
 			<div id="contenu">
