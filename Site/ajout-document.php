@@ -28,7 +28,7 @@
                         <form method="post" action="ajout_doc.php">
                             <label id="ajout_element">Nom document : *</label><input type="text" name="nom_document" placeholder="Nom"></p>
                         	<label id="ajout_element">Etiquette document : *</label></p>
-                                <!-- 1ere listview -->
+                               <!-- 1ere listview -->
                             	<select name="type">
                                     <option value=NULL>-- Type --</option>
                                     <?php
@@ -68,24 +68,26 @@
                                         }
                                         ?>
                                     </option>
-                               	</select><br/>
+								</select></p>
 
+							<label id="ajout_element">Etiquette équipement lier au document :*</label>
                                	<select name="categorie">
-                                    <option value=NULL>-- Catégorie étiquette équipement--</option>
+                                    <option value=NULL>-- Etiquette équipement --</option>
                                         <?php
 
                                         $reponse = $pdo->query('SELECT *
 																FROM `categorie_etiquette`, `acronime_etiquette`, `etiquette_equipement`
 																WHERE `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-																AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`');
+																AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+																ORDER BY `valeurCategorie` ASC');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
-                                            <option value="<?php echo $donnees['idCategorieEtiquette']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['valeurAcronime']; ?></option>
+                                            <option value="<?php echo $donnees['idCategorieEtiquette']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['valeurAcronime']?> - <?php echo $donnees['idEquipement']; ?></option>
                                         <?php
                                         }
                                         ?>
                                     </option>
-                               	</select>
+	   							</select><img src="image/point-interrogation.png" width="17" height="17" title="Sélectionner l'étiquette de l'équipement correspondant au document.">
                            	<br/>
 
 
