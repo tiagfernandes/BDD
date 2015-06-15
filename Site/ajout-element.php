@@ -60,6 +60,8 @@
 										<label id="ajout_element">Date mise en service : </label><input type="date" name="datemes" placeholder="YYYY/MM/DD"></p>
 										<label id="ajout_element">Date de réception prévue : </label><input type="date" name="dater" placeholder="YYYY/MM/DD"></p>
 										<label id="ajout_element">Fin garantie : </label><input type="date" name="garantie" placeholder="Durée garantie"></p>
+										<label id="ajout_element">Lieu d'affectation : </label><input type="text" name="lieu-aff" placeholder="Lieu d'affectation"></p>
+										<label id="ajout_element">Lieu d'utilisation : </label><input type="text" name="lieu-util" placeholder="Lieu d'utilisation"></p>
 
 										<div id ="succes">
 											<?php
