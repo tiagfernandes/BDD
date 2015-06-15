@@ -1,5 +1,12 @@
 <?php
     require_once('fonctions.php');
+
+	if(isset($_GET['delete'])){ //Supprime categorie
+        $id = $_GET['delete'];
+        deleteAcronime($id);
+    }
+
+	$acronime = getAcronime($pdo);
 ?>
 
 <!doctype html>
@@ -38,7 +45,10 @@
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 											if ($monUrl == "http://localhost/BDD/Site/ajout-acronime.php?succes"){
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 												echo ("Acronime ajouté avec succès !");
 											}
 										?>
@@ -55,6 +65,31 @@
 								</form>
 						</fieldset>
 
+						<table border="1">
+								<th>id</th>
+								<th>Categorie</th>
+								<th>Valeur</th>
+								<th>Supprimer</th>
+								<th>Modifer</th>
+
+									<?php foreach ($acronime as $cle=>$valeur): ?>
+										<tr>
+											<?php foreach ($valeur as $val): ?>
+												<td><?= htmlentities($val) ?></td>
+											<?php endforeach; ?>
+
+									<!-- Bouton supprimer acronime -->
+											<td><a href=ajout-acronime.php?delete=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>
+								onClick="return(confirm('Supprimer <?= $valeur['acronimeEtiquette']  ?> ?'));">Supprimer</a></td>
+
+									<!-- Bouton modifier acronime -->
+											<td><a href=ajout-acronime.php?update=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>
+								onClick="return(confirm('Modifier <?= $valeur['acronimeEtiquette']  ?> ?'));">Modifier</a></td>
+										</tr>
+									<?php endforeach; ?>
+							</table>
+
+				</div>
 			<?php }
 				else{
 					$message="Vous devez être Administrateur pour acceder à cette page !";

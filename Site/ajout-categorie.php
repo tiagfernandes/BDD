@@ -45,7 +45,10 @@
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 											if ($monUrl == "http://localhost/BDD/Site/ajout-categorie.php?succes"){
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 												echo ("Catégorie ajouté avec succès !");
 											}
 										?>
