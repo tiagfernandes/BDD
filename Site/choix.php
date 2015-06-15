@@ -29,6 +29,7 @@
 				</div>
 
 			<?php }
+
 				else{
 					$message="Vous devez être Administrateur pour acceder à cette page !";
 						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
