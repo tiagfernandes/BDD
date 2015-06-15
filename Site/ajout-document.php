@@ -69,22 +69,21 @@
                                         ?>
                                     </option>
                                </select><br/>
-	   						</p><table border=1>
-	   							<th></th>
-								<th>Etiquette</th>
-								<th>Equipement</th>
 
-								<?php foreach ($Equipement as $cle=>$valeur): ?>
-									<tr>
-										<td><input type="checkbox" name=""></td>
-											<?php foreach ($valeur as $val): ?>
-												<td><?= htmlentities($val) ?></td>
-											<?php endforeach; ?>
-										</td>
-									</tr>
+                               <select name="categorie">
+                                    <option value=NULL>-- Catégorie étiquette --</option>
+                                        <?php
 
-								 <?php endforeach; ?>
-								</table>
+                                        $reponse = $pdo->query('SELECT * FROM sous_processus');
+                                        while ($donnees = $reponse->fetch()){
+                                        ?>
+                                            <option value="<?php echo $donnees['idSous_Processus']; ?>"><?php echo $donnees['valeurSousProcessus']; ?> - <?php echo $donnees['sousProcessus']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </option>
+                               </select><br/>
+
 
                        		<input class="bouton" type="submit" value="Ajouter">
                         </form>

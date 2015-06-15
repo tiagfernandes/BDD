@@ -7,7 +7,10 @@
     $idSous_Processus = $_POST['s_processus'];
 
 
-    if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL"){
+
+print("$nom_document, $idType_Document, $idProcessus, $idSous_Processus, $etiquette_equipement");
+
+   /* if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL"){
 
         $sql = "INSERT INTO `etiquette_document` (idType_Document, idProcessus, idSous_Processus) VALUES ('$idType_Document', '$idProcessus', '$idSous_Processus')";
         $prep = $pdo->prepare($sql);
@@ -23,5 +26,5 @@
     }
 
     else
-        header('Location: ajout-document.php?erreur');
+        header('Location: ajout-document.php?erreur');*/
 ?>

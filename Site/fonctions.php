@@ -22,7 +22,7 @@ function getAuthentification($login, $pass){
 
 function getAllEquipement(){
     global $pdo;
-    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`marque`
+    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`marque`,`responsable`
               FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`
               WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
               AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
