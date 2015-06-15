@@ -44,11 +44,7 @@
 									<div class="text">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-<<<<<<< HEAD
-											if ($monUrl == "http://localhost/BDD/Site/ajout-acronime.php?succes_acr"){
-=======
 											if ($monUrl == "http://localhost/BDD/Site/ajout-acronime.php?succes"){
->>>>>>> origin/master
 												echo ("Acronime ajouté avec succès !");
 											}
 										?>
@@ -57,11 +53,7 @@
 									<div id ="erreur">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-<<<<<<< HEAD
-											if ($monUrl == "http://localhost/BDD/Site/ajout-acronime.php?erreur_acr"){
-=======
 											if ($monUrl == "http://localhost/BDD/Site/ajout-acronime.php?erreur"){
->>>>>>> origin/master
 												echo ("Veuilliez saisir tous les champs !");
 											}
 										?>
