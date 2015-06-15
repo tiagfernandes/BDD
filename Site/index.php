@@ -58,6 +58,8 @@
 								<input type="submit" value="Envoyer">
 					</form></p>
 
+				<hr><!-- Trait de séparation -->
+
 				<!-- Création du tableau-->
 					<table border=2>
 						<th>Id</th>
@@ -67,6 +69,7 @@
 						  <th>Fiche de Vie</th>
 						  <th>Lieu affectation</th>
 						  <th>Lieu d'utilisation</th>
+						  <th>Responsable</th>
 
 
 				<?php
