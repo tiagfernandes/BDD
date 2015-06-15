@@ -361,7 +361,6 @@ select {
 
 .equipement {
     position: relative;
-    left:44%;
     margin-top: 3%;
     display:inline-block;
     font-size: 30px;
@@ -372,7 +371,6 @@ a.equipement:hover { color:firebrick;}
 
 .document {
     position: relative;
-    left:44%;
     margin-top: 9%;
     display:inline-block;
     font-size: 30px;
@@ -453,7 +451,7 @@ a.document:hover { color:firebrick;}
 	margin-left: 39%;
 	color: green;
 }
-=======
+
 .doc {
     position: absolute;
     margin-top: -11%;
@@ -493,14 +491,12 @@ a.doc:hover { color:firebrick;}
     padding-bottom: 15px;
 }
 
-<<<<<<< HEAD
 #search {
 	width: 100px;
 }
-=======
+
 .ajout-categorie {
     position: relative;
-    left:40%;
     margin-top: 12%;
     display:inline-block;
     font-size: 30px;
@@ -511,15 +507,15 @@ a.ajout-categorie:hover { color:firebrick;}
 
 .ajout-acr {
     position: relative;
-    left:40%;
     margin-top: 15%;
     display:inline-block;
     font-size: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 a.ajout-acr { color:black; }
 a.ajout-acr:hover { color:firebrick;}
+<<<<<<< HEAD
 >>>>>>> origin/master
 
 
@@ -544,3 +540,10 @@ hr {
 	margin-left: 2%;
 	margin-right: 2%
 }
+=======
+
+#choix_ajout {
+    text-align: center;
+}
+
+>>>>>>> origin/master
