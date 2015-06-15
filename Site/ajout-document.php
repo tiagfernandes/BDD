@@ -71,7 +71,7 @@
 								</select></p>
 
 							<label id="ajout_element">Etiquette équipement lier au document :*</label>
-                               	<select name="categorie">
+                               	<select name="idEtiquetteEquipement">
                                     <option value=NULL>-- Etiquette équipement --</option>
                                         <?php
 
@@ -82,7 +82,7 @@
 																ORDER BY `valeurCategorie` ASC');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
-                                            <option value="<?php echo $donnees['idCategorieEtiquette']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['valeurAcronime']?> - <?php echo $donnees['idEquipement']; ?></option>
+                                            <option value="<?php echo $donnees['idEtiquette_Equipement']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['valeurAcronime']?> - <?php echo $donnees['idEquipement']; ?></option>
                                         <?php
                                         }
                                         ?>
