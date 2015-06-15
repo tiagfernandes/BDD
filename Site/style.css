@@ -343,11 +343,7 @@ select {
 	width: 125px;
 }
 
-table {
-	text-align: center;
-	margin-left: 15px;
-	margin-right: 15px;
-}
+
 
 .footer {
     border-radius: 10px 10px 0px 0px;
@@ -519,8 +515,35 @@ a.ajout-categorie:hover { color:firebrick;}
 
 a.ajout-acr { color:black; }
 a.ajout-acr:hover { color:firebrick;}
+<<<<<<< HEAD
+>>>>>>> origin/master
+
+
+
+.tab_categorie {
+	position: absolute;
+	left: 50px;
+}
+
+table {
+	position: relative;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+
+hr {
+	width: auto;
+	align: center;
+	margin-left: 2%;
+	margin-right: 2%
+}
+=======
 
 #choix_ajout {
     text-align: center;
 }
 
+>>>>>>> origin/master

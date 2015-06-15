@@ -57,7 +57,15 @@
         </div>
         <div>
 			<ul id="sddm">
-				<li><a href="index.php">Accueil</a>
+				<li><a href="index.php"
+					onmouseover="mopen('m1')"
+					onmouseout="mclosetime()">Consultation</a>
+						<div id="m1"
+							onmouseover="mcancelclosetime()"
+							onmouseout="mclosetime()">
+							<a href="index.php">Equipement</a>
+							<a href="ajout-document.php">Document</a>
+						</div>
 				</li>
 				<li><a href="choix.php"
 					onmouseover="mopen('m2')"
