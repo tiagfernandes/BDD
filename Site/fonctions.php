@@ -260,15 +260,20 @@ function updateAcronime($id){
 
 function getAllDocument(){
 	global $pdo;
-		$query = "SELECT `document`.`idDocument`,`nomDocument`, CONCAT(`valeurTypeDoc`,'-',`valeurProcessus`,'-',`valeurSousProcessus`,'-',`valeurCategorie`,'-',`valeurAcronime`,'-',`document`.`idDocument`)
-				FROM `document`, `etiquette_document`,`type_document`,`processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`
+		$query = "SELECT `document`.`idDocument`,`nomDocument`, CONCAT(`valeurTypeDoc`,'-',`valeurProcessus`,'-',`valeurSousProcessus`,'-',`valeurCategorie`,'-',`valeurAcronime`,'-',`document`.`idDocument`), CONCAT(`valeurPlateforme`,'-', `valeurPiece`,'-', `valeurEmplacement`,'-', `valeurSousEmplacement`)
+				FROM `document`, `etiquette_document`,`type_document`,`processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`,`lieux_document`,`plateforme_archive`, `piece_document`, `emplacement_archive`, `sous_emplacement`
 				WHERE `document`.`idEtiquette_Document` = `etiquette_document`.`idEtiquette_Document`
 				AND `etiquette_document`.`idType_Document` = `type_document`.`idType_Document`
 				AND `etiquette_document`.`idProcessus` = `processus`.`idProcessus`
 				AND `etiquette_document`.`idSous_Processus` = `sous_processus`.`idSous_Processus`
 				AND `etiquette_document`.`idEtiquette_Equipement` = `etiquette_equipement`.`idEtiquette_Equipement`
 				AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-				AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`";
+				AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+				AND `document`.`idLieux_Document` = `lieux_document`.`idLieux_Document`
+				AND `lieux_document`.`idPlateforme_Archive` = `plateforme_archive`.`idPlateforme_Archive`
+				AND `lieux_document`.`idPiece_Document` = `piece_document`.`idPiece_Document`
+				AND `lieux_document`.`idEmplacement_Archive` = `emplacement_archive`.`idEmplacement_Archive`
+				AND `lieux_document`.`idSous_Emplacement` = `sous_emplacement`.`idSous_Emplacement`";
 
 		try {
 		  $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
