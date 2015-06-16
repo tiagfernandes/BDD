@@ -87,7 +87,7 @@
                                         }
                                         ?>
                                     </option>
-	   							</select><img src="image/point-interrogation.png" width="17" height="17" title="Sélectionner l'étiquette de l'équipement correspondant au document."></p>
+	   							</select><img src="image/point-interrogation.png" width="17" height="17" title="Sélectionner l'étiquette de l'équipement correspondant au document."></p><br/>
 
 
 
@@ -98,7 +98,7 @@
 
                                         $reponse = $pdo->query('SELECT *
 																FROM `plateforme_archive`
-																ORDER BY `plateforme_archive` ASC');
+																ORDER BY `plateformeArchive` ASC');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
                                             <option value="<?php echo $donnees['idPlateforme_Archive']; ?>"><?php echo $donnees['plateformeArchive']; ?></option>
@@ -113,16 +113,48 @@
                                         <?php
 
                                         $reponse = $pdo->query('SELECT *
-																FROM `piece_documennt`
+																FROM `piece_document`
 																ORDER BY `pieceDocument` ASC');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
-                                            <option value="<?php echo $donnees['idPlateforme_Archive']; ?>"><?php echo $donnees['plateformeArchive']; ?></option>
+                                            <option value="<?php echo $donnees['idPiece_Document']; ?>"><?php echo $donnees['pieceDocument']; ?></option>
                                         <?php
                                         }
                                         ?>
                                     </option>
 								</select>
+
+								<select name="emplacement">
+                                    <option value=NULL>-- Emplacement --</option>
+                                        <?php
+
+                                        $reponse = $pdo->query('SELECT *
+																FROM `emplacement_archive`
+																ORDER BY `emplacementArchive` ASC');
+                                        while ($donnees = $reponse->fetch()){
+                                        ?>
+                                            <option value="<?php echo $donnees['idEmplacement_Archive']; ?>"><?php echo $donnees['emplacementArchive']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </option>
+								</select>
+
+								<select name="sous_emplacement">
+                                    <option value=NULL>-- Sous emplacement --</option>
+                                        <?php
+
+                                        $reponse = $pdo->query('SELECT *
+																FROM `sous_emplacement`
+																ORDER BY `sousEmplacement` ASC');
+                                        while ($donnees = $reponse->fetch()){
+                                        ?>
+                                            <option value="<?php echo $donnees['idSous_Emplacement']; ?>"><?php echo $donnees['sousEmplacement']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </option>
+								</select></p>
 
 
                        		<input class="bouton" type="submit" value="Ajouter">

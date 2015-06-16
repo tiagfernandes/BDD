@@ -23,7 +23,7 @@
         <?php require_once('entete.php'); ?>
             <div id ="contenu">
                 <div id="banniere">Fiche document</div>
-                    <?php	//fonction pour afficher le nom de l'équipement
+                    <?php	//fonction pour afficher le nom du document
                         $resultats=$pdo->query("SELECT nomDocument FROM document WHERE idDocument='$idDocument'");
                         $resultats->setFetchMode(PDO::FETCH_OBJ);
                         while( $resultat = $resultats->fetch() )
@@ -32,7 +32,7 @@
                         }
                         $resultats->closeCursor();
                     ?>
-                    <?php	//fonction pour afficher l'etiquette de l'équipement
+                    <?php	//fonction pour afficher l'etiquette du document
                         $resultats=$pdo->query("SELECT `valeurTypeDoc`,`valeurProcessus`,`valeurSousProcessus`,`valeurCategorie`,`valeurAcronime`,`document`.`idDocument`
 								FROM `document`, `etiquette_document`, `type_document`, `processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`
 								WHERE `document`.`idEtiquette_Document` = `etiquette_document`.`idEtiquette_Document`
@@ -52,6 +52,25 @@
                             echo '-'.$resultat->valeurCategorie.'';
                             echo '-'.$resultat->valeurAcronime.'';
                             echo '-'.$resultat->idDocument.'<br>';
+                        }
+                        $resultats->closeCursor();
+                    ?>
+                    <?php	//fonction pour afficher le lieu d'archivage
+                        $resultats=$pdo->query("SELECT `plateformeArchive`, `pieceDocument`, `emplacementArchive`, `sousEmplacement`
+												FROM `document`, `lieux_document`,`plateforme_archive`, `piece_document`, `emplacement_archive`, `sous_emplacement`
+												WHERE `document`.`idLieux_Document` = `lieux_document`.`idLieux_Document`
+												AND `lieux_document`.`idPlateforme_Archive` = `plateforme_archive`.`idPlateforme_Archive`
+												AND `lieux_document`.`idPiece_Document` = `piece_document`.`idPiece_Document`
+												AND `lieux_document`.`idEmplacement_Archive` = `emplacement_archive`.`idEmplacement_Archive`
+												AND `lieux_document`.`idSous_Emplacement` = `sous_emplacement`.`idSous_Emplacement`
+												AND `idDocument`='$idDocument'");
+                        $resultats->setFetchMode(PDO::FETCH_OBJ);
+                        while( $resultat = $resultats->fetch() )
+                        {
+                            echo 'Plateforme : '.$resultat->plateformeArchive.'<br>';
+                            echo 'Piece : '.$resultat->pieceDocument.'<br>';
+                            echo 'Emplacement : '.$resultat->emplacementArchive.'<br>';
+                            echo 'Sous emplacement : '.$resultat->sousEmplacement.'<br>';
                         }
                         $resultats->closeCursor();
                     ?>

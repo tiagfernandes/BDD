@@ -7,6 +7,11 @@
     $idSous_Processus = $_POST['s_processus'];
     $idEtiquette_Equipement = $_POST['idEtiquetteEquipement'];
 
+	$plateforme = $_POST['plateforme'];
+	$piece = $_POST['piece'];
+	$emplacement = $_POST['emplacement'];
+	$sous_emplacement = $_POST['sous_emplacement'];
+
 	$resultats = $pdo->query("SELECT `idEquipement` FROM `etiquette_equipement` WHERE `idEtiquette_Equipement`='$idEtiquette_Equipement'");
 	$resultat = $resultats->fetch(PDO::FETCH_NUM);
 	$idEquipement = $resultat[0];
@@ -31,6 +36,16 @@ print("$nom_document, $idType_Document, $idProcessus, $idSous_Processus, $idEtiq
 		$sql3 = "INSERT INTO `equipement_has_document` (idEquipement, idDocument) VALUES ('$idEquipement', '$idDoc')";
 		$prep3 = $pdo->prepare($sql3);
         $prep3->execute();
+
+		$sql4 = "INSERT INTO `lieux_document` (idPlateforme_Archive, idPiece_Document, idEmplacement_Archive, idSous_Emplacement) VALUES ('$plateforme', '$piece', '$emplacement', '$sous_emplacement')";
+		$prep4 = $pdo->prepare($sql4);
+        $prep4->execute();
+
+		$idLieu = $pdo->lastInsertId();
+
+		$sql5 = "UPDATE `document` SET `idLieux_Document` = '$idLieu' WHERE idDocument='$idDoc'";
+		$prep5 = $pdo->prepare($sql5);
+        $prep5->execute();
 
         header('Location: ajout-document.php?succes');
    	}
