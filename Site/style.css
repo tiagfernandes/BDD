@@ -343,7 +343,7 @@ table tbody tr:nth-child(odd) {
 }
 
 select {
-	width: 130px;
+	width: 125px;
 }
 
 
@@ -525,7 +525,9 @@ a.ajout-acr:hover { color:firebrick;}
 	left: 50px;
 }
 
+table {
 
+}
 
 hr {
 	width: auto;
@@ -538,11 +540,12 @@ hr {
     text-align: center;
 }
 
+
 .tableau {
 	position: relative;
 	text-align: center;
-	margin-left: 3%;
-	margin-right: 3%;
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
