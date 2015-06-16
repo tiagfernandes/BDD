@@ -64,7 +64,7 @@
 							onmouseover="mcancelclosetime()"
 							onmouseout="mclosetime()">
 							<a href="index.php">Equipement</a>
-							<a href="ajout-document.php">Document</a>
+							<a href="doc.php">Document</a>
 						</div>
 				</li>
 				<li><a href="choix.php"
@@ -74,9 +74,9 @@
 							onmouseover="mcancelclosetime()"
 							onmouseout="mclosetime()">
 							<a href="ajout-element.php">Equipement</a>
-							<a href="ajout-document.php">Document</a>
 							<a href="ajout-categorie.php">Catégorie étiquette</a>
 							<a href="ajout-acronime.php">Acronime équipement</a>
+							<a href="ajout-document.php">Document</a>
 						</div>
 				</li>
 				<li><a href="profil.php">Profil</a></li>

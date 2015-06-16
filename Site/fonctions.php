@@ -257,3 +257,24 @@ function updateAcronime($id){
 		die ("Erreur dans la requete ".$e->getMessage());
       }
 }
+
+function getAllDocument(){
+	global $pdo;
+		$query = "SELECT `document`.`idDocument`,`nomDocument`, CONCAT(`valeurTypeDoc`,'-',`valeurProcessus`,'-',`valeurSousProcessus`,'-',`valeurCategorie`,'-',`valeurAcronime`,'-',`document`.`idDocument`)
+				FROM `document`, `etiquette_document`,`type_document`,`processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`
+				WHERE `document`.`idEtiquette_Document` = `etiquette_document`.`idEtiquette_Document`
+				AND `etiquette_document`.`idType_Document` = `type_document`.`idType_Document`
+				AND `etiquette_document`.`idProcessus` = `processus`.`idProcessus`
+				AND `etiquette_document`.`idSous_Processus` = `sous_processus`.`idSous_Processus`
+				AND `etiquette_document`.`idEtiquette_Equipement` = `etiquette_equipement`.`idEtiquette_Equipement`
+				AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+				AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`";
+
+		try {
+		  $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+		  return $result;
+		}
+		catch ( Exception $e ) {
+		  die ("Erreur dans la requete ".$e->getMessage());
+		}
+}
