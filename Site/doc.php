@@ -60,11 +60,8 @@
 				<!-- Création du tableau-->
 					<table class="tableau" border=2>
 						<th>Id</th>
+						<th>Nom document</th>
 						<th>Etiquette</th>
-						<th>Fiche de Vie</th>
-						<th>Lieu affectation</th>
-						<th>Lieu d'utilisation</th>
-						<th>Responsable</th>
 
 						<?php foreach ($listeDocument as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
 							<tr>

@@ -87,11 +87,46 @@
                                         }
                                         ?>
                                     </option>
-	   							</select><img src="image/point-interrogation.png" width="17" height="17" title="Sélectionner l'étiquette de l'équipement correspondant au document.">
-                           	<br/>
+	   							</select><img src="image/point-interrogation.png" width="17" height="17" title="Sélectionner l'étiquette de l'équipement correspondant au document."></p>
+
+
+
+                            <label id="ajout_element">Lieu d'archive :</label>
+                               	<select name="plateforme">
+                                    <option value=NULL>-- Plateforme --</option>
+                                        <?php
+
+                                        $reponse = $pdo->query('SELECT *
+																FROM `plateforme_archive`
+																ORDER BY `plateforme_archive` ASC');
+                                        while ($donnees = $reponse->fetch()){
+                                        ?>
+                                            <option value="<?php echo $donnees['idPlateforme_Archive']; ?>"><?php echo $donnees['plateformeArchive']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </option>
+								</select>
+
+                      			<select name="piece">
+                                    <option value=NULL>-- Piece --</option>
+                                        <?php
+
+                                        $reponse = $pdo->query('SELECT *
+																FROM `piece_documennt`
+																ORDER BY `pieceDocument` ASC');
+                                        while ($donnees = $reponse->fetch()){
+                                        ?>
+                                            <option value="<?php echo $donnees['idPlateforme_Archive']; ?>"><?php echo $donnees['plateformeArchive']; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </option>
+								</select>
 
 
                        		<input class="bouton" type="submit" value="Ajouter">
+
                         </form>
 
 							<div class="text">
