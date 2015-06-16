@@ -77,6 +77,7 @@
 							<a href="ajout-categorie.php">Catégorie étiquette</a>
 							<a href="ajout-acronime.php">Acronime équipement</a>
 							<a href="ajout-document.php">Document</a>
+							<a href="ajout-archivage.php">Archivage</a>
 						</div>
 				</li>
 				<li><a href="profil.php">Profil</a></li>

@@ -44,6 +44,14 @@
 
 				<hr><!-- Trait de séparation -->
 
+		<!-- Création du tableau-->
+					<table class="tableau" border=2>
+						<th>Id</th>
+						<th>Nom document</th>
+						<th>Etiquette</th>
+						<th>Lieu d'archive</th>
+
+
 			<?php
 					if((isset($_GET['searchPlateforme'])) or (isset($_GET['searchPiece'])) or (isset($_GET['searchEmplacement'])) or (isset($_GET['searchSousEmplacement'])) ) {
 						//Si les champs sont remplis, on affiche les équittes correspondantes au champ
@@ -53,7 +61,7 @@
 						$chaineSearchEmplacement = addslashes($_GET['searchEmplacement']);
 						$chaineSearchSousEmplacement = addslashes($_GET['searchSousEmplacement']);
 
-							$requete = "SELECT `document`.`idDocument`,`nomDocument`, CONCAT(`valeurTypeDoc`,'-',`valeurProcessus`,'-',`valeurSousProcessus`,'-',`valeurCategorie`,'-',`valeurAcronime`,'-',`document`.`idDocument`), CONCAT(`valeurPlateforme`,'-', `valeurPiece`,'-', `valeurEmplacement`,'-', `valeurSousEmplacement`)
+							$requete = "SELECT `document`.`idDocument`,`nomDocument`, `valeurTypeDoc`,`valeurProcessus`,`valeurSousProcessus`,`valeurCategorie`,`valeurAcronime`,`document`.`idDocument`, `valeurPlateforme`, `valeurPiece`,`valeurEmplacement`, `valeurSousEmplacement`
 										FROM `document`, `etiquette_document`,`type_document`,`processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`,`lieux_document`,`plateforme_archive`, `piece_document`, `emplacement_archive`, `sous_emplacement`
 										WHERE `document`.`idEtiquette_Document` = `etiquette_document`.`idEtiquette_Document`
 										AND `etiquette_document`.`idType_Document` = `type_document`.`idType_Document`
@@ -78,10 +86,11 @@
 
 							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 								?>
-							<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idDocument'];?>')">
+							<tr style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')">
 								<td><?php echo $donnees['idDocument']; ?></td>
 								<td><?php echo $donnees['nomDocument']; ?></td>
-								<td><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['idSousProcessus'],'-',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
+								<td><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],'-',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
+								<td><?php echo $donnees['valeurPlateforme'],'-',$donnees['valeurPiece'],'-',$donnees['valeurSousEmplacement'],'-',$donnees['valeurSousEmplacement'];?></td>
 
 							</tr>
 							<?php
@@ -89,12 +98,6 @@
 
 					}
 		else{	?>
-				<!-- Création du tableau-->
-					<table class="tableau" border=2>
-						<th>Id</th>
-						<th>Nom document</th>
-						<th>Etiquette</th>
-						<th>Lieu d'archive</th>
 
 						<?php foreach ($listeDocument as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
 							<tr>

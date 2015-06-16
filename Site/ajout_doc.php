@@ -15,9 +15,7 @@
 	$resultats = $pdo->query("SELECT `idEquipement` FROM `etiquette_equipement` WHERE `idEtiquette_Equipement`='$idEtiquette_Equipement'");
 	$resultat = $resultats->fetch(PDO::FETCH_NUM);
 	$idEquipement = $resultat[0];
-	print($idEquipement);
 
-print("$nom_document, $idType_Document, $idProcessus, $idSous_Processus, $idEtiquette_Equipement");
 
    	if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL" && $idEtiquette_Equipement!="NULL"){
 

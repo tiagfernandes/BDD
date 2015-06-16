@@ -32,23 +32,23 @@
 								<div id="">
 									<form method="post" action="ajout_archivage.php">
 										<!-- Ajout d'un acronime -->
-										<label id="">Ajouter une plateforme : </label><input class="" type="text" name="plateforme" placeholder="Plateforme">
+										<label id="">Ajouter une plateforme : </label><input class="" type="text" name="plateforme" placeholder="Plateforme">-<input class="" type="text" name="valeur_plateforme" placeholder="Valeur plateforme">
 										<input class="" type="submit" value="Ajouter"></p>
 									</form>
 
 									<form method="post" action="ajout_archivage.php">
 										<!-- Ajout de la valeur de l'acronime -->
-										<label id="">Ajouter une pièce : </label><input class="" type="text" name="piece" placeholder="Pièce">
+										<label id="">Ajouter une pièce : </label><input class="" type="text" name="piece" placeholder="Pièce">- <input class="" type="text" name="val_piece" placeholder="Valeur pièce">
 										<input class="" type="submit" value="Ajouter"></p>
 									</form>
 
 									<form method="post" action="ajout_archivage.php">
-										<label id="">Ajouter un emplacement : </label><input class="" type="text" name="emplacement" placeholder="Emplacement">
+										<label id="">Ajouter un emplacement : </label><input class="" type="text" name="emplacement" placeholder="Emplacement">-<input class="" type="text" name="val_emplacement" placeholder="Valeur emplacement">
 										<input class="" type="submit" value="Ajouter"></p>
 									</form>
 
 									<form method="post" action="ajout_archivage.php"
-										<label id="">Ajouter un sous emplacement : </label><input class="" type="text" name="s_emplacement" placeholder="Sous emplacement">
+										<label id="">Ajouter un sous emplacement : </label><input class="" type="text" name="s_emplacement" placeholder="Sous emplacement">-<input class="" type="text" name="val_s_emplacement" placeholder="Valeur sous emplacement">
 										<input class="" type="submit" value="Ajouter"></p>
 									</form>
 
