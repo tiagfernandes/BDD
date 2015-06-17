@@ -62,19 +62,18 @@
 										<label id="ajout_element">Fin garantie : </label><input type="date" name="garantie" placeholder="Durée garantie"></p>
 										<label id="ajout_element">Lieu d'affectation : *</label>
 											<select name="plateforme">
-												<option value=NULL>-- Lieu d'affectation --</option>
-													<?php
+												<?php
 
-													$reponse = $pdo->query('SELECT *
-																			FROM `plateforme`
-																			ORDER BY `plateforme` ASC');
-													while ($donnees = $reponse->fetch()){
-													?>
-														<option value="<?php echo $donnees['idPlateforme']; ?>"><?php echo $donnees['plateforme'] ?></option>
-													<?php
-													}
-													?>
-												</option>
+												$reponse = $pdo->query('SELECT *
+																		FROM `plateforme`
+																		ORDER BY `plateforme` ASC');
+												while ($donnees = $reponse->fetch()){
+												?>
+													<option value="<?php echo $donnees['idPlateforme']; ?>"><?php echo $donnees['plateforme'] ?></option>
+												<?php
+												}
+												?>
+											</option>
 											</select></p>
 
 

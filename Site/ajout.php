@@ -8,12 +8,11 @@
     $datemes = $_POST['datemes'];
     $dater = $_POST['dater'];
     $garantie = $_POST['garantie'];
-    $type = $_POST['type'];
     $categorie = $_POST['categorie'];
     $acronime = $_POST['acronime'];
     $plateforme = $_POST['plateforme'];
 
-    if ($categorie !="NULL" && $acronime !="NULL" && $nom_equi !=NULL ){
+    if ($categorie!="NULL" && $acronime!="NULL" && $nom_equi!=NULL && $plateforme!=NULL){
 
         $sql = "INSERT INTO `equipement` (nomEquipement,prix,marque,dateAjout,garantie,dateFabrication,dateReception,dateMiseService, idPlateforme) VALUES ('$nom_equi','$prix','$marque',NOW(),'$garantie','$anneefb','$dater','$datemes', '$plateforme')";
         $prep = $pdo->prepare($sql);
