@@ -424,6 +424,7 @@ a.document:hover { color:firebrick;}
 .Etiquette_Equipement {
 	margin-left: 7%;
 	margin-right: 7%;
+    margin-top: 50px;
 }
 
 
@@ -537,10 +538,6 @@ hr {
 #choix_ajout {
     text-align: center;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 
 .tableau {
 	position: relative;
@@ -549,4 +546,22 @@ hr {
 	margin-right: 3%;
 	margin-bottom: 20px;
 	margin-top: 20px;
+}
+
+.fiche-vie {
+    position: absolute;
+    margin-top: -8%;
+    margin-left: 60%;
+    font-size: 20px;
+}
+
+a.fiche-vie { color:black; }
+a.fiche-vie:hover { color:firebrick;}
+
+textarea{ resize:none;}
+
+
+.bouton-ano {
+    position: relative;
+    left: 45%;
 }
