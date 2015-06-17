@@ -12,7 +12,7 @@
             // on enregistre les paramètres de notre visiteur comme variables de session
             $_SESSION['nom'] = $result['nomUtilisateur'];;
             $_SESSION['prenom'] = $result['prenomUtilisateur'];
-            $_SESSION['identifiant'] = $result['idUtilisateur'];
+            $_SESSION['idUtilisateur'] = $result['idUtilisateur'];
             $_SESSION['email']=$result['email'];
             $_SESSION['role'] = $result['role'];
             $_SESSION['login'] = $result['login'];
