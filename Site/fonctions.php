@@ -283,3 +283,38 @@ function getAllDocument(){
 		  die ("Erreur dans la requete ".$e->getMessage());
 		}
 }
+
+function getPlanning(){
+    global $pdo;
+        $query="
+            SELECT `idEntretient` as ID , `nomEntretien` as NOM, `dateEntretient` as DATE,
+            CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
+            FROM `entretient`,`utilisateur`
+            WHERE `entretient`.`idUtilisateur` = 1
+            AND `entretient`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
+
+            UNION
+
+            SELECT `idAnomalie` as ID, `nomAnomalie`as NOM , `dateAnomalie` as DATE ,
+            CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
+            FROM `anomalie`,`utilisateur`
+            WHERE `anomalie`.`idUtilisateur` = 1
+            AND `anomalie`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
+
+            UNION
+
+            SELECT `idCalibration` as ID, `nomCalibration`as NOM , `dateCalibration` as DATE ,
+            CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
+            FROM `calibration`,`utilisateur`
+            WHERE `calibration`.`idUtilisateur` = 1
+            AND `calibration`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
+            ORDER BY DATE DESC";
+
+		try {
+		  $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+		  return $result;
+		}
+		catch ( Exception $e ) {
+		  die ("Erreur dans la requete ".$e->getMessage());
+		}
+}

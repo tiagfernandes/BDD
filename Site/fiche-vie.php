@@ -1,6 +1,6 @@
 <?php
     require_once('fonctions.php');
-
+    $listePlanning= getPlanning($pdo);
 ?>
 
 <!doctype html>
@@ -49,6 +49,23 @@
                  echo ("Erreur lors de l'ajout de l'entretien ");
                 }
                 ?>
+
             </div>
+
+                <table class="tableau" border=2>
+						<th>ID</th>
+				        <th>NOM</th>
+				        <th>DATE</th>
+				        <th >CREATEUR</th>
+
+                        <?php foreach ($listePlanning as $cle=>$valeur): ?>
+							<tr>
+								<?php foreach ($valeur as $val): ?>
+								    <td><?= htmlentities($val) ?></td>
+								<?php endforeach; ?>
+							</tr>
+
+						 <?php endforeach; ?>
+
     </body>
 </html>
