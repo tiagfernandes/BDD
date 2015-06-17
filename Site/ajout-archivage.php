@@ -1,7 +1,7 @@
 <?php
     require_once('fonctions.php');
 
-	if(isset($_GET['delete'])){ //Supprime categorie
+	if(isset($_GET['delete'])){ //Supprime acronime
         $id = $_GET['delete'];
         deleteAcronime($id);
     }
@@ -28,32 +28,29 @@
 					<div id="banniere">Ajout d'archivage de document</div>
 
 						<fieldset class="Etiquette_Equipement"><legend>Archivage</legend>
-							<!-- Formulaire d'acronime d'étiquette -->
+							<!-- Formulaire d'ajout de lieu d'archive -->
 								<div id="">
-									<form method="post" action="ajout_archivage.php">
-										<!-- Ajout d'un acronime -->
-										<label id="">Ajouter une plateforme : </label><input class="" type="text" name="plateforme" placeholder="Plateforme">
+									<form method="get" action="ajout_plateforme.php">
+										<!-- Ajout d'une plateforme -->
+										<label id="">Ajouter une plateforme : </label><input class="" type="text" name="plateforme" placeholder="Plateforme">-<input class="" type="text" name="val_plateforme" placeholder="Valeur plateforme">
 										<input class="" type="submit" value="Ajouter"></p>
 									</form>
 
-									<form method="post" action="ajout_archivage.php">
-										<!-- Ajout de la valeur de l'acronime -->
-										<label id="">Ajouter une pièce : </label><input class="" type="text" name="piece" placeholder="Pièce">
+									<form method="get" action="ajout_piece.php">
+										<!-- Ajout d'une piece -->
+										<label id="">Ajouter une pièce : </label><input class="" type="text" name="piece" placeholder="Pièce">- <input class="" type="text" name="val_piece" placeholder="Valeur pièce">
 										<input class="" type="submit" value="Ajouter"></p>
 									</form>
 
-									<form method="post" action="ajout_archivage.php">
-										<label id="">Ajouter un emplacement : </label><input class="" type="text" name="emplacement" placeholder="Emplacement">
+									<form method="get" action="ajout_emplacement.php">
+										<label id="">Ajouter un emplacement : </label><input class="" type="text" name="emplacement" placeholder="Emplacement">-<input class="" type="text" name="val_emplacement" placeholder="Valeur emplacement">
 										<input class="" type="submit" value="Ajouter"></p>
 									</form>
 
-									<form method="post" action="ajout_archivage.php"
-										<label id="">Ajouter un sous emplacement : </label><input class="" type="text" name="s_emplacement" placeholder="Sous emplacement">
+									<form method="get" action="ajout_sous_emplacement.php">
+										<label id="">Ajouter un sous emplacement : </label><input class="" type="text" name="s_emplacement" placeholder="Sous emplacement">-<input class="" type="text" name="val_s_emplacement" placeholder="Valeur sous emplacement">
 										<input class="" type="submit" value="Ajouter"></p>
 									</form>
-
-
-									</div>
 
 									<div class="text">
 										<?php
@@ -99,7 +96,7 @@
 											}
 										?>
 									</div>
-								</form>
+								</div>
 						</fieldset>
 
 

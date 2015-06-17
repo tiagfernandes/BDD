@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 15 Juin 2015 à 14:13
+-- Généré le :  Mer 17 Juin 2015 à 09:40
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS `acronime_etiquette` (
 INSERT INTO `acronime_etiquette` (`idAcronimeEtiquette`, `valeurAcronime`, `acronimeEtiquette`) VALUES
 (1, 'DO2', 'Mesure de l O2 dissous'),
 (3, 'SCA', 'Balance'),
-(4, 'A', 'Actuator'),
 (5, 'STO', 'Etuve'),
 (6, 'REF', 'RÃ©frigÃ©rateur'),
 (7, 'FRE', 'CongÃ©lateur'),
@@ -62,7 +61,6 @@ INSERT INTO `acronime_etiquette` (`idAcronimeEtiquette`, `valeurAcronime`, `acro
 
 CREATE TABLE IF NOT EXISTS `anomalie` (
   `idAnomalie` int(11) NOT NULL AUTO_INCREMENT,
-  `nomAnomalie` varchar(45) DEFAULT NULL,
   `dateAnomalie` datetime DEFAULT NULL,
   `finAnomalie` datetime DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -130,7 +128,15 @@ CREATE TABLE IF NOT EXISTS `document` (
   PRIMARY KEY (`idDocument`,`idEtiquette_Document`,`idLieux_Document`),
   KEY `fk_Document_Etiquette_Document1_idx` (`idEtiquette_Document`),
   KEY `fk_Document_Lieux_Document1_idx` (`idLieux_Document`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+
+--
+-- Contenu de la table `document`
+--
+
+INSERT INTO `document` (`idDocument`, `nomDocument`, `idEtiquette_Document`, `idLieux_Document`) VALUES
+(46, '', 44, 15),
+(47, '', 45, 16);
 
 -- --------------------------------------------------------
 
@@ -140,9 +146,17 @@ CREATE TABLE IF NOT EXISTS `document` (
 
 CREATE TABLE IF NOT EXISTS `emplacement_archive` (
   `idEmplacement_Archive` int(11) NOT NULL AUTO_INCREMENT,
+  `valeurEmplacement` varchar(45) DEFAULT NULL,
   `emplacementArchive` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idEmplacement_Archive`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `emplacement_archive`
+--
+
+INSERT INTO `emplacement_archive` (`idEmplacement_Archive`, `valeurEmplacement`, `emplacementArchive`) VALUES
+(1, 'A1', 'Armoire');
 
 -- --------------------------------------------------------
 
@@ -222,6 +236,40 @@ CREATE TABLE IF NOT EXISTS `equipement_has_document` (
   KEY `fk_Equipement_has_Document_Equipement1_idx` (`idEquipement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `equipement_has_document`
+--
+
+INSERT INTO `equipement_has_document` (`idEquipement`, `idDocument`) VALUES
+(0, 18),
+(0, 19),
+(16, 20),
+(0, 21),
+(0, 22),
+(0, 23),
+(0, 24),
+(0, 25),
+(0, 26),
+(0, 27),
+(0, 28),
+(9, 29),
+(9, 30),
+(9, 31),
+(0, 32),
+(0, 33),
+(0, 34),
+(9, 36),
+(9, 38),
+(9, 39),
+(9, 40),
+(9, 41),
+(9, 42),
+(9, 43),
+(10, 44),
+(0, 45),
+(0, 46),
+(0, 47);
+
 -- --------------------------------------------------------
 
 --
@@ -253,7 +301,17 @@ CREATE TABLE IF NOT EXISTS `etiquette_document` (
   KEY `fk_Etiquette_Document_Processus1_idx` (`idProcessus`),
   KEY `fk_Etiquette_Document_Sous_Processus1_idx` (`idSous_Processus`),
   KEY `fk_Etiquette_Document_Etiquette_Equipement1_idx` (`idEtiquette_Equipement`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+
+--
+-- Contenu de la table `etiquette_document`
+--
+
+INSERT INTO `etiquette_document` (`idEtiquette_Document`, `idType_Document`, `idProcessus`, `idSous_Processus`, `idEtiquette_Equipement`) VALUES
+(43, 0, 0, 0, 0),
+(44, 0, 0, 0, 0),
+(45, 0, 0, 0, 0),
+(42, 2, 5, 4, 27);
 
 -- --------------------------------------------------------
 
@@ -425,7 +483,17 @@ CREATE TABLE IF NOT EXISTS `lieux_document` (
   KEY `fk_Lieux_Document_Piece_Document1_idx` (`idPiece_Document`),
   KEY `fk_Lieux_Document_Emplacement_Archive1_idx` (`idEmplacement_Archive`),
   KEY `fk_Lieux_Document_Sous_Emplacement1_idx` (`idSous_Emplacement`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+
+--
+-- Contenu de la table `lieux_document`
+--
+
+INSERT INTO `lieux_document` (`idLieux_Document`, `idPlateforme_Archive`, `idPiece_Document`, `idEmplacement_Archive`, `idSous_Emplacement`) VALUES
+(14, 0, 0, 0, 0),
+(15, 0, 0, 0, 0),
+(16, 0, 0, 0, 0),
+(13, 2, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -447,9 +515,17 @@ CREATE TABLE IF NOT EXISTS `lieu_utilisation` (
 
 CREATE TABLE IF NOT EXISTS `piece_document` (
   `idPiece_Document` int(11) NOT NULL AUTO_INCREMENT,
+  `valeurPiece` varchar(45) DEFAULT NULL,
   `pieceDocument` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idPiece_Document`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `piece_document`
+--
+
+INSERT INTO `piece_document` (`idPiece_Document`, `valeurPiece`, `pieceDocument`) VALUES
+(1, 'BC', 'Bureau CEREEP');
 
 -- --------------------------------------------------------
 
@@ -509,9 +585,23 @@ CREATE TABLE IF NOT EXISTS `plateforme` (
 
 CREATE TABLE IF NOT EXISTS `plateforme_archive` (
   `idPlateforme_Archive` int(11) NOT NULL AUTO_INCREMENT,
+  `valeurPlateforme` varchar(45) DEFAULT NULL,
   `plateformeArchive` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idPlateforme_Archive`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Contenu de la table `plateforme_archive`
+--
+
+INSERT INTO `plateforme_archive` (`idPlateforme_Archive`, `valeurPlateforme`, `plateformeArchive`) VALUES
+(2, 'Serre', 'Serre de Recherche'),
+(3, '', 'Ecotron'),
+(4, '', 'Test'),
+(5, '', 'Test'),
+(6, 'Test', 'Test'),
+(7, 'jo', 'Bonjour'),
+(8, 'bonjour', 'Bonjour');
 
 -- --------------------------------------------------------
 
@@ -551,9 +641,10 @@ INSERT INTO `processus` (`idProcessus`, `valeurProcessus`, `Processus`) VALUES
 
 CREATE TABLE IF NOT EXISTS `sous_emplacement` (
   `idSous_Emplacement` int(11) NOT NULL AUTO_INCREMENT,
+  `valeurSousEmplacement` varchar(45) DEFAULT NULL,
   `sousEmplacement` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idSous_Emplacement`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 

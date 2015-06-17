@@ -101,7 +101,7 @@
 																ORDER BY `plateformeArchive` ASC');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
-                                            <option value="<?php echo $donnees['idPlateforme_Archive']; ?>"><?php echo $donnees['plateformeArchive']; ?></option>
+                                            <option value="<?php echo $donnees['idPlateforme_Archive']; ?>"><?php echo $donnees['valeurPlateforme'],' - ', $donnees['plateformeArchive']; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -117,7 +117,7 @@
 																ORDER BY `pieceDocument` ASC');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
-                                            <option value="<?php echo $donnees['idPiece_Document']; ?>"><?php echo $donnees['pieceDocument']; ?></option>
+                                            <option value="<?php echo $donnees['idPiece_Document']; ?>"><?php echo $donnees['valeurPiece'],' -',$donnees['pieceDocument']; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -133,7 +133,7 @@
 																ORDER BY `emplacementArchive` ASC');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
-                                            <option value="<?php echo $donnees['idEmplacement_Archive']; ?>"><?php echo $donnees['emplacementArchive']; ?></option>
+                                            <option value="<?php echo $donnees['idEmplacement_Archive']; ?>"><?php echo $donnees['valeurEmplacement'],' - ', $donnees['emplacementArchive']; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -149,7 +149,7 @@
 																ORDER BY `sousEmplacement` ASC');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
-                                            <option value="<?php echo $donnees['idSous_Emplacement']; ?>"><?php echo $donnees['sousEmplacement']; ?></option>
+                                            <option value="<?php echo $donnees['idSous_Emplacement']; ?>"><?php echo $donnees['valeurSousEmplacement'],' - ',$donnees['sousEmplacement']; ?></option>
                                         <?php
                                         }
                                         ?>
