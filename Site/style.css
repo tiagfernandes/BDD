@@ -548,6 +548,10 @@ hr {
 	margin-top: 20px;
 }
 
+<<<<<<< HEAD
+#plateforme {
+	width: auto;
+=======
 .fiche-vie {
     position: absolute;
     margin-top: -8%;
@@ -564,4 +568,5 @@ textarea{ resize:none;}
 .bouton-ano {
     position: relative;
     left: 45%;
+>>>>>>> origin/master
 }

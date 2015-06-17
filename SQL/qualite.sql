@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 17 Juin 2015 à 09:40
+-- Généré le :  Mer 17 Juin 2015 à 11:22
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -128,15 +128,15 @@ CREATE TABLE IF NOT EXISTS `document` (
   PRIMARY KEY (`idDocument`,`idEtiquette_Document`,`idLieux_Document`),
   KEY `fk_Document_Etiquette_Document1_idx` (`idEtiquette_Document`),
   KEY `fk_Document_Lieux_Document1_idx` (`idLieux_Document`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
 -- Contenu de la table `document`
 --
 
 INSERT INTO `document` (`idDocument`, `nomDocument`, `idEtiquette_Document`, `idLieux_Document`) VALUES
-(46, '', 44, 15),
-(47, '', 45, 16);
+(50, '', 48, 19),
+(51, '', 49, 20);
 
 -- --------------------------------------------------------
 
@@ -268,7 +268,11 @@ INSERT INTO `equipement_has_document` (`idEquipement`, `idDocument`) VALUES
 (10, 44),
 (0, 45),
 (0, 46),
-(0, 47);
+(0, 47),
+(0, 48),
+(19, 49),
+(0, 50),
+(0, 51);
 
 -- --------------------------------------------------------
 
@@ -301,17 +305,15 @@ CREATE TABLE IF NOT EXISTS `etiquette_document` (
   KEY `fk_Etiquette_Document_Processus1_idx` (`idProcessus`),
   KEY `fk_Etiquette_Document_Sous_Processus1_idx` (`idSous_Processus`),
   KEY `fk_Etiquette_Document_Etiquette_Equipement1_idx` (`idEtiquette_Equipement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
 --
 -- Contenu de la table `etiquette_document`
 --
 
 INSERT INTO `etiquette_document` (`idEtiquette_Document`, `idType_Document`, `idProcessus`, `idSous_Processus`, `idEtiquette_Equipement`) VALUES
-(43, 0, 0, 0, 0),
-(44, 0, 0, 0, 0),
-(45, 0, 0, 0, 0),
-(42, 2, 5, 4, 27);
+(48, 0, 0, 0, 0),
+(49, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -483,17 +485,15 @@ CREATE TABLE IF NOT EXISTS `lieux_document` (
   KEY `fk_Lieux_Document_Piece_Document1_idx` (`idPiece_Document`),
   KEY `fk_Lieux_Document_Emplacement_Archive1_idx` (`idEmplacement_Archive`),
   KEY `fk_Lieux_Document_Sous_Emplacement1_idx` (`idSous_Emplacement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Contenu de la table `lieux_document`
 --
 
 INSERT INTO `lieux_document` (`idLieux_Document`, `idPlateforme_Archive`, `idPiece_Document`, `idEmplacement_Archive`, `idSous_Emplacement`) VALUES
-(14, 0, 0, 0, 0),
-(15, 0, 0, 0, 0),
-(16, 0, 0, 0, 0),
-(13, 2, 1, 1, 2);
+(19, 0, 0, 0, 0),
+(20, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -588,20 +588,7 @@ CREATE TABLE IF NOT EXISTS `plateforme_archive` (
   `valeurPlateforme` varchar(45) DEFAULT NULL,
   `plateformeArchive` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idPlateforme_Archive`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
-
---
--- Contenu de la table `plateforme_archive`
---
-
-INSERT INTO `plateforme_archive` (`idPlateforme_Archive`, `valeurPlateforme`, `plateformeArchive`) VALUES
-(2, 'Serre', 'Serre de Recherche'),
-(3, '', 'Ecotron'),
-(4, '', 'Test'),
-(5, '', 'Test'),
-(6, 'Test', 'Test'),
-(7, 'jo', 'Bonjour'),
-(8, 'bonjour', 'Bonjour');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -644,7 +631,14 @@ CREATE TABLE IF NOT EXISTS `sous_emplacement` (
   `valeurSousEmplacement` varchar(45) DEFAULT NULL,
   `sousEmplacement` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idSous_Emplacement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Contenu de la table `sous_emplacement`
+--
+
+INSERT INTO `sous_emplacement` (`idSous_Emplacement`, `valeurSousEmplacement`, `sousEmplacement`) VALUES
+(9, 'te', 'test');
 
 -- --------------------------------------------------------
 

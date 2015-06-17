@@ -1,12 +1,16 @@
 <?php
     require_once('fonctions.php');
 
-	if(isset($_GET['delete'])){ //Supprime acronime
-        $id = $_GET['delete'];
-        deleteAcronime($id);
+	if(isset($_GET['delete_plateforme'])){ //Supprime acronime
+        $id = $_GET['delete_plateforme'];
+        deletePlateforme($id);
     }
 
 	$acronime = getAcronime($pdo);
+	$listePlateforme = getAllPlateforme($pdo);
+	$listePiece = getAllPiece($pdo);
+	$listeEmplacement = getAllEmplacement($pdo);
+	$listeSousEmplacement = getAllSousEmplacement($pdo);
 ?>
 
 <!doctype html>
@@ -100,6 +104,101 @@
 						</fieldset>
 
 
+								<table border="1">
+									<th>id</th>
+									<th>Valeur plateforme</th>
+									<th>Plateforme</th>
+									<th>Supprimer</th>
+									<th>Modifer</th>
+
+										<?php foreach ($listePlateforme as $cle=>$valeur): ?>
+											<tr>
+												<?php foreach ($valeur as $val): ?>
+													<td><?= htmlentities($val) ?></td>
+												<?php endforeach; ?>
+
+										<!-- Bouton supprimer catégorie -->
+												<td><a href=ajout-archivage.php?delete_plateforme=<?= htmlentities($valeur['idPlateforme_Archive']) ?>
+									onClick="return(confirm('Supprimer <?= $valeur['plateformeArchive']  ?> ?'));">Supprimer</a></td>
+
+										<!-- Bouton modifier catégorie -->
+												<td><a href=ajout-archivage.php?update_plateforme=<?= htmlentities($valeur['idPlateforme_Archive']) ?>
+									onClick="return(confirm('Modifier <?= $valeur['plateformeArchive']  ?> ?'));">Modifier</a></td>
+											</tr>
+										<?php endforeach; ?>
+								</table>
+
+								<table border="1">
+									<th>id</th>
+									<th>Valeur piece</th>
+									<th>Piece</th>
+									<th>Supprimer</th>
+									<th>Modifer</th>
+
+										<?php foreach ($listePiece as $cle=>$valeur): ?>
+											<tr>
+												<?php foreach ($valeur as $val): ?>
+													<td><?= htmlentities($val) ?></td>
+												<?php endforeach; ?>
+
+										<!-- Bouton supprimer catégorie -->
+												<td><a href=ajout-archivage.php?delete_piece=<?= htmlentities($valeur['idPiece_Document']) ?>
+									onClick="return(confirm('Supprimer <?= $valeur['pieceDocument']  ?> ?'));">Supprimer</a></td>
+
+										<!-- Bouton modifier catégorie -->
+												<td><a href=ajout-archivage.php?update_piece=<?= htmlentities($valeur['idPiece_Document']) ?>
+									onClick="return(confirm('Modifier <?= $valeur['pieceDocument']  ?> ?'));">Modifier</a></td>
+											</tr>
+										<?php endforeach; ?>
+								</table>
+
+								<table border="1">
+									<th>id</th>
+									<th>Valeur emplacement</th>
+									<th>Emplacement</th>
+									<th>Supprimer</th>
+									<th>Modifer</th>
+
+										<?php foreach ($listeEmplacement as $cle=>$valeur): ?>
+											<tr>
+												<?php foreach ($valeur as $val): ?>
+													<td><?= htmlentities($val) ?></td>
+												<?php endforeach; ?>
+
+										<!-- Bouton supprimer catégorie -->
+												<td><a href=ajout-archivage.php?delete_emplacement=<?= htmlentities($valeur['idEmplacement_Archive']) ?>
+									onClick="return(confirm('Supprimer <?= $valeur['emplacementArchive']  ?> ?'));">Supprimer</a></td>
+
+										<!-- Bouton modifier catégorie -->
+												<td><a href=ajout-archivage.php?update_emplacement=<?= htmlentities($valeur['idEmplacement_Archive']) ?>
+									onClick="return(confirm('Modifier <?= $valeur['emplacementArchive']  ?> ?'));">Modifier</a></td>
+											</tr>
+										<?php endforeach; ?>
+								</table>
+
+								<table border="1">
+									<th>id</th>
+									<th>Valeur sous emplacement</th>
+									<th>Sous emplacement</th>
+									<th>Supprimer</th>
+									<th>Modifer</th>
+
+										<?php foreach ($listeSousEmplacement as $cle=>$valeur): ?>
+											<tr>
+												<?php foreach ($valeur as $val): ?>
+													<td><?= htmlentities($val) ?></td>
+												<?php endforeach; ?>
+
+										<!-- Bouton supprimer catégorie -->
+												<td><a href=ajout-archivage.php?delete_sous_emplacement=<?= htmlentities($valeur['idSous_Emplacement']) ?>
+									onClick="return(confirm('Supprimer <?= $valeur['sousEmplacement']  ?> ?'));">Supprimer</a></td>
+
+										<!-- Bouton modifier catégorie -->
+												<td><a href=ajout-archivage.php?update_sous_emplacement=<?= htmlentities($valeur['idSous_Emplacement']) ?>
+									onClick="return(confirm('Modifier <?= $valeur['sousEmplacement']  ?> ?'));">Modifier</a></td>
+											</tr>
+										<?php endforeach; ?>
+								</table>
 
 				</div>
 			<?php }

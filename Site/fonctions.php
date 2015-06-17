@@ -22,12 +22,13 @@ function getAuthentification($login, $pass){
 
 function getAllEquipement(){
     global $pdo;
-    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`marque`,`responsable`
-              FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`
+    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`marque`,`responsable`, `plateforme`
+              FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`, `plateforme`
               WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
               AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
               AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
               AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+              AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
               GROUP BY `idEquipement` DESC";
 
     try {
@@ -284,6 +285,7 @@ function getAllDocument(){
 		}
 }
 
+<<<<<<< HEAD
 function getPlanning(){
     global $pdo;
         $query="
@@ -318,3 +320,108 @@ function getPlanning(){
 		  die ("Erreur dans la requete ".$e->getMessage());
 		}
 }
+=======
+function getAllPlateforme(){
+	global $pdo;
+		$query = "SELECT * FROM plateforme_archive ORDER BY plateformeArchive";
+
+		try{
+			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+			return($result);
+		}
+		catch (Exception $e){
+			die ("Erreur dans la requete ".$e->getMessage());
+		}
+}
+
+function deletePlateforme($id){
+      global $pdo;
+      $query = "delete from plateforme_archive where idPlateforme_Archive = :idPlateforme_Archive ;";
+      try {
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idPlateforme_Archive', $id);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+
+function getAllPiece(){
+	global $pdo;
+		$query = "SELECT * FROM piece_document ORDER BY pieceDocument";
+
+		try{
+			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+			return($result);
+		}
+		catch (Exception $e){
+			die ("Erreur dans la requete ".$e->getMessage());
+		}
+}
+
+function deletePiece($id){
+      global $pdo;
+      $query = "delete from piece_document where idPiece_Document = :idPiece_Document ;";
+      try {
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idPiece_Document', $id);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+
+function getAllEmplacement(){
+	global $pdo;
+		$query = "SELECT * FROM emplacement_archive ORDER BY emplacementArchive";
+
+		try{
+			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+			return($result);
+		}
+		catch (Exception $e){
+			die ("Erreur dans la requete ".$e->getMessage());
+		}
+}
+
+function deleteEmplacement($id){
+      global $pdo;
+      $query = "delete from emplacement_archive where idEmplacement_Archive = :idEmplacement_Archive ;";
+      try {
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idEmplacement_Archive', $id);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+
+function getAllSousEmplacement(){
+	global $pdo;
+		$query = "SELECT * FROM sous_emplacement ORDER BY sousEmplacement";
+
+		try{
+			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+			return($result);
+		}
+		catch (Exception $e){
+			die ("Erreur dans la requete ".$e->getMessage());
+		}
+}
+
+function deleteSousEmplacement($id){
+      global $pdo;
+      $query = "delete from sous_emplacement where idSous_Emplacement = :idSous_Emplacement;";
+      try {
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idSous_Emplacement', $id);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+>>>>>>> origin/master
