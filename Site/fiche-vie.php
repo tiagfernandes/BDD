@@ -52,7 +52,7 @@
 
             </div>
 
-                <table class="tableau" border=2>
+                <table class="tableau-vie" border=2>
 						<th>ID</th>
 				        <th>NOM</th>
 				        <th>DATE</th>

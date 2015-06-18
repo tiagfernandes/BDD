@@ -548,10 +548,11 @@ hr {
 	margin-top: 20px;
 }
 
-<<<<<<< HEAD
 #plateforme {
 	width: auto;
-=======
+
+}
+
 .fiche-vie {
     position: absolute;
     margin-top: -8%;
@@ -568,5 +569,11 @@ textarea{ resize:none;}
 .bouton-ano {
     position: relative;
     left: 45%;
->>>>>>> origin/master
+}
+.tableau-vie {
+	position: relative;
+	text-align: center;
+	left: 37%;
+    margin-top: 5%;
+    display:inline-block;
 }
