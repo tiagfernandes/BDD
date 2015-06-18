@@ -285,7 +285,6 @@ function getAllDocument(){
 		}
 }
 
-<<<<<<< HEAD
 function getPlanning(){
     global $pdo;
         $query="
@@ -320,7 +319,7 @@ function getPlanning(){
 		  die ("Erreur dans la requete ".$e->getMessage());
 		}
 }
-=======
+
 function getAllPlateforme(){
 	global $pdo;
 		$query = "SELECT * FROM plateforme_archive ORDER BY plateformeArchive";
@@ -424,4 +423,3 @@ function deleteSousEmplacement($id){
 		die ("Erreur dans la requete ".$e->getMessage());
       }
 }
->>>>>>> origin/master
