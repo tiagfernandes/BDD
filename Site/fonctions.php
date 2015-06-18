@@ -291,25 +291,28 @@ function getPlanning(){
         $query="
             SELECT `idEntretien` as ID , `nomEntretien` as NOM, `dateEntretien` as DATE,
             CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
+<<<<<<< HEAD
             FROM `entretien`,`utilisateur`
             WHERE `entretien`.`idUtilisateur` = 1
             AND `entretien`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
+=======
+            FROM `entretient`,`utilisateur`
+            WHERE `entretient`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
+>>>>>>> origin/master
 
             UNION
 
             SELECT `idAnomalie` as ID, `nomAnomalie`as NOM , `dateAnomalie` as DATE ,
             CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
             FROM `anomalie`,`utilisateur`
-            WHERE `anomalie`.`idUtilisateur` = 1
-            AND `anomalie`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
+            WHERE `anomalie`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
 
             UNION
 
             SELECT `idCalibration` as ID, `nomCalibration`as NOM , `dateCalibration` as DATE ,
             CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
             FROM `calibration`,`utilisateur`
-            WHERE `calibration`.`idUtilisateur` = 1
-            AND `calibration`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
+            WHERE `calibration`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
             ORDER BY DATE DESC";
 
 		try {

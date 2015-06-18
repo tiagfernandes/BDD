@@ -12,6 +12,12 @@
         $prep = $pdo->prepare($sql);
         $prep->execute();
 
+        $idAnomalie =$pdo->lastInsertId();
+
+         $sql2 = "INSERT INTO `fiche_de_vie_has_anomalie` (idAnomalie) VALUES ('$idAnomalie')";
+         $prep2 = $pdo->prepare($sql2);
+         $prep2->execute();
+
         header('Location: fiche-vie.php?anomalie=succes');
     }
 

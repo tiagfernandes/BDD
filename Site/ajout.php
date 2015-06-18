@@ -24,6 +24,11 @@
         $prep2 = $pdo->prepare($sql2);
         $prep2->execute();
 
+         $sql3 = "INSERT INTO `fiche_de_vie` (idFicheDeVie,idEquipement) VALUES ('$idequipement','$idequipement')";
+         $prep3 = $pdo->prepare($sql3);
+         $prep3->execute();
+
+
         header('Location: ajout-element.php?succes');
     }
 
