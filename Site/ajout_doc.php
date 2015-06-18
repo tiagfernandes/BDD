@@ -17,7 +17,7 @@
 	$idEquipement = $resultat[0];
 
 
-   	if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL" && $idEtiquette_Equipement!="NULL"){
+   	if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL" && $idEtiquette_Equipement!="NULL" && $plateforme!="NULL" && $piece !="NULL" && $emplacement!="NULL" && $sous_emplacement!="NULL"){
 
         $sql = "INSERT INTO `etiquette_document` (idType_Document, idProcessus, idSous_Processus, idEtiquette_Equipement) VALUES ('$idType_Document', '$idProcessus', '$idSous_Processus', '$idEtiquette_Equipement')";
         $prep = $pdo->prepare($sql);

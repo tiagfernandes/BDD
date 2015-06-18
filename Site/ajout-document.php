@@ -19,7 +19,7 @@
    <body>
 
     <?php require_once('entete.php'); ?>
-       <?php if ($_SESSION['role']== "Administrateur") {?>
+       <?php if (($_SESSION['role']== "Administrateur") xor ($_SESSION['role']== "Développeur")){?>
         <div id="contenu">
             <div id="banniere">Ajout d'un document</div>
                 <div id="form-ajout">
@@ -183,7 +183,7 @@
 
       	<?php }
             else{
-                $message="Vous devez être Administrateur pour acceder à cette page !";
+                $message="Vous devez être Administrateur ou Développeur pour acceder à cette page !";
                 echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
                 header('refresh:0.01;url=index.php');
             }

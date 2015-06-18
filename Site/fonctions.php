@@ -289,11 +289,11 @@ function getAllDocument(){
 function getPlanning(){
     global $pdo;
         $query="
-            SELECT `idEntretient` as ID , `nomEntretien` as NOM, `dateEntretient` as DATE,
+            SELECT `idEntretien` as ID , `nomEntretien` as NOM, `dateEntretien` as DATE,
             CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
-            FROM `entretient`,`utilisateur`
-            WHERE `entretient`.`idUtilisateur` = 1
-            AND `entretient`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
+            FROM `entretien`,`utilisateur`
+            WHERE `entretien`.`idUtilisateur` = 1
+            AND `entretien`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
 
             UNION
 

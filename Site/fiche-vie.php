@@ -19,8 +19,8 @@
     	<?php require_once('entete.php'); ?>
        	<div id="contenu">
             <div id="banniere">Fiche de vie</div>
-            <a class="anomalie" href="ajout-anomalie.php">Anomalie</a></br>
-            <a class="calibration" href="ajout-calibration.php">Calibration</a></br>
+            <a class="anomalie" href="ajout-anomalie.php">Anomalie</a>
+            <a class="calibration" href="ajout-calibration.php">Calibration</a>
             <a class="entretien" href="ajout-entretien.php">Entretien</a></br>
             <div id ="succes">
                 <?php

@@ -1,5 +1,7 @@
 <?php
     require_once('fonctions.php');
+	$idEquipement=$_GET['idEquipement'];
+	$listeDocument = getAllDocument();
 ?>
 
 <!doctype html>
@@ -17,56 +19,51 @@
    <body>
 
     <?php require_once('entete.php'); ?>
-       <?php if ($_SESSION['role']== "Administrateur") {?>
+       <?php if (($_SESSION['role']== "Administrateur") xor ($_SESSION['role']== "Développeur")) {?>
         <div id="contenu">
-            <div id="banniere">Ajout d'un document lié</div>
-            <fieldset><legend>Document lié</legend>
+            <div id="banniere">Ajout d'un document à l'équipement n°<?= $idEquipement ?></div>
+            	<fieldset class="Etiquette_Equipement"><legend>Document lié</legend>
 
-                        <form method="post" action="ajout_doc.php">
-                            <label id="ajout_element">Nom document : *</label><input type="text" name="nom_document" placeholder="Nom"></p>
-                            <label id="ajout_element">Etiquette document : *</label></p>
-                                <!-- 1ere listview -->
-                                <select name="type">
-                                    <option value=NULL>-- Type --</option>
-                                    <?php
+                        <form method="post" action="ajout_doc_equi.php?idEquipement=<?= $idEquipement ?>">
+							<table border="1px">
+								<td>id</td>
+								<td>Nom</td>
+								<td>Etiquette Document</td>
+								<td>Lieu d'archive</td>
 
-                                    $reponse = $pdo->query('SELECT * FROM type_document');
-                                    while ($donnees = $reponse->fetch()){
-                                    ?>
-                                        <option value="<?php echo $donnees['idType_Document']; ?>"><?php echo $donnees['valeurTypeDoc']; ?> - <?php echo $donnees['typeDocument']; ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select> -
-
-                                <select name="processus">
-                                    <option value=NULL>-- Processus --</option>
-                                        <?php
-
-                                        $reponse = $pdo->query('SELECT * FROM processus');
-                                        while ($donnees = $reponse->fetch()){
-                                        ?>
-                                            <option value="<?php echo $donnees['idProcessus']; ?>"><?php echo $donnees['valeurProcessus']; ?> - <?php echo $donnees['Processus']; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </option>
-                                </select> -
-
-                                <select name="s_processus">
-                                    <option value=NULL>-- Sous-Processus --</option>
-                                        <?php
-
-                                        $reponse = $pdo->query('SELECT * FROM sous_processus');
-                                        while ($donnees = $reponse->fetch()){
-                                        ?>
-                                            <option value="<?php echo $donnees['idSous_Processus']; ?>"><?php echo $donnees['valeurSousProcessus']; ?> - <?php echo $donnees['sousProcessus']; ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </option>
-                           </select></br>
+									<?php foreach ($listeDocument as $cle=>$valeur): ?> <!--Affichage en tableau des documents-->
+										<tr>
+											<form method="get" action="document.php?idDocument">
+												<?php foreach ($valeur as $val): ?>
+													<?php $idDocument=$valeur['idDocument']; ?>
+														<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $idDocument;?>')"><?= htmlentities($val) ?></td>
+												<?php endforeach; ?>
+											</form>
+											<!-- Checkbox choix des documents à lier -->
+												<td><input type="checkbox" name="choixDoc[]" value="<?= $idDocument ?>"></td>
+										</tr>
+									 <?php endforeach; ?>
+							</table>
+                       		<input type="submit" value="envoyer">
                         </form>
+
+                        			<div class="text">
+										<?php
+											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+											if ($monUrl == "http://localhost/BDD/Site/doc-equi.php?succes"){
+												echo ("Acronime ajouté avec succès !");
+											}
+										?>
+									</div>
+
+									<div id ="erreur">
+										<?php
+											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+											if ($monUrl == "http://localhost/BDD/Site/doc-equi.php?idEquipement=".$idEquipement."&?erreur"){
+												echo ("Veuilliez selectionner au mininum une valeur !");
+											}
+										?>
+									</div>
                     </fieldset>
         </div>
         <?php }

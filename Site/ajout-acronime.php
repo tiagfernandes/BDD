@@ -23,7 +23,7 @@
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if ($_SESSION['role']== "Administrateur") {?>
+			<?php if ($_SESSION['role']== "Administrateur"){?>
 				<div id="contenu">
 					<div id="banniere">Ajout d'acronime pour équipement</div>
 

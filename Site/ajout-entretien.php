@@ -17,7 +17,7 @@
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if ($_SESSION['role']== "Administrateur") {?>
+			<?php if (($_SESSION['role']== "Administrateur") xor ($_SESSION['role']== "Développeur")){?>
 				<div id="contenu">
 					<div id="banniere">Ajout entretien</div>
 
