@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 17 Juin 2015 à 11:22
+-- Généré le :  Jeu 18 Juin 2015 à 09:18
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -128,15 +128,16 @@ CREATE TABLE IF NOT EXISTS `document` (
   PRIMARY KEY (`idDocument`,`idEtiquette_Document`,`idLieux_Document`),
   KEY `fk_Document_Etiquette_Document1_idx` (`idEtiquette_Document`),
   KEY `fk_Document_Lieux_Document1_idx` (`idLieux_Document`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
 -- Contenu de la table `document`
 --
 
 INSERT INTO `document` (`idDocument`, `nomDocument`, `idEtiquette_Document`, `idLieux_Document`) VALUES
-(50, '', 48, 19),
-(51, '', 49, 20);
+(1, 'Test', 50, 21),
+(53, '', 51, 22),
+(54, '', 52, 23);
 
 -- --------------------------------------------------------
 
@@ -149,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `emplacement_archive` (
   `valeurEmplacement` varchar(45) DEFAULT NULL,
   `emplacementArchive` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idEmplacement_Archive`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `emplacement_archive`
@@ -195,32 +196,32 @@ CREATE TABLE IF NOT EXISTS `equipement` (
   PRIMARY KEY (`idEquipement`,`idFournisseur`,`idPlateforme`),
   KEY `fk_Equipement_Fournisseur1_idx` (`idFournisseur`),
   KEY `fk_equipement_plateforme1_idx` (`idPlateforme`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Contenu de la table `equipement`
 --
 
 INSERT INTO `equipement` (`idEquipement`, `nomEquipement`, `idFournisseur`, `prix`, `marque`, `dateAjout`, `dateFabrication`, `dateReception`, `dateMiseService`, `garantie`, `responsable`, `idPlateforme`) VALUES
-(8, 'test', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(9, 'test', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(10, 'Test 2', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(11, 'Etuve', 0, 0, 'PROLABO EB 280', '2015-06-12', '0000-00-00', '1990-01-01', '0000-00-00', '0000-00-00', NULL, 0),
-(12, 'RÃ©frigÃ©rateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(13, 'CongÃ©lateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(14, 'Magicien d Oz', 0, 0, 'WEISHAUPT WL30Z-C Magicien d Oz', '2015-06-12', '0000-00-00', '2010-06-01', '2010-06-01', '0000-00-00', NULL, 0),
-(15, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(16, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(17, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(18, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(19, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(20, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(21, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(22, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(23, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(24, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(25, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0),
-(26, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 0);
+(0, 'test', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(1, 'test', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(2, 'Test 2', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(3, 'Etuve', 0, 0, 'PROLABO EB 280', '2015-06-12', '0000-00-00', '1990-01-01', '0000-00-00', '0000-00-00', NULL, 1),
+(4, 'RÃ©frigÃ©rateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(5, 'CongÃ©lateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(6, 'Magicien d Oz', 0, 0, 'WEISHAUPT WL30Z-C Magicien d Oz', '2015-06-12', '0000-00-00', '2010-06-01', '2010-06-01', '0000-00-00', NULL, 1),
+(7, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(8, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(9, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(10, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(11, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(12, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(13, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(14, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(15, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(16, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(17, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
+(18, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -235,44 +236,6 @@ CREATE TABLE IF NOT EXISTS `equipement_has_document` (
   KEY `fk_Equipement_has_Document_Document1_idx` (`idDocument`),
   KEY `fk_Equipement_has_Document_Equipement1_idx` (`idEquipement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `equipement_has_document`
---
-
-INSERT INTO `equipement_has_document` (`idEquipement`, `idDocument`) VALUES
-(0, 18),
-(0, 19),
-(16, 20),
-(0, 21),
-(0, 22),
-(0, 23),
-(0, 24),
-(0, 25),
-(0, 26),
-(0, 27),
-(0, 28),
-(9, 29),
-(9, 30),
-(9, 31),
-(0, 32),
-(0, 33),
-(0, 34),
-(9, 36),
-(9, 38),
-(9, 39),
-(9, 40),
-(9, 41),
-(9, 42),
-(9, 43),
-(10, 44),
-(0, 45),
-(0, 46),
-(0, 47),
-(0, 48),
-(19, 49),
-(0, 50),
-(0, 51);
 
 -- --------------------------------------------------------
 
@@ -305,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `etiquette_document` (
   KEY `fk_Etiquette_Document_Processus1_idx` (`idProcessus`),
   KEY `fk_Etiquette_Document_Sous_Processus1_idx` (`idSous_Processus`),
   KEY `fk_Etiquette_Document_Etiquette_Equipement1_idx` (`idEtiquette_Equipement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
 -- Contenu de la table `etiquette_document`
@@ -313,7 +276,10 @@ CREATE TABLE IF NOT EXISTS `etiquette_document` (
 
 INSERT INTO `etiquette_document` (`idEtiquette_Document`, `idType_Document`, `idProcessus`, `idSous_Processus`, `idEtiquette_Equipement`) VALUES
 (48, 0, 0, 0, 0),
-(49, 0, 0, 0, 0);
+(49, 0, 0, 0, 0),
+(51, 0, 0, 0, 0),
+(52, 0, 0, 0, 0),
+(50, 1, 1, 1, 36);
 
 -- --------------------------------------------------------
 
@@ -330,31 +296,31 @@ CREATE TABLE IF NOT EXISTS `etiquette_equipement` (
   KEY `fk_Etiquette_Equipement_Categorie_Etiquette1_idx` (`idCategorieEtiquette`),
   KEY `fk_Etiquette_Equipement_Equipement1_idx` (`idEquipement`),
   KEY `fk_Etiquette_Equipement_Acronime_Etiquette1_idx` (`idAcronimeEtiquette`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Contenu de la table `etiquette_equipement`
 --
 
 INSERT INTO `etiquette_equipement` (`idEtiquette_Equipement`, `idCategorieEtiquette`, `idAcronimeEtiquette`, `idEquipement`) VALUES
-(26, 1, 1, 9),
-(32, 1, 15, 15),
-(33, 1, 15, 16),
-(34, 1, 15, 17),
-(35, 1, 15, 18),
-(36, 1, 15, 19),
-(37, 1, 15, 20),
-(38, 1, 15, 21),
-(39, 1, 15, 22),
-(40, 1, 15, 23),
-(41, 1, 15, 24),
-(42, 1, 15, 25),
-(43, 1, 15, 26),
-(27, 2, 3, 10),
-(28, 4, 5, 11),
-(29, 4, 6, 12),
-(30, 4, 7, 13),
-(31, 4, 8, 14);
+(1, 1, 1, 1),
+(7, 1, 15, 7),
+(8, 1, 15, 8),
+(9, 1, 15, 9),
+(10, 1, 15, 10),
+(11, 1, 15, 11),
+(12, 1, 15, 12),
+(13, 1, 15, 13),
+(14, 1, 15, 14),
+(15, 1, 15, 15),
+(16, 1, 15, 16),
+(17, 1, 15, 17),
+(18, 1, 15, 18),
+(2, 2, 3, 2),
+(3, 4, 5, 3),
+(4, 4, 6, 4),
+(5, 4, 7, 5),
+(6, 4, 8, 6);
 
 -- --------------------------------------------------------
 
@@ -485,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `lieux_document` (
   KEY `fk_Lieux_Document_Piece_Document1_idx` (`idPiece_Document`),
   KEY `fk_Lieux_Document_Emplacement_Archive1_idx` (`idEmplacement_Archive`),
   KEY `fk_Lieux_Document_Sous_Emplacement1_idx` (`idSous_Emplacement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
 -- Contenu de la table `lieux_document`
@@ -493,7 +459,10 @@ CREATE TABLE IF NOT EXISTS `lieux_document` (
 
 INSERT INTO `lieux_document` (`idLieux_Document`, `idPlateforme_Archive`, `idPiece_Document`, `idEmplacement_Archive`, `idSous_Emplacement`) VALUES
 (19, 0, 0, 0, 0),
-(20, 0, 0, 0, 0);
+(20, 0, 0, 0, 0),
+(22, 0, 0, 0, 0),
+(23, 0, 0, 0, 0),
+(21, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -518,7 +487,7 @@ CREATE TABLE IF NOT EXISTS `piece_document` (
   `valeurPiece` varchar(45) DEFAULT NULL,
   `pieceDocument` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idPiece_Document`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `piece_document`
@@ -575,7 +544,14 @@ CREATE TABLE IF NOT EXISTS `plateforme` (
   `idPlateforme` int(11) NOT NULL AUTO_INCREMENT,
   `plateforme` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idPlateforme`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `plateforme`
+--
+
+INSERT INTO `plateforme` (`idPlateforme`, `plateforme`) VALUES
+(1, 'Ecotron');
 
 -- --------------------------------------------------------
 
@@ -588,7 +564,14 @@ CREATE TABLE IF NOT EXISTS `plateforme_archive` (
   `valeurPlateforme` varchar(45) DEFAULT NULL,
   `plateformeArchive` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idPlateforme_Archive`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `plateforme_archive`
+--
+
+INSERT INTO `plateforme_archive` (`idPlateforme_Archive`, `valeurPlateforme`, `plateformeArchive`) VALUES
+(1, 'Serre', 'Serre de recherche');
 
 -- --------------------------------------------------------
 
@@ -631,14 +614,14 @@ CREATE TABLE IF NOT EXISTS `sous_emplacement` (
   `valeurSousEmplacement` varchar(45) DEFAULT NULL,
   `sousEmplacement` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idSous_Emplacement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `sous_emplacement`
 --
 
 INSERT INTO `sous_emplacement` (`idSous_Emplacement`, `valeurSousEmplacement`, `sousEmplacement`) VALUES
-(9, 'te', 'test');
+(1, 'te', 'test');
 
 -- --------------------------------------------------------
 
