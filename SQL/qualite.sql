@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 18 Juin 2015 à 09:18
+-- Généré le :  Ven 19 Juin 2015 à 16:22
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -61,6 +61,7 @@ INSERT INTO `acronime_etiquette` (`idAcronimeEtiquette`, `valeurAcronime`, `acro
 
 CREATE TABLE IF NOT EXISTS `anomalie` (
   `idAnomalie` int(11) NOT NULL AUTO_INCREMENT,
+  `nomAnomalie` varchar(45) NOT NULL,
   `dateAnomalie` datetime DEFAULT NULL,
   `finAnomalie` datetime DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -77,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `anomalie` (
 
 CREATE TABLE IF NOT EXISTS `calibration` (
   `idCalibration` int(11) NOT NULL AUTO_INCREMENT,
+  `nomCalibration` varchar(45) NOT NULL,
   `descriptionCalibration` varchar(200) DEFAULT NULL,
   `dateCalibration` date DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL,
@@ -124,20 +126,11 @@ CREATE TABLE IF NOT EXISTS `document` (
   `idDocument` int(11) NOT NULL AUTO_INCREMENT,
   `nomDocument` varchar(45) DEFAULT NULL,
   `idEtiquette_Document` int(11) NOT NULL,
-  `idLieux_Document` int(11) NOT NULL,
+  `idLieux_Document` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idDocument`,`idEtiquette_Document`,`idLieux_Document`),
   KEY `fk_Document_Etiquette_Document1_idx` (`idEtiquette_Document`),
   KEY `fk_Document_Lieux_Document1_idx` (`idLieux_Document`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
-
---
--- Contenu de la table `document`
---
-
-INSERT INTO `document` (`idDocument`, `nomDocument`, `idEtiquette_Document`, `idLieux_Document`) VALUES
-(1, 'Test', 50, 21),
-(53, '', 51, 22),
-(54, '', 52, 23);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -157,20 +150,21 @@ CREATE TABLE IF NOT EXISTS `emplacement_archive` (
 --
 
 INSERT INTO `emplacement_archive` (`idEmplacement_Archive`, `valeurEmplacement`, `emplacementArchive`) VALUES
-(1, 'A1', 'Armoire');
+(1, 'A1', 'Armoire 1');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `entretient`
+-- Structure de la table `entretien`
 --
 
-CREATE TABLE IF NOT EXISTS `entretient` (
-  `idEntretient` int(11) NOT NULL AUTO_INCREMENT,
-  `dateEntretient` datetime DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `entretien` (
+  `idEntretien` int(11) NOT NULL AUTO_INCREMENT,
+  `nomEntretien` varchar(45) NOT NULL,
+  `dateEntretien` datetime DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL,
-  PRIMARY KEY (`idEntretient`,`idUtilisateur`),
+  PRIMARY KEY (`idEntretien`,`idUtilisateur`),
   KEY `fk_Entretient_Utilisateur1_idx` (`idUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -268,18 +262,7 @@ CREATE TABLE IF NOT EXISTS `etiquette_document` (
   KEY `fk_Etiquette_Document_Processus1_idx` (`idProcessus`),
   KEY `fk_Etiquette_Document_Sous_Processus1_idx` (`idSous_Processus`),
   KEY `fk_Etiquette_Document_Etiquette_Equipement1_idx` (`idEtiquette_Equipement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
-
---
--- Contenu de la table `etiquette_document`
---
-
-INSERT INTO `etiquette_document` (`idEtiquette_Document`, `idType_Document`, `idProcessus`, `idSous_Processus`, `idEtiquette_Equipement`) VALUES
-(48, 0, 0, 0, 0),
-(49, 0, 0, 0, 0),
-(51, 0, 0, 0, 0),
-(52, 0, 0, 0, 0),
-(50, 1, 1, 1, 36);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -380,30 +363,6 @@ CREATE TABLE IF NOT EXISTS `fiche_de_vie_has_entretient` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fonction_principal`
---
-
-CREATE TABLE IF NOT EXISTS `fonction_principal` (
-  `idFonction_Principal` int(11) NOT NULL AUTO_INCREMENT,
-  `fonctionPrincipal` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idFonction_Principal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `fonction_secondaire`
---
-
-CREATE TABLE IF NOT EXISTS `fonction_secondaire` (
-  `idFonction_Secondaire` int(11) NOT NULL AUTO_INCREMENT,
-  `fonctionSecondaire` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idFonction_Secondaire`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `fournisseur`
 --
 
@@ -451,18 +410,27 @@ CREATE TABLE IF NOT EXISTS `lieux_document` (
   KEY `fk_Lieux_Document_Piece_Document1_idx` (`idPiece_Document`),
   KEY `fk_Lieux_Document_Emplacement_Archive1_idx` (`idEmplacement_Archive`),
   KEY `fk_Lieux_Document_Sous_Emplacement1_idx` (`idSous_Emplacement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Contenu de la table `lieux_document`
 --
 
 INSERT INTO `lieux_document` (`idLieux_Document`, `idPlateforme_Archive`, `idPiece_Document`, `idEmplacement_Archive`, `idSous_Emplacement`) VALUES
-(19, 0, 0, 0, 0),
-(20, 0, 0, 0, 0),
-(22, 0, 0, 0, 0),
-(23, 0, 0, 0, 0),
-(21, 1, 1, 1, 1);
+(2, 0, 0, 0, 0),
+(3, 0, 0, 0, 0),
+(4, 0, 0, 0, 0),
+(5, 0, 0, 0, 0),
+(6, 0, 0, 0, 0),
+(7, 0, 0, 0, 0),
+(9, 0, 0, 0, 0),
+(10, 0, 0, 0, 0),
+(11, 0, 0, 0, 0),
+(12, 0, 0, 0, 0),
+(13, 0, 0, 0, 0),
+(14, 0, 0, 0, 0),
+(1, 1, 1, 1, 1),
+(8, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -474,7 +442,14 @@ CREATE TABLE IF NOT EXISTS `lieu_utilisation` (
   `idLieu_Utilisation` int(11) NOT NULL AUTO_INCREMENT,
   `lieuUtilisation` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idLieu_Utilisation`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `lieu_utilisation`
+--
+
+INSERT INTO `lieu_utilisation` (`idLieu_Utilisation`, `lieuUtilisation`) VALUES
+(1, 'Bureau');
 
 -- --------------------------------------------------------
 
@@ -507,7 +482,14 @@ CREATE TABLE IF NOT EXISTS `piece_equipement` (
   `valeur` varchar(45) DEFAULT NULL,
   `piece` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idPiece`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `piece_equipement`
+--
+
+INSERT INTO `piece_equipement` (`idPiece`, `valeur`, `piece`) VALUES
+(1, 'BR', 'bureau');
 
 -- --------------------------------------------------------
 
@@ -517,21 +499,19 @@ CREATE TABLE IF NOT EXISTS `piece_equipement` (
 
 CREATE TABLE IF NOT EXISTS `planning_occupation` (
   `idPlanning_Occupation` int(11) NOT NULL AUTO_INCREMENT,
-  `dateDebut` datetime DEFAULT NULL,
-  `dateFin` datetime DEFAULT NULL,
+  `dateDebut` date DEFAULT NULL,
+  `dateFin` date DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL,
   `idPlateforme` int(11) NOT NULL,
   `idLieu_Utilisation` int(11) NOT NULL,
   `idPiece` int(11) NOT NULL,
-  `idFonction_Principal` int(11) NOT NULL,
-  `idFonction_Secondaire` int(11) NOT NULL,
-  PRIMARY KEY (`idPlanning_Occupation`,`idUtilisateur`,`idPlateforme`,`idLieu_Utilisation`,`idPiece`,`idFonction_Principal`,`idFonction_Secondaire`),
+  `fonctionPrincipal` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `fonctionSecondaire` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`idPlanning_Occupation`,`idUtilisateur`,`idPlateforme`,`idLieu_Utilisation`,`idPiece`),
   KEY `fk_Planning_Occupation_Utilisateur1_idx` (`idUtilisateur`),
   KEY `fk_planning_occupation_plateforme1_idx` (`idPlateforme`),
   KEY `fk_planning_occupation_lieu_utilisation1_idx` (`idLieu_Utilisation`),
-  KEY `fk_planning_occupation_piece_equipement1_idx` (`idPiece`),
-  KEY `fk_planning_occupation_fonction_principal1_idx` (`idFonction_Principal`),
-  KEY `fk_planning_occupation_fonction_secondaire1_idx` (`idFonction_Secondaire`)
+  KEY `fk_planning_occupation_piece_equipement1_idx` (`idPiece`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -614,14 +594,14 @@ CREATE TABLE IF NOT EXISTS `sous_emplacement` (
   `valeurSousEmplacement` varchar(45) DEFAULT NULL,
   `sousEmplacement` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idSous_Emplacement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `sous_emplacement`
 --
 
 INSERT INTO `sous_emplacement` (`idSous_Emplacement`, `valeurSousEmplacement`, `sousEmplacement`) VALUES
-(1, 'te', 'test');
+(2, 'E2', 'Etagere n 2');
 
 -- --------------------------------------------------------
 

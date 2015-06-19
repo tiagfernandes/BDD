@@ -24,22 +24,22 @@
 			<div id ="contenu">
 				<div id="banniere">Document</div>
 
-				  	<!-- Barre de recherche étiquette -->
-					<form action ="doc.php" method="get">
-						<span>Recherche document par archive :</span>
-							<input type="text" id="search" name="searchPlateforme" placeholder="Plateforme"/> -
-							<input type="text" id="search" name="searchPiece" placeholder="Pièce"/> -
-							<input type="text" id="search" name="searchEmplacement" placeholder="Emplacement"/> -
-							<input type="text" id="search" name="searchSousEmplacement" placeholder="Sous emplacement"/>
-								<input type="submit" value="Envoyer">
-								<input type="reset" value="Annuler">
-					</form></p>
-
 					<!-- Barre de recherche nom -->
 					<form action ="doc.php" method="get">
 						<span>Recherche par nom de document :</span>
 							<input type="text" id="search" name="searchNom" placeholder="Nom"/>
 								<input type="submit" value="Envoyer">
+					</form></p>
+
+					<!-- Barre de recherche étiquette -->
+					<form action ="doc.php" method="get">
+						<span>Recherche document par archive :</span>
+							<input type="text" id="search" name="searchPlateforme" placeholder="Plateforme"/> -
+							<input type="text" id="searcha" name="searchPiece" placeholder="Pièce"/> -
+							<input type="text" id="searcha" name="searchEmplacement" placeholder="Emplacement"/> -
+							<input type="text" id="searcha" name="searchSousEmplacement" placeholder="Sous emplacement"/>
+								<input type="submit" value="Envoyer">
+								<input type="reset" value="Annuler">
 					</form></p>
 
 				<hr><!-- Trait de séparation -->

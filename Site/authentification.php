@@ -17,8 +17,8 @@
             <hr width=335 align=left><!-- Trait de séparation -->
 
 		<!--Connexion-->
-            <label>Votre login : </label><input type="text" name="login" placeholder="Identifiant"></p>
-            <label>Votre mot de passe : </label><input type="password" name="pwd" placeholder="Mot de Passe"></p>
+            <label class="autentification">Votre login : </label><input id="autentification" type="text" name="login" placeholder="Identifiant"></p>
+            <label class="autentification">Votre mot de passe : </label><input id="autentification" type="password" name="pwd" placeholder="Mot de Passe"></p>
             	<div id ="succes">
 					<?php
 						$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

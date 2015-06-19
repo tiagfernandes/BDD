@@ -26,7 +26,7 @@
             <a class="anomalie" href="ajout-anomalie.php">Anomalie</a>
             <a class="calibration" href="ajout-calibration.php">Calibration</a>
             <a class="entretien" href="ajout-entretien.php">Entretien</a></br>
-            <a class="entretien" href="reservation.php?idEquipement=<?= $idEquipement; ?>">Réserver l'équipement</a></br>
+            <a class="reservation" href="reservation.php?idEquipement=<?= $idEquipement; ?>">Réserver l'équipement</a></br>
             <div id ="succes">
                 <?php
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

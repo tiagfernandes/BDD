@@ -104,7 +104,7 @@
 						</fieldset>
 
 
-								<table border="1">
+								<table class="tabCatAcr" border="1">
 									<th>id</th>
 									<th>Valeur plateforme</th>
 									<th>Plateforme</th>
@@ -128,7 +128,7 @@
 										<?php endforeach; ?>
 								</table>
 
-								<table border="1">
+								<table class="tabCatAcr" border="1">
 									<th>id</th>
 									<th>Valeur piece</th>
 									<th>Piece</th>
@@ -152,7 +152,7 @@
 										<?php endforeach; ?>
 								</table>
 
-								<table border="1">
+								<table class="tabCatAcr" border="1">
 									<th>id</th>
 									<th>Valeur emplacement</th>
 									<th>Emplacement</th>
@@ -176,7 +176,7 @@
 										<?php endforeach; ?>
 								</table>
 
-								<table border="1">
+								<table class="tabCatAcr" border="1">
 									<th>id</th>
 									<th>Valeur sous emplacement</th>
 									<th>Sous emplacement</th>

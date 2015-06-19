@@ -31,7 +31,7 @@
                             echo 'Nom : '.$resultat->nomEquipement.'<br>';
                         }
                         $resultats->closeCursor();
-                    ?>
+                    ?><br/>
 
                     <?php	//Fonction pour afficher la marque
                         $resultats=$pdo->query("SELECT marque FROM equipement WHERE idEquipement='$idEquipement'");
@@ -41,7 +41,7 @@
                             echo 'Marque : '.$resultat->marque.'<br>';
                         }
                         $resultats->closeCursor();
-                    ?>
+                    ?><br/>
 
                     <?php	//Fonciton pour afficher la date d'ajout
                         $resultats=$pdo->query("SELECT dateAjout FROM equipement WHERE idEquipement='$idEquipement'");
@@ -51,7 +51,7 @@
                             echo "Date d'ajout : ".$resultat->dateAjout."<br>";
                         }
                         $resultats->closeCursor();
-                    ?>
+                    ?><br/>
 
                     <?php	//Fonction pour afficher le prix
                         $resultats=$pdo->query("SELECT prix FROM equipement WHERE idEquipement='$idEquipement'");
@@ -61,7 +61,7 @@
                             echo ("Prix d'achat : $resultat->prix €<br>");
                         }
                         $resultats->closeCursor();
-                    ?>
+                    ?><br/>
 
                     <?php	//Fonction pour afficher la date de fabrication
                         $resultats=$pdo->query("SELECT dateFabrication FROM equipement WHERE idEquipement='$idEquipement'");
@@ -71,7 +71,7 @@
                             echo 'Date de fabrication : '.$resultat->dateFabrication.'<br>';
                         }
                         $resultats->closeCursor();
-                    ?>
+                    ?><br/>
 
                     <?php	//Fonction pour afficher la date de reception
                         $resultats=$pdo->query("SELECT dateReception FROM equipement WHERE idEquipement='$idEquipement'");
@@ -81,7 +81,7 @@
                             echo 'Date de réception : '.$resultat->dateReception.'<br>';
                         }
                         $resultats->closeCursor();
-                    ?>
+                    ?><br/>
 
                     <?php	//Fonction pour afficher la date de mise en service
                         $resultats=$pdo->query("SELECT dateMiseService FROM equipement WHERE idEquipement='$idEquipement'");
@@ -91,7 +91,7 @@
                             echo 'Date de mise en service : '.$resultat->dateMiseService.'<br>';
                         }
                         $resultats->closeCursor();
-                    ?>
+                    ?><br/>
 
                     <?php	//Fonction pour afficher la garantie
                         $resultats=$pdo->query("SELECT garantie FROM equipement WHERE idEquipement='$idEquipement'");
@@ -111,7 +111,7 @@
                             echo 'Founisseur : '.$resultat->nomFournisseur.'<br>';
                         }
                         $resultats->closeCursor();
-                    ?>
+                    ?><br/>
 
                     <?php	//Fonction pour afficher l'etiquette de l'équipement
                         $resultats=$pdo->query("SELECT `valeurCategorie`,`valeurAcronime`,`equipement`.`idEquipement` FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
@@ -128,10 +128,10 @@
 							echo ''.$resultat->idEquipement.'<br/>';
                         }
                         $resultats->closeCursor();
-                    ?>
+                    ?><br/>
 
 			<!-- Générateur de QR code -->
-				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://10.118.40.20/qualite/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
+				<a class="QRCODE" href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://10.118.40.20/qualite/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
            		<img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://10.118.40.20/qualite/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
 
             <a class="doc" href="doc-equi.php?idEquipement=<?= $idEquipement; ?>">Ajout document liés</a>
