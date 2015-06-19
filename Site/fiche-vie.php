@@ -1,6 +1,10 @@
 <?php
     require_once('fonctions.php');
     $listePlanning= getPlanning($pdo);
+	$idEquipement = $_GET['idEquipement'];
+
+	$listePlanningOccupation = getPlanningOccupation($idEquipement);
+
 ?>
 
 <!doctype html>
@@ -22,6 +26,7 @@
             <a class="anomalie" href="ajout-anomalie.php">Anomalie</a>
             <a class="calibration" href="ajout-calibration.php">Calibration</a>
             <a class="entretien" href="ajout-entretien.php">Entretien</a></br>
+            <a class="entretien" href="reservation.php?idEquipement=<?= $idEquipement; ?>">Réserver l'équipement</a></br>
             <div id ="succes">
                 <?php
                 $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -53,10 +58,10 @@
             </div>
 
                 <table class="tableau-vie" border=2>
-						<th>ID</th>
-				        <th>NOM</th>
-				        <th>DATE</th>
-				        <th >CREATEUR</th>
+						<th>Id</th>
+				        <th>Nom</th>
+				        <th>Date</th>
+				        <th>Créateur</th>
 
                         <?php foreach ($listePlanning as $cle=>$valeur): ?>
 							<tr>
@@ -66,6 +71,28 @@
 							</tr>
 
 						 <?php endforeach; ?>
+				</table>
 
+				<table class="" border=2>
+						<th>id</th>
+						<th>Date début</th>
+				        <th>Date fin</th>
+				        <th>Plateforme</th>
+				        <th>Lieu</th>
+				        <th>Pièce</th>
+				        <th>Fonction principal</th>
+				        <th>Fonction secondaire</th>
+				        <th>Nom utilisateur</th>
+				        <th>Prénom utilisateur</th>
+
+                        <?php foreach ($listePlanningOccupation as $cle=>$valeur): ?>
+							<tr>
+								<?php foreach ($valeur as $val): ?>
+								    <td  style="cursor: pointer;" onClick="window.open('update_reservation.php?id=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
+								<?php endforeach; ?>
+							</tr>
+						<?php endforeach; ?>
+				</table>
+		</div>
     </body>
 </html>

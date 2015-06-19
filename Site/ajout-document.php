@@ -91,7 +91,7 @@
 
 
 
-                            <label id="ajout_element">Lieu d'archive :</label>
+                            <label id="ajout_element">Lieu d'archive :*</label>
                                	<select name="plateforme">
                                     <option value=NULL>-- Plateforme --</option>
                                         <?php

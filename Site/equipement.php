@@ -144,15 +144,23 @@
 
 						<?php foreach ($listeDocumentEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des documents -->
 							<tr>
-								<form method="get" action="equipement.php?idEquipement">
-									<?php foreach ($valeur as $val): ?>
-										<?php $idDocument=$valeur['idDocument']; ?>
-											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $idDocument;?>')"><?= htmlentities($val) ?></td>
-									<?php endforeach; ?>
-								</form>
+								<?php foreach ($valeur as $val): ?>
+									<?php $idDocument=$valeur['idDocument']; ?>
+										<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $idDocument;?>')"><?= htmlentities($val) ?></td>
+								<?php endforeach; ?>
+
 							</tr>
 						<?php endforeach; ?>
 				</table>
+
+                <div class="text">
+					<?php
+						$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+						if ($monUrl == "http://localhost/BDD/Site/equipement.php?idEquipement=".$idEquipement."&?succes"){
+							echo ("Document ajouter avec succes !");
+						}
+					?>
+				</div>
             </div>
     </body>
 </html>

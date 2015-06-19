@@ -291,14 +291,8 @@ function getPlanning(){
         $query="
             SELECT `idEntretien` as ID , `nomEntretien` as NOM, `dateEntretien` as DATE,
             CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
-<<<<<<< HEAD
             FROM `entretien`,`utilisateur`
-            WHERE `entretien`.`idUtilisateur` = 1
-            AND `entretien`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
-=======
-            FROM `entretient`,`utilisateur`
-            WHERE `entretient`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
->>>>>>> origin/master
+            WHERE `entretien`.`idUtilisateur` = `utilisateur`.`idUtilisateur`
 
             UNION
 
@@ -426,4 +420,25 @@ function deleteSousEmplacement($id){
       catch ( Exception $e ) {
 		die ("Erreur dans la requete ".$e->getMessage());
       }
+}
+
+function getPlanningOccupation($idEquipement) {
+	global $pdo;
+	$query = "SELECT `planning_occupation`.`idPlanning_Occupation`,`dateDebut`, `dateFin`,`plateforme`,`lieuUtilisation`,`piece`, `fonctionPrincipal`, `fonctionSecondaire`, `nomUtilisateur`, `prenomUtilisateur`
+				FROM `planning_occupation`, `equipement_has_planning_occupation`, `equipement`, `plateforme`, `lieu_utilisation`, `piece_equipement`, `utilisateur`
+				WHERE `equipement`.`idEquipement` = `equipement_has_planning_occupation`.`idEquipement`
+				AND `equipement_has_planning_occupation`.`idPlanning_Occupation` = `planning_occupation`.`idPlanning_Occupation`
+				AND `planning_occupation`.`idPlateforme` = `plateforme`.`idPlateforme`
+				AND `planning_occupation`.`idLieu_Utilisation` = `lieu_utilisation`.`idLieu_Utilisation`
+				AND `planning_occupation`.`idPiece` = `piece_equipement`.`idPiece`
+				AND `planning_occupation`.`idUtilisateur` = `utilisateur`.`idUtilisateur`
+				AND `equipement`.`idEquipement`= $idEquipement;";
+    	try {
+			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
+
+      	}
+      	catch ( Exception $e ) {
+			die ("Erreur dans la requete ".$e->getMessage());
+		}
 }
