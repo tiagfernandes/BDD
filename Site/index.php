@@ -14,7 +14,7 @@
 <html lang="fr">
 <meta charset="UTF-8">
 
-	<head>
+	<head><!-- Header -->
     	<title>Base de donnée ECOTRON</title>
 			<link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
 			<link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
@@ -63,13 +63,18 @@
 				<!-- Création du tableau-->
 					<table class="tableau" border=2>
 						<th>Id</th>
-						  <th>Etiquette</th>
-						  <th>Nom équipement</th>
-						  <th width=200px>Marque</th>
-						  <th>Fiche de Vie</th>
-						  <th>Lieu affectation</th>
-						  <th>Lieu d'utilisation</th>
-						  <th>Responsable</th>
+							<th>Etiquette</th>
+							<th>Nom équipement</th>
+							<th width=200px>Marque</th>
+							<th>Lieu affectation</th>
+							<th>Responsable</th>
+						 	<?php
+							if($_SESSION['role']=='Administrateur'){
+								?>
+								<td>Supprimer</td>
+								<?php
+							}
+							?>
 
 
 				<?php
@@ -222,7 +227,7 @@
 								<form method="get" action="equipement.php?idEquipement">
 									<?php foreach ($valeur as $val): ?>
 										<?php $idEquipement=$valeur['idEquipement']; ?>
-											<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
+<!-- Clic pour acceder a la page de l'équipement --><td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
 									<?php endforeach; ?>
 								</form>
 							</tr>

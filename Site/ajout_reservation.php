@@ -11,7 +11,7 @@
 	$idEquipement = $_GET['idEquipement'];
 
 	//Vérification de la saisie de lieu d'archive
-if ((!empty($dateDebut)) and (!empty($plateforme)) ){
+if ((!empty($dateDebut)) and (!empty($plateforme)) and (!empty($lieu)) and (!empty($piece))){
 	$sql = "INSERT INTO `planning_occupation` (dateDebut, dateFin, idPlateforme, idLieu_Utilisation, idPiece, fonctionPrincipal, fonctionSecondaire, idUtilisateur) VALUES ('$dateDebut', '$dateFin', '$plateforme', '$lieu', '$piece', '$fonctionP', '$fonctionS', ".$_SESSION['idUtilisateur'].")";
 	$prep = $pdo->prepare($sql);
 	$prep->execute();

@@ -5,7 +5,6 @@
     $listeEquipement = getAllEquipement($pdo);
     $listeUtilisateur = getAllUtilisateur($pdo);
     $listeEtiquetteEquipement = getEtiquetteEquipement($pdo);
-	//$listeEquipementEtiquette = getEquipementEtiquette($pdo);
 	$idEquipement = $_GET['idEquipement'];
 
 ?>
@@ -43,7 +42,7 @@
 												?>
 										</select></p>
 
-							<label id="">Lieu d'utilisation :</label>
+							<label id="">Lieu d'utilisation :*</label>
 										<select name="lieu">
 											<option value=NULL>-- Lieu --</option>
 												<?php
@@ -56,7 +55,7 @@
 												?>
 										</select></p>
 
-							<label id="">Pièce :</label>
+							<label id="">Pièce :*</label>
 										<select name="piece">
 											<option value=NULL>-- Pièce --</option>
 												<?php
