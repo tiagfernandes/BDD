@@ -15,7 +15,7 @@
     </head>
 
 
-    <body>
+    <body>	<!-- Formulaire d'ajout d'aomalie-->
 		<?php require_once('entete.php'); ?>
 			<?php if (($_SESSION['role']== "Administrateur") xor ($_SESSION['role']== "Développeur")){?>
 				<div id="contenu">

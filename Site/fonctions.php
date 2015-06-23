@@ -3,7 +3,7 @@ require_once('connexion.php');
 session_start ();
 header('Content-Type: text/html; charset=UTF-8');
 
-function getAuthentification($login, $pass){
+function getAuthentification($login, $pass){ //Fonciont d'autentification
     global $pdo;
         $query = "SELECT * FROM utilisateur WHERE login=:login and password=:pass";
         $prep = $pdo->prepare($query);
@@ -20,7 +20,7 @@ function getAuthentification($login, $pass){
         }
 }
 
-function getAllEquipement(){
+function getAllEquipement(){	//Affichage de tout les equipement
     global $pdo;
     $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`marque`,`responsable`, `plateforme`
               FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`, `plateforme`
@@ -41,7 +41,7 @@ function getAllEquipement(){
 
 }
 
-function getAllUtilisateur(){
+function getAllUtilisateur(){ 	//Affichage de tout les utilisateurs
     global $pdo;
     $query = 'SELECT `idUtilisateur`,`nomUtilisateur`,`prenomUtilisateur`,`email`,`login`,`role` FROM utilisateur';
 
@@ -55,7 +55,7 @@ function getAllUtilisateur(){
 }
 
 
-function deleteUtilisateur($id){
+function deleteUtilisateur($id){ 	//Fonction pour supprimer un utilisateur
       global $pdo;
       $query = "delete from utilisateur where idUtilisateur = :idUtilisateur ;";
       try {
@@ -68,7 +68,7 @@ function deleteUtilisateur($id){
       }
 }
 
-function getEtiquetteEquipement(){
+function getEtiquetteEquipement(){	//Fonction pour afficher les etiquettes d'équipement
     global $pdo;
 
         $query = "  SELECT CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`)
@@ -89,7 +89,7 @@ function getEtiquetteEquipement(){
 }
 
 
-function getEquipement($idEquipement){
+function getEquipement($idEquipement){ 	//Affiche tout sur l'équipement
     global $pdo;
         $query = "SELECT * FROM equipement WHERE idEquipement=$idEquipement";
 
@@ -102,7 +102,7 @@ function getEquipement($idEquipement){
         }
 }
 
-function getNomEquipement($idEquipement){
+function getNomEquipement($idEquipement){	//Affiche le nom de l'équipement
     global $pdo;
         $query = "SELECT nomEquipement FROM equipement WHERE idEquipement=$idEquipement";
 
@@ -115,7 +115,7 @@ function getNomEquipement($idEquipement){
         }
 }
 
-function getEquipementDoc(){
+function getEquipementDoc(){	//Affiche les documents lier à l'équipement
 	global $pdo;
         $query = "SELECT CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), nomEquipement
 				  FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
@@ -132,7 +132,7 @@ function getEquipementDoc(){
         }
 }
 
-function getDocumentEquipement($idEquipement){
+function getDocumentEquipement($idEquipement){	//Affiche les documents lier à l'équipement choisis
 	global $pdo;
         $query = "SELECT `document`.`idDocument`,`nomDocument`, CONCAT(`valeurTypeDoc`,'-',`valeurProcessus`,'-',`valeurSousProcessus`,'-',`valeurCategorie`,'-',`valeurAcronime`,'-',`document`.`idDocument`)
 				FROM `equipement`, `equipement_has_document`, `document`, `etiquette_document`, `type_document`, `processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`
@@ -156,7 +156,7 @@ function getDocumentEquipement($idEquipement){
         }
 }
 
-function getCategorie() {
+function getCategorie() {	//Affiche tout les catégorie d'équipement
 	global $pdo;
 		$query = "SELECT * FROM categorie_etiquette ORDER BY categorieEtiquette";
 
@@ -169,7 +169,7 @@ function getCategorie() {
 		}
 }
 
-function deleteCategorie($id){
+function deleteCategorie($id){	//Supprimer la catégorie d'équipement
       global $pdo;
       $query = "delete from categorie_etiquette where idCategorieEtiquette = :idCategorieEtiquette ;";
       try {
@@ -182,7 +182,7 @@ function deleteCategorie($id){
       }
 }
 
-function updateCategorie($id){
+function updateCategorie($id){	//Modifie la catégorie d'équipement
       global $pdo;
       $query = "update from categorie_etiquette where idCategorieEtiquette = :idCategorieEtiquette ;";
       try {
@@ -196,7 +196,7 @@ function updateCategorie($id){
 }
 
 
-function getEquipementEtiquette($chaineSearchCat, $chaineSearchAcr, $chaineSearchId) {
+function getEquipementEtiquette($chaineSearchCat, $chaineSearchAcr, $chaineSearchId) {	//affihce les etiquette pour chaque equipement
 	global $pdo;
 	$query = "SELECT *
 				FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
@@ -220,7 +220,7 @@ function getEquipementEtiquette($chaineSearchCat, $chaineSearchAcr, $chaineSearc
       }
 }
 
-function getAcronime() {
+function getAcronime() {	//Affiche les acronime
 	global $pdo;
 		$query = "SELECT * FROM acronime_etiquette ORDER BY acronimeEtiquette";
 
@@ -233,7 +233,7 @@ function getAcronime() {
 		}
 }
 
-function deleteAcronime($id){
+function deleteAcronime($id){	//Supprime l'acronime selectionner
       global $pdo;
       $query = "delete from acronime_etiquette where idAcronimeEtiquette = :idAcronimeEtiquette ;";
       try {
@@ -246,7 +246,7 @@ function deleteAcronime($id){
       }
 }
 
-function updateAcronime($id){
+function updateAcronime($id){	//Modifie l'acronime selectionner
       global $pdo;
       $query = "update from acronime_etiquette where idAcronimeEtiquette = :idAcronimeEtiquette ;";
       try {
@@ -259,7 +259,7 @@ function updateAcronime($id){
       }
 }
 
-function getAllDocument(){
+function getAllDocument(){	//Affiche tout les documents
 	global $pdo;
 		$query = "SELECT `document`.`idDocument`,`nomDocument`, CONCAT(`valeurTypeDoc`,'-',`valeurProcessus`,'-',`valeurSousProcessus`,'-',`valeurCategorie`,'-',`valeurAcronime`,'-',`document`.`idDocument`), CONCAT(`valeurPlateforme`,'-', `valeurPiece`,'-', `valeurEmplacement`,'-', `valeurSousEmplacement`)
 				FROM `document`, `etiquette_document`,`type_document`,`processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`,`lieux_document`,`plateforme_archive`, `piece_document`, `emplacement_archive`, `sous_emplacement`
@@ -286,7 +286,7 @@ function getAllDocument(){
 }
 
 
-function getPlanning(){
+function getPlanning(){	//Affiche le planning par équipement
     global $pdo;
         $query="
             SELECT `idEntretien` as ID , `nomEntretien` as NOM, `dateEntretien` as DATE,
@@ -318,7 +318,7 @@ function getPlanning(){
 		}
 }
 
-function getAllPlateforme(){
+function getAllPlateforme(){	//Affiche les plateformes
 	global $pdo;
 		$query = "SELECT * FROM plateforme_archive ORDER BY plateformeArchive";
 
@@ -331,7 +331,7 @@ function getAllPlateforme(){
 		}
 }
 
-function deletePlateforme($id){
+function deletePlateforme($id){	//Supprime la plateforme selectionner
       global $pdo;
       $query = "delete from plateforme_archive where idPlateforme_Archive = :idPlateforme_Archive ;";
       try {
@@ -422,7 +422,7 @@ function deleteSousEmplacement($id){
       }
 }
 
-function getPlanningOccupation($idEquipement) {
+function getPlanningOccupation($idEquipement) {	//Affiche le planning d'occupation de chaque equipement
 	global $pdo;
 	$query = "SELECT `planning_occupation`.`idPlanning_Occupation`,`dateDebut`, `dateFin`,`plateforme`,`lieuUtilisation`,`piece`, `fonctionPrincipal`, `fonctionSecondaire`, `nomUtilisateur`, `prenomUtilisateur`
 				FROM `planning_occupation`, `equipement_has_planning_occupation`, `equipement`, `plateforme`, `lieu_utilisation`, `piece_equipement`, `utilisateur`
