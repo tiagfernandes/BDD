@@ -17,7 +17,7 @@
 
     <body>	<!-- Formulaire d'ajout d'aomalie-->
 		<?php require_once('entete.php'); ?>
-			<?php if (($_SESSION['role']== "Administrateur") xor ($_SESSION['role']== "Développeur")){?>
+			<?php if (($_SESSION['role']== "Administrateur") xor ($_SESSION['role']== "Développeur")){?> <!-- Si l'utilisateur est Administrateur ou Développeur -->
 				<div id="contenu">
 					<div id="banniere">Ajout anomalie</div>
 

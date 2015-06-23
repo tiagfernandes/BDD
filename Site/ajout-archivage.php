@@ -27,7 +27,7 @@
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if ($_SESSION['role']== "Administrateur"){?>
+			<?php if ($_SESSION['role']== "Administrateur"){?><!-- Si l'utilisateur est Administrateur -->
 				<div id="contenu">
 					<div id="banniere">Ajout d'archivage de document</div>
 

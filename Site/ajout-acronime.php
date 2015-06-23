@@ -1,7 +1,7 @@
 <?php
     require_once('fonctions.php');
 
-	if(isset($_GET['delete'])){ //Supprime categorie
+	if(isset($_GET['delete'])){ //Supprime acronime
         $id = $_GET['delete'];
         deleteAcronime($id);
     }
@@ -23,7 +23,7 @@
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if ($_SESSION['role']== "Administrateur"){?>
+			<?php if ($_SESSION['role']== "Administrateur"){?><!-- Si l'utilisateur est Administrateur -->
 				<div id="contenu">
 					<div id="banniere">Ajout d'acronime pour équipement</div>
 
