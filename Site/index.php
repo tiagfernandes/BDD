@@ -61,7 +61,7 @@
 				<hr><!-- Trait de séparation -->
 
 				<!-- Création du tableau-->
-					<table class="tableau" border=2>
+					<table class="tableau" border=0.5>
 						<th>Id</th>
 							<th>Etiquette</th>
 							<th>Nom équipement</th>

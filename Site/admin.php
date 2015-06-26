@@ -28,7 +28,7 @@
 
 						<!-- Affichage des utilisateur -->
 						<div id ="user">
-							<table border=2>
+							<table border=0.5>
 								<th>id</th>
 								<th>Nom</th>
 								<th>Prénom</th>

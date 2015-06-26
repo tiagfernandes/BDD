@@ -59,7 +59,7 @@
 									</div>
 								</form>
 						</fieldset>
-							<table class="tabCatAcr" border="1">
+							<table class="tabCatAcr" border="0.5">
 								<th>id</th>
 								<th>Categorie</th>
 								<th>Valeur</th>

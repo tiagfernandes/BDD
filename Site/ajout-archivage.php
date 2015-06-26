@@ -104,10 +104,10 @@
 						</fieldset>
 
 
-								<table class="tabCatAcr" border="1">
+								<table class="tabCatAcr" border="0.5">
 									<th>id</th>
-									<th>Valeur plateforme</th>
-									<th>Plateforme</th>
+									<th width=100px>Valeur plateforme</th>
+									<th width=200px>Plateforme</th>
 									<th>Supprimer</th>
 									<th>Modifer</th>
 
@@ -128,10 +128,10 @@
 										<?php endforeach; ?>
 								</table>
 
-								<table class="tabCatAcr" border="1">
+								<table class="tabCatAcr" border="0.5">
 									<th>id</th>
-									<th>Valeur piece</th>
-									<th>Piece</th>
+									<th width=100px>Valeur piece</th>
+									<th width=200px>Piece</th>
 									<th>Supprimer</th>
 									<th>Modifer</th>
 
@@ -152,10 +152,10 @@
 										<?php endforeach; ?>
 								</table>
 
-								<table class="tabCatAcr" border="1">
+								<table class="tabCatAcr" border="0.5">
 									<th>id</th>
-									<th>Valeur emplacement</th>
-									<th>Emplacement</th>
+									<th width=100px>Valeur emplacement</th>
+									<th width=200px>Emplacement</th>
 									<th>Supprimer</th>
 									<th>Modifer</th>
 
@@ -176,10 +176,10 @@
 										<?php endforeach; ?>
 								</table>
 
-								<table class="tabCatAcr" border="1">
+								<table class="tabCatAcr" border="0.5">
 									<th>id</th>
-									<th>Valeur sous emplacement</th>
-									<th>Sous emplacement</th>
+									<th width=100px>Valeur sous emplacement</th>
+									<th width=200px>Sous emplacement</th>
 									<th>Supprimer</th>
 									<th>Modifer</th>
 
