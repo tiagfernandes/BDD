@@ -62,7 +62,7 @@
 
 				<!-- Création du tableau-->
 					<table class="tableau" border=0.5>
-						<th>Id</th>
+
 							<th>Etiquette</th>
 							<th>Nom équipement</th>
 							<th width=200px>Marque</th>
@@ -103,7 +103,7 @@
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
 								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-									<td><?php echo $donnees['idEquipement']; ?></td>
+
 									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 									<td><?php echo $donnees['nomEquipement']; ?></td>
 									<td><?php echo $donnees['marque']; ?></td>
@@ -147,7 +147,6 @@
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
 								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-									<td><?php echo $donnees['idEquipement']; ?></td>
 									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 									<td><?php echo $donnees['nomEquipement']; ?></td>
 									<td><?php echo $donnees['marque']; ?></td>
@@ -189,7 +188,6 @@
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
 								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-									<td><?php echo $donnees['idEquipement']; ?></td>
 									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 									<td><?php echo $donnees['nomEquipement']; ?></td>
 									<td><?php echo $donnees['marque']; ?></td>
@@ -231,7 +229,6 @@
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
 								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-									<td><?php echo $donnees['idEquipement']; ?></td>
 									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 									<td><?php echo $donnees['nomEquipement']; ?></td>
 									<td><?php echo $donnees['marque']; ?></td>
@@ -241,8 +238,8 @@
 									<?php
 										if($_SESSION['role']=='Administrateur'){
 									?>
-											<td><a href=index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>
-											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomEquipement'] ?> ?'));">Supprimer</a></td>
+											<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>
+											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomEquipement'] ?> ?'));"/></td>
 									<?php
 										}
 									?>
@@ -254,32 +251,43 @@
 
 						else{
 							//Sinon on affiche toute la liste
-						?>
-							<?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
-								<tr>
-									<form method="get" action="equipement.php?idEquipement">
-										<?php foreach ($valeur as $val): ?>
-											<?php $idEquipement=$valeur['idEquipement']; ?>
-	<!-- Clic pour acceder a la page de l'équipement --><td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
+							//Si les champs sont remplis, on affiche les équittes correspondantes au champ
 
-										<?php endforeach; ?>
+
+								$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`, `plateforme`
+											FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`, `plateforme`
+											WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+											AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+											AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
+											ORDER BY `equipement`.`idEquipement` DESC";
+
+								// Exécution de la requête SQL
+								$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+
+								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+									?>
+								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
+									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td><?php echo $donnees['nomEquipement']; ?></td>
+									<td><?php echo $donnees['marque']; ?></td>
+									<td><?php echo $donnees['plateforme']; ?></td>
+									<td><?php echo $donnees['responsable']; ?></td>
 
 									<?php
 										if($_SESSION['role']=='Administrateur'){
 									?>
-											<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($valeur['idEquipement']) ?>
-											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['nomEquipement'] ?> ?'));"/></td>
+											<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>
+											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomEquipement'] ?> ?'));"/></td>
 									<?php
 										}
 									?>
-
-
-									</form>
 								</tr>
-
-							 <?php endforeach; ?>
 						<?php
-							}
+								}
+
+						}
 						?>
 					</table><br/>
         	</div>

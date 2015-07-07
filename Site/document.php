@@ -77,6 +77,7 @@
                         $resultats->closeCursor();
                     ?>
                     <!-- Générateur de QR code -->
+
 				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/document.php?idDocument=<?= $idDocument ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/document.php?idDocument=<?= $idDocument ?>" id="QRCode" title="QR Code"></a><br/>
           			<?php	//fonction pour afficher l'etiquette du document
                         $resultats=$pdo->query("SELECT `nomFichier`,`cheminFichier`

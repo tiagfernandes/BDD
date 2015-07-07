@@ -22,7 +22,7 @@ function getAuthentification($login, $pass){ //Fonciont d'autentification
 
 function getAllEquipement(){	//Affichage de tout les equipement
     global $pdo;
-    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`marque`,`responsable`, `plateforme`
+    $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`,`marque`,`plateforme`, `responsable`
               FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`, `plateforme`
               WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
               AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
@@ -463,3 +463,17 @@ function getEquipementDocument($idDocument){	//Affiche les documents lier au doc
         	die ("Erreur dans la requete ".$e->getMessage());
         }
 }
+
+function deleteEquipement($idEquipement){
+      global $pdo;
+      $query = "delete from equipement, etiquette_equipement, equipement_has_document, fiche_de_vie, fiche_de_vie_has_calibration, fiche_de_vie_has_entretient, fiche_de_vie_has_anomalie where equipement.idEquipement = :idEquipement ;";
+      try {
+		$prep = $pdo->prepare($query);
+		$prep->bindValue(':idEquipement', $idEquipement);
+		$prep->execute();
+      }
+      catch ( Exception $e ) {
+		die ("Erreur dans la requete ".$e->getMessage());
+      }
+}
+
