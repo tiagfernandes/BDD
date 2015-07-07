@@ -71,172 +71,217 @@
 						 	<?php
 							if($_SESSION['role']=='Administrateur'){
 								?>
-								<td>Supprimer</td>
+
 								<?php
 							}
 							?>
 
 
-				<?php
-					if((isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId']))) {
-						//Si les champs sont remplis, on affiche les équittes correspondantes au champ
+					<?php
+						if((isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId']))) {
+							//Si les champs sont remplis, on affiche les équittes correspondantes au champ
 
-						$chaineSearchCat = addslashes($_GET['searchCat']);
-						$chaineSearchAcr = addslashes($_GET['searchAcr']);
-						$chaineSearchId = addslashes($_GET['searchId']);
+							$chaineSearchCat = addslashes($_GET['searchCat']);
+							$chaineSearchAcr = addslashes($_GET['searchAcr']);
+							$chaineSearchId = addslashes($_GET['searchId']);
 
-							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`
-										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
-										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-										AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-										AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
-										AND valeurCategorie LIKE '".$chaineSearchCat."%'
-										AND valeurAcronime LIKE '".$chaineSearchAcr."%'
-										AND equipement.idEquipement LIKE '". $chaineSearchId."%'
-										ORDER BY `equipement`.`idEquipement` DESC";
+								$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`,`plateforme`
+											FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`,`plateforme`
+											WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+											AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+											AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
+											AND valeurCategorie LIKE '".$chaineSearchCat."%'
+											AND valeurAcronime LIKE '".$chaineSearchAcr."%'
+											AND equipement.idEquipement LIKE '". $chaineSearchId."%'
+											ORDER BY `equipement`.`idEquipement` DESC";
 
-							// Exécution de la requête SQL
-							$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+								// Exécution de la requête SQL
+								$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
 
-							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
-								?>
-							<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-								<td><?php echo $donnees['idEquipement']; ?></td>
-								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-								<td><?php echo $donnees['nomEquipement']; ?></td>
-								<td><?php echo $donnees['marque']; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo $donnees['responsable']; ?></td>
-							</tr>
-							<?php
+								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+									?>
+								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
+									<td><?php echo $donnees['idEquipement']; ?></td>
+									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td><?php echo $donnees['nomEquipement']; ?></td>
+									<td><?php echo $donnees['marque']; ?></td>
+									<td><?php echo $donnees['plateforme']; ?></td>
+									<td><?php echo $donnees['responsable']; ?></td>
+
+									<?php
+										if($_SESSION['role']=='Administrateur'){
+									?>
+											<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>
+											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomEquipement'] ?> ?'));"/></td>
+
+									<?php
+										}
+									?>
+								</tr>
+								<?php
+								}
+
+						}
+
+
+						else if (isset($_GET['searchNom'])) {
+							//Si les champs sont remplis, on affiche les équittes correspondantes au champ
+
+							$chaineSearchNom = addslashes($_GET['searchNom']);
+
+								$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`,`plateforme`
+											FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`,`plateforme`
+											WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+											AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+											AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
+											AND nomEquipement LIKE '".$chaineSearchNom."%'
+											ORDER BY `equipement`.`idEquipement` DESC";
+
+								// Exécution de la requête SQL
+								$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+
+								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+									?>
+								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
+									<td><?php echo $donnees['idEquipement']; ?></td>
+									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td><?php echo $donnees['nomEquipement']; ?></td>
+									<td><?php echo $donnees['marque']; ?></td>
+									<td><?php echo $donnees['plateforme']; ?></td>
+									<td><?php echo $donnees['responsable']; ?></td>
+
+									<?php
+										if($_SESSION['role']=='Administrateur'){
+									?>
+											<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>
+											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomEquipement'] ?> ?'));"/></td>
+									<?php
+										}
+									?>
+								</tr>
+								<?php
+								}
+
+						}
+
+						else if (isset($_GET['searchDateAjout'])) {
+							//Si les champs sont remplis, on affiche les équittes correspondantes au champ
+
+							$chaineSearchDateAjout = addslashes($_GET['searchDateAjout']);
+
+								$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`,`plateforme`
+											FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`, `plateforme`
+											WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+											AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+											AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
+											AND dateAjout LIKE '".$chaineSearchDateAjout."%'
+											ORDER BY `equipement`.`idEquipement` DESC";
+
+								// Exécution de la requête SQL
+								$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+
+								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+									?>
+								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
+									<td><?php echo $donnees['idEquipement']; ?></td>
+									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td><?php echo $donnees['nomEquipement']; ?></td>
+									<td><?php echo $donnees['marque']; ?></td>
+									<td><?php echo $donnees['plateforme']; ?></td>
+									<td><?php echo $donnees['responsable']; ?></td>
+
+									<?php
+										if($_SESSION['role']=='Administrateur'){
+									?>
+											<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>
+											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomEquipement'] ?> ?'));"/></td>
+									<?php
+										}
+									?>
+								</tr>
+								<?php
+								}
+
+						}
+
+						else if (isset($_GET['searchMarque'])) {
+							//Si les champs sont remplis, on affiche les équittes correspondantes au champ
+
+							$chaineSearchMarque = addslashes($_GET['searchMarque']);
+
+								$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`, `plateforme`
+											FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`, `plateforme`
+											WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+											AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+											AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+											AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
+											AND marque LIKE '".$chaineSearchMarque."%'
+											ORDER BY `equipement`.`idEquipement` DESC";
+
+								// Exécution de la requête SQL
+								$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+
+								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+									?>
+								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
+									<td><?php echo $donnees['idEquipement']; ?></td>
+									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td><?php echo $donnees['nomEquipement']; ?></td>
+									<td><?php echo $donnees['marque']; ?></td>
+									<td><?php echo $donnees['plateforme']; ?></td>
+									<td><?php echo $donnees['responsable']; ?></td>
+
+									<?php
+										if($_SESSION['role']=='Administrateur'){
+									?>
+											<td><a href=index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>
+											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomEquipement'] ?> ?'));">Supprimer</a></td>
+									<?php
+										}
+									?>
+								</tr>
+								<?php
+								}
+
+						}
+
+						else{
+							//Sinon on affiche toute la liste
+						?>
+							<?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
+								<tr>
+									<form method="get" action="equipement.php?idEquipement">
+										<?php foreach ($valeur as $val): ?>
+											<?php $idEquipement=$valeur['idEquipement']; ?>
+	<!-- Clic pour acceder a la page de l'équipement --><td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
+
+										<?php endforeach; ?>
+
+									<?php
+										if($_SESSION['role']=='Administrateur'){
+									?>
+											<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($valeur['idEquipement']) ?>
+											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['nomEquipement'] ?> ?'));"/></td>
+									<?php
+										}
+									?>
+
+
+									</form>
+								</tr>
+
+							 <?php endforeach; ?>
+						<?php
 							}
-
-					}
-
-
-					else if (isset($_GET['searchNom'])) {
-						//Si les champs sont remplis, on affiche les équittes correspondantes au champ
-
-						$chaineSearchNom = addslashes($_GET['searchNom']);
-
-							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`
-										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
-										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-										AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-										AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
-										AND nomEquipement LIKE '".$chaineSearchNom."%'
-										ORDER BY `equipement`.`idEquipement` DESC";
-
-							// Exécution de la requête SQL
-							$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
-
-							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
-								?>
-							<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-								<td><?php echo $donnees['idEquipement']; ?></td>
-								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-								<td><?php echo $donnees['nomEquipement']; ?></td>
-								<td><?php echo $donnees['marque']; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo $donnees['responsable']; ?></td>
-							</tr>
-							<?php
-							}
-
-					}
-
-					else if (isset($_GET['searchDateAjout'])) {
-						//Si les champs sont remplis, on affiche les équittes correspondantes au champ
-
-						$chaineSearchDateAjout = addslashes($_GET['searchDateAjout']);
-
-							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`
-										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
-										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-										AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-										AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
-										AND dateAjout LIKE '".$chaineSearchDateAjout."%'
-										ORDER BY `equipement`.`idEquipement` DESC";
-
-							// Exécution de la requête SQL
-							$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
-
-							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
-								?>
-							<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-								<td><?php echo $donnees['idEquipement']; ?></td>
-								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-								<td><?php echo $donnees['nomEquipement']; ?></td>
-								<td><?php echo $donnees['marque']; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo $donnees['responsable']; ?></td>
-							</tr>
-							<?php
-							}
-
-					}
-
-					else if (isset($_GET['searchMarque'])) {
-						//Si les champs sont remplis, on affiche les équittes correspondantes au champ
-
-						$chaineSearchMarque = addslashes($_GET['searchMarque']);
-
-							$requete = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`
-										FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
-										WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-										AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-										AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-										AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
-										AND marque LIKE '".$chaineSearchMarque."%'
-										ORDER BY `equipement`.`idEquipement` DESC";
-
-							// Exécution de la requête SQL
-							$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
-
-							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
-								?>
-							<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-								<td><?php echo $donnees['idEquipement']; ?></td>
-								<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-								<td><?php echo $donnees['nomEquipement']; ?></td>
-								<td><?php echo $donnees['marque']; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo ""; ?></td>
-								<td><?php echo $donnees['responsable']; ?></td>
-							</tr>
-							<?php
-							}
-
-					}
-
-					else{
-						//Sinon on affiche toute la liste
-					?>
-						<?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
-							<tr>
-								<form method="get" action="equipement.php?idEquipement">
-									<?php foreach ($valeur as $val): ?>
-										<?php $idEquipement=$valeur['idEquipement']; ?>
-<!-- Clic pour acceder a la page de l'équipement --><td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
-									<?php endforeach; ?>
-								</form>
-							</tr>
-
-						 <?php endforeach; ?>
-				<?php
-					}
-				?>
-        			</table><br/>
+						?>
+					</table><br/>
         	</div>
    </body>
 </html>

@@ -25,11 +25,12 @@
 		<?php require_once('entete.php'); ?>
 			<div id ="contenu">
 				<div id="banniere">Réservation d'équipement n°<?= $idEquipement;?></div>
+      				<div id="form-ajout">
        				<fieldset><legend>Fiche réservation</legend>
 						<form method="post" action="ajout_reservation.php?idEquipement=<?= $idEquipement?>">
-							<label id="">Date de début :*</label><input type="date" name="dateDebut" placeholder=""></p>
-							<label id="">Date de fin : </label><input type="date" name="dateFin" value=""></p>
-							<label id="">Plateforme :*</label>
+							<label id="ajout_element">Date de début :*</label><input type="date" name="dateDebut" placeholder=""></p>
+							<label id="ajout_element">Date de fin : </label><input type="date" name="dateFin" value=""></p>
+							<label id="ajout_element">Plateforme :*</label>
 										<select name="plateforme">
 											<option value=NULL>-- Plateforme --</option>
 												<?php
@@ -42,7 +43,7 @@
 												?>
 										</select></p>
 
-							<label id="">Lieu d'utilisation :*</label>
+							<label id="ajout_element">Lieu d'utilisation :*</label>
 										<select name="lieu">
 											<option value=NULL>-- Lieu --</option>
 												<?php
@@ -55,7 +56,7 @@
 												?>
 										</select></p>
 
-							<label id="">Pièce :*</label>
+							<label id="ajout_element">Pièce :*</label>
 										<select name="piece">
 											<option value=NULL>-- Pièce --</option>
 												<?php
@@ -67,8 +68,8 @@
 													}
 												?>
 										</select></p>
-							<label id="">Fonction principal :</label><input type="text" name="fonctionP" value=""></p>
-							<label id="">Fonction secondaire :</label><input type="text" name="fonctionS" value=""></p>
+							<label id="ajout_element">Fonction principal :</label><input type="text" name="fonctionP" placeholder="Fonction principal"></p>
+							<label id="ajout_element">Fonction secondaire :</label><input type="text" name="fonctionS" placeholder="Fonction secondaire"></p>
 
        						<input class="bouton" type="submit" value="Ajouter">
 						</form>
@@ -90,6 +91,7 @@
 								}
 							?>
 						</div>
+					</fieldset>
         	</div>
    </body>
 </html>

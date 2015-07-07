@@ -1,8 +1,6 @@
 <?php
     require_once('fonctions.php');
 
-
-
     $listeDocument = getAllDocument($pdo);
 
 ?>

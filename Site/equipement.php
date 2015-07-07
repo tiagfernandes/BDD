@@ -137,7 +137,7 @@
             <a class="doc" href="doc-equi.php?idEquipement=<?= $idEquipement; ?>">Ajout document liés</a>
             <a class="fiche-vie" href="fiche-vie.php?idEquipement=<?= $idEquipement; ?>">Fiche de vie</a>
 			  <!-- Création du tableau-->
-				<table border=2>
+				<table border="0.5">
 					<th>Id</th>
 					<th>Nom Document</th>
 					<th>Etiquette document</th>

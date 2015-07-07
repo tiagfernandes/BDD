@@ -1,6 +1,8 @@
 <?php
     require_once('fonctions.php');
 
+	$idEquipement = $_GET['idEquipement'];
+
     $description = $_POST['description'];
     $datedebut = $_POST['datedano'];
     $datefin = $_POST['datefano'];
@@ -18,10 +20,10 @@
          $prep2 = $pdo->prepare($sql2);
          $prep2->execute();
 
-        header('Location: fiche-vie.php?anomalie=succes');
+        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&?anomalie=succes');
     }
 
     else
-        header('Location: fiche-vie.php?anomalie=erreur');
+        header('Location: ajout-anomalie.php?idEquipement='.$idEquipement.'&?anomalie=erreur');
 
 ?>

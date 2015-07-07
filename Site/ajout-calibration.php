@@ -1,6 +1,7 @@
 <?php
     require_once('fonctions.php');
 
+	$idEquipement = $_GET['idEquipement'];
 ?>
 
 <!doctype html>
@@ -22,7 +23,7 @@
 					<div id="banniere">Ajout calibration</div>
 
 						<fieldset class="Etiquette_Equipement"><legend>Calibration</legend>
-                        		<form method="post" action="a-calibration.php">
+                        		<form method="post" action="a-calibration.php?idEquipement=<?= $idEquipement?>	">
 
 								    <label id="ajout_element">Date calibration : </label><input type="date" name="datecalibration" placeholder="YYYY/MM/DD"></p>
                                     <label id="ajout_element">Description : <textarea name="description" rows="10" cols="120"></textarea></p>

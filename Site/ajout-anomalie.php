@@ -1,6 +1,7 @@
 <?php
     require_once('fonctions.php');
 
+	$idEquipement = $_GET['idEquipement'];
 ?>
 
 <!doctype html>
@@ -22,14 +23,26 @@
 					<div id="banniere">Ajout anomalie</div>
 
 						<fieldset class="Etiquette_Equipement"><legend>Anomalie</legend>
-                        		<form method="post" action="a-anomalie.php">
+                        		<form method="post" action="a-anomalie.php?idEquipement=<?= $idEquipement?>">
 
 								    <label id="ajout_element">Date début anomalie : </label><input type="date" name="datedano" placeholder="YYYY/MM/DD"></p>
 								    <label id="ajout_element">Date fin anomalie : </label><input type="date" name="datefano" placeholder="YYYY/MM/DD"></p>
                                     <label id="ajout_element">Description : <textarea name="description" rows="10" cols="120"></textarea></p>
-                            			<input class="bouton-ano" type="submit" value="Ajouter">
+
+                            		<input class="bouton-ano" type="submit" value="Ajouter">
                          		</form>
+
+								<div id ="erreur">
+									<?php
+									$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+									if ($monUrl == "http://localhost/BDD/Site/ajout-anomalie.php?idEquipement='.$idEquipement.'&?anomalie=erreur"){
+										print ("Erreur lors de l'ajout de l'anomalie ");
+									}
+									?>
+								</div>
 						</fieldset>
+
+
 			<?php }
 				else{
 					$message="Vous devez être Administrateur ou Développeur pour acceder à cette page !";

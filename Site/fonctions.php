@@ -290,21 +290,21 @@ function getPlanning(){	//Affiche le planning par équipement
     global $pdo;
         $query="
             SELECT `idEntretien` as ID , `nomEntretien` as NOM, `dateEntretien` as DATE,
-            CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
+            CONCAT(`utilisateur`.`nomUtilisateur`,' ',`utilisateur`.`prenomUtilisateur`) as CREATEUR
             FROM `entretien`,`utilisateur`
             WHERE `entretien`.`idUtilisateur` = `utilisateur`.`idUtilisateur`
 
             UNION
 
             SELECT `idAnomalie` as ID, `nomAnomalie`as NOM , `dateAnomalie` as DATE ,
-            CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
+            CONCAT(`utilisateur`.`nomUtilisateur`,' ',`utilisateur`.`prenomUtilisateur`) as CREATEUR
             FROM `anomalie`,`utilisateur`
             WHERE `anomalie`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
 
             UNION
 
             SELECT `idCalibration` as ID, `nomCalibration`as NOM , `dateCalibration` as DATE ,
-            CONCAT(`utilisateur`.`nomUtilisateur`,'-',`utilisateur`.`prenomUtilisateur`) as CREATEUR
+            CONCAT(`utilisateur`.`nomUtilisateur`,' ',`utilisateur`.`prenomUtilisateur`) as CREATEUR
             FROM `calibration`,`utilisateur`
             WHERE `calibration`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
             ORDER BY DATE DESC";
@@ -424,7 +424,7 @@ function deleteSousEmplacement($id){
 
 function getPlanningOccupation($idEquipement) {	//Affiche le planning d'occupation de chaque equipement
 	global $pdo;
-	$query = "SELECT `planning_occupation`.`idPlanning_Occupation`,`dateDebut`, `dateFin`,`plateforme`,`lieuUtilisation`,`piece`, `fonctionPrincipal`, `fonctionSecondaire`, `nomUtilisateur`, `prenomUtilisateur`
+	$query = "SELECT `planning_occupation`.`idPlanning_Occupation`,`dateDebut`, `dateFin`,`plateforme`,`lieuUtilisation`,`piece`, `fonctionPrincipal`, `fonctionSecondaire`, CONCAT(`nomUtilisateur`,' ',`prenomUtilisateur`)
 				FROM `planning_occupation`, `equipement_has_planning_occupation`, `equipement`, `plateforme`, `lieu_utilisation`, `piece_equipement`, `utilisateur`
 				WHERE `equipement`.`idEquipement` = `equipement_has_planning_occupation`.`idEquipement`
 				AND `equipement_has_planning_occupation`.`idPlanning_Occupation` = `planning_occupation`.`idPlanning_Occupation`
@@ -441,4 +441,25 @@ function getPlanningOccupation($idEquipement) {	//Affiche le planning d'occupati
       	catch ( Exception $e ) {
 			die ("Erreur dans la requete ".$e->getMessage());
 		}
+}
+
+function getEquipementDocument($idDocument){	//Affiche les documents lier au document choisis
+	global $pdo;
+        $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), `nomEquipement`
+				  FROM `equipement`, `categorie_etiquette`,  `etiquette_equipement`, `acronime_etiquette`, `document`, `equipement_has_document`
+				  WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+				  AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+				  AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+				  AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+				  AND `equipement`.`idEquipement` = `equipement_has_document`.`idEquipement`
+				  AND `equipement_has_document`.`idDocument` = `document`.`idDocument`
+				  AND `document`.`idDocument`=$idDocument";
+
+        try {
+        	$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        	return($result);
+        }
+        catch ( Exception $e ) {
+        	die ("Erreur dans la requete ".$e->getMessage());
+        }
 }

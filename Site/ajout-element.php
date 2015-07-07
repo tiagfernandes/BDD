@@ -52,7 +52,7 @@
 												<?php
 													}
 												?>
-									  	</select><br/>Le numéro d'étiquette sera générer automatiquement.</p>
+										</select><br/><i>Le numéro d'étiquette sera générer automatiquement.</i></p>
 
 										<label id="ajout_element">Prix (€) : </label><input type="text" name="prix" placeholder="Prix"></p>
 										<label id="ajout_element">Marque : </label><input type="text" name="marque" placeholder="Marque"></p>

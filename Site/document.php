@@ -2,6 +2,8 @@
     require_once('fonctions.php');
 
     $idDocument=$_GET['idDocument'];
+
+	$listeEquipementDocument = getEquipementDocument($idDocument);
 ?>
 <!doctype html>
 <html lang="fr">
@@ -75,7 +77,36 @@
                         $resultats->closeCursor();
                     ?>
                     <!-- Générateur de QR code -->
-				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/document.php?idDocument=<?= $idDocument ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/document.php?idDocument=<?= $idDocument ?>" id="QRCode" title="QR Code"></a>
+				<a href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/document.php?idDocument=<?= $idDocument ?>"><img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://localhost/BDD/Site/document.php?idDocument=<?= $idDocument ?>" id="QRCode" title="QR Code"></a><br/>
+          			<?php	//fonction pour afficher l'etiquette du document
+                        $resultats=$pdo->query("SELECT `nomFichier`,`cheminFichier`
+												FROM `document`
+												WHERE `document`.`idDocument`='$idDocument'");
+                        $resultats->setFetchMode(PDO::FETCH_OBJ);
+                        while($resultat = $resultats->fetch())
+                        {
+                            echo 'Nom fichier : '.$resultat->nomFichier.'<br>';
+                            echo 'Cliquez sur <a href="'.$resultat->cheminFichier.'">ce lien</a> pour voir le fichier PDF.<br>';
+                        }
+                        $resultats->closeCursor();
+                    ?>
+
+         		<table border="0.5">
+					<th>Id</th>
+					<th>Nom équipement</th>
+					<th>Etiquette équipement</th>
+
+						<?php foreach ($listeEquipementDocument as $cle=>$valeur): ?> <!--Affichage en tableau des documents -->
+							<tr>
+								<?php foreach ($valeur as $val): ?>
+									<?php $idEquipement=$valeur['idEquipement']; ?>
+										<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
+								<?php endforeach; ?>
+
+							</tr>
+						<?php endforeach; ?>
+				</table>
+
             </div>
     </body>
 </html>

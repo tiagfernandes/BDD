@@ -1,5 +1,6 @@
 <?php
     require_once('fonctions.php');
+
     $listePlanning= getPlanning($pdo);
 	$idEquipement = $_GET['idEquipement'];
 
@@ -23,76 +24,62 @@
     	<?php require_once('entete.php'); ?>
        	<div id="contenu">
             <div id="banniere">Fiche de vie</div>
-            <a class="anomalie" href="ajout-anomalie.php">Anomalie</a>
-            <a class="calibration" href="ajout-calibration.php">Calibration</a>
-            <a class="entretien" href="ajout-entretien.php">Entretien</a></br>
-            <a class="reservation" href="reservation.php?idEquipement=<?= $idEquipement; ?>">Réserver l'équipement</a></br>
-            <div id ="succes">
-                <?php
-                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-                if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?anomalie=succes"){
-                 echo ("Anomalie ajouté avec succès");
-                }
-                else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?calibration=succes"){
-                 echo ("Calibration ajouté avec succès");
-                }
-                else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?entretien=succes"){
-                 echo ("Entretien ajouté avec succès");
-                }
-                ?>
-            </div>
-            <div id ="erreur">
-                <?php
-                $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-                if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?anomalie=erreur"){
-                 echo ("Erreur lors de l'ajout de l'anomalie ");
-                }
-                else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?calibration=erreur"){
-                 echo ("Erreur lors de l'ajout de la calibration ");
-                }
-                else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?entretien=erreur"){
-                 echo ("Erreur lors de l'ajout de l'entretien ");
-                }
-                ?>
+				<center><a class="Button" href="ajout-anomalie.php?idEquipement=<?= $idEquipement; ?>">Ajouter une anomalie</a>
+				<a class="Button" href="ajout-calibration.php?idEquipement=<?= $idEquipement; ?>">Ajouter une calibration</a>
+				<a class="Button" href="ajout-entretien.php?idEquipement=<?= $idEquipement; ?>">Ajouter un entretien</a></br></center>
+				<a class="Reservation" href="reservation.php?idEquipement=<?= $idEquipement; ?>">Réserver l'équipement</a></br>
 
-            </div>
+					<div id ="succes">
+						<?php
+						$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+						if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&?anomalie=succes"){
+						 echo ("Anomalie ajouté avec succès");
+						}
+						else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&?calibration=succes"){
+						 echo ("Calibration ajouté avec succès");
+						}
+						else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&?entretien=succes"){
+						 echo ("Entretien ajouté avec succès");
+						}
+						?>
+					</div>
 
-                <table class="tableau-vie" border=2>
-						<th>Id</th>
-				        <th>Nom</th>
-				        <th>Date</th>
-				        <th>Créateur</th>
 
-                        <?php foreach ($listePlanning as $cle=>$valeur): ?>
-							<tr>
-								<?php foreach ($valeur as $val): ?>
-								    <td><?= htmlentities($val) ?></td>
-								<?php endforeach; ?>
-							</tr>
+					<table class="tableau-vie" border=0.5>
+							<th>Id</th>
+							<th>Nom</th>
+							<th>Date</th>
+							<th>Créateur</th>
 
-						 <?php endforeach; ?>
-				</table>
+							<?php foreach ($listePlanning as $cle=>$valeur): ?>
+								<tr>
+									<?php foreach ($valeur as $val): ?>
+										<td><?= htmlentities($val) ?></td>
+									<?php endforeach; ?>
+								</tr>
 
-				<table class="" border=2>
-						<th>id</th>
-						<th>Date début</th>
-				        <th>Date fin</th>
-				        <th>Plateforme</th>
-				        <th>Lieu</th>
-				        <th>Pièce</th>
-				        <th>Fonction principal</th>
-				        <th>Fonction secondaire</th>
-				        <th>Nom utilisateur</th>
-				        <th>Prénom utilisateur</th>
+							 <?php endforeach; ?>
+					</table></p>
 
-                        <?php foreach ($listePlanningOccupation as $cle=>$valeur): ?>
-							<tr>
-								<?php foreach ($valeur as $val): ?>
-								    <td  style="cursor: pointer;" onClick="window.open('update_reservation.php?id=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
-								<?php endforeach; ?>
-							</tr>
-						<?php endforeach; ?>
-				</table>
+					<table class="" border=0.5>
+							<th>id</th>
+							<th>Date début</th>
+							<th>Date fin</th>
+							<th>Plateforme</th>
+							<th>Lieu</th>
+							<th>Pièce</th>
+							<th>Fonction principal</th>
+							<th>Fonction secondaire</th>
+							<th>Utilisateur</th>
+
+							<?php foreach ($listePlanningOccupation as $cle=>$valeur): ?>
+								<tr>
+									<?php foreach ($valeur as $val): ?>
+										<td  style="cursor: pointer;" onClick="window.open('update_reservation.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
+									<?php endforeach; ?>
+								</tr>
+							<?php endforeach; ?>
+					</table>
 		</div>
     </body>
 </html>

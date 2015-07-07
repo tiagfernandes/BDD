@@ -1,6 +1,8 @@
 <?php
     require_once('fonctions.php');
 
+	$idEquipement = $_GET['idEquipement'];
+
     $description = $_POST['description'];
     $datecalibration = $_POST['datecalibration'];
     $nom="Calibration";
@@ -17,10 +19,10 @@
          $prep2 = $pdo->prepare($sql2);
          $prep2->execute();
 
-        header('Location: fiche-vie.php?calibration=succes');
+        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&?calibration=succes');
     }
 
     else
-        header('Location: fiche-vie.php?calibration=erreur');
+        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&?calibration=erreur');
 
 ?>
