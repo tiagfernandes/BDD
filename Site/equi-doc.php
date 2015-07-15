@@ -1,7 +1,7 @@
 <?php
     require_once('fonctions.php');
-	$idEquipement=$_GET['idEquipement'];
-	$listeDocument = getAllDocument();
+	$idDocument=$_GET['idDocument'];
+	$listeEquipement = getEquipementToDoc();
 ?>
 
 <!doctype html>
@@ -21,40 +21,41 @@
     <?php require_once('entete.php'); ?>
        <?php if ($_SESSION['role']== "Administrateur") {?>
         <div id="contenu">
-            <div id="banniere">Ajout d'un document à l'équipement n°<?= $idEquipement ?></div>
+            <div id="banniere">Ajout d'un équipement au document n°<?= $idDocument ?></div>
             	<fieldset class="Etiquette_Equipement"><legend>Document lié</legend>
 
-                        <form method="post" action="ajout_doc_equi.php?idEquipement=<?= $idEquipement ?>">
+                        <form method="post" action="ajout_equi_doc.php?idDocument=<?= $idDocument ?>">
 
 							<table border="1px">
 
 								<td>id</td>
 								<td>Nom</td>
 								<td>Etiquette Document</td>
-								<td>Lieu d'archive</td>
 
-									<?php foreach ($listeDocument as $cle=>$valeur): ?> <!--Affichage en tableau des documents-->
+
+									<?php foreach ($listeEquipement as $cle=>$valeur): ?> <!--Affichage en tableau des documents-->
 										<tr>
-											<form method="get" action="document.php?idDocument">
+											<form method="get" action="equipement.php?idEquipement">
 												<?php foreach ($valeur as $val): ?>
-													<?php $idDocument=$valeur['idDocument']; ?>
-														<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $idDocument;?>')"><?= htmlentities($val) ?></td>
+													<?php $idEquipement = $valeur['idEquipement']; ?>
+														<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
 												<?php endforeach; ?>
 											</form>
-											<!-- Checkbox choix des documents à lier -->
-												<td><input type="checkbox" name="choixDoc[]" value="<?= $idDocument ?>"></td>
+												<!-- Checkbox choix des équipements à liés -->
+													<td><input type="checkbox" name="choixEqui[]" value="<?= $idEquipement ?>"></td>
 										</tr>
-									 <?php endforeach; ?>
+									<?php endforeach; ?>
+
 							</table>
 
-                       		<input type="submit" value="envoyer">
+                            <input type="submit" value="envoyer">
 
                         </form>
 
                         			<div class="text">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-											if ($monUrl == "http://localhost/BDD/Site/doc-equi.php?succes"){
+											if ($monUrl == "http://localhost/BDD/Site/equi-doc.php?idDocument=".$idDocument."&?succes"){
 												echo ("Acronime ajouté avec succès !");
 											}
 										?>
@@ -63,12 +64,14 @@
 									<div id ="erreur">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-											if ($monUrl == "http://localhost/BDD/Site/doc-equi.php?idEquipement=".$idEquipement."&?erreur"){
+											if ($monUrl == "http://localhost/BDD/Site/doc-equi.php?idDocument=".$idDocument."&?erreur"){
 												echo ("Veuilliez selectionner au mininum une valeur !");
 											}
 										?>
 									</div>
-                    </fieldset>
+
+                    </fieldset><br/>
+
         </div>
         <?php }
             else{

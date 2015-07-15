@@ -70,7 +70,7 @@
                                     </option>
 								</select></p>
 
-							<label id="ajout_element">Etiquette équipement lier au document :*</label>
+							<label id="ajout_element">Etiquette équipement lier au document : </label>
                                	<select name="idEtiquetteEquipement">
                                     <option value=NULL>-- Etiquette équipement --</option>
                                         <?php
@@ -160,7 +160,6 @@
                                     </option>
 								</select></p>
 
-							<center>Ou</center></br>
 
 							<label for="mon_fichier" id="ajout_element">Fichier PDF :</label>
 							<input type="hidden" name="MAX_FILE_SIZE" value="1048576" />

@@ -1,9 +1,9 @@
 <?php
     require_once('fonctions.php');
 
-    $listePlanning= getPlanning($pdo);
 	$idEquipement = $_GET['idEquipement'];
 
+    $listePlanning= getPlanning($idEquipement);
 	$listePlanningOccupation = getPlanningOccupation($idEquipement);
 
 ?>
@@ -34,6 +34,7 @@
 						$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 						if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&?anomalie=succes"){
 						 echo ("Anomalie ajouté avec succès");
+
 						}
 						else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&?calibration=succes"){
 						 echo ("Calibration ajouté avec succès");
@@ -50,11 +51,15 @@
 							<th>Nom</th>
 							<th>Date</th>
 							<th>Créateur</th>
+							<th>Description</th>
 
 							<?php foreach ($listePlanning as $cle=>$valeur): ?>
 								<tr>
 									<?php foreach ($valeur as $val): ?>
-										<td><?= htmlentities($val) ?></td>
+										<?php $nom = $valeur['Nom']; ?>
+										<?php $id = $valeur['Id']; ?>
+										<?php $createur = $valeur['Createur']; ?>
+										<td style="cursor: pointer;" onClick="window.open('planning.php?nom=<?= $nom;?>&?id=<?= $id;?>?createur=<?= $createur;?>')"><?= htmlentities($val) ?></td>
 									<?php endforeach; ?>
 								</tr>
 

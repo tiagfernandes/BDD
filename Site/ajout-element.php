@@ -75,6 +75,7 @@
 												?>
 											</option>
 											</select></p>
+										<label id="ajout_element">Responsable : </label><input type="text" name="responsable" placeholder="Nom responsable"></p>
 
 
 										<div id ="succes">

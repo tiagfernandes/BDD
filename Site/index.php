@@ -102,12 +102,11 @@
 
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
-								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-
-									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-									<td><?php echo $donnees['nomEquipement']; ?></td>
+								<tr>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['nomEquipement']; ?></td>
 									<td><?php echo $donnees['marque']; ?></td>
-									<td><?php echo $donnees['plateforme']; ?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['plateforme']; ?></td>
 									<td><?php echo $donnees['responsable']; ?></td>
 
 									<?php
@@ -146,11 +145,11 @@
 
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
-								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-									<td><?php echo $donnees['nomEquipement']; ?></td>
+								<tr>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['nomEquipement']; ?></td>
 									<td><?php echo $donnees['marque']; ?></td>
-									<td><?php echo $donnees['plateforme']; ?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['plateforme']; ?></td>
 									<td><?php echo $donnees['responsable']; ?></td>
 
 									<?php
@@ -187,11 +186,11 @@
 
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
-								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-									<td><?php echo $donnees['nomEquipement']; ?></td>
+								<tr>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['nomEquipement']; ?></td>
 									<td><?php echo $donnees['marque']; ?></td>
-									<td><?php echo $donnees['plateforme']; ?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['plateforme']; ?></td>
 									<td><?php echo $donnees['responsable']; ?></td>
 
 									<?php
@@ -228,11 +227,11 @@
 
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
-								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-									<td><?php echo $donnees['nomEquipement']; ?></td>
+								<tr>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['nomEquipement']; ?></td>
 									<td><?php echo $donnees['marque']; ?></td>
-									<td><?php echo $donnees['plateforme']; ?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['plateforme']; ?></td>
 									<td><?php echo $donnees['responsable']; ?></td>
 
 									<?php
@@ -268,11 +267,11 @@
 
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
-								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-									<td><?php echo $donnees['nomEquipement']; ?></td>
-									<td><?php echo $donnees['marque']; ?></td>
-									<td><?php echo $donnees['plateforme']; ?></td>
+								<tr>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['nomEquipement']; ?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['marque']; ?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['plateforme']; ?></td>
 									<td><?php echo $donnees['responsable']; ?></td>
 
 									<?php

@@ -32,7 +32,6 @@
 							<label id="ajout_element">Date de fin : </label><input type="date" name="dateFin" value=""></p>
 							<label id="ajout_element">Plateforme :*</label>
 										<select name="plateforme">
-											<option value=NULL>-- Plateforme --</option>
 												<?php
 													$reponse = $pdo->query('SELECT * FROM plateforme ORDER BY plateforme');
 													while ($donnees = $reponse->fetch()){
@@ -47,7 +46,7 @@
 										<select name="lieu">
 											<option value=NULL>-- Lieu --</option>
 												<?php
-													$reponse = $pdo->query('SELECT * FROM lieu_utilisation ORDER BY lieuUtilisation');
+													$reponse = $pdo->query('SELECT * FROM lieu_utilisation WHERE idLieu_Utilisation BETWEEN 1 and 200 ORDER BY lieuUtilisation');
 													while ($donnees = $reponse->fetch()){
 												?>
 														<option value="<?php echo $donnees['idLieu_Utilisation']; ?>"><?php echo $donnees['lieuUtilisation'];?></option>
@@ -60,10 +59,10 @@
 										<select name="piece">
 											<option value=NULL>-- Pièce --</option>
 												<?php
-													$reponse = $pdo->query('SELECT * FROM piece_equipement ORDER BY piece');
+													$reponse = $pdo->query('SELECT * FROM piece_equipement WHERE idPiece BETWEEN 1 and 200 ORDER BY piece ');
 													while ($donnees = $reponse->fetch()){
 												?>
-														<option value="<?php echo $donnees['idPiece']; ?>"><?php echo $donnees['valeur'];?> - <?php echo $donnees['piece'] ;?></option>
+														<option value="<?php echo $donnees['idPiece']; ?>"><?php echo $donnees['piece'] ;?></option>
 												<?php
 													}
 												?>

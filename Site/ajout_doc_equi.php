@@ -4,6 +4,7 @@
 	$idEquipement = $_GET['idEquipement'];
 	$choix = ($_POST['choixDoc']);
 
+
 if (count($choix)>0){
 	for ($i=0; $i<count($choix); $i++){
 

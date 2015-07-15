@@ -37,6 +37,23 @@
 						?>
 						<br/>
 
+						<?php	//Fonction pour afficher l'etiquette de l'équipement
+							$resultats=$pdo->query("SELECT `valeurCategorie`,`valeurAcronime`,`equipement`.`idEquipement` FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+						WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+						AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+						AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+						AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette` AND `equipement`.`idEquipement`='$idEquipement'");
+
+							$resultats->setFetchMode(PDO::FETCH_OBJ);
+							while( $resultat = $resultats->fetch() )
+							{
+								echo 'Etiquette : '.$resultat->valeurCategorie.'-';
+								echo ''.$resultat->valeurAcronime.'-';
+								echo ''.$resultat->idEquipement.'<br/>';
+							}
+							$resultats->closeCursor();
+						?><br/>
+
 						<?php	//Fonction pour afficher la marque
 							$resultats=$pdo->query("SELECT marque FROM equipement WHERE idEquipement='$idEquipement'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
@@ -117,22 +134,7 @@
 							$resultats->closeCursor();
 						?><br/>
 
-						<?php	//Fonction pour afficher l'etiquette de l'équipement
-							$resultats=$pdo->query("SELECT `valeurCategorie`,`valeurAcronime`,`equipement`.`idEquipement` FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
-						WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-						AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-						AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-						AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette` AND `equipement`.`idEquipement`='$idEquipement'");
 
-							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
-								echo 'Etiquette : '.$resultat->valeurCategorie.'-';
-								echo ''.$resultat->valeurAcronime.'-';
-								echo ''.$resultat->idEquipement.'<br/>';
-							}
-							$resultats->closeCursor();
-						?><br/>
 
 				<!-- Générateur de QR code -->
 					<a class="QRCODE" href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://10.118.40.20/qualite/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
@@ -142,15 +144,23 @@
 					<?php
 						if(($_SESSION['role']=='Administrateur') xor ($_SESSION['role']=='Développeur')){
 					?>
-						<a class="doc" href="doc-equi.php?idEquipement=<?= $idEquipement; ?>">Ajout document liés</a>
+							<a class="doc" href="doc-equi.php?idEquipement=<?= $idEquipement; ?>">Ajout document liés</a>
 					<?php
 						}
 					?>
 				</span>
 
-				<span style="position:relative; top: -320px; left: 500px;">
-					<a class="fiche-vie" href="fiche-vie.php?idEquipement=<?= $idEquipement; ?>">Fiche de vie</a>
-				</span>
+
+					<a class="fiche-vie" href="fiche-vie.php?idEquipement=<?= $idEquipement; ?>">Fiche de vie</a><br/>
+
+					<?php
+						if(($_SESSION['role']=='Administrateur') xor ($_SESSION['role']=='Développeur')){
+					?>
+							<a href="update_equipement.php?idEquipement=<?= $idEquipement; ?>" class="updateButton">Modifier l'équipement</a>
+					<?php
+				  		}
+					?>
+
 
 				  <!-- Création du tableau-->
 					<table class="docEqui" border="0.5">

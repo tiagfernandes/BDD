@@ -158,7 +158,7 @@ function getDocumentEquipement($idEquipement){	//Affiche les documents lier à l
 
 function getCategorie() {	//Affiche tout les catégorie d'équipement
 	global $pdo;
-		$query = "SELECT * FROM categorie_etiquette ORDER BY categorieEtiquette";
+		$query = "SELECT * FROM categorie_etiquette ORDER BY categorieEtiquette LIMIT 1, 600";
 
 		try{
 			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -222,7 +222,7 @@ function getEquipementEtiquette($chaineSearchCat, $chaineSearchAcr, $chaineSearc
 
 function getAcronime() {	//Affiche les acronime
 	global $pdo;
-		$query = "SELECT * FROM acronime_etiquette ORDER BY acronimeEtiquette";
+		$query = "SELECT * FROM acronime_etiquette ORDER BY acronimeEtiquette LIMIT 1, 600";
 
 		try{
 			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -286,28 +286,38 @@ function getAllDocument(){	//Affiche tout les documents
 }
 
 
-function getPlanning(){	//Affiche le planning par équipement
+function getPlanning($idEquipement){	//Affiche le planning par équipement
     global $pdo;
         $query="
-            SELECT `idEntretien` as ID , `nomEntretien` as NOM, `dateEntretien` as DATE,
-            CONCAT(`utilisateur`.`nomUtilisateur`,' ',`utilisateur`.`prenomUtilisateur`) as CREATEUR
-            FROM `entretien`,`utilisateur`
-            WHERE `entretien`.`idUtilisateur` = `utilisateur`.`idUtilisateur`
+            SELECT `entretien`.`idEntretien` as Id , `nomEntretien` as Nom, `dateEntretien` as Date, CONCAT(`utilisateur`.`nomUtilisateur`,' ',`utilisateur`.`prenomUtilisateur`) as Createur, SUBSTRING(`description`,1,100)
+            FROM `entretien`,`utilisateur`, `fiche_de_vie_has_entretien`, `fiche_de_vie` , `equipement`
+			WHERE `entretien`.`idUtilisateur` = `utilisateur`.`idUtilisateur`
+			AND `entretien`.`idEntretien` = `fiche_de_vie_has_entretien`.`idEntretien`
+			AND `fiche_de_vie_has_entretien`.`idFicheDeVie` = `fiche_de_vie`.`idFicheDeVie`
+			AND `fiche_de_vie`.`idEquipement` = `equipement`.`idEquipement`
+			AND `equipement`.`idEquipement` = $idEquipement
 
             UNION
 
-            SELECT `idAnomalie` as ID, `nomAnomalie`as NOM , `dateAnomalie` as DATE ,
-            CONCAT(`utilisateur`.`nomUtilisateur`,' ',`utilisateur`.`prenomUtilisateur`) as CREATEUR
-            FROM `anomalie`,`utilisateur`
+            SELECT `anomalie`.`idAnomalie` as Id, `nomAnomalie`as Nom , `dateAnomalie` as Date, CONCAT(`utilisateur`.`nomUtilisateur`,' ',`utilisateur`.`prenomUtilisateur`) as Createur, SUBSTRING(`description`,1,100)
+            FROM `anomalie`,`utilisateur`, `fiche_de_vie_has_anomalie`,`fiche_de_vie`,`equipement`
             WHERE `anomalie`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
+			AND `anomalie`.`idAnomalie` = `fiche_de_vie_has_anomalie`.`idAnomalie`
+			AND `fiche_de_vie_has_anomalie`.`idFicheDeVie` = `fiche_de_vie`.`idFicheDeVie`
+			AND `fiche_de_vie`.`idEquipement` = `equipement`.`idEquipement`
+			AND `equipement`.`idEquipement` = $idEquipement
 
             UNION
 
-            SELECT `idCalibration` as ID, `nomCalibration`as NOM , `dateCalibration` as DATE ,
-            CONCAT(`utilisateur`.`nomUtilisateur`,' ',`utilisateur`.`prenomUtilisateur`) as CREATEUR
-            FROM `calibration`,`utilisateur`
+            SELECT  `calibration`.`idCalibration` as Id, `nomCalibration`as Nom , `dateCalibration` as Date, CONCAT(`utilisateur`.`nomUtilisateur`,' ',`utilisateur`.`prenomUtilisateur`) as Createur, SUBSTRING(`descriptionCalibration`,1,100)
+            FROM `calibration`,`utilisateur`, `fiche_de_vie_has_calibration`, `fiche_de_vie` , `equipement`
             WHERE `calibration`.`idUtilisateur`= `utilisateur`.`idUtilisateur`
-            ORDER BY DATE DESC";
+			AND `calibration`.`idCalibration` = `fiche_de_vie_has_calibration`.`idCalibration`
+			AND `fiche_de_vie_has_calibration`.`idFicheDeVie` = `fiche_de_vie`.`idFicheDeVie`
+			AND `fiche_de_vie`.`idEquipement` = `equipement`.`idEquipement`
+			AND `equipement`.`idEquipement` = $idEquipement
+            ORDER BY DATE DESC;";
+
 
 		try {
 		  $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -320,7 +330,7 @@ function getPlanning(){	//Affiche le planning par équipement
 
 function getAllPlateforme(){	//Affiche les plateformes
 	global $pdo;
-		$query = "SELECT * FROM plateforme_archive ORDER BY plateformeArchive";
+		$query = "SELECT * FROM plateforme_archive ORDER BY plateformeArchive LIMIT 1, 600";
 
 		try{
 			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -346,7 +356,7 @@ function deletePlateforme($id){	//Supprime la plateforme selectionner
 
 function getAllPiece(){
 	global $pdo;
-		$query = "SELECT * FROM piece_document ORDER BY pieceDocument";
+		$query = "SELECT * FROM piece_document ORDER BY pieceDocument LIMIT 1, 600";
 
 		try{
 			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -372,7 +382,7 @@ function deletePiece($id){
 
 function getAllEmplacement(){
 	global $pdo;
-		$query = "SELECT * FROM emplacement_archive ORDER BY emplacementArchive";
+		$query = "SELECT * FROM emplacement_archive ORDER BY emplacementArchive LIMIT 1, 600";
 
 		try{
 			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -398,7 +408,7 @@ function deleteEmplacement($id){
 
 function getAllSousEmplacement(){
 	global $pdo;
-		$query = "SELECT * FROM sous_emplacement ORDER BY sousEmplacement";
+		$query = "SELECT * FROM sous_emplacement ORDER BY sousEmplacement LIMIT 1, 600";
 
 		try{
 			$result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
@@ -477,3 +487,19 @@ function deleteEquipement($idEquipement){
       }
 }
 
+function getEquipementToDoc(){
+	global $pdo;
+        $query = "SELECT `equipement`.`idEquipement`, CONCAT(`valeurCategorie`,'-',`valeurAcronime`,'-',`equipement`.`idEquipement`), nomEquipement
+				  FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+                  WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+                  AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+                  AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`";
+
+        try {
+          $result = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+          return($result);
+        }
+        catch ( Exception $e ) {
+          die ("Erreur dans la requete ".$e->getMessage());
+        }
+}

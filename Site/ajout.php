@@ -11,10 +11,11 @@
     $categorie = $_POST['categorie'];
     $acronime = $_POST['acronime'];
     $plateforme = $_POST['plateforme'];
+    $responsable = $_POST['responsable'];
 
     if ($categorie!="NULL" && $acronime!="NULL" && $nom_equi!=NULL && $plateforme!=NULL){
 
-        $sql = "INSERT INTO `equipement` (nomEquipement,prix,marque,dateAjout,garantie,dateFabrication,dateReception,dateMiseService, idPlateforme) VALUES ('$nom_equi','$prix','$marque',NOW(),'$garantie','$anneefb','$dater','$datemes', '$plateforme')";
+        $sql = "INSERT INTO `equipement` (nomEquipement,prix,marque,dateAjout,garantie,dateFabrication,dateReception,dateMiseService, idPlateforme, responsable) VALUES ('$nom_equi','$prix','$marque',NOW(),'$garantie','$anneefb','$dater','$datemes', '$plateforme', '$responsable')";
         $prep = $pdo->prepare($sql);
         $prep->execute();
 

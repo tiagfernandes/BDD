@@ -44,7 +44,6 @@
 
 		<!-- Création du tableau-->
 					<table class="tableau" border="0.5">
-						<th>Id</th>
 						<th>Nom document</th>
 						<th>Etiquette</th>
 						<th>Lieu d'archive</th>
@@ -85,7 +84,6 @@
 							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 								?>
 							<tr style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')">
-								<td><?php echo $donnees['idDocument']; ?></td>
 								<td><?php echo $donnees['nomDocument']; ?></td>
 								<td><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],'-',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
 								<td><?php echo $donnees['valeurPlateforme'],'-',$donnees['valeurPiece'],'-',$donnees['valeurSousEmplacement'],'-',$donnees['valeurSousEmplacement'];?></td>
@@ -125,7 +123,6 @@
 							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 								?>
 							<tr style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')">
-								<td><?php echo $donnees['idDocument']; ?></td>
 								<td><?php echo $donnees['nomDocument']; ?></td>
 								<td><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],'-',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
 								<td><?php echo $donnees['valeurPlateforme'],'-',$donnees['valeurPiece'],'-',$donnees['valeurSousEmplacement'],'-',$donnees['valeurSousEmplacement'];?></td>
@@ -133,24 +130,40 @@
 							</tr><?php
 							}
 
-					}
-				else{	?>
+				}
+				else{
 
-						<?php foreach ($listeDocument as $cle=>$valeur): ?> <!--Affichage en tableau des equipement-->
-							<tr>
-								<form method="get" action="document.php?idDocument">
-									<?php foreach ($valeur as $val): ?>
-										<?php  $idDocument=$valeur['idDocument']; ?>
-											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $idDocument;?>')"><?= htmlentities($val) ?></td>
-									<?php endforeach; ?>
-								</form>
+							$requete = "SELECT `document`.`idDocument`, `nomDocument`, `valeurTypeDoc`, `valeurProcessus`, `valeurSousProcessus`, `valeurCategorie`, `valeurAcronime`, `valeurPlateforme`, `valeurPiece`, `valeurEmplacement`, `valeurSousEmplacement`
+							FROM `document`, `etiquette_document`,`type_document`,`processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`,`lieux_document`,`plateforme_archive`, `piece_document`, `emplacement_archive`, `sous_emplacement`
+							WHERE `document`.`idEtiquette_Document` = `etiquette_document`.`idEtiquette_Document`
+							AND `etiquette_document`.`idType_Document` = `type_document`.`idType_Document`
+							AND `etiquette_document`.`idProcessus` = `processus`.`idProcessus`
+							AND `etiquette_document`.`idSous_Processus` = `sous_processus`.`idSous_Processus`
+							AND `etiquette_document`.`idEtiquette_Equipement` = `etiquette_equipement`.`idEtiquette_Equipement`
+							AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+							AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+							AND `document`.`idLieux_Document` = `lieux_document`.`idLieux_Document`
+							AND `lieux_document`.`idPlateforme_Archive` = `plateforme_archive`.`idPlateforme_Archive`
+							AND `lieux_document`.`idPiece_Document` = `piece_document`.`idPiece_Document`
+							AND `lieux_document`.`idEmplacement_Archive` = `emplacement_archive`.`idEmplacement_Archive`
+							AND `lieux_document`.`idSous_Emplacement` = `sous_emplacement`.`idSous_Emplacement`";
+
+							// Exécution de la requête SQL
+							$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
+
+							while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+								?>
+							<tr style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')">
+								<td><?php echo $donnees['nomDocument']; ?></td>
+								<td><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],'-',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
+								<td><?php echo $donnees['valeurPlateforme'],'-',$donnees['valeurPiece'],'-',$donnees['valeurSousEmplacement'],'-',$donnees['valeurSousEmplacement'];?></td>
+								<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($donnees['idDocument']) ?>
+								onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomDocument'] ?> ?'));"/></td>
+
 							</tr>
-
-						 <?php endforeach; ?>
-
-        			</table><br/>
 				<?php
 					}
+				}
 				?>
         	</div>
    </body>
