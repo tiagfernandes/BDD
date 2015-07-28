@@ -1,4 +1,21 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'ajout_reservation.php', permet l'insersion d'une réservation
+d'un équipement.
+---------------------------------------------------------------------------
+L'utilisateur :
+Autorisé.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
 	require_once('fonctions.php');
 
 	$dateDebut = $_POST['dateDebut'];
@@ -25,6 +42,6 @@ if (!empty($dateDebut)){
 	header('Location: fiche-vie.php?idEquipement='.$idEquipement.'');
 }
 else {
-	header('Location: reservation.php?idEquipement='.$idEquipement.'&?erreur');
+	header('Location: reservation.php?idEquipement='.$idEquipement.'&erreur');
 }
 ?>

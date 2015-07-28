@@ -1,4 +1,20 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'ajout_doc.php', permet l'insersion d'un nouveau document.
+---------------------------------------------------------------------------
+L'utilisateur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
     $nom_document= $_POST['nom_document'];
@@ -24,8 +40,10 @@
 	$adresse = $_FILES['mon_fichier']['tmp_name']; //L'adresse vers le fichier uploadé dans le répertoire temporaire.
 	$erreur = $_FILES['mon_fichier']['error'] ;   //Le code d'erreur, qui permet de savoir si le fichier a bien été uploadé.
 
+
+
 	//S'il n'y a pas de document PDF lier
-	if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL"){
+	if (empty($nom)){
 
 		$sql = "INSERT INTO `etiquette_document` (idType_Document, idProcessus, idSous_Processus, idEtiquette_Equipement) VALUES ('$idType_Document', '$idProcessus', '$idSous_Processus', '$idEtiquette_Equipement')";
         $prep = $pdo->prepare($sql);
@@ -55,36 +73,10 @@
 
         header('Location: ajout-document.php?succes');
 
+
 	}
 	//S'il y a un document PDF lier
    	else if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL" && $nom!="NULL"){
-
-        $sql = "INSERT INTO `etiquette_document` (idType_Document, idProcessus, idSous_Processus, idEtiquette_Equipement) VALUES ('$idType_Document', '$idProcessus', '$idSous_Processus', '$idEtiquette_Equipement')";
-        $prep = $pdo->prepare($sql);
-        $prep->execute();
-
-        $idEtiquette_Document =$pdo->lastInsertId();
-
-        $sql2 = "INSERT INTO `document` (idEtiquette_Document, nomDocument) VALUES ('$idEtiquette_Document','$nom_document')";
-        $prep2 = $pdo->prepare($sql2);
-        $prep2->execute();
-
-		$idDoc = $pdo->lastInsertId();
-
-		$sql3 = "INSERT INTO `equipement_has_document` (idEquipement, idDocument) VALUES ('$idEquipement', '$idDoc')";
-		$prep3 = $pdo->prepare($sql3);
-        $prep3->execute();
-
-		$sql4 = "INSERT INTO `lieux_document` (idPlateforme_Archive, idPiece_Document, idEmplacement_Archive, idSous_Emplacement) VALUES ('$plateforme', '$piece', '$emplacement', '$sous_emplacement')";
-		$prep4 = $pdo->prepare($sql4);
-        $prep4->execute();
-
-		$idLieu = $pdo->lastInsertId();
-
-		$sql5 = "UPDATE `document` SET `idLieux_Document` = '$idLieu' WHERE idDocument='$idDoc'";
-		$prep5 = $pdo->prepare($sql5);
-        $prep5->execute();
-
 
 
 		if (!empty($nom)){	//Vérifie si un document à été sélectionné
@@ -114,8 +106,8 @@
 					$newNom = pathinfo($nom, PATHINFO_FILENAME);
 
 					$newNom = ("$newNom-$today.$extension"); //Nouveau nom/date/extension
-
 				}
+
 				else {
 					// on souhaite récupéré l'extension
 					$filename = $nom;
@@ -139,8 +131,8 @@
 						}
 
 
-							$lieu = "documents/{$newNom}";	//Envoie le fichier dans le dossier
-							$resultat = move_uploaded_file($_FILES['mon_fichier']['tmp_name'],$lieu);
+							$lieu = '/var/www/qualite/BDD/Site/documents/'.$newNom.'';	//Envoie le fichier dans le dossier
+							$resultat = move_uploaded_file($_FILES['mon_fichier']['tmp_name'], $lieu);
 
 							if ($resultat) { //Si l'upload du fichier a fonctionner, on ajoute les donnees sur la base de donnee
 
@@ -171,7 +163,6 @@
 								$prep5->execute();
 
 								header('Location: ajout-document.php?succes');
-
 							}
 							else {
 								header('Location: ajout-document.php?erreur_upload');

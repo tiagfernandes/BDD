@@ -1,10 +1,32 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'fiche-vie.php', affiche toutes les anomalies, calibrations,
+entretien de l'équipement, ainsi que les réservation de l'équipement.
+---------------------------------------------------------------------------
+L'utilisateur :
+Autorisé.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
 	$idEquipement = $_GET['idEquipement'];
 
     $listePlanning= getPlanning($idEquipement);
 	$listePlanningOccupation = getPlanningOccupation($idEquipement);
+
+	if(isset($_GET['delete_reservation'])){ //Supprime la réservation
+		$id = $_GET['delete_reservation'];
+		deleteReservation($id);
+	}
 
 ?>
 
@@ -32,14 +54,14 @@
 					<div id ="succes">
 						<?php
 						$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-						if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&?anomalie=succes"){
+						if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&anomalie=succes"){
 						 echo ("Anomalie ajouté avec succès");
 
 						}
-						else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&?calibration=succes"){
+						else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&calibration=succes"){
 						 echo ("Calibration ajouté avec succès");
 						}
-						else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&?entretien=succes"){
+						else if ($monUrl == "http://localhost/BDD/Site/fiche-vie.php?idEquipement='.$idEquipement.'&entretien=succes"){
 						 echo ("Entretien ajouté avec succès");
 						}
 						?>
@@ -50,6 +72,7 @@
 							<th>Id</th>
 							<th>Nom</th>
 							<th>Date</th>
+							<th>Date de fin</th>
 							<th>Créateur</th>
 							<th>Description</th>
 
@@ -59,8 +82,14 @@
 										<?php $nom = $valeur['Nom']; ?>
 										<?php $id = $valeur['Id']; ?>
 										<?php $createur = $valeur['Createur']; ?>
-										<td style="cursor: pointer;" onClick="window.open('planning.php?nom=<?= $nom;?>&?id=<?= $id;?>?createur=<?= $createur;?>')"><?= htmlentities($val) ?></td>
+										<td><?= htmlentities($val) ?></td>
+
 									<?php endforeach; ?>
+											<td width=20px>
+												<a href="planning.php?idEquipement=<?= $idEquipement ?>&nom=<?= $nom;?>&id=<?= $id ?>&createur=<?= $createur ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png'
+												onClick="return(confirm('Modifier <?= $valeur['Nom']  ?> ?'));"/></a>
+											</td>
+
 								</tr>
 
 							 <?php endforeach; ?>
@@ -80,8 +109,22 @@
 							<?php foreach ($listePlanningOccupation as $cle=>$valeur): ?>
 								<tr>
 									<?php foreach ($valeur as $val): ?>
-										<td  style="cursor: pointer;" onClick="window.open('update_reservation.php?idEquipement=<?= $idEquipement;?>')"><?= htmlentities($val) ?></td>
+										<td><?= htmlentities($val) ?></td>
 									<?php endforeach; ?>
+										<td width=20px>
+											<a href="update_reservation.php?idEquipement=<?= $idEquipement ?>&&id=<?= $valeur['idPlanning_Occupation'] ?>&createur=<?= $valeur['nomUtilisateur'] ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png'
+											onClick="return(confirm('Modifier <?= $valeur['idPlanning_Occupation']  ?> ?'));"/></a>
+										</td>
+										<?php
+											if($_SESSION['role']=='Administrateur'){
+										?>
+												<td width=20px>
+													<a href="fiche-vie.php?idEquipement=<?= $idEquipement ?>&delete_reservation=<?= htmlentities($valeur['idPlanning_Occupation']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+													onClick="return(confirm('Etes-vous sûr de vouloir supprimer la réservation n°<?= $valeur['idPlanning_Occupation'] ?> ?'));"/></a>
+												</td>
+										<?php
+											}
+										?>
 								</tr>
 							<?php endforeach; ?>
 					</table>

@@ -1,4 +1,21 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'admin.php', permet de visualiser tout les utilisateurs, et de les
+supprimer.
+---------------------------------------------------------------------------
+L'utilisateur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+Le développeur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
     if(isset($_GET['delete'])){ //Supprime utilisateur

@@ -1,4 +1,20 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'ajout-anomalie.php', formulaire d'insersion d'une nouvelle anomalie.
+---------------------------------------------------------------------------
+L'utilisateur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+Le développeur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
 	$idEquipement = $_GET['idEquipement'];
@@ -47,7 +63,7 @@
 				else{
 					$message="Vous devez être Administrateur ou Développeur pour acceder à cette page !";
 						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
-					header('refresh:0.01;url=index.php');
+					header('refresh:0.01;url=fiche-vie.php?idEquipement='.$idEquipement.'');
 				}
 			?>
     </body>

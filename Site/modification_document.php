@@ -1,4 +1,20 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'modification_document.php', modifie le document.
+---------------------------------------------------------------------------
+L'utilisateur :
+N'est pas autorisé.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
 	$idDocument = $_GET['idDocument'];
@@ -226,7 +242,7 @@
 					$stmt->execute();
 
 
-    	header ('location: document.php?idDocument='.$idDocument.'&?update');
+    	header ('location: document.php?idDocument='.$idDocument.'&update');
 
 	}
 

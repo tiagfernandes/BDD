@@ -1,7 +1,36 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'equipement.php', fiche de l'équipement.
+---------------------------------------------------------------------------
+L'utilisateur :
+Autorisé.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé, modifié l'équipement.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé, modifié l'équipement.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
     $idEquipement=$_GET['idEquipement'];
 	$listeDocumentEquipement = getDocumentEquipement($idEquipement);
+
+	if(isset($_GET['delete'])){ //Ajoute le document
+		$idDocument = $_GET['delete'];
+		deleteDocToEqui($idDocument, $idEquipement);
+	}
+
+	if(isset($_GET['qrcode'])){ //Ajoute le document
+		$taille = $_GET['qrcode'];
+	}
+	else {
+		$taille = "82x82";
+	}
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -26,12 +55,23 @@
 
                    <fieldset class="info_equipement"><legend>Information équipement</legend>
 
+						<form class="choixQr" method="get" action="equipement.php">
+						<input type="hidden" id="idEquipement" name="idEquipement" value="<?= $idEquipement ?>">
+							<select name="qrcode">
+								<option value="82x82">82x82</option>
+								<option value="50x50">50x50</option>
+								<option value="130x130">130x130</option>
+									<input type="submit" value="Modifier la taille">
+							</select>
+
+						</form>
+
 						<?php	//fonction pour afficher le nom de l'équipement
 							$resultats=$pdo->query("SELECT nomEquipement FROM equipement WHERE idEquipement='$idEquipement'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
 							while( $resultat = $resultats->fetch() )
 							{
-								echo 'Nom : '.$resultat->nomEquipement.'<br>';
+								echo '<b>Nom : </b>'.$resultat->nomEquipement.'<p>';
 							}
 							$resultats->closeCursor();
 						?>
@@ -47,89 +87,44 @@
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
 							while( $resultat = $resultats->fetch() )
 							{
-								echo 'Etiquette : '.$resultat->valeurCategorie.'-';
+								echo '<b>Etiquette : </b>'.$resultat->valeurCategorie.'-';
 								echo ''.$resultat->valeurAcronime.'-';
-								echo ''.$resultat->idEquipement.'<br/>';
+								echo ''.$resultat->idEquipement.'<p>';
 							}
 							$resultats->closeCursor();
 						?><br/>
 
 						<?php	//Fonction pour afficher la marque
-							$resultats=$pdo->query("SELECT marque FROM equipement WHERE idEquipement='$idEquipement'");
+							$resultats=$pdo->query("SELECT * FROM equipement WHERE idEquipement='$idEquipement'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
 							while( $resultat = $resultats->fetch() )
 							{
-								echo 'Marque : '.$resultat->marque.'<br>';
+								echo "<b>Marque :</b> ".$resultat->marque."<p>";
+								echo "<b>Date d'ajout : </b>".$resultat->dateAjout."<p>";
+								echo "<b>Prix d'achat : </b>".$resultat->prix." €<p>";
+								echo "<b>Date de fabrication : </b>".$resultat->dateFabrication."<p>";
+								echo "<b>Date de réception : </b>".$resultat->dateReception."<p>";
+								echo "<b>Date de mise en service :</b> ".$resultat->dateMiseService."<p>";
+								echo "<b>Fin de garantie : </b>".$resultat->garantie."<p>";
+								echo "<b>Responsable : </b>".$resultat->responsable."<p>";
+								echo "<b>Vairable automate : </b>".$resultat->nomVariableAutomate."<p>";
+								echo "<b>Adresse automate : </b>".$resultat->adresseAutomate."<p>";
+								echo "<b>Id stoc : </b>".$resultat->idStoc."<p>";
+								echo "<b>Numéro de Fabrication : </b>".$resultat->nFabrication."<p>";
+								echo "<b>Attestation d'examen :</b> ".$resultat->attestationExamen."<p>";
+								echo "<b>Contrat d'entretien : </b>".$resultat->contratEntretien."<p>";
+								echo "<b>Suppleant : </b>".$resultat->suppleant."<p>";
+								echo "<b>Oberservation : </b>".$resultat->observation."<p>";
 							}
 							$resultats->closeCursor();
-						?><br/>
-
-						<?php	//Fonciton pour afficher la date d'ajout
-							$resultats=$pdo->query("SELECT dateAjout FROM equipement WHERE idEquipement='$idEquipement'");
-							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
-								echo "Date d'ajout : ".$resultat->dateAjout."<br>";
-							}
-							$resultats->closeCursor();
-						?><br/>
-
-						<?php	//Fonction pour afficher le prix
-							$resultats=$pdo->query("SELECT prix FROM equipement WHERE idEquipement='$idEquipement'");
-							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
-								echo ("Prix d'achat : $resultat->prix €<br>");
-							}
-							$resultats->closeCursor();
-						?><br/>
-
-						<?php	//Fonction pour afficher la date de fabrication
-							$resultats=$pdo->query("SELECT dateFabrication FROM equipement WHERE idEquipement='$idEquipement'");
-							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
-								echo 'Date de fabrication : '.$resultat->dateFabrication.'<br>';
-							}
-							$resultats->closeCursor();
-						?><br/>
-
-						<?php	//Fonction pour afficher la date de reception
-							$resultats=$pdo->query("SELECT dateReception FROM equipement WHERE idEquipement='$idEquipement'");
-							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
-								echo 'Date de réception : '.$resultat->dateReception.'<br>';
-							}
-							$resultats->closeCursor();
-						?><br/>
-
-						<?php	//Fonction pour afficher la date de mise en service
-							$resultats=$pdo->query("SELECT dateMiseService FROM equipement WHERE idEquipement='$idEquipement'");
-							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
-								echo 'Date de mise en service : '.$resultat->dateMiseService.'<br>';
-							}
-							$resultats->closeCursor();
-						?><br/>
-
-						<?php	//Fonction pour afficher la garantie
-							$resultats=$pdo->query("SELECT garantie FROM equipement WHERE idEquipement='$idEquipement'");
-							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
-								echo 'Fin de garantie : '.$resultat->garantie.'<br>';
-							}
-							$resultats->closeCursor();
-						?>
+						?><br>
 
 						<?php	//Fonction pour afficher le nom du fournisseur
 							$resultats=$pdo->query("SELECT `nomFournisseur` FROM `equipement`, `fournisseur` WHERE `equipement`.`idFournisseur`=`fournisseur`.`idFournisseur` AND `idEquipement`='$idEquipement'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
 							while( $resultat = $resultats->fetch() )
 							{
-								echo 'Founisseur : '.$resultat->nomFournisseur.'<br>';
+								echo '<b>Founisseur :</b> '.$resultat->nomFournisseur.'<br>';
 							}
 							$resultats->closeCursor();
 						?><br/>
@@ -137,21 +132,8 @@
 
 
 				<!-- Générateur de QR code -->
-					<a class="QRCODE" href="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://10.118.40.20/qualite/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
-					<img src="http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http://10.118.40.20/qualite/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
-
-				<span style="position:relative; top: -320px; left: 510px;">
-					<?php
-						if(($_SESSION['role']=='Administrateur') xor ($_SESSION['role']=='Développeur')){
-					?>
-							<a class="doc" href="doc-equi.php?idEquipement=<?= $idEquipement; ?>">Ajout document liés</a>
-					<?php
-						}
-					?>
-				</span>
-
-
-					<a class="fiche-vie" href="fiche-vie.php?idEquipement=<?= $idEquipement; ?>">Fiche de vie</a><br/>
+					<a class="QRCODE" href="http://chart.apis.google.com/chart?cht=qr&chs=<?= $taille ?>&chl=http://10.118.40.20/qualite/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>">
+					<img src="http://chart.apis.google.com/chart?cht=qr&chs=<?= $taille ?>&chl=http://10.118.40.20/qualite/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
 
 					<?php
 						if(($_SESSION['role']=='Administrateur') xor ($_SESSION['role']=='Développeur')){
@@ -161,6 +143,19 @@
 				  		}
 					?>
 
+				<span style="position:relative; top: -700px; left: 320px;">
+					<?php
+						if(($_SESSION['role']=='Administrateur') xor ($_SESSION['role']=='Développeur')){
+					?>
+							<a class="doc" href="doc-equi.php?idEquipement=<?= $idEquipement; ?>">Ajout document liés</a>
+					<?php
+						}
+					?>
+
+
+
+					<a class="fiche-vie" href="fiche-vie.php?idEquipement=<?= $idEquipement; ?>">Fiche de vie</a><br/>
+				</span>
 
 				  <!-- Création du tableau-->
 					<table class="docEqui" border="0.5">
@@ -185,9 +180,18 @@
 
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
-								<tr style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')">
-									<td><?php echo $donnees['nomDocument']; ?></td>
-									<td><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
+								<tr>
+									<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['nomDocument']; ?></td>
+									<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
+								<?php
+									if($_SESSION['role']=='Administrateur'){
+								?>
+										<td width=20px>
+											<a href="equipement.php?idEquipement=<?= $idEquipement ?>&delete=<?= htmlentities($donnees['idDocument']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomDocument'] ?> ?'));"/></a>							</td>
+								<?php
+									}
+								?>
 								</tr>
 
 								<?php
@@ -206,6 +210,7 @@
 						?>
 					</div>
            		</fieldset>
+           		<br><br>
             </div>
     </body>
 </html>

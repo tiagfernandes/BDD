@@ -180,7 +180,7 @@ label{
 
 .bouton{
     position: relative;
-    left: 47%;;
+    left: 47%;
 }
 
 .button{
@@ -198,9 +198,7 @@ label{
     margin-left: 7px;
 }
 
-input {
-    margin-top: 2px;
-}
+
 
 .deco a {
     position: absolute;
@@ -567,9 +565,7 @@ hr {
 	margin-right: 2%
 }
 
-#choix_ajout {
-    text-align: center;
-}
+
 
 .tableau {
 	position: relative;
@@ -586,9 +582,6 @@ hr {
 }
 
 .fiche-vie {
-	float: right;
-	margin-top: -320px;
-	font-size: 20px;
 	-moz-box-shadow:inset 0px 0px 0px 0px #a4e271;
 	-webkit-box-shadow:inset 0px 0px 0px 0px #a4e271;
 	box-shadow:inset 0px 0px 0px 0px #a4e271;
@@ -785,30 +778,31 @@ span {
 	padding-left: 30px;
 	padding-top: 15px;
 	padding-bottom: 20px;
+	min-height: 750px;
 	background-color: #e7e7e7;
 }
 
 .QRCODE {
 	position: absolute;
-	margin-top: -270px;
+	margin-top: -635px;
 	margin-left: 780px;
 }
 
 .docEqui {
-	position: absolute;
-	margin-top: -200px;
-	margin-left: 550px;
+	position: inherit;
+	margin-top: -550px;
+	margin-left: 600px;
 }
 
 #QRCode2 {
 	position: absolute;
-	margin-top: -110px;
+	margin-top: -150px;
 	margin-left: 800px;
 }
 
 .equiDoc {
 	position: inherit;
-	margin-top: -100px;
+	margin-top: -150px;
 	margin-left: 560px;
 }
 
@@ -854,3 +848,54 @@ span {
 }
 
 
+
+.info_document {
+	margin-left: 7%;
+	margin-right: 7%;
+    margin-top: 20px;
+	padding-left: 30px;
+	padding-top: 15px;
+	padding-bottom: 20px;
+	min-height: 300px;
+	background-color: #e7e7e7;
+}
+
+.poubelle {
+	background-image: url('image/poubelle1.png');
+	display: block;
+}
+.poubelle:hover {
+	background-image: url('images/poubelle2.png');
+	display: block;
+}
+
+
+
+.modifier {
+	background-image: url('image/modifier.png');
+	display: block;
+}
+
+#Categorie_Etiquette {
+	margin-left: 17%;
+	margin-right: auto;
+}
+
+#Categorie-Etiquette {
+	width: 400px;
+}
+
+.submitenvoie {
+	margin-left: 35%
+}
+
+.add {
+	background-image: url('image/add.png');
+	display: block;
+}
+
+.choixQr {
+	position: absolute;
+	left: 700px;
+	margin-top: 100px;
+}

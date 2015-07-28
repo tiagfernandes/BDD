@@ -1,5 +1,22 @@
 <?php
-    require_once('fonctions.php');
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'a-anomalie.php', permet l'insersion d'une nouvelle anomalie a un
+équipement.
+---------------------------------------------------------------------------
+L'utilisateur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
+	require_once('fonctions.php');
 
 	$idEquipement = $_GET['idEquipement'];
 
@@ -20,10 +37,10 @@
          $prep2 = $pdo->prepare($sql2);
          $prep2->execute();
 
-        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&?anomalie=succes');
+        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&anomalie=succes');
     }
 
     else
-        header('Location: ajout-anomalie.php?idEquipement='.$idEquipement.'&?anomalie=erreur');
+        header('Location: ajout-anomalie.php?idEquipement='.$idEquipement.'&anomalie=erreur');
 
 ?>

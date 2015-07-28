@@ -1,4 +1,20 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'update_document.php', formulaire de modification du document chosisi.
+---------------------------------------------------------------------------
+L'utilisateur :
+N'est pas autorisé.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
 	$idDocument = $_GET['idDocument'];
@@ -68,6 +84,7 @@
 
 									$nomFichier = $resultat->nomFichier;
 									$cheminFichier = $resultat->cheminFichier;
+
 
 									$nomFichier = substr($nomFichier, 0,-13);
 

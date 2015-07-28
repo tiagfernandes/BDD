@@ -1,4 +1,20 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'ajout-document.php', formulaire d'insersion d'un document.
+---------------------------------------------------------------------------
+L'utilisateur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
 	$Equipement = getEquipementDoc($pdo);
@@ -19,7 +35,7 @@
    <body>
 
     <?php require_once('entete.php'); ?>
-      <?php if (($_SESSION['role']== "Administrateur") xor ($_SESSION['role']== "Développeur")){?> <!-- Si l'utilisateur est Administrateur ou Développeur -->
+      <?php if ( ($_SESSION['role'] == "Administrateur") xor ($_SESSION['role'] == "Développeur") ){?> <!-- Si l'utilisateur est Administrateur ou Développeur -->
         <div id="contenu">
             <div id="banniere">Ajout d'un document</div>
                 <div id="form-ajout">
@@ -79,7 +95,7 @@
 																FROM `categorie_etiquette`, `acronime_etiquette`, `etiquette_equipement`
 																WHERE `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
 																AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
-																ORDER BY `valeurCategorie` ASC');
+																ORDER BY `valeurCategorie` ASC LIMIT 1, 10000');
                                         while ($donnees = $reponse->fetch()){
                                         ?>
                                             <option value="<?php echo $donnees['idEtiquette_Equipement']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['valeurAcronime']?> - <?php echo $donnees['idEquipement']; ?></option>

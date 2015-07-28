@@ -1,9 +1,30 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'ajout-anomalie.php', formulaire d'insersion d'une nouvelle anomalie.
+---------------------------------------------------------------------------
+L'utilisateur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+Le développeur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé, peut supprimer les catégories.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
-	if(isset($_GET['delete'])){ //Supprime categorie
+	if (isset ($_GET['delete']) ){ //Supprime categorie
         $id = $_GET['delete'];
         deleteCategorie($id);
+    }
+
+	if (isset ($_GET['update']) ){ //Modifie categorie
+        $id = $_GET['update'];
+        header('Location: update-categorie.php?idCategorie='.$id.'');
     }
 
 	$categorie = getCategorie($pdo);
@@ -49,6 +70,16 @@
 											}
 										?>
 									</div>
+
+									<div class="text">
+										<?php
+											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+											if ($monUrl == "http://localhost/BDD/Site/ajout-categorie.php?succes_update"){
+						                          echo ("Catégorie modifié avec succès !");
+											}
+										?>
+									</div>
+
 									<div id ="erreur">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -59,12 +90,13 @@
 									</div>
 								</form>
 						</fieldset>
+
+							<br>
+
 							<table class="tabCatAcr" border="0.5">
 								<th>id</th>
 								<th>Categorie</th>
 								<th>Valeur</th>
-								<th>Supprimer</th>
-								<th>Modifer</th>
 
 									<?php foreach ($categorie as $cle=>$valeur): ?>
 										<tr>
@@ -72,13 +104,17 @@
 												<td><?= htmlentities($val) ?></td>
 											<?php endforeach; ?>
 
-									<!-- Bouton supprimer catégorie -->
-											<td><a href=ajout-categorie.php?delete=<?= htmlentities($valeur['idCategorieEtiquette']) ?>
-								onClick="return(confirm('Supprimer <?= $valeur['categorieEtiquette']  ?> ?'));">Supprimer</a></td>
-
 									<!-- Bouton modifier catégorie -->
-											<td><a href=ajout-categorie.php?update=<?= htmlentities($valeur['idCategorieEtiquette']) ?>
-								onClick="return(confirm('Modifier <?= $valeur['categorieEtiquette']  ?> ?'));">Modifier</a></td>
+											<td width=20px>
+												<a href="ajout-categorie.php?update=<?= htmlentities($valeur['idCategorieEtiquette']) ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png'
+												onClick="return(confirm('Modifier <?= $valeur['categorieEtiquette']  ?> ?'));"/></a>
+											</td>
+
+									<!-- Bouton supprimer catégorie -->
+											<td width=20px>
+												<a href="ajout-categorie.php?delete=<?= htmlentities($valeur['idCategorieEtiquette']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+												onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['categorieEtiquette'] ?> ?'));"/></a>
+											</td>
 										</tr>
 									<?php endforeach; ?>
 							</table>

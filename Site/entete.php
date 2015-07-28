@@ -1,3 +1,21 @@
+<?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'entete.php', entête du site.
+---------------------------------------------------------------------------
+L'utilisateur :
+Autorisé.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
+?>
 <html>
     <head>
         <script language="Javascript">
@@ -78,6 +96,8 @@
 							<a href="ajout-acronime.php">Acronime équipement</a>
 							<a href="ajout-document.php">Document</a>
 							<a href="ajout-archivage.php">Archivage</a>
+							<a href="ajout-etiquette_doc.php">Type - Processus</a>
+							<a href="ajout-fournisseur.php">Fournisseur</a>
 						</div>
 				</li>
 				<li><a href="profil.php">Profil</a></li>

@@ -1,9 +1,25 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'login.php', connexion de l'utilisateur.
+---------------------------------------------------------------------------
+L'utilisateur :
+Autorisé.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
     // on teste si nos variables sont définies et remplies
     if (isset($_POST['login']) && isset($_POST['pwd']) && !empty($_POST['login'])&& !empty($_POST['pwd'])) {
     // on appele la fonction getAuthentification en lui passant en paramètre le login et password
-    $result = getAuthentification($_POST['login'],$_POST['pwd']);
+    $result = getAuthentification($_POST['login'], $_POST['pwd']);
 
         // si le résulat est VRAI
         if($result){

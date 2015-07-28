@@ -1,4 +1,20 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'ajout-acronime.php', formulaire d'insersion d'un nouveau acronime.
+---------------------------------------------------------------------------
+L'utilisateur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+Le développeur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
 	if(isset($_GET['delete'])){ //Supprime acronime
@@ -50,6 +66,15 @@
 										?>
 									</div>
 
+									<div class="text">
+										<?php
+											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+											if ($monUrl == "http://localhost/BDD/Site/ajout-acronime.php?succes_update"){
+												echo ("Acronime modifié avec succès !");
+											}
+										?>
+									</div>
+
 									<div id ="erreur">
 										<?php
 											$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -61,12 +86,12 @@
 								</form>
 						</fieldset>
 
+						<br>
+
 						<table class="tabCatAcr" border="0.5">
 								<th>id</th>
 								<th>Categorie</th>
 								<th>Valeur</th>
-								<th>Supprimer</th>
-								<th>Modifer</th>
 
 									<?php foreach ($acronime as $cle=>$valeur): ?>
 										<tr>
@@ -74,16 +99,20 @@
 												<td><?= htmlentities($val) ?></td>
 											<?php endforeach; ?>
 
-									<!-- Bouton supprimer acronime -->
-											<td><a href=ajout-acronime.php?delete=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>
-								onClick="return(confirm('Supprimer <?= $valeur['acronimeEtiquette']  ?> ?'));">Supprimer</a></td>
+									<!-- Bouton modifier catégorie -->
+											<td width=20px>
+												<a href="update-acronime.php?update=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png'
+												onClick="return(confirm('Modifier <?= $valeur['acronimeEtiquette']  ?> ?'));"/></a>
+											</td>
 
-									<!-- Bouton modifier acronime -->
-											<td><a href=ajout-acronime.php?update=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>
-								onClick="return(confirm('Modifier <?= $valeur['acronimeEtiquette']  ?> ?'));">Modifier</a></td>
+									<!-- Bouton supprimer catégorie -->
+											<td width=20px>
+												<a href="ajout-acronime.php?delete=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+												onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['acronimeEtiquette'] ?> ?'));"/></a>
+											</td>
 										</tr>
 									<?php endforeach; ?>
-							</table>
+							</table><br>
 
 				</div>
 			<?php }

@@ -1,9 +1,42 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'ajout-archivage.php', formulaire d'insersion d'une nouvelle
+plateforme, d'une nouvelle pièce, d'un nouveau emplacement, d'un nouveau
+sous-emplacement.
+---------------------------------------------------------------------------
+L'utilisateur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé, peut supprimer.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
 	if(isset($_GET['delete_plateforme'])){ //Supprime acronime
         $id = $_GET['delete_plateforme'];
         deletePlateforme($id);
+    }
+
+	if(isset($_GET['delete_piece'])){ //Supprime acronime
+        $id = $_GET['delete_piece'];
+        deletePiece($id);
+    }
+
+	if(isset($_GET['delete_emplacement'])){ //Supprime acronime
+        $id = $_GET['delete_emplacemement'];
+        deleteEmplacement($id);
+    }
+
+	if(isset($_GET['delete_sous-emplacement'])){ //Supprime acronime
+        $id = $_GET['delete_sous-emplacement'];
+        deleteSousEmplacement($id);
     }
 
 	$acronime = getAcronime($pdo);
@@ -114,9 +147,8 @@
 
 								<table class="tabCatAcr" style="border: 2px solid #4f426c">
 									<th>id</th>
-									<th width=100px>Valeur plateforme</th>
+									<th width=200px>Valeur plateforme</th>
 									<th width=200px>Plateforme</th>
-									<th>Modifer</th>
 
 										<?php foreach ($listePlateforme as $cle=>$valeur): ?>
 											<tr>
@@ -124,13 +156,17 @@
 													<td><?= htmlentities($val) ?></td>
 												<?php endforeach; ?>
 
-										<!-- Bouton modifier catégorie -->
-												<td><a href=ajout-archivage.php?update_plateforme=<?= htmlentities($valeur['idPlateforme_Archive']) ?>
-									onClick="return(confirm('Modifier <?= $valeur['plateformeArchive']  ?> ?'));">Modifier</a></td>
+											<!-- Bouton modifier catégorie -->
+											<td width=20px>
+												<a href="update-plateforme.php?update=<?= htmlentities($valeur['idPlateforme_Archive']) ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png'
+												onClick="return(confirm('Modifier <?= $valeur['plateformeArchive']  ?> ?'));"/></a>
+											</td>
 
-										<!-- Bouton supprimer catégorie -->
-												<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($valeur['idPlateforme_Archive']) ?>
-											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['plateformeArchive'] ?> ?'));"/></td>
+											<!-- Bouton supprimer catégorie -->
+												<td width=20px>
+													<a href="ajout-archivage.php?delete_plateforme=<?= htmlentities($valeur['idPlateforme_Archive']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+													onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['plateformeArchive'] ?> ?'));"/></a>
+												</td>
 											</tr>
 										<?php endforeach; ?>
 								</table><br>
@@ -138,9 +174,8 @@
 
 								<table class="tabCatAcr" style="border: 2px solid #4f426c">
 									<th>id</th>
-									<th width=100px>Valeur piece</th>
+									<th width=200px>Valeur piece</th>
 									<th width=200px>Piece</th>
-									<th>Modifer</th>
 
 										<?php foreach ($listePiece as $cle=>$valeur): ?>
 											<tr>
@@ -148,19 +183,18 @@
 													<td><?= htmlentities($val) ?></td>
 												<?php endforeach; ?>
 
-										<!-- Bouton modifier catégorie -->
-											<td><a href=ajout-archivage.php?update_piece=<?= htmlentities($valeur['idPiece_Document']) ?>
-									onClick="return(confirm('Modifier <?= $valeur['pieceDocument']  ?> ?'));">Modifier</a></td>
+											<!-- Bouton modifier catégorie -->
+											<td width=20px>
+												<a href="update-piece.php?update=<?= htmlentities($valeur['idPiece_Document']) ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png'
+												onClick="return(confirm('Modifier <?= $valeur['pieceDocument']  ?> ?'));"/></a>
+											</td>
 
-										<!-- Bouton supprimer catégorie -->
-												<?php
-										if($_SESSION['role']=='Administrateur'){
-										?>
-											<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($valeur['idPiece_Document']) ?>
-											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['pieceDocument'] ?> ?'));"/></td>
-									<?php
-										}
-									?>
+											<!-- Bouton supprimer catégorie -->
+												<td width=20px>
+													<a href="ajout-archivage.php?delete_piece=<?= htmlentities($valeur['idPiece_Document']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+													onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['pieceDocument'] ?> ?'));"/></a>
+												</td>
+
 											</tr>
 										<?php endforeach; ?>
 								</table><br>
@@ -168,9 +202,8 @@
 
 								<table class="tabCatAcr" style="border: 2px solid #4f426c">
 									<th>id</th>
-									<th width=100px>Valeur emplacement</th>
+									<th width=200px>Valeur emplacement</th>
 									<th width=200px>Emplacement</th>
-									<th>Modifer</th>
 
 										<?php foreach ($listeEmplacement as $cle=>$valeur): ?>
 											<tr>
@@ -178,13 +211,17 @@
 													<td><?= htmlentities($val) ?></td>
 												<?php endforeach; ?>
 
-										<!-- Bouton modifier emplacement -->
-												<td><a href=ajout-archivage.php?update_emplacement=<?= htmlentities($valeur['idEmplacement_Archive']) ?>
-									onClick="return(confirm('Modifier <?= $valeur['emplacementArchive']  ?> ?'));">Modifier</a></td>
+											<!-- Bouton modifier catégorie -->
+											<td width=20px>
+												<a href="update-emplacement.php?update=<?= htmlentities($valeur['idEmplacement_Archive']) ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png'
+												onClick="return(confirm('Modifier <?= $valeur['emplacementArchive']  ?> ?'));"/></a>
+											</td>
 
-										<!-- Bouton supprimer emplacement -->
-												<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($valeur['idEmplacement_Archive']) ?>
-											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['emplacementArchive'] ?> ?'));"/></td>
+											<!-- Bouton supprimer catégorie -->
+												<td width=20px>
+													<a href="ajout-archivage?delete_emplacement=<?= htmlentities($valeur['idEmplacement_Archive']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+													onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['emplacementArchive'] ?> ?'));"/></a>
+												</td>
 											</tr>
 										<?php endforeach; ?>
 								</table><br>
@@ -192,9 +229,8 @@
 
 								<table class="tabCatAcr" style="border: 2px solid #4f426c">
 									<th>id</th>
-									<th width=100px>Valeur sous emplacement</th>
+									<th width=200px>Valeur sous emplacement</th>
 									<th width=200px>Sous emplacement</th>
-									<th>Modifer</th>
 
 										<?php foreach ($listeSousEmplacement as $cle=>$valeur): ?>
 											<tr>
@@ -202,14 +238,17 @@
 													<td><?= htmlentities($val) ?></td>
 												<?php endforeach; ?>
 
-										<!-- Bouton modifier catégorie -->
-												<td><a href=ajout-archivage.php?update_sous_emplacement=<?= htmlentities($valeur['idSous_Emplacement']) ?>
-									onClick="return(confirm('Modifier <?= $valeur['sousEmplacement']  ?> ?'));">Modifier</a></td>
+											<!-- Bouton modifier catégorie -->
+											<td width=20px>
+												<a href="update-sous-emplacement.php?update=<?= htmlentities($valeur['idSous_Emplacement']) ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png'
+												onClick="return(confirm('Modifier <?= $valeur['sousEmplacement']  ?> ?'));"/></a>
+											</td>
 
-										<!-- Bouton supprimer emplacement -->
-												<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($valeur['idSous_Emplacement']) ?>
-											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['sousEmplacement'] ?> ?'));"/></td>
-											</tr>
+											<!-- Bouton supprimer catégorie -->
+												<td width=20px>
+													<a href="ajout-archivage.php?delete_sous-emplacement=<?= htmlentities($valeur['idSous_Emplacement']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+													onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['sousEmplacement'] ?> ?'));"/></a>
+												</td>
 										<?php endforeach; ?>
 								</table><br>
 

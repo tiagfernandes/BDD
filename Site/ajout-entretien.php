@@ -1,4 +1,21 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'ajout-entretien.php', formulaire d'insersion d'un entretien à un
+équipement choisis.
+---------------------------------------------------------------------------
+L'utilisateur :
+Ne peut rien faire.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
 	$idEquipement = $_GET['idEquipement'];
@@ -34,7 +51,7 @@
 				else{
 					$message="Vous devez être Administrateur pour acceder à cette page !";
 						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
-					header('refresh:0.01;url=index.php');
+					header('refresh:0.01;url=fiche-vie.php?idEquipement='.$idEquipement.'');
 				}
 			?>
     </body>

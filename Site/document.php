@@ -1,23 +1,41 @@
 <?php
+/* ------------------------------------------------------------------------
+Crée le 28/07/2015.
+Modifiée le 28/07/2015 par Fernandes Tiago
+---------------------------------------------------------------------------
+Page 'document.php', fiche descriptive du document.
+---------------------------------------------------------------------------
+L'utilisateur :
+Autorisé.
+---------------------------------------------------------------------------
+Le développeur :
+Autorisé, peut modifier le document.
+---------------------------------------------------------------------------
+L'administrateur :
+Autorisé, peut modifier le document.
+------------------------------------------------------------------------ */
+
     require_once('fonctions.php');
 
     $idDocument=$_GET['idDocument'];
 
 	$listeEquipementDocument = getEquipementDocument($idDocument);
+
+	if(isset($_GET['delete'])){ //Ajoute le document
+		$idEquipement = $_GET['delete'];
+		deleteDocToEqui($idDocument, $idEquipement);
+	}
+
 ?>
 <!doctype html>
 <html lang="fr">
 <meta charset="UTF-8">
 
-   <head>
-    <title>Fiche Equipement</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
-    <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-       <script language="Javascript">
-        function imprimer(){window.print();}
-       </script>
+   	<head>
+		<title>Fiche Equipement</title>
+		<link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
+		<link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
 
@@ -25,7 +43,7 @@
         <?php require_once('entete.php'); ?>
             <div id ="contenu">
                 <div id="banniere">Fiche document</div>
-                	<fieldset class="info_equipement"><legend>Information document</legend>
+                	<fieldset class="info_document"><legend>Information document</legend>
 
 						<?php	//fonction pour afficher le nom du document
 							$resultats=$pdo->query("SELECT nomDocument FROM document WHERE idDocument='$idDocument'");
@@ -95,7 +113,7 @@
 							$resultats->closeCursor();
 						?>
 
-					<span style="position:relative; top: -207px; left: 640px;">
+					<span style="position:relative; top: -207px; left: 500px;">
 						<?php
 							if(($_SESSION['role']=='Administrateur') xor ($_SESSION['role']=='Développeur')){
 						?>
@@ -133,11 +151,18 @@
 
 								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
-								<tr style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')">
-									<td><?php echo $donnees['nomEquipement']; ?></td>
-									<td><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
-									<td><img src="./image/poubelle1.png" alt="Image" onmouseover="javascript:this.src='./image/poubelle2.png';" onmouseout="javascript:this.src='./image/poubelle1.png';"  href=index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>
-											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomEquipement'] ?> ?'));"/></td>
+								<tr>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['nomEquipement']; ?></td>
+									<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
+								<?php
+									if($_SESSION['role']=='Administrateur'){
+								?>
+										<td width=20px>
+											<a href="document.php?idDocument=<?= $idDocument ?>&delete=<?= htmlentities($donnees['idEquipement']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+											onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomEquipement'] ?> ?'));"/></a>										</td>
+								<?php
+									}
+								?>
 								</tr>
 
 								<?php
