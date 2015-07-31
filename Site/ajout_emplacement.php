@@ -24,7 +24,7 @@ Autorisé.
 	//Vérification de la saisie de lieu d'archive
 
 
-	if ((!empty($emplacement)) or (!empty($val_emplacement))){
+	if ((!empty($emplacement)) or (!empty($val_emplacement))) {
 		$sql = "INSERT INTO `emplacement_archive` (emplacementArchive, valeurEmplacement) VALUES ('$emplacement', '$val_emplacement')";
         $prep = $pdo->prepare($sql);
         $prep->execute();

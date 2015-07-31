@@ -35,7 +35,7 @@ Autorisé, peut supprimer les catégories.
 <meta charset="UTF-8">
 
     <head>
-    	<title>Ajout</title>
+    	<title>Ajout catégorie</title>
     		<link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
     		<link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
     		<link rel="stylesheet" type="text/css" href="style.css">
@@ -44,13 +44,18 @@ Autorisé, peut supprimer les catégories.
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if ($_SESSION['role']== "Administrateur") {?><!-- Si l'utilisateur est Administrateur -->
+
+			<?php if ($_SESSION['role'] == "Administrateur") { ?><!-- Si l'utilisateur est Administrateur -->
+
 				<div id="contenu">
+
 					<div id="banniere">Ajout catégorie pour équipement</div>
 
 						<fieldset class="Etiquette_Equipement"><legend>Catégorie d'équipement</legend>
+
 							<!-- Formulaire d'ajout de catégorie d'étiquette équipement -->
 								<form method="post" action="ajout_categorie.php">
+
 									<div id="Cat_Etiquette">
 										<!-- Ajout d'une catégorie -->
 										<label id="Cat-Etiquette">Ajouter une catégorie d'équipement : </label><input class="Cat-Eti" type="text" name="categorie" placeholder="Ex : Sensor"></p>
@@ -60,6 +65,7 @@ Autorisé, peut supprimer les catégories.
 
 										<!-- Bouton envoie catégorie -->
 										<input class="submitA" type="submit" value="Envoyer"><br/></p>
+
 									</div>
 
 									<div class="text">
@@ -88,12 +94,15 @@ Autorisé, peut supprimer les catégories.
 											}
 										?>
 									</div>
+
 								</form>
+
 						</fieldset>
 
 							<br>
 
 							<table class="tabCatAcr" border="0.5">
+
 								<th>id</th>
 								<th>Categorie</th>
 								<th>Valeur</th>
@@ -117,12 +126,13 @@ Autorisé, peut supprimer les catégories.
 											</td>
 										</tr>
 									<?php endforeach; ?>
+
 							</table>
 				</div>
 
 			<?php }
 				else{
-					$message="Vous devez être Administrateur pour acceder à cette page !";
+					$message = "Vous devez être Administrateur pour acceder à cette page !";
 						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
 					header('refresh:0.01;url=index.php');
 				}

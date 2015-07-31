@@ -48,7 +48,7 @@ un bouton qui s'affiche uniquement pour l'admin.
 
 	<body>
 		<?php require_once('entete.php'); ?>
-			<div id ="contenu">²
+			<div id ="contenu">
 				<div id="banniere">Equipement</div>
 
 				  	<!-- Barre de recherche étiquette -->
@@ -84,7 +84,7 @@ un bouton qui s'affiche uniquement pour l'admin.
 
 				<hr><!-- Trait de séparation -->
 
-				<!-- Création du tableau-->
+				<!-- Tableau d'affichage des équipements -->
 					<table class="tableau" border=0.5>
 
 							<th width=150px>Etiquette</th>
@@ -92,22 +92,16 @@ un bouton qui s'affiche uniquement pour l'admin.
 							<th width=250px>Marque</th>
 							<th width=200px>Lieu affectation</th>
 							<th width=200px>Responsable</th>
-						 	<?php
-							if($_SESSION['role']=='Administrateur'){
-								?>
 
-								<?php
-							}
-							?>
-
-					<?php
+						<?php
 
 						$messagesParPage = 20; //Nous allons afficher 20 équipement par page.
 
 
-
-						if((isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId']))) {
-							//Si les champs sont remplis, on affiche les équittes correspondantes au champ
+				/* ------------------------------------------------------------------------
+				Si le la recherche est par l'étiquette
+				------------------------------------------------------------------------ */
+						if( (isset($_GET['searchCat'])) or (isset($_GET['searchAcr'])) or (isset($_GET['searchId'])) ) {
 
 							$chaineSearchCat = addslashes($_GET['searchCat']);
 							$chaineSearchAcr = addslashes($_GET['searchAcr']);
@@ -134,39 +128,38 @@ un bouton qui s'affiche uniquement pour l'admin.
 									$nombreDePages = ceil($total/$messagesParPage);
 
 
-									if(isset($_GET['page'])){ // Si la variable $_GET['page'] existe...
-										 $pageActuelle = intval($_GET['page']);
+									if (isset($_GET['page'])) { // Si la variable $_GET['page'] existe
+										 $pageActuelle = intval($_GET['page']); //On inclue le numéro de la page dans la variable
 
-										if($pageActuelle>$nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+										if ($pageActuelle > $nombreDePages) { // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
 											$pageActuelle = $nombreDePages;
 										}
 									}
-									else {// Sinon
-										$pageActuelle=1; // La page actuelle est la n°1
+									else { // Sinon
+										$pageActuelle = 1; // La page actuelle est la n°1
 									}
 
 
-									$premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+									$premiereEntree = ($pageActuelle - 1) * $messagesParPage; // On calcul la première entrée à lire
 
 									$requete2 = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`,`plateforme`
-											FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`,`plateforme`
-											WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-											AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-											AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-											AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
-											AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
-											AND valeurCategorie LIKE '".$chaineSearchCat."%'
-											AND valeurAcronime LIKE '".$chaineSearchAcr."%'
-											AND equipement.idEquipement LIKE '". $chaineSearchId."%'
-											ORDER BY `equipement`.`idEquipement` DESC LIMIT $premiereEntree, $messagesParPage";
+												FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`,`plateforme`
+												WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+												AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+												AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+												AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+												AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
+												AND valeurCategorie LIKE '".$chaineSearchCat."%'
+												AND valeurAcronime LIKE '".$chaineSearchAcr."%'
+												AND equipement.idEquipement LIKE '". $chaineSearchId."%'
+												ORDER BY `equipement`.`idEquipement` DESC LIMIT $premiereEntree, $messagesParPage";
 
 									$retour_requete = $pdo->query($requete2); //Nous récupérons le contenu de la requête dans $retour_total
 
-									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)){ // On lit les entrées une à une grâce à une boucle
+									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)) { // On lit les entrées une à une grâce à une boucle
+									?>
 
-										?>
-
-										 <tr>
+										<tr>
 											<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 											<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['nomEquipement']; ?></td>
 											<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['marque']; ?></td>
@@ -174,7 +167,7 @@ un bouton qui s'affiche uniquement pour l'admin.
 											<td><?php echo $donnees['responsable']; ?></td>
 
 											<?php
-												if($_SESSION['role']=='Administrateur'){
+												if ($_SESSION['role']=='Administrateur') { //Si l'utilisateur est un Administrateur, on affiche le bouton supprimer
 											?>
 													<td width=20px>
 														<a href="index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
@@ -183,38 +176,33 @@ un bouton qui s'affiche uniquement pour l'admin.
 											<?php
 												}
 									}
-											?>
-
-										<?php
 
 									?>	</tr> </table>
 									<?php
 
-									echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-									for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
-									{
-										 //On va faire notre condition
-										 if($i==$pageActuelle) //Si il s'agit de la page actuelle...
-										 {
-											 echo ' [ '.$i.' ] ';
-										 }
-										 else //Sinon...
-										 {
-											  echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
-										 }
-									}
-									echo '<br>';
-									echo '<br>';
-								?>
+										echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
 
-								</tr>
-								<?php
-								}
+											for ($i = 1; $i <= $nombreDePages; $i++) {//On fait notre boucle
+
+												 //On va faire notre condition
+												 if ($i == $pageActuelle) {//Si il s'agit de la page actuelle...
+													 echo ' [ '.$i.' ] ';
+												 }
+												 else { //Sinon...
+													  echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
+												 }
+											}
+
+										echo '<br>';
+										echo '<br>';
+
+						}
 
 
-
+				/* ------------------------------------------------------------------------
+				Si le la recherche est par le nom
+				------------------------------------------------------------------------ */
 						else if (isset($_GET['searchNom'])) {
-							//Si les champs sont remplis, on affiche les équittes correspondantes au champ
 
 							$chaineSearchNom = addslashes($_GET['searchNom']);
 
@@ -234,38 +222,37 @@ un bouton qui s'affiche uniquement pour l'admin.
 									$total = $donnees_total['total']; //On récupère le total pour le placer dans la variable $total.
 
 									//Nous allons maintenant compter le nombre de pages.
-									$nombreDePages = ceil($total/$messagesParPage);
+									$nombreDePages = ceil($total / $messagesParPage);
 
 
-									if(isset($_GET['page'])){ // Si la variable $_GET['page'] existe...
+									if (isset($_GET['page'])) { // Si la variable $_GET['page'] existe...
 										 $pageActuelle = intval($_GET['page']);
 
-										if($pageActuelle>$nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+										if ($pageActuelle > $nombreDePages) { // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
 											$pageActuelle = $nombreDePages;
 										}
 									}
 									else {// Sinon
-										$pageActuelle=1; // La page actuelle est la n°1
+										$pageActuelle = 1; // La page actuelle est la n°1
 									}
 
 
-									$premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+									$premiereEntree = ($pageActuelle - 1) * $messagesParPage; // On calcul la première entrée à lire
 
 									$requete2 = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`,`plateforme`
-											FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`,`plateforme`
-											WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-											AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
-											AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
-											AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
-											AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
-											AND nomEquipement LIKE '".$chaineSearchNom."%'
-											ORDER BY `equipement`.`idEquipement` DESC LIMIT $premiereEntree, $messagesParPage";
+												FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`,`plateforme`
+												WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+												AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
+												AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
+												AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
+												AND `equipement`.`idPlateforme` = `plateforme`.`idPlateforme`
+												AND nomEquipement LIKE '".$chaineSearchNom."%'
+												ORDER BY `equipement`.`idEquipement` DESC LIMIT $premiereEntree, $messagesParPage";
 
 									$retour_requete = $pdo->query($requete2); //Nous récupérons le contenu de la requête dans $retour_total
 
-									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)){ // On lit les entrées une à une grâce à une boucle
-
-										?>
+									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)) { // On lit les entrées une à une grâce à une boucle
+									?>
 
 										 <tr>
 											<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
@@ -284,35 +271,35 @@ un bouton qui s'affiche uniquement pour l'admin.
 											<?php
 												}
 									}
-											?>
-
-										<?php
 
 									?>	</tr> </table>
 									<?php
 
 									echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-									for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
-									{
-										 //On va faire notre condition
-										 if($i==$pageActuelle) //Si il s'agit de la page actuelle...
-										 {
-											 echo ' [ '.$i.' ] ';
-										 }
-										 else //Sinon...
-										 {
-											  echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
-										 }
-									}
+
+										for ($i = 1; $i <= $nombreDePages; $i++) { //On fait notre boucle
+
+											 //On va faire notre condition
+											 if ($i == $pageActuelle) { //Si il s'agit de la page actuelle...
+												 echo ' [ '.$i.' ] ';
+											 }
+											 else {//Sinon...
+												  echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
+											 }
+										}
+
 									echo '<br>';
 									echo '<br>';
 								?>
 
 								</tr>
-								<?php
-								}
+						<?php
+						}
 
 
+				/* ------------------------------------------------------------------------
+				Si le la recherche est par la date d'ajout
+				------------------------------------------------------------------------ */
 						else if (isset($_GET['searchDateAjout'])) {
 							//Si les champs sont remplis, on affiche les équittes correspondantes au champ
 
@@ -337,19 +324,19 @@ un bouton qui s'affiche uniquement pour l'admin.
 									$nombreDePages = ceil($total/$messagesParPage);
 
 
-									if(isset($_GET['page'])){ // Si la variable $_GET['page'] existe...
+									if (isset($_GET['page'])) { // Si la variable $_GET['page'] existe...
 										 $pageActuelle = intval($_GET['page']);
 
-										if($pageActuelle>$nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+										if ($pageActuelle > $nombreDePages) { // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
 											$pageActuelle = $nombreDePages;
 										}
 									}
 									else {// Sinon
-										$pageActuelle=1; // La page actuelle est la n°1
+										$pageActuelle = 1; // La page actuelle est la n°1
 									}
 
 
-									$premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+									$premiereEntree = ($pageActuelle - 1) * $messagesParPage; // On calcul la première entrée à lire
 
 									$requete2 = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`,`plateforme`
 											FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`, `plateforme`
@@ -384,34 +371,31 @@ un bouton qui s'affiche uniquement pour l'admin.
 											<?php
 												}
 									}
-											?>
-
-										<?php
 
 									?>	</tr> </table>
 									<?php
 
 									echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-									for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
-									{
-										 //On va faire notre condition
-										 if($i==$pageActuelle) //Si il s'agit de la page actuelle...
-										 {
-											 echo ' [ '.$i.' ] ';
-										 }
-										 else //Sinon...
-										 {
-											  echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
-										 }
-									}
+
+										for ($i = 1; $i <= $nombreDePages; $i++) { //On fait notre boucle
+											 //On va faire notre condition
+											 if ($i == $pageActuelle) { //Si il s'agit de la page actuelle...
+												 echo ' [ '.$i.' ] ';
+											 }
+											 else { //Sinon...
+												 echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
+											 }
+										}
+
 									echo '<br>';
 									echo '<br>';
-								?>
 
-								</tr>
-								<?php
-								}
+						}
 
+
+				/* ------------------------------------------------------------------------
+				Si le la recherche est par la marque
+				------------------------------------------------------------------------ */
 						else if (isset($_GET['searchMarque'])) {
 							//Si les champs sont remplis, on affiche les équittes correspondantes au champ
 
@@ -436,19 +420,19 @@ un bouton qui s'affiche uniquement pour l'admin.
 									$nombreDePages = ceil($total/$messagesParPage);
 
 
-									if(isset($_GET['page'])){ // Si la variable $_GET['page'] existe...
+									if (isset($_GET['page'])) { // Si la variable $_GET['page'] existe...
 										 $pageActuelle = intval($_GET['page']);
 
-										if($pageActuelle>$nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+										if ($pageActuelle > $nombreDePages) { // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
 											$pageActuelle = $nombreDePages;
 										}
 									}
 									else {// Sinon
-										$pageActuelle=1; // La page actuelle est la n°1
+										$pageActuelle = 1; // La page actuelle est la n°1
 									}
 
 
-									$premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+									$premiereEntree = ($pageActuelle - 1) * $messagesParPage; // On calcul la première entrée à lire
 
 									$requete2 = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`, `plateforme`
 											FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`, `plateforme`
@@ -491,28 +475,26 @@ un bouton qui s'affiche uniquement pour l'admin.
 									<?php
 
 									echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-									for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
-									{
-										 //On va faire notre condition
-										 if($i==$pageActuelle) //Si il s'agit de la page actuelle...
-										 {
-											 echo ' [ '.$i.' ] ';
-										 }
-										 else //Sinon...
-										 {
-											  echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
-										 }
-									}
+
+										for ($i = 1; $i <= $nombreDePages; $i++) {//On fait notre boucle
+											 //On va faire notre condition
+											 if ($i == $pageActuelle) {//Si il s'agit de la page actuelle...
+												 echo ' [ '.$i.' ] ';
+											 }
+											 else {//Sinon...
+												  echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
+											 }
+										}
+
 									echo '<br>';
 									echo '<br>';
-								?>
 
-								</tr>
-								<?php
-								}
+						}
 
 
-
+				/* ------------------------------------------------------------------------
+				Si aucun recherche n'est effectué
+				------------------------------------------------------------------------ */
 						else{
 
 								$requete = "SELECT COUNT(*) AS total FROM equipement";
@@ -525,7 +507,7 @@ un bouton qui s'affiche uniquement pour l'admin.
 									$nombreDePages = ceil($total/$messagesParPage);
 
 
-									if(isset($_GET['page'])){ // Si la variable $_GET['page'] existe...
+									if (isset($_GET['page'])) { // Si la variable $_GET['page'] existe...
 										 $pageActuelle = intval($_GET['page']);
 
 										if($pageActuelle>$nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
@@ -533,11 +515,11 @@ un bouton qui s'affiche uniquement pour l'admin.
 										}
 									}
 									else {// Sinon
-										$pageActuelle=1; // La page actuelle est la n°1
+										$pageActuelle = 1; // La page actuelle est la n°1
 									}
 
 
-									$premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+									$premiereEntree = ($pageActuelle - 1) * $messagesParPage; // On calcul la première entrée à lire
 
 									$requete2 = "SELECT `equipement`.`idEquipement`, `valeurCategorie`,`valeurAcronime`, `nomEquipement`,`marque`,`responsable`, `plateforme`
 													FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`, `plateforme`
@@ -551,9 +533,7 @@ un bouton qui s'affiche uniquement pour l'admin.
 									$retour_requete = $pdo->query($requete2); //Nous récupérons le contenu de la requête dans $retour_total
 
 									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)){ // On lit les entrées une à une grâce à une boucle
-
-										?>
-
+									?>
 										 <tr>
 											<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idEquipement'];?></td>
 											<td style="cursor: pointer;" onClick="window.open('equipement.php?idEquipement=<?= $donnees['idEquipement'];?>')"><?php echo $donnees['nomEquipement']; ?></td>
@@ -562,7 +542,7 @@ un bouton qui s'affiche uniquement pour l'admin.
 											<td><?php echo $donnees['responsable']; ?></td>
 
 											<?php
-												if($_SESSION['role']=='Administrateur'){
+												if ($_SESSION['role']=='Administrateur') {
 											?>
 													<td width=20px>
 														<a href="index.php?delete=<?= htmlentities($donnees['idEquipement']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
@@ -570,34 +550,26 @@ un bouton qui s'affiche uniquement pour l'admin.
 													</td>
 											<?php
 												}
-											?>
-
-										<?php
 									}
+
 									?></tr></table>
 									<?php
 
 									echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-									for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
-									{
-										 //On va faire notre condition
-										 if($i==$pageActuelle) //Si il s'agit de la page actuelle...
-										 {
-											 echo ' [ '.$i.' ] ';
-										 }
-										 else //Sinon...
-										 {
-											  echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
-										 }
-									}
+
+										for ($i = 1; $i <= $nombreDePages; $i++) { //On fait notre boucle
+											 //On va faire notre condition
+											 if( $i == $pageActuelle) { //Si il s'agit de la page actuelle...
+												 echo ' [ '.$i.' ] ';
+											 }
+											 else { //Sinon...
+												 echo ' <a href="index.php?page='.$i.'">'.$i.'</a> ';
+											 }
+										}
+
 									echo '<br>';
 									echo '<br>';
-								?>
-
-						<?php
-								}
-
-
-						?>
+						}
+				?>
    </body>
 </html>

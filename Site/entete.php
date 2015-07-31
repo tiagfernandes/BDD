@@ -63,6 +63,7 @@ Autorisé.
             document.onclick = mclose;
         </script>
     </head>
+
 <nav id="entete">
         <script type="text/javascript" src="date_heure.js"></script>
        <?php require_once('information-utilisateur.php') ?>
@@ -85,23 +86,31 @@ Autorisé.
 							<a href="doc.php">Document</a>
 						</div>
 				</li>
-				<li><a href="choix.php"
-					onmouseover="mopen('m2')"
-					onmouseout="mclosetime()">Ajout</a>
-						<div id="m2"
-							onmouseover="mcancelclosetime()"
-							onmouseout="mclosetime()">
-							<a href="ajout-element.php">Equipement</a>
-							<a href="ajout-categorie.php">Catégorie étiquette</a>
-							<a href="ajout-acronime.php">Acronime équipement</a>
-							<a href="ajout-document.php">Document</a>
-							<a href="ajout-archivage.php">Archivage</a>
-							<a href="ajout-etiquette_doc.php">Type - Processus</a>
-							<a href="ajout-fournisseur.php">Fournisseur</a>
-						</div>
-				</li>
+				<?php if ( ($_SESSION['role'] == 'Administrateur') xor ($_SESSION['role'] == 'Développeur') ){ //Si l'utilisateur est un Administrateur  ?>
+					<li><a href="choix.php"
+						onmouseover="mopen('m2')"
+						onmouseout="mclosetime()">Ajout</a>
+							<div id="m2"
+								onmouseover="mcancelclosetime()"
+								onmouseout="mclosetime()">
+								<a href="ajout-element.php">Equipement</a>
+								<?php if ($_SESSION['role']=='Administrateur') { //Si l'utilisateur est un Administrateur  ?>
+									<a href="ajout-categorie.php">Catégorie étiquette</a>
+									<a href="ajout-acronime.php">Acronime équipement</a>
+								<?php } ?>
+								<a href="ajout-document.php">Document</a>
+								<?php if ($_SESSION['role']=='Administrateur') { //Si l'utilisateur est un Administrateur  ?>
+									<a href="ajout-archivage.php">Archivage</a>
+									<a href="ajout-etiquette_doc.php">Type - Processus</a>
+									<a href="ajout-fournisseur.php">Fournisseur</a>
+								<?php } ?>
+							</div>
+					</li>
+				<?php } ?>
 				<li><a href="profil.php">Profil</a></li>
-				<li><a href="admin.php">Admin</a></li>
+				<?php if ($_SESSION['role']=='Administrateur') { //Si l'utilisateur est un Administrateur  ?>
+					<li><a href="admin.php">Admin</a></li> <!-- Uniquement vu par les administrateurs -->
+				<?php } ?>
 			</ul>
 		</div>
         <div style="clear:both"></div>

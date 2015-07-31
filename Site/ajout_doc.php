@@ -32,7 +32,7 @@ Autorisé.
 	$resultat = $resultats->fetch(PDO::FETCH_NUM);
 	$idEquipement = $resultat[0];
 
-	$newNom = $_POST['nom'];	//Nouveau nom taper
+	$newNom = $_POST['nom'];  //Nouveau nom taper
 
 	$nom = $_FILES['mon_fichier']['name'] ;   //Le nom original du fichier, comme sur le disque du visiteur (exemple : mon_icone.png).
 	$type = $_FILES['mon_fichier']['type'] ;    //Le type du fichier. Par exemple, cela peut être « image/png ».
@@ -43,7 +43,7 @@ Autorisé.
 
 
 	//S'il n'y a pas de document PDF lier
-	if (empty($nom)){
+	if (empty($nom)) {
 
 		$sql = "INSERT INTO `etiquette_document` (idType_Document, idProcessus, idSous_Processus, idEtiquette_Equipement) VALUES ('$idType_Document', '$idProcessus', '$idSous_Processus', '$idEtiquette_Equipement')";
         $prep = $pdo->prepare($sql);
@@ -76,10 +76,10 @@ Autorisé.
 
 	}
 	//S'il y a un document PDF lier
-   	else if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL" && $nom!="NULL"){
+   	else if ($nom_document !="NULL" && $idType_Document!="NULL" && $idProcessus!="NULL" && $idSous_Processus!="NULL" && $nom!="NULL") {
 
 
-		if (!empty($nom)){	//Vérifie si un document à été sélectionné
+		if (!empty($nom)) {	//Vérifie si un document à été sélectionné
 			$extensions_valides = array( 'pdf', 'xps' );
 			//1. strrchr renvoie l'extension avec le point (« . »).
 			//2. substr(chaine,1) ignore le premier caractère de chaine.
@@ -88,10 +88,10 @@ Autorisé.
 
 
 
-			if ( in_array($extension_upload,$extensions_valides) ) {	//Vérifie si le type de fichier correspond a ce que le souhaite
+			if (in_array($extension_upload, $extensions_valides)) {	//Vérifie si le type de fichier correspond a ce que le souhaite
 				print "Extension correcte.<br>";
 
-				if (empty($newNom)){
+				if (empty($newNom)) {
 					$newNom = $nom;
 					// on souhaite récupéré l'extension
 					$filename = $newNom;
@@ -99,7 +99,7 @@ Autorisé.
 					$extension = strrchr($filename,'.');
 					// Comme le point ne vous intéresse pas
 					// forcément on le supprime
-					$extension=substr($extension,1) ;
+					$extension=substr($extension, 1) ;
 					$today = date("d_m_y"); //Date aujourd'hui jour/mois/annee
 
 					//Si le champs du nouveau nom est vide, la variable récupère le nom du fichier
@@ -115,7 +115,7 @@ Autorisé.
 					$extension = strrchr($filename,'.');
 					// Comme le point ne vous intéresse pas
 					// forcément on le supprime
-					$extension=substr($extension,1) ;
+					$extension = substr($extension, 1) ;
 					$today = date("d_m_y"); //Date aujourd'hui jour/mois/annee
 
 

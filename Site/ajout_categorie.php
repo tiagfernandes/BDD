@@ -21,7 +21,7 @@ Autorisé.
 
     if (!empty($categorie) && !empty($valCategorie)){
 
-        $sql = "INSERT INTO `categorie_etiquette` (valeurCategorie, categorieEtiquette) VALUES ('$valCategorie','$categorie')";
+        $sql = "INSERT INTO `categorie_etiquette` (valeurCategorie, categorieEtiquette) VALUES ('$valCategorie', '$categorie')";
         $prep = $pdo->prepare($sql);
         $prep->execute();
 

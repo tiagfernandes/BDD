@@ -27,7 +27,7 @@ Autorisé.
 
     if (!empty($nomFournisseur)){
 
-        $sql = "INSERT INTO `fournisseur` (nomFournisseur, adresse, cp, ville, pays, telephone, email) VALUES 	('$nomFournisseur','$adresse','$codePostal', '$ville', '$pays', '$tel', '$email')";
+        $sql = "INSERT INTO `fournisseur` (nomFournisseur, adresse, cp, ville, pays, telephone, email) VALUES 	('$nomFournisseur', '$adresse', '$codePostal', '$ville', '$pays', '$tel', '$email')";
         $prep = $pdo->prepare($sql);
         $prep->execute();
 

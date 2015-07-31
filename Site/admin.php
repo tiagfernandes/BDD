@@ -34,17 +34,21 @@ Autorisé.
 			<meta charset="UTF-8">
 			<link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
 			<link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
-			<link rel="stylesheet" type="text/css" href="style.css">
+			<link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
 
     <body>
         <?php require_once('entete.php'); ?>
-        	<?php if ($_SESSION['role']== "Administrateur") {?>
+
+        	<?php if ($_SESSION['role']== "Administrateur") { ?>
+
             	<div id="contenu">
+
                		<div id="banniere">Administration</div>
 
-						<!-- Affichage des utilisateur -->
+						<!-- Tableau des utilisateur -->
 						<div id ="user">
+
 							<table border=0.5>
 								<th>id</th>
 								<th>Nom</th>
@@ -54,22 +58,23 @@ Autorisé.
 								<th>Rôle</th>
 								<th>Supprimer</th>
 
-								<!--Affichage des utilisateur-->
+								<!-- Affichage des utilisateurs -->
 								<?php foreach ($listeUtilisateur as $cle=>$valeur): ?>
 									<tr>
 										<?php foreach ($valeur as $val): ?>
 											<td><?= htmlentities($val) ?></td>
 										<?php endforeach; ?>
+
 										<!-- Bouton supprimer utilisateur -->
-										<td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?>
-											onClick="return(confirm('Supprimer <?= $valeur['prenomUtilisateur']  ?> ?'));">Supprimer</a></td>
+										<td><a href=admin.php?delete=<?= htmlentities($valeur['idUtilisateur']) ?> onClick="return(confirm('Supprimer <?= $valeur['prenomUtilisateur']  ?> ?'));">Supprimer</a></td>
 									</tr>
 								<?php endforeach; ?>
 							</table>
+
 						</div>
 
-					<!-- Bouton pour ajouter un utilisateur -->
-					<input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur"></p>
+							<!-- Bouton pour ajouter un utilisateur -->
+							<input onclick="window.location='add_user.php';"  class="button1" type="submit" value="Ajouter un utilisateur"></p>
 
 				</div>
 

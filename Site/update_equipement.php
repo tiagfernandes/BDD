@@ -25,11 +25,11 @@ Autorisé.
 <html lang="fr">
 <meta charset="UTF-8">
 
-   <head>
-    <title>Modifier l'équipement n°<?= $idEquipement; ?></title>
-    <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
-    <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="style.css">
+   	<head>
+		<title>Modifier l'équipement n°<?= $idEquipement; ?></title>
+			<link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
+			<link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
+			<link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
 
 
@@ -37,20 +37,25 @@ Autorisé.
    <body>
 
     <?php require_once('entete.php'); ?>
+
         <div id="contenu">
+
         	<div id="banniere">Modification de l'équipement n°<?= $idEquipement; ?></div>
+
           		<div id="form-ajout">
+
 					<fieldset><legend>Modifier</legend>
 
 						<form method="post" action="modification_equipement.php?idEquipement=<?= $idEquipement ?>">
+
 							<?php	//fonction pour afficher l'équipement
 								$resultats=$pdo->query("SELECT *
 														FROM equipement,  fournisseur
 														WHERE `equipement`.`idFournisseur` = `fournisseur`.`idFournisseur`
 														AND idEquipement='$idEquipement'");
 								$resultats->setFetchMode(PDO::FETCH_OBJ);
-								while( $resultat = $resultats->fetch() )
-								{
+
+								while ($resultat = $resultats->fetch()) {
 									$nomEquipement = $resultat->nomEquipement;
 									$prixEquipement = $resultat->prix;
 									$marqueEquipement = $resultat->marque;
@@ -70,8 +75,8 @@ Autorisé.
 
 									$fournisseur = $resultat->nomFournisseur;
 									$idFounisseur = $resultat->idFournisseur;
-
 								}
+
 								$resultats->closeCursor();
 							?>
 
@@ -91,24 +96,28 @@ Autorisé.
 							<label id="ajout_element">Contrat entretien : </label><input type="text" name="newContratEntretien" value="<?= $contratEntretien; ?>"></p>
 							<label id="ajout_element">Suppleant : </label><input type="text" name="newSuppleant" value="<?= $suppleant; ?>"></p>
 							<label id="ajout_element">Observation : </label><input type="text" name="newObservation" value="<?= $observation; ?>"></p>
+
 							<label id="ajout_element">Fournisseur : </label></p>
 								<select name="newFournisseur">
 									<option value=<?= $idFounisseur ?>><?= $fournisseur ?></option>
 										<?php
 											$reponse = $pdo->query('SELECT * FROM fournisseur ORDER BY nomFournisseur LIMIT 1, 1000');
-											while ( $donnees = $reponse->fetch() ) {
+											while ($donnees = $reponse->fetch()) {
 										?>
 												<option value="<?php echo $donnees['idFournisseur']; ?>"><?php echo $donnees['nomFournisseur']; ?></option>
 										<?php
 											}
 										?>
-								</select>
-							<br><br>
+								</select><br><br>
 
 							<input class="bouton" onclick="return(confirm('Etes-vous sur de vouloir modifier l&#180&#233quipement ? '));" type="submit" value="Modifier">
+
 						 </form>
+
           			</fieldset><br><br>
+
         		</div>
+
         </div>
     </body>
 </html>

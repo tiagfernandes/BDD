@@ -40,48 +40,55 @@ Autorisé.
 
 	<body>
     	<?php require_once('entete.php'); ?>
-       		<?php if ($_SESSION['role'] == "Administrateur") {?><!-- Si l'utilisateur est Administrateur -->
+
+       		<?php if ($_SESSION['role'] == "Administrateur") { ?><!-- Si l'utilisateur est Administrateur -->
+
        			<div id="contenu">
+
             		<div id="banniere">Ajout d'un fournisseur</div>
+
                 		<div id="form-ajout">
 
                     		<fieldset><legend>Fournisseur</legend>
+
                         		<form method="post" action="ajout_fournisseur.php">
 
                             		<label id="ajout_element">Nom fournisseur : *</label><input type="text" name="nomFournisseur" placeholder="Nom"></p>
                       			    <label id="ajout_element">Adresse : </label><input type="text" name="adresse" placeholder="Adresse"></p>
 
 
-										<label id="ajout_element">Code Postal : </label><input type="int" name="codePostal" placeholder="Code postal"></p>
-										<label id="ajout_element">Ville </label><input type="text" name="ville" placeholder="Ville"></p>
-										<label id="ajout_element">Pays : </label><input type="text" name="pays" placeholder="Pays"></p>
-										<label id="ajout_element">Téléphone : </label><input type="int" name="tel" placeholder="Téléphone"></p>
-										<label id="ajout_element">E-mail : </label><input type="text" name="email" placeholder="E-mail"></p>
+									<label id="ajout_element">Code Postal : </label><input type="int" name="codePostal" placeholder="Code postal"></p>
+									<label id="ajout_element">Ville </label><input type="text" name="ville" placeholder="Ville"></p>
+									<label id="ajout_element">Pays : </label><input type="text" name="pays" placeholder="Pays"></p>
+									<label id="ajout_element">Téléphone : </label><input type="int" name="tel" placeholder="Téléphone"></p>
+									<label id="ajout_element">E-mail : </label><input type="text" name="email" placeholder="E-mail"></p>
 
 										<div id ="succes">
 											<?php
 												$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-												if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?succes") {
-													echo ("Elément ajouté avec succès");
-												}
+													if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?succes") {
+														echo ("Elément ajouté avec succès");
+													}
 											?>
 										</div>
+
                             			<div id ="erreur">
                             				<?php
 												$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-												if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?erreur") {
-													echo ("Veuilliez saisir tous les champs ");
-												}
+													if ($monUrl == "http://localhost/BDD/Site/ajout-element.php?erreur") {
+														echo ("Veuilliez saisir tous les champs ");
+													}
 											?>
                            				</div></p>
 
                             			<input class="bouton" type="submit" value="Ajouter">
                          		</form>
-                    		</fieldset>
-                    		<br>
+
+                    		</fieldset><br>
 
 
 							<table class="tabCatAcr" border="0.5">
+
 								<th>id</th>
 								<th>Fournisseur</th>
 								<th>Adresse</th>
@@ -110,15 +117,17 @@ Autorisé.
 											</td>
 										</tr>
 									<?php endforeach; ?>
+
 							</table>
-          					<p>Si vous supprimez un fournisseur, actualisez la page pour voir que le fournisseur à bien été supprimer.</p>
-           					<br>
+          					<p>Si vous supprimez un fournisseur, actualisez la page pour voir que le fournisseur à bien été supprimer.</p><br>
+
             			</div>
+
 				</div>
 			<?php }
-				else{
+				else {
 					$message = "Vous devez être Administrateur ou Développeur pour acceder à cette page !";
-					echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
 					header('refresh:0.01;url=index.php');
 				}
 			?>

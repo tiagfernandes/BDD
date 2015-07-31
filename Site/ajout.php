@@ -39,7 +39,7 @@ Autorisé.
     $observation = $_POST['observation'];
     $fournisseur = $_POST['fournisseur'];
 
-    if ($categorie!="NULL" && $acronime!="NULL" && $nom_equi!=NULL && $plateforme!=NULL){
+    if ($categorie!="NULL" && $acronime!="NULL" && $nom_equi!=NULL && $plateforme!=NULL) {
 
         $sql = "INSERT INTO `equipement` (nomEquipement, prix, marque, dateAjout, garantie, dateFabrication, dateReception, dateMiseService,  idPlateforme, responsable, nomVariableAutomate, adresseAutomate, idStoc, nFabrication, attestationExamen, contratEntretien, suppleant, observation, idFournisseur) VALUES ('$nom_equi','$prix','$marque', NOW(), '$garantie', '$anneefb', '$dater', '$datemes', '$plateforme', '$responsable', '$variableAutomate', '$adresseAutomate', '$idStoc', '$numFabrication', '$attestationExamen', '$contratEntretien', '$suppleant', '$observation', '$fournisseur')";
         $prep = $pdo->prepare($sql);
@@ -47,11 +47,11 @@ Autorisé.
 
         $idequipement =$pdo->lastInsertId();
 
-        $sql2 = "INSERT INTO `etiquette_equipement` (idCategorieEtiquette,idEquipement,idAcronimeEtiquette) VALUES ('$categorie','$idequipement','$acronime')";
+        $sql2 = "INSERT INTO `etiquette_equipement` (idCategorieEtiquette, idEquipement, idAcronimeEtiquette) VALUES ('$categorie','$idequipement','$acronime')";
         $prep2 = $pdo->prepare($sql2);
         $prep2->execute();
 
-        $sql3 = "INSERT INTO `fiche_de_vie` (idFicheDeVie,idEquipement) VALUES ('$idequipement','$idequipement')";
+        $sql3 = "INSERT INTO `fiche_de_vie` (idFicheDeVie, idEquipement) VALUES ('$idequipement','$idequipement')";
         $prep3 = $pdo->prepare($sql3);
         $prep3->execute();
 

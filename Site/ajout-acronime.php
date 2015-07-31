@@ -39,13 +39,18 @@ Autorisé.
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if ($_SESSION['role']== "Administrateur"){?><!-- Si l'utilisateur est Administrateur -->
+
+			<?php if ($_SESSION['role']== "Administrateur") { ?><!-- Si l'utilisateur est Administrateur -->
+
 				<div id="contenu">
+
 					<div id="banniere">Ajout d'acronime pour équipement</div>
 
 						<fieldset class="Etiquette_Equipement"><legend>Acronime d'équipement</legend>
+
 							<!-- Formulaire d'acronime d'étiquette -->
 								<form method="post" action="ajout_acronime.php">
+
 									<div id="acro_seul">
 										<!-- Ajout d'un acronime -->
 										<label id="acro_seul">Ajouter un acronime d'équipement : </label><input class="Cat-Eti" type="text" name="acronime" placeholder="Ex : Refrigerateur"></p>
@@ -53,8 +58,8 @@ Autorisé.
 										<!-- Ajout de la valeur de l'acronime -->
 										<label id="acro_seul">Valeur de l'acronime d'équipement : </label><input class="Cat-Eti2" type="text" name="valAcronime" placeholder="Ex : REF"></p>
 
-										<!-- Bouton envoie acronime -->
-										<input class="submitB" type="submit" value="Ajouter"><br/></p>
+											<!-- Bouton envoie acronime -->
+											<input class="submitB" type="submit" value="Ajouter"><br/></p>
 									</div>
 
 									<div class="text">
@@ -83,12 +88,14 @@ Autorisé.
 											}
 										?>
 									</div>
+
 								</form>
+
 						</fieldset>
 
 						<br>
 
-						<table class="tabCatAcr" border="0.5">
+						<table class="tabCatAcr" border="0.5">	<!-- Tableau avec tous les acronimes -->
 								<th>id</th>
 								<th>Categorie</th>
 								<th>Valeur</th>
@@ -99,24 +106,23 @@ Autorisé.
 												<td><?= htmlentities($val) ?></td>
 											<?php endforeach; ?>
 
-									<!-- Bouton modifier catégorie -->
+										<!-- Bouton modifier catégorie -->
 											<td width=20px>
-												<a href="update-acronime.php?update=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png'
-												onClick="return(confirm('Modifier <?= $valeur['acronimeEtiquette']  ?> ?'));"/></a>
+												<a href="update-acronime.php?update=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>"><img class="modifier" border="0" alt="Image" src='./image/modifier.png' onClick="return(confirm('Modifier <?= $valeur['acronimeEtiquette']  ?> ?'));"/></a>
 											</td>
 
-									<!-- Bouton supprimer catégorie -->
+										<!-- Bouton supprimer catégorie -->
 											<td width=20px>
-												<a href="ajout-acronime.php?delete=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
-												onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['acronimeEtiquette'] ?> ?'));"/></a>
+												<a href="ajout-acronime.php?delete=<?= htmlentities($valeur['idAcronimeEtiquette']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png' onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $valeur['acronimeEtiquette'] ?> ?'));"/></a>
 											</td>
 										</tr>
 									<?php endforeach; ?>
 							</table><br>
 
 				</div>
-			<?php }
-				else{
+		<?php   }
+
+				else {
 					$message="Vous devez être Administrateur pour acceder à cette page !";
 						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
 					header('refresh:0.01;url=index.php');

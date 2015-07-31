@@ -36,7 +36,9 @@ Autorisé.
 
     <body>
 		<?php require_once('entete.php'); ?>
+
 				<div id="contenu">
+
 					<div id="banniere">Modification planning n°<?= $id ?></div>
 
 						<?php
@@ -51,7 +53,8 @@ Autorisé.
 													AND `planning_occupation`.`idPlateforme` = `plateforme`.`idPlateforme`
 													AND `idPlanning_Occupation` = $id");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() ) {
+
+							while ($resultat = $resultats->fetch()) {
 								$dateDebut = $resultat->dateDebut;
 								$dateFin = $resultat->dateFin;
 								$plateforme = $resultat->plateforme;
@@ -64,6 +67,7 @@ Autorisé.
 								$fonctionPrincipal = $resultat->fonctionPrincipal;
 								$fonctionSecondaire = $resultat->fonctionSecondaire;
 							}
+
 							$resultats->closeCursor();
 
 						?>
@@ -87,7 +91,8 @@ Autorisé.
 													$reponse = $pdo->query('SELECT *
 																			FROM `plateforme`
 																			WHERE `idPlateforme` BETWEEN 1 and 200');
-													while ($donnees = $reponse->fetch()){
+
+													while ($donnees = $reponse->fetch()) {
 													?>
 														<option value="<?php echo $donnees['idPlateforme']; ?>"><?php echo $donnees['plateforme']; ?></option>
 													<?php
@@ -104,7 +109,8 @@ Autorisé.
 													$reponse = $pdo->query('SELECT *
 																			FROM `lieu_utilisation`
 																			WHERE `idLieu_Utilisation` BETWEEN 1 and 200');
-													while ($donnees = $reponse->fetch()){
+
+													while ($donnees = $reponse->fetch()) {
 													?>
 														<option value="<?php echo $donnees['idLieu_Utilisation']; ?>"><?php echo $donnees['lieuUtilisation']; ?></option>
 													<?php
@@ -121,7 +127,8 @@ Autorisé.
 													$reponse = $pdo->query('SELECT *
 																			FROM `piece_equipement`
 																			WHERE `idPiece` BETWEEN 1 and 200');
-													while ($donnees = $reponse->fetch()){
+
+													while ($donnees = $reponse->fetch()) {
 													?>
 														<option value="<?php echo $donnees['idPiece']; ?>"><?php echo $donnees['piece']; ?></option>
 													<?php
@@ -138,9 +145,8 @@ Autorisé.
 									</div>
 
 								</form>
-						</fieldset>
 
-							<br>
+						</fieldset><br>
 				</div>
 
 				<?php 		}

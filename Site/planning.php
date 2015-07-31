@@ -49,8 +49,11 @@ Autorisé.
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if (($_SESSION['role'] == "Administrateur") or ($_SESSION['role'] == "Développeur")) {?><!-- Si l'utilisateur est Administrateur -->
+
+			<?php if (($_SESSION['role'] == "Administrateur") or ($_SESSION['role'] == "Développeur")) { ?><!-- Si l'utilisateur est Administrateur -->
+
 				<div id="contenu">
+
 					<div id="banniere">Modification <?= $nom ?> n°<?= $id ?></div>
 
 						<?php
@@ -61,12 +64,14 @@ Autorisé.
 							//fonction pour afficher le nom de l'équipement
 							$resultats=$pdo->query("SELECT `nom$nom` as 'nom', `date$nom` as 'dateNom', `fin$nom` as 'fin', `description$nom` as 'description' FROM $nom2 ");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() ) {
+
+							while ($resultat = $resultats->fetch()) {
 								$nom = $resultat->nom;
 								$dateNom = $resultat->dateNom;
 								$fin = $resultat->fin;
 								$description = $resultat->description;
 							}
+
 							$resultats->closeCursor();
 
 						?>
@@ -90,6 +95,7 @@ Autorisé.
 									</div>
 
 								</form>
+
 						</fieldset>
 
 							<br>
@@ -103,8 +109,9 @@ Autorisé.
 								header('refresh:0.01;url=fiche-vie.php?idEquipement'.$idEquipement.'');
 							}
 				}
-				else{
-					$message="Vous devez être Administrateur pour acceder à cette page !";
+
+				else {
+					$message = "Vous devez être Administrateur pour acceder à cette page !";
 						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
 					header('refresh:0.01;url=index.php');
 				}

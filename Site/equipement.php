@@ -19,12 +19,12 @@ Autorisé, modifié l'équipement.
     $idEquipement=$_GET['idEquipement'];
 	$listeDocumentEquipement = getDocumentEquipement($idEquipement);
 
-	if(isset($_GET['delete'])){ //Ajoute le document
+	if (isset($_GET['delete'])) { //Ajoute le document
 		$idDocument = $_GET['delete'];
 		deleteDocToEqui($idDocument, $idEquipement);
 	}
 
-	if(isset($_GET['qrcode'])){ //Ajoute le document
+	if (isset($_GET['qrcode'])) { //Ajoute le document
 		$taille = $_GET['qrcode'];
 	}
 	else {
@@ -32,6 +32,7 @@ Autorisé, modifié l'équipement.
 	}
 
 ?>
+
 <!doctype html>
 <html lang="fr">
 <meta charset="UTF-8">
@@ -40,65 +41,67 @@ Autorisé, modifié l'équipement.
 		<title>Fiche Equipement</title>
 			<link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
 			<link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
-			<link rel="stylesheet" type="text/css" href="style.css">
-
-				<script language="Javascript">
-					function imprimer(){window.print();}
-				</script>
+			<link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
 
 
     <body>
         <?php require_once('entete.php'); ?>
+
             <div id ="contenu">
+
                 <div id="banniere">Fiche équipement</div>
 
                    <fieldset class="info_equipement"><legend>Information équipement</legend>
 
 						<form class="choixQr" method="get" action="equipement.php">
-						<input type="hidden" id="idEquipement" name="idEquipement" value="<?= $idEquipement ?>">
-							<select name="qrcode">
-								<option value="82x82">82x82</option>
-								<option value="50x50">50x50</option>
-								<option value="130x130">130x130</option>
-									<input type="submit" value="Modifier la taille">
-							</select>
+
+							<input type="hidden" id="idEquipement" name="idEquipement" value="<?= $idEquipement ?>">
+								<select name="qrcode">
+									<option value="82x82">82x82</option>
+									<option value="50x50">50x50</option>
+									<option value="130x130">130x130</option>
+
+										<input type="submit" value="Modifier la taille">
+								</select>
 
 						</form>
 
 						<?php	//fonction pour afficher le nom de l'équipement
 							$resultats=$pdo->query("SELECT nomEquipement FROM equipement WHERE idEquipement='$idEquipement'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
+
+							while ($resultat = $resultats->fetch()){
 								echo '<b>Nom : </b>'.$resultat->nomEquipement.'<p>';
 							}
+
 							$resultats->closeCursor();
 						?>
 						<br/>
 
 						<?php	//Fonction pour afficher l'etiquette de l'équipement
-							$resultats=$pdo->query("SELECT `valeurCategorie`,`valeurAcronime`,`equipement`.`idEquipement` FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
+							$resultats = $pdo->query("SELECT `valeurCategorie`,`valeurAcronime`,`equipement`.`idEquipement` FROM `categorie_etiquette`,  `etiquette_equipement`, `equipement`, `acronime_etiquette`
 						WHERE `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
 						AND `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
 						AND `equipement`.`idEquipement` = `etiquette_equipement`.`idEquipement`
 						AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette` AND `equipement`.`idEquipement`='$idEquipement'");
 
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
+
+							while ($resultat = $resultats->fetch()) {
 								echo '<b>Etiquette : </b>'.$resultat->valeurCategorie.'-';
 								echo ''.$resultat->valeurAcronime.'-';
 								echo ''.$resultat->idEquipement.'<p>';
 							}
+
 							$resultats->closeCursor();
 						?><br/>
 
 						<?php	//Fonction pour afficher la marque
 							$resultats=$pdo->query("SELECT * FROM equipement WHERE idEquipement='$idEquipement'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
+
+							while ($resultat = $resultats->fetch()) {
 								echo "<b>Marque :</b> ".$resultat->marque."<p>";
 								echo "<b>Date d'ajout : </b>".$resultat->dateAjout."<p>";
 								echo "<b>Prix d'achat : </b>".$resultat->prix." €<p>";
@@ -116,16 +119,18 @@ Autorisé, modifié l'équipement.
 								echo "<b>Suppleant : </b>".$resultat->suppleant."<p>";
 								echo "<b>Oberservation : </b>".$resultat->observation."<p>";
 							}
+
 							$resultats->closeCursor();
 						?><br>
 
 						<?php	//Fonction pour afficher le nom du fournisseur
 							$resultats=$pdo->query("SELECT `nomFournisseur` FROM `equipement`, `fournisseur` WHERE `equipement`.`idFournisseur`=`fournisseur`.`idFournisseur` AND `idEquipement`='$idEquipement'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
+
+							while ($resultat = $resultats->fetch()) {
 								echo '<b>Founisseur :</b> '.$resultat->nomFournisseur.'<br>';
 							}
+
 							$resultats->closeCursor();
 						?><br/>
 
@@ -136,7 +141,7 @@ Autorisé, modifié l'équipement.
 					<img src="http://chart.apis.google.com/chart?cht=qr&chs=<?= $taille ?>&chl=http://10.118.40.20/qualite/BDD/Site/equipement.php?idEquipement=<?= $idEquipement ?>" id="QRCode" title="QR Code"></a>
 
 					<?php
-						if(($_SESSION['role']=='Administrateur') xor ($_SESSION['role']=='Développeur')){
+						if ( ($_SESSION['role'] == 'Administrateur') xor ($_SESSION['role'] == 'Développeur') ) {
 					?>
 							<a href="update_equipement.php?idEquipement=<?= $idEquipement; ?>" class="updateButton">Modifier l'équipement</a>
 					<?php
@@ -145,7 +150,7 @@ Autorisé, modifié l'équipement.
 
 				<span style="position:relative; top: -700px; left: 320px;">
 					<?php
-						if(($_SESSION['role']=='Administrateur') xor ($_SESSION['role']=='Développeur')){
+						if ( ($_SESSION['role'] == 'Administrateur') xor ($_SESSION['role'] == 'Développeur') ) {
 					?>
 							<a class="doc" href="doc-equi.php?idEquipement=<?= $idEquipement; ?>">Ajout document liés</a>
 					<?php
@@ -159,6 +164,7 @@ Autorisé, modifié l'équipement.
 
 				  <!-- Création du tableau-->
 					<table class="docEqui" border="0.5">
+
 						<th>Nom Document</th>
 						<th>Etiquette document</th>
 
@@ -178,13 +184,13 @@ Autorisé, modifié l'équipement.
 								// Exécution de la requête SQL
 								$resultat = $pdo->query($requete) or die(print_r($pdo->errorInfo()));
 
-								while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
+								while ($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
 									?>
 								<tr>
 									<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['nomDocument']; ?></td>
 									<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
 								<?php
-									if($_SESSION['role']=='Administrateur'){
+									if ($_SESSION['role'] == 'Administrateur') {
 								?>
 										<td width=20px>
 											<a href="equipement.php?idEquipement=<?= $idEquipement ?>&delete=<?= htmlentities($donnees['idDocument']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
@@ -194,9 +200,9 @@ Autorisé, modifié l'équipement.
 								?>
 								</tr>
 
-								<?php
-								 }
-								?>
+							<?php
+								}
+							?>
 
 					</table>
 
@@ -204,13 +210,14 @@ Autorisé, modifié l'équipement.
 					<div class="text">
 						<?php
 							$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-							if ($monUrl == "http://localhost/BDD/Site/equipement.php?idEquipement=".$idEquipement."&?succes"){
+							if ($monUrl == "http://localhost/BDD/Site/equipement.php?idEquipement=".$idEquipement."&?succes") {
 								echo ("Document ajouter avec succes !");
 							}
 						?>
 					</div>
-           		</fieldset>
-           		<br><br>
+
+           		</fieldset><br><br>
+
             </div>
     </body>
 </html>

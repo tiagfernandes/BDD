@@ -23,7 +23,7 @@ Autorisé.
     $val_s_emplacement = $_GET['val_s_emplacement'];
 
 
-	//Vérification de la saisie de lieu d'archive
+	//Vérification de la saisie du sous emplacement
 
 
 	if ((!empty($s_emplacement)) or (!empty($val_s_emplacement))){

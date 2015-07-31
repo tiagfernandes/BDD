@@ -36,18 +36,22 @@ Autorisé.
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if ($_SESSION['role']== "Administrateur") {?><!-- Si l'utilisateur est Administrateur -->
+
+			<?php if ($_SESSION['role']== "Administrateur") { ?><!-- Si l'utilisateur est Administrateur -->
+
 				<div id="contenu">
+
 					<div id="banniere">Modification acronime n°<?= $idAcronime; ?></div>
 
 						<?php	//fonction pour afficher le nom de l'équipement
 							$resultats=$pdo->query("SELECT * FROM acronime_etiquette WHERE idAcronimeEtiquette = '$idAcronime'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
+
+							while ($resultat = $resultats->fetch())	{
 								$valeurAcronime = $resultat->valeurAcronime;
 								$acronimeEtiquette = $resultat->acronimeEtiquette;
 							}
+
 							$resultats->closeCursor();
 						?>
 
@@ -86,13 +90,14 @@ Autorisé.
 									</div>
 
 								</form>
+
 						</fieldset>
 
 							<br>
 				</div>
 
 			<?php }
-				else{
+				else {
 					$message="Vous devez être Administrateur pour acceder à cette page !";
 						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
 					header('refresh:0.01;url=index.php');

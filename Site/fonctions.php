@@ -1011,7 +1011,16 @@ Arguments : $idDocument.
 Retour : Tout.
 ------------------------------------------------------------------------ */
 function deleteDocument($idDocument){
+
 	global $pdo;
+
+	$requete2 = "SELECT `cheminFichier` FROM `document` WHERE `idDocument` = '$idDocument'";
+
+	$retour_requete = $pdo->query($requete2); //Nous récupérons le contenu de la requête dans $retour_total
+
+	while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)) {
+		$cheminFichier = ($donnees['cheminFichier']);
+	}
 
     $query = "DELETE FROM document WHERE idDocument = :idDocument;";
 		  try {
@@ -1052,7 +1061,8 @@ function deleteDocument($idDocument){
 		  catch ( Exception $e ) {
 			die ("Erreur dans la requete ".$e->getMessage());
 		  }
-	unlink('test.html');
+
+	unlink($cheminFichier);
 }
 
 /*

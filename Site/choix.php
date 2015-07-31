@@ -32,28 +32,28 @@ Autorisé.
 
     <body>
 		<?php require_once('entete.php'); ?>
-				<div id="contenu">
+			<div id="contenu">
 
-					<div id="banniere">Choix</div>
+				<div id="banniere">Choix</div>
 
-						<div>
-							<!-- Liste d'élément à sélectionner -->
-							<ul>
-								<li><a href="ajout-element.php">Equipement</a></li></br>
-									<ul>
-										<li><a href="ajout-categorie.php">Catégorie étiquette</a></li></br>
-										<li><a href="ajout-acronime.php">Acronime equipement</a></li></br>
-									</ul>
-								<li><a href="ajout-document.php">Document</a></li></br>
-									<ul>
-										<li><a href="ajout-categorie.php">Archivage</a></li></br>
-										<li><a href="ajout-etiquette_doc.php">Type - Processus - Sous-Processus</a></li></br>
-									</ul>
-								<li><a href="ajout-fournisseur.php">Fournisseur</a></li>
-							</ul>
+					<div>
+						<!-- Liste d'élément à sélectionner -->
+						<ul>
+							<li><a href="ajout-element.php">Equipement</a></li></br>
+								<ul>
+									<li><a href="ajout-categorie.php">Catégorie étiquette</a></li></br>
+									<li><a href="ajout-acronime.php">Acronime equipement</a></li></br>
+								</ul>
+							<li><a href="ajout-document.php">Document</a></li></br>
+								<ul>
+									<li><a href="ajout-categorie.php">Archivage</a></li></br>
+									<li><a href="ajout-etiquette_doc.php">Type - Processus - Sous-Processus</a></li></br>
+								</ul>
+							<li><a href="ajout-fournisseur.php">Fournisseur</a></li>
+						</ul>
 
-						</div>
-				</div>
+					</div>
+			</div>
 
     </body>
 </html>

@@ -35,7 +35,9 @@ Autorisé.
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if ($_SESSION['role']== "Administrateur") {?><!-- Si l'utilisateur est Administrateur -->
+
+			<?php if ($_SESSION['role'] == "Administrateur") { ?><!-- Si l'utilisateur est Administrateur -->
+
 				<div id="contenu">
 
 					<div id="banniere">Modification type n°<?= $idType?></div>
@@ -43,11 +45,12 @@ Autorisé.
 						<?php	//fonction pour afficher le nom de l'équipement
 							$resultats=$pdo->query("SELECT * FROM type_document WHERE idType_Document = '$idType'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
+
+							while ($resultat = $resultats->fetch())	{
 								$valeurType = $resultat->valeurTypeDoc;
 								$type = $resultat->typeDocument;
 							}
+
 							$resultats->closeCursor();
 						?>
 
@@ -68,15 +71,16 @@ Autorisé.
 									</div>
 
 								</form>
-						</fieldset>
 
-							<br>
+						</fieldset><br>
+
 				</div>
+
 				<?php
 				}
 
-				else{
-					$message="Vous devez être Administrateur pour acceder à cette page !";
+				else {
+					$message = "Vous devez être Administrateur pour acceder à cette page !";
 						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
 					header('refresh:0.01;url=index.php');
 				}

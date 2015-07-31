@@ -37,10 +37,10 @@ Autorisé.
          $prep2 = $pdo->prepare($sql2);
          $prep2->execute();
 
-        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&?calibration=succes');
+        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&calibration=succes');
     }
 
     else
-        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&?calibration=erreur');
+        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&calibration=erreur');
 
 ?>

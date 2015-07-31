@@ -20,7 +20,7 @@ Autorisé, peut supprimer le document choisis.
 
     $listeDocument = getAllDocument($pdo);
 
-	if(isset($_GET['delete'])){ //Supprime le document
+	if (isset($_GET['delete'])) { //Supprime le document
 		$idDocument = $_GET['delete'];
 		deleteDocument($idDocument);
 	}
@@ -73,7 +73,7 @@ Autorisé, peut supprimer le document choisis.
 								<input type="submit" value="Envoyer">
 					</form></p>
 
-					<!-- Barre de recherche archivage -->
+					<!-- Barre de recherche par nom PDF -->
 					<form action ="doc.php" method="get">
 						<span>Recherche document par nom PDF :</span>
 							<input type="text" id="search" name="searchPDF" placeholder="Nom"/>
@@ -95,7 +95,9 @@ Autorisé, peut supprimer le document choisis.
 				$messagesParPage = 25; //Nous allons afficher 25
 
 
-					//Recherche par lieux d'archivage
+				/* ------------------------------------------------------------------------
+				Si le la recherche est par le lieu d'archivage
+				------------------------------------------------------------------------ */
 					if ((isset ($_GET['searchPlateforme']) ) or (isset ($_GET['searchPiece']) ) or (isset ($_GET['searchEmplacement']) ) or (isset ($_GET['searchSousEmplacement']) ) ) {
 
 						$chaineSearchPlateforme = addslashes($_GET['searchPlateforme']);
@@ -133,10 +135,10 @@ Autorisé, peut supprimer le document choisis.
 									$nombreDePages = ceil($total/$messagesParPage);
 
 
-									if (isset ($_GET['page']) ){ // Si la variable $_GET['page'] existe...
+									if (isset ($_GET['page'])) { // Si la variable $_GET['page'] existe...
 										 $pageActuelle = intval($_GET['page']);
 
-										if ($pageActuelle > $nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+										if ($pageActuelle > $nombreDePages) { // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
 											$pageActuelle = $nombreDePages;
 										}
 									}
@@ -169,7 +171,7 @@ Autorisé, peut supprimer le document choisis.
 
 									$retour_requete = $pdo->query($requete2); //Nous récupérons le contenu de la requête dans $retour_total
 
-									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)){ // On lit les entrées une à une grâce à une boucle
+									while ($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)) { // On lit les entrées une à une grâce à une boucle
 									?>
 										<tr>
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['nomDocument']; ?></td>
@@ -178,10 +180,10 @@ Autorisé, peut supprimer le document choisis.
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['nomFichier'];?>')"></td>
 
 										<?php
-											if($_SESSION['role']=='Administrateur'){ ?>
+											if ($_SESSION['role'] == 'Administrateur') { ?>
 												<td width=20px>
-														<a href="doc.php?delete=<?= htmlentities($donnees['idDocument']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
-														onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomDocument'] ?> ?'));"/></a>
+													<a href="doc.php?delete=<?= htmlentities($donnees['idDocument']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+													onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomDocument'] ?> ?'));"/></a>
 												</td>
 										<?php
 											}
@@ -193,22 +195,25 @@ Autorisé, peut supprimer le document choisis.
 									//Affichage de la pagination
 									echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
 
-									for($i=1; $i<=$nombreDePages; $i++){ //On fait notre boucle
+										for ($i = 1; $i <= $nombreDePages; $i++) { //On fait notre boucle
 
-										 //On va faire notre condition
-										if($i==$pageActuelle){ //Si il s'agit de la page actuelle...
-											echo ' [ '.$i.' ] ';
+											 //On va faire notre condition
+											if ($i == $pageActuelle) { //Si il s'agit de la page actuelle...
+												echo ' [ '.$i.' ] ';
+											}
+											else { //Sinon...
+												echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
+											}
 										}
-										else{ //Sinon...
-											echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
-										}
-									}
+
 									echo '<br>';
 									echo '<br>';
 
 					}
 
-					//Recherche par étiquette de documents
+				/* ------------------------------------------------------------------------
+				Si le la recherche est par l'étiquette
+				------------------------------------------------------------------------ */
 					else if ( (isset($_GET['searchType'])) or (isset ($_GET['searchProcessus']) ) or (isset ($_GET['searchSousProcessus']) ) or (isset ($_GET['searchCategorie']) ) or (isset ($_GET['searchAcronime']) ) or (isset ($_GET['searchNumDoc']) ) ) {
 
 
@@ -247,13 +252,13 @@ Autorisé, peut supprimer le document choisis.
 									$total = $donnees_total['total']; //On récupère le total pour le placer dans la variable $total.
 
 									//Nous allons maintenant compter le nombre de pages.
-									$nombreDePages = ceil($total/$messagesParPage);
+									$nombreDePages = ceil($total / $messagesParPage);
 
 
-									if (isset ($_GET['page']) ) { // Si la variable $_GET['page'] existe...
+									if (isset ($_GET['page'])) { // Si la variable $_GET['page'] existe...
 										 $pageActuelle = intval($_GET['page']);
 
-										if ($pageActuelle > $nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+										if ($pageActuelle > $nombreDePages) { // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
 											$pageActuelle = $nombreDePages;
 										}
 									}
@@ -288,7 +293,7 @@ Autorisé, peut supprimer le document choisis.
 
 									$retour_requete = $pdo->query($requete2); //Nous récupérons le contenu de la requête dans $retour_total
 
-									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)){ // On lit les entrées une à une grâce à une boucle	?>
+									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)) { // On lit les entrées une à une grâce à une boucle	?>
 										 <tr>
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['nomDocument']; ?></td>
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],'-',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
@@ -296,10 +301,10 @@ Autorisé, peut supprimer le document choisis.
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['nomFichier'];?>')"></td>
 
 										<?php
-											if($_SESSION['role']=='Administrateur'){	?>
+											if ($_SESSION['role'] == 'Administrateur') {	?>
 												<td width=20px>
-														<a href="doc.php?delete=<?= htmlentities($donnees['idDocument']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
-														onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomDocument'] ?> ?'));"/></a>
+													<a href="doc.php?delete=<?= htmlentities($donnees['idDocument']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
+													onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomDocument'] ?> ?'));"/></a>
 												</td>
 										<?php
 											}
@@ -308,23 +313,24 @@ Autorisé, peut supprimer le document choisis.
 
 										echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
 
-										for($i=1; $i <= $nombreDePages; $i++){ //On fait notre boucle
-											//On va faire notre condition
-											if ($i == $pageActuelle){//Si il s'agit de la page actuelle...
-												echo ' [ '.$i.' ] ';
+											for ($i = 1; $i <= $nombreDePages; $i++) { //On fait notre boucle
+												//On va faire notre condition
+												if ($i == $pageActuelle) {//Si il s'agit de la page actuelle...
+													echo ' [ '.$i.' ] ';
+												}
+												else { //Sinon...
+													echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
+												}
 											}
-											else { //Sinon...
-												echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
-											}
-										}
 
 										echo '<br>';
 										echo '<br>';
 
-				}
+					}
 
-
-					//Recherche par nom de documents
+				/* ------------------------------------------------------------------------
+				Si le la recherche est par nom
+				------------------------------------------------------------------------ */
 					else if((isset($_GET['searchNom']))) {
 
 
@@ -353,10 +359,10 @@ Autorisé, peut supprimer le document choisis.
 									$total = $donnees_total['total']; //On récupère le total pour le placer dans la variable $total.
 
 									//Nous allons maintenant compter le nombre de pages.
-									$nombreDePages = ceil($total/$messagesParPage);
+									$nombreDePages = ceil($total / $messagesParPage);
 
 
-									if (isset ($_GET['page']) ){ // Si la variable $_GET['page'] existe...
+									if (isset ($_GET['page'])) { // Si la variable $_GET['page'] existe...
 										 $pageActuelle = intval($_GET['page']);
 
 										if ($pageActuelle > $nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
@@ -389,7 +395,7 @@ Autorisé, peut supprimer le document choisis.
 
 									$retour_requete = $pdo->query($requete2); //Nous récupérons le contenu de la requête dans $retour_total
 
-									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)){ // On lit les entrées une à une grâce à une boucle	?>
+									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)) { // On lit les entrées une à une grâce à une boucle	?>
 										 <tr>
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['nomDocument']; ?></td>
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],'-',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
@@ -397,7 +403,7 @@ Autorisé, peut supprimer le document choisis.
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['nomFichier'];?>')"></td>
 
 										<?php
-											if($_SESSION['role']=='Administrateur'){	?>
+											if ($_SESSION['role'] == 'Administrateur') {	?>
 												<td width=20px>
 														<a href="doc.php?delete=<?= htmlentities($donnees['idDocument']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
 														onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomDocument'] ?> ?'));"/></a>
@@ -405,25 +411,29 @@ Autorisé, peut supprimer le document choisis.
 										<?php
 											}
 									}
-										?>	</tr> </table><?php
+									?>	</tr> </table><?php
 
 										echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
 
-										for($i=1; $i <= $nombreDePages; $i++){ //On fait notre boucle
-											//On va faire notre condition
-											if ($i == $pageActuelle){//Si il s'agit de la page actuelle...
-												echo ' [ '.$i.' ] ';
+											for ($i = 1; $i <= $nombreDePages; $i++) { //On fait notre boucle
+												//On va faire notre condition
+												if ($i == $pageActuelle) {//Si il s'agit de la page actuelle...
+													echo ' [ '.$i.' ] ';
+												}
+												else { //Sinon...
+													echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
+												}
 											}
-											else { //Sinon...
-												echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
-											}
-										}
 
 										echo '<br>';
 										echo '<br>';
 
-				}
-						else if((isset($_GET['searchPDF']))) {
+						}
+
+				/* ------------------------------------------------------------------------
+				Si le la recherche est par le nom du PDF
+				------------------------------------------------------------------------ */
+					else if ((isset($_GET['searchPDF']))) {
 
 
 						$chaineSearchPDF = addslashes($_GET['searchPDF']);
@@ -451,13 +461,13 @@ Autorisé, peut supprimer le document choisis.
 									$total = $donnees_total['total']; //On récupère le total pour le placer dans la variable $total.
 
 									//Nous allons maintenant compter le nombre de pages.
-									$nombreDePages = ceil($total/$messagesParPage);
+									$nombreDePages = ceil($total / $messagesParPage);
 
 
-									if (isset ($_GET['page']) ){ // Si la variable $_GET['page'] existe...
+									if (isset ($_GET['page']) ) { // Si la variable $_GET['page'] existe...
 										 $pageActuelle = intval($_GET['page']);
 
-										if ($pageActuelle > $nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+										if ($pageActuelle > $nombreDePages) { // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
 											$pageActuelle = $nombreDePages;
 										}
 									}
@@ -487,7 +497,7 @@ Autorisé, peut supprimer le document choisis.
 
 									$retour_requete = $pdo->query($requete2); //Nous récupérons le contenu de la requête dans $retour_total
 
-									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)){ // On lit les entrées une à une grâce à une boucle	?>
+									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)) { // On lit les entrées une à une grâce à une boucle	?>
 										 <tr>
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['nomDocument']; ?></td>
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['idDocument'];?>')"><?php echo $donnees['valeurTypeDoc'],'-',$donnees['valeurProcessus'],'-',$donnees['valeurSousProcessus'],'-',$donnees['valeurCategorie'],'-',$donnees['valeurAcronime'],'-',$donnees['idDocument'];?></td>
@@ -495,7 +505,7 @@ Autorisé, peut supprimer le document choisis.
 											<td style="cursor: pointer;" onClick="window.open('document.php?idDocument=<?= $donnees['nomFichier'];?>')"></td>
 
 										<?php
-											if($_SESSION['role']=='Administrateur'){	?>
+											if ($_SESSION['role'] == 'Administrateur') {	?>
 												<td width=20px>
 														<a href="doc.php?delete=<?= htmlentities($donnees['idDocument']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
 														onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomDocument'] ?> ?'));"/></a>
@@ -503,27 +513,30 @@ Autorisé, peut supprimer le document choisis.
 										<?php
 											}
 									}
-										?>	</tr> </table><?php
+									?>	</tr> </table><?php
 
 										echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
 
-										for($i=1; $i <= $nombreDePages; $i++){ //On fait notre boucle
-											//On va faire notre condition
-											if ($i == $pageActuelle){//Si il s'agit de la page actuelle...
-												echo ' [ '.$i.' ] ';
+											for ($i = 1; $i <= $nombreDePages; $i++) { //On fait notre boucle
+												//On va faire notre condition
+												if ($i == $pageActuelle) {//Si il s'agit de la page actuelle...
+													echo ' [ '.$i.' ] ';
+												}
+												else { //Sinon...
+													echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
+												}
 											}
-											else { //Sinon...
-												echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
-											}
-										}
 
 										echo '<br>';
 										echo '<br>';
 
-				}
+					}
 
-					//Affichage de tous les documents si aucune recherche n'est executé
+				/* ------------------------------------------------------------------------
+				Si le la recherche n'est pas effectué
+				------------------------------------------------------------------------ */
 					else {
+
 						$requete = "SELECT COUNT(`document`.`idDocument`) as total
 									FROM `document`, `etiquette_document`,`type_document`,`processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`,`lieux_document`,`plateforme_archive`, `piece_document`, `emplacement_archive`, `sous_emplacement`
 									WHERE `document`.`idEtiquette_Document` = `etiquette_document`.`idEtiquette_Document`
@@ -545,22 +558,22 @@ Autorisé, peut supprimer le document choisis.
 									$total = $donnees_total['total']; //On récupère le total pour le placer dans la variable $total.
 
 									//Nous allons maintenant compter le nombre de pages.
-									$nombreDePages = ceil($total/$messagesParPage);
+									$nombreDePages = ceil($total / $messagesParPage);
 
 
-									if(isset($_GET['page'])){ // Si la variable $_GET['page'] existe...
+									if (isset($_GET['page'])) { // Si la variable $_GET['page'] existe...
 										 $pageActuelle = intval($_GET['page']);
 
-										if($pageActuelle>$nombreDePages){ // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+										if($pageActuelle>$nombreDePages) { // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
 											$pageActuelle = $nombreDePages;
 										}
 									}
 									else {// Sinon
-										$pageActuelle=1; // La page actuelle est la n°1
+										$pageActuelle = 1; // La page actuelle est la n°1
 									}
 
 
-									$premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
+									$premiereEntree = ($pageActuelle - 1) * $messagesParPage; // On calcul la première entrée à lire
 
 									$requete2 = "SELECT `document`.`idDocument`, `nomDocument`, `valeurTypeDoc`, `valeurProcessus`, `valeurSousProcessus`, `valeurCategorie`, `valeurAcronime`, `valeurPlateforme`, `valeurPiece`, `valeurEmplacement`, `valeurSousEmplacement`, `nomFichier`
 												FROM `document`, `etiquette_document`,`type_document`,`processus`, `sous_processus`, `etiquette_equipement`, `categorie_etiquette`, `acronime_etiquette`,`lieux_document`,`plateforme_archive`, `piece_document`, `emplacement_archive`, `sous_emplacement`
@@ -579,9 +592,7 @@ Autorisé, peut supprimer le document choisis.
 
 									$retour_requete = $pdo->query($requete2); //Nous récupérons le contenu de la requête dans $retour_total
 
-									while($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)){ // On lit les entrées une à une grâce à une boucle
-
-										?>
+									while ($donnees = $retour_requete->fetch(PDO::FETCH_ASSOC)) { // On lit les entrées une à une grâce à une boucle ?>
 
 										 <tr>
 
@@ -593,36 +604,32 @@ Autorisé, peut supprimer le document choisis.
 
 
 											<?php
-												if($_SESSION['role']=='Administrateur'){
+												if ($_SESSION['role'] == 'Administrateur') {
 											?>
 													<td width=20px>
 														<a href="doc.php?delete=<?= htmlentities($donnees['idDocument']) ?>"><img class="poubelle" border="0" alt="Image" src='./image/poubelle1.png'
 														onClick="return(confirm('Etes-vous sûr de vouloir supprimer <?= $donnees['nomDocument'] ?> ?'));"/></a>
-												</td>
+													</td>
 											<?php
 												}
 									}
-											?>
-
-										<?php
-
-										?></tr></table>
+									?>
+										</tr></table>
 									<?php
 
 									echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-									for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
-									{
-										 //On va faire notre condition
-										 if($i==$pageActuelle) //Si il s'agit de la page actuelle...
-										 {
-											 echo ' [ '.$i.' ] ';
-										 }
-										 else //Sinon...
-										 {
-											  echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
-										 }
-									}
-									echo '<br>';
+
+										for ($i = 1; $i <= $nombreDePages; $i++) { //On fait notre boucle
+											 //On va faire notre condition
+											 if ($i == $pageActuelle) { //Si il s'agit de la page actuelle...
+												 echo ' [ '.$i.' ] ';
+											 }
+											 else { //Sinon...
+												  echo ' <a href="doc.php?page='.$i.'">'.$i.'</a> ';
+											 }
+										}
+
+										echo '<br>';
 									echo '<br>';
 				} ?>
         	</div>

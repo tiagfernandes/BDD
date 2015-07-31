@@ -35,17 +35,23 @@ Autorisé.
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if (($_SESSION['role']== "Administrateur") xor ($_SESSION['role']== "Développeur")) {?><!-- Si l'utilisateur est Administrateur ou Développeur -->
+
+			<?php if (($_SESSION['role'] == "Administrateur") xor ($_SESSION['role'] == "Développeur")) { ?><!-- Si l'utilisateur est Administrateur ou Développeur -->
+
 				<div id="contenu">
+
 					<div id="banniere">Ajout calibration</div>
 
 						<fieldset class="Etiquette_Equipement"><legend>Calibration</legend>
-                        		<form method="post" action="a-calibration.php?idEquipement=<?= $idEquipement?>	">
+
+                        		<form method="post" action="a-calibration.php?idEquipement=<?= $idEquipement?>">
 
 								    <label id="ajout_element">Date calibration : </label><input type="date" name="datecalibration" placeholder="YYYY/MM/DD"></p>
                                     <label id="ajout_element">Description : <textarea name="description" rows="10" cols="120"></textarea></p>
+
                             			<input class="bouton-ano" type="submit" value="Ajouter">
                          		</form>
+
 						</fieldset>
 			<?php }
 				else{

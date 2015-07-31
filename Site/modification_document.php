@@ -36,16 +36,16 @@ Autorisé.
 
 
 //Si un document à été sélectionner
-	if (!empty($nom)){	//Vérifie si un document à été sélectionné
+	if (!empty($nom)) {	//Vérifie si un document à été sélectionné
 			$extensions_valides = array( 'pdf', 'xps' );
 			//1. strrchr renvoie l'extension avec le point (« . »).
 			//2. substr(chaine,1) ignore le premier caractère de chaine.
 			//3. strtolower met l'extension en minuscules.
 			$extension_upload = strtolower(  substr(  strrchr($_FILES['mon_fichier']['name'], '.')  ,1)  );
 
-			if ( in_array($extension_upload,$extensions_valides) ) {	//Vérifie si le type de fichier correspond a ce que le souhaite
+			if (in_array($extension_upload,$extensions_valides)) {	//Vérifie si le type de fichier correspond a ce que le souhaite
 
-				if (empty($newNom)){ //Si le champs est vide, on garde le meme nom du fichier
+				if (empty($newNom)) { //Si le champs est vide, on garde le meme nom du fichier
 					$newNom = $nom;
 					// on souhaite récupéré l'extension
 					$filename = $newNom;
@@ -79,8 +79,7 @@ Autorisé.
 												WHERE idDocument='$idDocument'");
 						$resultats->setFetchMode(PDO::FETCH_OBJ);
 
-						while( $resultat = $resultats->fetch() )
-						{
+						while ($resultat = $resultats->fetch()) {
 							$nomFichier1 = $resultat->nomFichier;
 
 							$nomFichier2 = substr($nomFichier1, 0,-13);
@@ -90,7 +89,7 @@ Autorisé.
 
 						$newNomFichier = $nom;
 
-							if ($nom == $nomFichier2){ //Si le nouveau nom du fichier est identique a celui qui existe
+							if ($nom == $nomFichier2) { //Si le nouveau nom du fichier est identique a celui qui existe
 								$newNom = $nomFichier1;	//On garde le meme nom sans changer la date
 							}
 				}
@@ -114,10 +113,10 @@ Autorisé.
 
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
 
-							while( $resultat = $resultats->fetch() )
-							{
+							while ($resultat = $resultats->fetch()) {
 								$idLieux_Document = $resultat->idLieux_Document;
 							}
+
 							$resultats->closeCursor();
 
 
@@ -191,10 +190,10 @@ Autorisé.
 								WHERE idDocument='$idDocument'");
 		$resultats->setFetchMode(PDO::FETCH_OBJ);
 
-		while( $resultat = $resultats->fetch() )
-		{
+		while ($resultat = $resultats->fetch()) {
 			$idLieux_Document = $resultat->idLieux_Document;
 		}
+
 		$resultats->closeCursor();
 
 

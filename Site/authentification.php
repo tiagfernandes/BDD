@@ -28,6 +28,7 @@ Autorisé.
 
     <body>
 		<form action="login.php" method="post" class="connexion">
+
             <img src="image/logo_ecotron.png" class="logo_ecotron">
             <img src="image/logo_cnrs.png" class="logo_cnrs">
             <img src="image/logo_ens.jpg" class="logo_ens">
@@ -42,8 +43,8 @@ Autorisé.
 						$monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 						if ($monUrl == "http://localhost/BDD/Site/authentification.php?reco"){
 							echo ("Changement effectué avec succès , veuillez vous reconnectez ");
-					}
-                ?>
+						}
+					?>
            		</div>
 
             	<div id ="erreur">
@@ -56,6 +57,7 @@ Autorisé.
             	</div>
 
             	<input class="log" type="submit" value="Se connecter">
+
         </form>
     </body>
 </html>

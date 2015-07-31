@@ -23,7 +23,7 @@ Autorisé.
     $description = $_POST['description'];
     $dateentretien = $_POST['dateentretien'];
 
-	$nom="Entretien";
+	$nom = "Entretien";
 
     if (!empty($description) && !empty($dateentretien)){
 
@@ -37,10 +37,10 @@ Autorisé.
          $prep2 = $pdo->prepare($sql2);
          $prep2->execute();
 
-        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&?entretien=succes');
+        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&entretien=succes');
     }
 
     else
-        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&?entretien=erreur');
+        header('Location: fiche-vie.php?idEquipement='.$idEquipement.'&entretien=erreur');
 
 ?>

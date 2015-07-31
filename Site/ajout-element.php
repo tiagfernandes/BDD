@@ -27,21 +27,27 @@ Autorisé.
     	<title>Ajout équipement</title>
 			<link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
 			<link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
-			<link rel="stylesheet" type="text/css" href="style.css">
+			<link rel="stylesheet" type="text/css" href="style.css"/>
     </head>
 
 
 	<body>
     	<?php require_once('entete.php'); ?>
-       		<?php if ( ($_SESSION['role'] == "Administrateur") xor ($_SESSION['role'] == "Développeur") ){?><!-- Si l'utilisateur est Administrateur ou Développeur -->
+
+       		<?php if ( ($_SESSION['role'] == "Administrateur") xor ($_SESSION['role'] == "Développeur") ) { ?><!-- Si l'utilisateur est Administrateur ou Développeur -->
+
        			<div id="contenu">
+
             		<div id="banniere">Ajout d'un équipement</div>
+
                 		<div id="form-ajout">
 
                     		<fieldset><legend>Fiche équipement</legend>
+
                         		<form method="post" action="ajout.php">
 
                             		<label id="ajout_element">Nom équipement : *</label><input type="text" name="nom_equipement" placeholder="Nom"></p>
+
                       			    <label id="ajout_element">Etiquette : *</label></p>
 										<!-- Liste déroulante -->
 										<select name="categorie">
@@ -76,21 +82,22 @@ Autorisé.
 										<label id="ajout_element">Date mise en service : </label><input type="date" name="datemes" placeholder="YYYY/MM/DD"></p>
 										<label id="ajout_element">Date de réception : </label><input type="date" name="dater" placeholder="YYYY/MM/DD"></p>
 										<label id="ajout_element">Fin garantie : </label><input type="date" name="garantie" placeholder="Durée garantie"></p>
+
 										<label id="ajout_element">Lieu d'affectation : *</label>
 											<select name="plateforme">
 												<?php
 
 												$reponse = $pdo->query('SELECT *
 																		FROM `plateforme`
-																		ORDER BY `plateforme` ASC');
-												while ( $donnees = $reponse->fetch() ){
+																			ORDER BY `plateforme` ASC');
+													while ( $donnees = $reponse->fetch() ){
 												?>
-													<option value="<?php echo $donnees['idPlateforme']; ?>"><?php echo $donnees['plateforme'] ?></option>
+														<option value="<?php echo $donnees['idPlateforme']; ?>"><?php echo $donnees['plateforme'] ?></option>
 												<?php
-												}
+													}
 												?>
-											</option>
 											</select></p>
+
 										<label id="ajout_element">Responsable : </label><input type="text" name="responsable" placeholder="Nom responsable"></p>
 										<label id="ajout_element">Variable automate : </label><input type="text" name="variableAutomate" placeholder="Variable automate"></p>
 										<label id="ajout_element">Adresse automate : </label><input type="text" name="adresseAutomate" placeholder="Adresse automate"></p>
@@ -100,19 +107,19 @@ Autorisé.
 										<label id="ajout_element">Contrat entretien : </label><input type="text" name="contratEntretien" placeholder="Contrat entretien"></p>
 										<label id="ajout_element">Suppleant : </label><input type="text" name="suppleant" placeholder="Suppleant"></p>
 										<label id="ajout_element">Observation : </label><input type="text" name="observation" placeholder="Observation"></p>
-										<label id="ajout_element">Fournisseur : </label></p>
 
-										<select name="fournisseur">
-											<option value=NULL>-- Fournissseur --</option>
-												<?php
-													$reponse = $pdo->query('SELECT * FROM fournisseur ORDER BY nomFournisseur LIMIT 1, 1000');
-													while ( $donnees = $reponse->fetch() ) {
-												?>
-														<option value="<?php echo $donnees['idFournisseur']; ?>"><?php echo $donnees['nomFournisseur']; ?></option>
-												<?php
-													}
-												?>
-										</select>
+										<label id="ajout_element">Fournisseur : </label></p>
+											<select name="fournisseur">
+												<option value=NULL>-- Fournissseur --</option>
+													<?php
+														$reponse = $pdo->query('SELECT * FROM fournisseur ORDER BY nomFournisseur LIMIT 1, 1000');
+														while ( $donnees = $reponse->fetch() ) {
+													?>
+															<option value="<?php echo $donnees['idFournisseur']; ?>"><?php echo $donnees['nomFournisseur']; ?></option>
+													<?php
+														}
+													?>
+											</select>
 
 										<div id ="succes">
 											<?php
@@ -133,13 +140,15 @@ Autorisé.
 
                             			<input class="bouton" type="submit" value="Ajouter">
                          		</form>
+
                     		</fieldset><br><br>
+
             			</div>
 				</div>
 			<?php }
 				else{
 					$message = "Vous devez être Administrateur ou Développeur pour acceder à cette page !";
-					echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
 					header('refresh:0.01;url=index.php');
 				}
 			?>

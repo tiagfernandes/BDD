@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 19 Juin 2015 à 16:22
+-- Généré le :  Ven 31 Juillet 2015 à 09:06
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -38,14 +38,14 @@ CREATE TABLE IF NOT EXISTS `acronime_etiquette` (
 --
 
 INSERT INTO `acronime_etiquette` (`idAcronimeEtiquette`, `valeurAcronime`, `acronimeEtiquette`) VALUES
-(1, 'DO2', 'Mesure de l O2 dissous'),
+(0, ' ', ' '),
+(1, 'DO2', 'Mesure de l''O2 dissous'),
 (3, 'SCA', 'Balance'),
 (5, 'STO', 'Etuve'),
 (6, 'REF', 'RÃ©frigÃ©rateur'),
 (7, 'FRE', 'CongÃ©lateur'),
 (8, 'STE', 'GÃ©nÃ©rateur de vapeur'),
 (12, 'PHY', 'Phytotron'),
-(13, 'SEE', 'Table de germination'),
 (14, 'APUM', 'Pompe Ã  air'),
 (15, 'WPUM', 'Pompe Ã  eau'),
 (16, 'CRY', 'Cryothermostat'),
@@ -62,9 +62,9 @@ INSERT INTO `acronime_etiquette` (`idAcronimeEtiquette`, `valeurAcronime`, `acro
 CREATE TABLE IF NOT EXISTS `anomalie` (
   `idAnomalie` int(11) NOT NULL AUTO_INCREMENT,
   `nomAnomalie` varchar(45) NOT NULL,
-  `dateAnomalie` datetime DEFAULT NULL,
-  `finAnomalie` datetime DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL,
+  `dateAnomalie` date DEFAULT NULL,
+  `finAnomalie` date DEFAULT NULL,
+  `descriptionAnomalie` varchar(1000) DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL,
   PRIMARY KEY (`idAnomalie`,`idUtilisateur`),
   KEY `fk_Panne_Utilisateur1_idx` (`idUtilisateur`)
@@ -79,8 +79,9 @@ CREATE TABLE IF NOT EXISTS `anomalie` (
 CREATE TABLE IF NOT EXISTS `calibration` (
   `idCalibration` int(11) NOT NULL AUTO_INCREMENT,
   `nomCalibration` varchar(45) NOT NULL,
-  `descriptionCalibration` varchar(200) DEFAULT NULL,
   `dateCalibration` date DEFAULT NULL,
+  `finCalibration` date DEFAULT NULL,
+  `descriptionCalibration` varchar(1000) DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL,
   PRIMARY KEY (`idCalibration`,`idUtilisateur`),
   KEY `fk_calibration_utilisateur1_idx` (`idUtilisateur`)
@@ -104,13 +105,13 @@ CREATE TABLE IF NOT EXISTS `categorie_etiquette` (
 --
 
 INSERT INTO `categorie_etiquette` (`idCategorieEtiquette`, `valeurCategorie`, `categorieEtiquette`) VALUES
+(0, ' ', ' '),
 (1, 'A', 'Actuator'),
 (2, 'S', 'Sampler'),
 (3, 'SA', 'Sample Analyser'),
 (4, 'SC', 'Sample Conditionner'),
 (5, 'SE', 'SEnsor'),
 (6, 'C', 'Container'),
-(7, 'CL', 'Communication Tools'),
 (8, 'DL', 'Data Logger Module'),
 (9, 'E', 'Electronics'),
 (10, 'SI', 'Services and Infrastructure'),
@@ -127,6 +128,8 @@ CREATE TABLE IF NOT EXISTS `document` (
   `nomDocument` varchar(45) DEFAULT NULL,
   `idEtiquette_Document` int(11) NOT NULL,
   `idLieux_Document` int(11) NOT NULL DEFAULT '0',
+  `nomFichier` varchar(50) DEFAULT NULL,
+  `cheminFichier` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idDocument`,`idEtiquette_Document`,`idLieux_Document`),
   KEY `fk_Document_Etiquette_Document1_idx` (`idEtiquette_Document`),
   KEY `fk_Document_Lieux_Document1_idx` (`idLieux_Document`)
@@ -143,14 +146,16 @@ CREATE TABLE IF NOT EXISTS `emplacement_archive` (
   `valeurEmplacement` varchar(45) DEFAULT NULL,
   `emplacementArchive` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idEmplacement_Archive`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `emplacement_archive`
 --
 
 INSERT INTO `emplacement_archive` (`idEmplacement_Archive`, `valeurEmplacement`, `emplacementArchive`) VALUES
-(1, 'A1', 'Armoire 1');
+(0, ' ', ' '),
+(1, 'A1', 'Armoire nÂ°1'),
+(2, 'A2', 'Armoire nÂ°2');
 
 -- --------------------------------------------------------
 
@@ -161,8 +166,9 @@ INSERT INTO `emplacement_archive` (`idEmplacement_Archive`, `valeurEmplacement`,
 CREATE TABLE IF NOT EXISTS `entretien` (
   `idEntretien` int(11) NOT NULL AUTO_INCREMENT,
   `nomEntretien` varchar(45) NOT NULL,
-  `dateEntretien` datetime DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL,
+  `dateEntretien` date DEFAULT NULL,
+  `finEntretien` date DEFAULT NULL,
+  `descriptionEntretien` varchar(1000) DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL,
   PRIMARY KEY (`idEntretien`,`idUtilisateur`),
   KEY `fk_Entretient_Utilisateur1_idx` (`idUtilisateur`)
@@ -177,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `entretien` (
 CREATE TABLE IF NOT EXISTS `equipement` (
   `idEquipement` int(11) NOT NULL AUTO_INCREMENT,
   `nomEquipement` varchar(45) DEFAULT NULL,
-  `idFournisseur` int(11) NOT NULL,
+  `idFournisseur` int(11) NOT NULL DEFAULT '0',
   `prix` double DEFAULT NULL,
   `marque` varchar(45) DEFAULT NULL,
   `dateAjout` date DEFAULT NULL,
@@ -187,6 +193,14 @@ CREATE TABLE IF NOT EXISTS `equipement` (
   `garantie` date DEFAULT NULL,
   `responsable` varchar(45) DEFAULT NULL,
   `idPlateforme` int(11) NOT NULL,
+  `nomVariableAutomate` varchar(45) DEFAULT NULL,
+  `adresseAutomate` varchar(45) DEFAULT NULL,
+  `idStoc` varchar(45) DEFAULT NULL,
+  `nFabrication` int(11) DEFAULT NULL,
+  `attestationExamen` varchar(45) DEFAULT NULL,
+  `contratEntretien` varchar(45) DEFAULT NULL,
+  `suppleant` varchar(45) DEFAULT NULL,
+  `observation` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idEquipement`,`idFournisseur`,`idPlateforme`),
   KEY `fk_Equipement_Fournisseur1_idx` (`idFournisseur`),
   KEY `fk_equipement_plateforme1_idx` (`idPlateforme`)
@@ -196,26 +210,24 @@ CREATE TABLE IF NOT EXISTS `equipement` (
 -- Contenu de la table `equipement`
 --
 
-INSERT INTO `equipement` (`idEquipement`, `nomEquipement`, `idFournisseur`, `prix`, `marque`, `dateAjout`, `dateFabrication`, `dateReception`, `dateMiseService`, `garantie`, `responsable`, `idPlateforme`) VALUES
-(0, 'test', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(1, 'test', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(2, 'Test 2', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(3, 'Etuve', 0, 0, 'PROLABO EB 280', '2015-06-12', '0000-00-00', '1990-01-01', '0000-00-00', '0000-00-00', NULL, 1),
-(4, 'RÃ©frigÃ©rateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(5, 'CongÃ©lateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(6, 'Magicien d Oz', 0, 0, 'WEISHAUPT WL30Z-C Magicien d Oz', '2015-06-12', '0000-00-00', '2010-06-01', '2010-06-01', '0000-00-00', NULL, 1),
-(7, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(8, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(9, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(10, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(11, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(12, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(13, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(14, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(15, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(16, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(17, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1),
-(18, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1);
+INSERT INTO `equipement` (`idEquipement`, `nomEquipement`, `idFournisseur`, `prix`, `marque`, `dateAjout`, `dateFabrication`, `dateReception`, `dateMiseService`, `garantie`, `responsable`, `idPlateforme`, `nomVariableAutomate`, `adresseAutomate`, `idStoc`, `nFabrication`, `attestationExamen`, `contratEntretien`, `suppleant`, `observation`) VALUES
+(1, 'Test', 0, 100, '', '2015-06-12', '0000-00-00', '0000-00-00', '2015-06-12', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'Test 2', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 'Etuve', 0, 0, 'PROLABO EB 280', '2015-06-12', '0000-00-00', '1990-01-01', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'RÃ©frigÃ©rateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'CongÃ©lateur', 0, 0, 'PROLINE', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'Magicien d Oz', 1, 0, 'WEISHAUPT WL30Z-C Magicien d''Oz', '2015-06-12', '0000-00-00', '2010-06-01', '2010-06-01', '0000-00-00', '', 1, '', '', '', 0, '', '', '', ''),
+(7, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(12, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(16, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 'Pompe pÃ©ristaltique', 0, 0, '', '2015-06-12', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -230,6 +242,31 @@ CREATE TABLE IF NOT EXISTS `equipement_has_document` (
   KEY `fk_Equipement_has_Document_Document1_idx` (`idDocument`),
   KEY `fk_Equipement_has_Document_Equipement1_idx` (`idEquipement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `equipement_has_document`
+--
+
+INSERT INTO `equipement_has_document` (`idEquipement`, `idDocument`) VALUES
+(0, 1),
+(0, 2),
+(0, 3),
+(0, 4),
+(0, 5),
+(0, 6),
+(0, 7),
+(0, 8),
+(0, 9),
+(0, 10),
+(0, 11),
+(0, 12),
+(0, 13),
+(0, 14),
+(0, 15),
+(0, 16),
+(0, 17),
+(0, 18),
+(0, 19);
 
 -- --------------------------------------------------------
 
@@ -256,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `etiquette_document` (
   `idType_Document` int(11) NOT NULL,
   `idProcessus` int(11) NOT NULL,
   `idSous_Processus` int(11) NOT NULL,
-  `idEtiquette_Equipement` int(11) NOT NULL,
+  `idEtiquette_Equipement` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idEtiquette_Document`,`idType_Document`,`idProcessus`,`idSous_Processus`,`idEtiquette_Equipement`),
   KEY `fk_Etiquette_Document_Type_Document1_idx` (`idType_Document`),
   KEY `fk_Etiquette_Document_Processus1_idx` (`idProcessus`),
@@ -286,6 +323,7 @@ CREATE TABLE IF NOT EXISTS `etiquette_equipement` (
 --
 
 INSERT INTO `etiquette_equipement` (`idEtiquette_Equipement`, `idCategorieEtiquette`, `idAcronimeEtiquette`, `idEquipement`) VALUES
+(0, 0, 0, 0),
 (1, 1, 1, 1),
 (7, 1, 15, 7),
 (8, 1, 15, 8),
@@ -295,7 +333,6 @@ INSERT INTO `etiquette_equipement` (`idEtiquette_Equipement`, `idCategorieEtique
 (12, 1, 15, 12),
 (13, 1, 15, 13),
 (14, 1, 15, 14),
-(15, 1, 15, 15),
 (16, 1, 15, 16),
 (17, 1, 15, 17),
 (18, 1, 15, 18),
@@ -316,7 +353,30 @@ CREATE TABLE IF NOT EXISTS `fiche_de_vie` (
   `idEquipement` int(11) NOT NULL,
   PRIMARY KEY (`idFicheDeVie`,`idEquipement`),
   KEY `fk_fiche_de_vie_equipement1_idx` (`idEquipement`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+
+--
+-- Contenu de la table `fiche_de_vie`
+--
+
+INSERT INTO `fiche_de_vie` (`idFicheDeVie`, `idEquipement`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(16, 16),
+(17, 17),
+(18, 18);
 
 -- --------------------------------------------------------
 
@@ -331,6 +391,13 @@ CREATE TABLE IF NOT EXISTS `fiche_de_vie_has_anomalie` (
   KEY `fk_fiche_de_vie_has_anomalie_anomalie1_idx` (`idAnomalie`),
   KEY `fk_fiche_de_vie_has_anomalie_fiche_de_vie1_idx` (`idFicheDeVie`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `fiche_de_vie_has_anomalie`
+--
+
+INSERT INTO `fiche_de_vie_has_anomalie` (`idFicheDeVie`, `idAnomalie`) VALUES
+(1, 7);
 
 -- --------------------------------------------------------
 
@@ -349,14 +416,14 @@ CREATE TABLE IF NOT EXISTS `fiche_de_vie_has_calibration` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fiche_de_vie_has_entretient`
+-- Structure de la table `fiche_de_vie_has_entretien`
 --
 
-CREATE TABLE IF NOT EXISTS `fiche_de_vie_has_entretient` (
+CREATE TABLE IF NOT EXISTS `fiche_de_vie_has_entretien` (
   `idFicheDeVie` int(11) NOT NULL,
-  `idEntretient` int(11) NOT NULL,
-  PRIMARY KEY (`idFicheDeVie`,`idEntretient`),
-  KEY `fk_fiche_de_vie_has_entretient_entretient1_idx` (`idEntretient`),
+  `idEntretien` int(11) NOT NULL,
+  PRIMARY KEY (`idFicheDeVie`,`idEntretien`),
+  KEY `fk_fiche_de_vie_has_entretient_entretient1_idx` (`idEntretien`),
   KEY `fk_fiche_de_vie_has_entretient_fiche_de_vie1_idx` (`idFicheDeVie`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -369,14 +436,22 @@ CREATE TABLE IF NOT EXISTS `fiche_de_vie_has_entretient` (
 CREATE TABLE IF NOT EXISTS `fournisseur` (
   `idFournisseur` int(11) NOT NULL AUTO_INCREMENT,
   `nomFournisseur` varchar(45) DEFAULT NULL,
-  `pays` varchar(45) DEFAULT NULL,
+  `adresse` varchar(45) DEFAULT NULL,
   `cp` int(11) DEFAULT NULL,
   `ville` varchar(45) DEFAULT NULL,
-  `adresse` varchar(45) DEFAULT NULL,
+  `pays` varchar(45) DEFAULT NULL,
   `telephone` tinytext,
   `email` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idFournisseur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `fournisseur`
+--
+
+INSERT INTO `fournisseur` (`idFournisseur`, `nomFournisseur`, `adresse`, `cp`, `ville`, `pays`, `telephone`, `email`) VALUES
+(0, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1, 'CNRS', '78 rue du chÃ¢teau', 77140, 'St Pierre les Nemours', 'France', '', '');
 
 -- --------------------------------------------------------
 
@@ -410,27 +485,7 @@ CREATE TABLE IF NOT EXISTS `lieux_document` (
   KEY `fk_Lieux_Document_Piece_Document1_idx` (`idPiece_Document`),
   KEY `fk_Lieux_Document_Emplacement_Archive1_idx` (`idEmplacement_Archive`),
   KEY `fk_Lieux_Document_Sous_Emplacement1_idx` (`idSous_Emplacement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
-
---
--- Contenu de la table `lieux_document`
---
-
-INSERT INTO `lieux_document` (`idLieux_Document`, `idPlateforme_Archive`, `idPiece_Document`, `idEmplacement_Archive`, `idSous_Emplacement`) VALUES
-(2, 0, 0, 0, 0),
-(3, 0, 0, 0, 0),
-(4, 0, 0, 0, 0),
-(5, 0, 0, 0, 0),
-(6, 0, 0, 0, 0),
-(7, 0, 0, 0, 0),
-(9, 0, 0, 0, 0),
-(10, 0, 0, 0, 0),
-(11, 0, 0, 0, 0),
-(12, 0, 0, 0, 0),
-(13, 0, 0, 0, 0),
-(14, 0, 0, 0, 0),
-(1, 1, 1, 1, 1),
-(8, 1, 1, 1, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -469,6 +524,7 @@ CREATE TABLE IF NOT EXISTS `piece_document` (
 --
 
 INSERT INTO `piece_document` (`idPiece_Document`, `valeurPiece`, `pieceDocument`) VALUES
+(0, ' ', ' '),
 (1, 'BC', 'Bureau CEREEP');
 
 -- --------------------------------------------------------
@@ -479,7 +535,6 @@ INSERT INTO `piece_document` (`idPiece_Document`, `valeurPiece`, `pieceDocument`
 
 CREATE TABLE IF NOT EXISTS `piece_equipement` (
   `idPiece` int(11) NOT NULL AUTO_INCREMENT,
-  `valeur` varchar(45) DEFAULT NULL,
   `piece` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idPiece`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -488,8 +543,9 @@ CREATE TABLE IF NOT EXISTS `piece_equipement` (
 -- Contenu de la table `piece_equipement`
 --
 
-INSERT INTO `piece_equipement` (`idPiece`, `valeur`, `piece`) VALUES
-(1, 'BR', 'bureau');
+INSERT INTO `piece_equipement` (`idPiece`, `piece`) VALUES
+(0, NULL),
+(1, 'Bureau');
 
 -- --------------------------------------------------------
 
@@ -502,9 +558,9 @@ CREATE TABLE IF NOT EXISTS `planning_occupation` (
   `dateDebut` date DEFAULT NULL,
   `dateFin` date DEFAULT NULL,
   `idUtilisateur` int(11) NOT NULL,
-  `idPlateforme` int(11) NOT NULL,
-  `idLieu_Utilisation` int(11) NOT NULL,
-  `idPiece` int(11) NOT NULL,
+  `idPlateforme` int(11) NOT NULL DEFAULT '0',
+  `idLieu_Utilisation` int(11) NOT NULL DEFAULT '0',
+  `idPiece` int(11) NOT NULL DEFAULT '0',
   `fonctionPrincipal` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `fonctionSecondaire` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`idPlanning_Occupation`,`idUtilisateur`,`idPlateforme`,`idLieu_Utilisation`,`idPiece`),
@@ -551,6 +607,7 @@ CREATE TABLE IF NOT EXISTS `plateforme_archive` (
 --
 
 INSERT INTO `plateforme_archive` (`idPlateforme_Archive`, `valeurPlateforme`, `plateformeArchive`) VALUES
+(0, ' ', ' '),
 (1, 'Serre', 'Serre de recherche');
 
 -- --------------------------------------------------------
@@ -594,14 +651,15 @@ CREATE TABLE IF NOT EXISTS `sous_emplacement` (
   `valeurSousEmplacement` varchar(45) DEFAULT NULL,
   `sousEmplacement` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idSous_Emplacement`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `sous_emplacement`
 --
 
 INSERT INTO `sous_emplacement` (`idSous_Emplacement`, `valeurSousEmplacement`, `sousEmplacement`) VALUES
-(2, 'E2', 'Etagere n 2');
+(0, ' ', ' '),
+(1, 'E2', 'Ã‰tagÃ¨re nÂ°2');
 
 -- --------------------------------------------------------
 
@@ -668,7 +726,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `password` varchar(45) DEFAULT NULL,
   `role` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idUtilisateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `utilisateur`
@@ -676,7 +734,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `nomUtilisateur`, `prenomUtilisateur`, `email`, `login`, `password`, `role`) VALUES
 (1, 'Fernandes', 'Tiago', 'tiago_fernandes@live.fr', 'test', 'test', 'Administrateur'),
-(4, 'Massol', 'Florent', 'florent.massol@ens.fr', 'Florent', 'flo', 'Administrateur');
+(2, NULL, NULL, NULL, NULL, NULL, 'Utilisateur');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

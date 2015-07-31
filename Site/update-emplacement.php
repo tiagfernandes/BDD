@@ -35,18 +35,22 @@ Autorisé.
 
     <body>
 		<?php require_once('entete.php'); ?>
-			<?php if ($_SESSION['role']== "Administrateur") {?><!-- Si l'utilisateur est Administrateur -->
+
+			<?php if ($_SESSION['role']== "Administrateur") { ?><!-- Si l'utilisateur est Administrateur -->
+
 				<div id="contenu">
+
 					<div id="banniere">Modification emplacement n°<?= $idEmplacement ; ?></div>
 
 						<?php	//fonction pour afficher le nom de l'équipement
 							$resultats=$pdo->query("SELECT * FROM emplacement_archive WHERE idEmplacement_Archive = '$idEmplacement'");
 							$resultats->setFetchMode(PDO::FETCH_OBJ);
-							while( $resultat = $resultats->fetch() )
-							{
+
+							while ($resultat = $resultats->fetch()) {
 								$valeurEmplacement = $resultat->valeurEmplacement;
 								$emplacement = $resultat->emplacementArchive;
 							}
+
 							$resultats->closeCursor();
 						?>
 
@@ -67,14 +71,15 @@ Autorisé.
 									</div>
 
 								</form>
+
 						</fieldset>
 
 							<br>
 				</div>
 
 			<?php }
-				else{
-					$message="Vous devez être Administrateur pour acceder à cette page !";
+				else {
+					$message = "Vous devez être Administrateur pour acceder à cette page !";
 						echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
 					header('refresh:0.01;url=index.php');
 				}

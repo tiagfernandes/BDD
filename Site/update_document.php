@@ -25,24 +25,29 @@ Autorisé.
 <html lang="fr">
 <meta charset="UTF-8">
 
-   <head>
-    <title>Modifier l'équipement n°<?= $idDocument; ?></title>
-    <link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
-    <link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="style.css">
+   	<head>
+		<title>Modifier l'équipement n°<?= $idDocument; ?></title>
+			<link rel="shortcut icon" type="image/x-icon" href="./image/favicon.ico" />
+			<link rel="icon" type="image/x-icon" href="./image/favicon.ico" />
+			<link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
 
 
-   <body>
+   	<body>
 
     <?php require_once('entete.php'); ?>
-        <div id="contenu">
-        	<div id="banniere">Modification du document n°<?= $idDocument; ?></div>
+
+    	<div id="contenu">
+
+       		<div id="banniere">Modification du document n°<?= $idDocument; ?></div>
+
           		<div id="form-ajout">
+
               		<fieldset><legend>Modifier</legend>
 
 						<form method="post" action="modification_document.php?idDocument=<?= $idDocument ?>" enctype="multipart/form-data">
+
 							<?php	//fonction pour afficher le nom de l'équipement
 								$resultats=$pdo->query("SELECT * FROM document, lieux_document, plateforme_archive, piece_document, emplacement_archive, sous_emplacement, etiquette_equipement, categorie_etiquette, acronime_etiquette, etiquette_document
 								WHERE document.idLieux_Document = lieux_document.idLieux_Document
@@ -57,8 +62,7 @@ Autorisé.
 								AND idDocument='$idDocument'");
 								$resultats->setFetchMode(PDO::FETCH_OBJ);
 
-								while( $resultat = $resultats->fetch() )
-								{
+								while ($resultat = $resultats->fetch()) {
 									$nomDocument = $resultat->nomDocument;
 
 									$plateforme = $resultat->plateformeArchive;
@@ -87,8 +91,8 @@ Autorisé.
 
 
 									$nomFichier = substr($nomFichier, 0,-13);
-
 								}
+
 								$resultats->closeCursor();
 							?>
 
@@ -105,7 +109,8 @@ Autorisé.
 																WHERE `etiquette_equipement`.`idCategorieEtiquette` = `categorie_etiquette`.`idCategorieEtiquette`
 																AND `etiquette_equipement`.`idAcronimeEtiquette` = `acronime_etiquette`.`idAcronimeEtiquette`
 																ORDER BY `valeurCategorie` ASC');
-                                        while ($donnees = $reponse->fetch()){
+
+                                        while ($donnees = $reponse->fetch()) {
                                         ?>
                                             <option value="<?php echo $donnees['idEtiquette_Equipement']; ?>"><?php echo $donnees['valeurCategorie']; ?> - <?php echo $donnees['valeurAcronime']?> - <?php echo $donnees['idEquipement']; ?></option>
                                         <?php
@@ -125,7 +130,8 @@ Autorisé.
 																FROM `plateforme_archive`
 																WHERE `idPlateforme_Archive` BETWEEN 1 and 200
 																ORDER BY `plateformeArchive` ASC');
-                                        while ($donnees = $reponse->fetch()){
+
+                                        while ($donnees = $reponse->fetch()) {
                                         ?>
                                             <option value="<?php echo $donnees['idPlateforme_Archive']; ?>"><?php echo $donnees['valeurPlateforme'],' - ', $donnees['plateformeArchive']; ?></option>
                                         <?php
@@ -133,6 +139,7 @@ Autorisé.
                                         ?>
                                     </option>
 								</select></p>
+
 							<!-- Affcihage de la piece du document -->
 							<label id="ajout_element">Piece : </label>
                       			<select name="newPiece">
@@ -143,7 +150,8 @@ Autorisé.
 																FROM `piece_document`
 																WHERE `idPiece_Document` BETWEEN 1 and 200
 																ORDER BY `pieceDocument` ASC');
-                                        while ($donnees = $reponse->fetch()){
+
+                                        while ($donnees = $reponse->fetch()) {
                                         ?>
                                             <option value="<?php echo $donnees['idPiece_Document']; ?>"><?php echo $donnees['valeurPiece'],' -',$donnees['pieceDocument']; ?></option>
                                         <?php
@@ -161,7 +169,8 @@ Autorisé.
 																FROM `emplacement_archive`
 																WHERE `idEmplacement_Archive` BETWEEN 1 and 200
 																ORDER BY `emplacementArchive` ASC');
-                                        while ($donnees = $reponse->fetch()){
+
+                                        while ($donnees = $reponse->fetch()) {
                                         ?>
                                             <option value="<?php echo $donnees['idEmplacement_Archive']; ?>"><?php echo $donnees['valeurEmplacement'],' - ', $donnees['emplacementArchive']; ?></option>
                                         <?php
@@ -179,7 +188,8 @@ Autorisé.
 																FROM `sous_emplacement`
 																WHERE `idSous_Emplacement` BETWEEN 1 and 200
 																ORDER BY `sousEmplacement` ASC');
-                                        while ($donnees = $reponse->fetch()){
+
+                                        while ($donnees = $reponse->fetch()) {
                                         ?>
                                             <option value="<?php echo $donnees['idSous_Emplacement']; ?>"><?php echo $donnees['valeurSousEmplacement'],' - ',$donnees['sousEmplacement']; ?></option>
                                         <?php
@@ -198,9 +208,12 @@ Autorisé.
 
 							</br></br>
 
-							<input class="bouton" onclick="return(confirm('Etes-vous sur de vouloir modifier l&#180&#233quipement ? '));" type="submit" value="Modifier">
+								<input class="bouton" onclick="return(confirm('Etes-vous sur de vouloir modifier l&#180&#233quipement ? '));" type="submit" value="Modifier">
+
 						 </form>
+
           			</fieldset>
+
         		</div>
         </div>
     </body>
